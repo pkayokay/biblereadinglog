@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <% flash_message = flash[:notice] || flash[:alert] %>
+    <% if flash_message.present? %>
+      <div><%= flash_message %></div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
