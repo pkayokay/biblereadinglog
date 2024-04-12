@@ -1,4 +1,16 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
+
+  private
+
+  def authenticate_user!
+    redirect_to sign_in_path, alert: "You must be signed in" unless user_signed_in?
+  end
+
+  def require_no_user!
+    redirect_to root_path if user_signed_in?
+  end
+
   def current_user
     Current.user ||= authenticate_user_from_session
   end
