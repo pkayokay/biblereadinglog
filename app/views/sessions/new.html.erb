@@ -1,14 +1,14 @@
-<h1>Log in</h1>
+<h1 class="text-2xl font-semibold">Log in</h1>
 <%= form_with model: @user, url: sign_in_path do |form| %>
   <div>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+    <%= form.label :email, class: "block" %>
+    <%= form.email_field :email, class: "border rounded", required: true %>
   </div>
   <div>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.label :password, class: "block" %>
+    <%= form.password_field :password, class: "border rounded", required: true %>
   </div>
   <div>
-    <%= form.submit "Log in" %>
+    <%= form.submit "Sign in", class: "mt-2 border rounded py-1 px-2" %>
   </div>
 <% end %>
