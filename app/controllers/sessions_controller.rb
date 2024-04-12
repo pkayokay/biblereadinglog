@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :require_no_user!
+  skip_before_action :authenticate_user!, except: :destroy
+  before_action :require_no_user!, except: :destroy
 
   def new
   end
@@ -12,5 +13,10 @@ class SessionsController < ApplicationController
       flash.now[:alert] = "Invalid email or password"
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    log_out
+    redirect_to root_path, notice: "You have been logged out."
   end
 end
