@@ -1,5 +1,8 @@
 class BaseController < ApplicationController
   def index
+  end
+
+  def books
     @books = current_user.reading_log.books
   end
 

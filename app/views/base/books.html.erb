@@ -1,0 +1,10 @@
+<%= turbo_frame_tag :books do %>
+  <% @books.each do |book| %>
+    <div class="border-b py-4">
+      <div class="font-semibold mb-2 text-lg"><%= book.name %></div>
+      <% book.chapters_data.each do |chapter_data| %>
+        <%= render "books/book_chapter_form", book: book, chapter_data: chapter_data %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
