@@ -35,4 +35,28 @@ class UserTest < ActiveSupport::TestCase
     assert @user_one.authenticate("secret"), "User should be authenticated with the correct password"
     assert_not @user_one.authenticate("wrongpassword"), "User should not be authenticated with the wrong password"
   end
+
+ test "email must follow valid format" do
+    invalid_emails = [
+      'userexample.com',    # Missing '@'
+      'user@',              # Nothing after '@'
+      'user@.com',          # Nothing between '@' and '.'
+      '@example.com',       # Missing local part
+      'user@exam_ple.com',  # Invalid character '_'
+      'user example.com',   # Spaces are not allowed
+      'user@example..com'   # Double dot in domain part
+    ]
+
+    invalid_emails.each do |email|
+      user = User.new(email: email, name: "Alice", password: "secret", password_confirmation: "secret")
+      user.valid?
+      assert_includes user.errors[:email], "is invalid", "Expected #{email} to be invalid"
+    end
+
+    # Testing a valid email
+    valid_email = "valid@example.com"
+    user = User.new(email: valid_email, name: "Bob", password: "secret", password_confirmation: "secret")
+    user.valid?
+    assert_empty user.errors[:email], "Expected #{valid_email} to be valid"
+  end
 end
