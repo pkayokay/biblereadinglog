@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book: one
+  chapter_number: 1
+  completed_at: 2024-04-13 12:44:34
+
+two:
+  book: two
+  chapter_number: 1
+  completed_at: 2024-04-13 12:44:34

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_14_002133) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_13_164434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_14_002133) do
     t.index ["position", "reading_log_id"], name: "index_books_on_position_and_reading_log_id", unique: true
     t.index ["reading_log_id", "name"], name: "index_books_on_reading_log_id_and_name", unique: true
     t.index ["slug", "reading_log_id"], name: "index_books_on_slug_and_reading_log_id", unique: true
+  end
+
+  create_table "chapters", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.integer "chapter_number", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id", "chapter_number"], name: "index_chapters_on_book_id_and_chapter_number", unique: true
+    t.index ["chapter_number"], name: "index_chapters_on_chapter_number"
   end
 
   create_table "reading_logs", force: :cascade do |t|
@@ -47,5 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_14_002133) do
   end
 
   add_foreign_key "books", "reading_logs"
+  add_foreign_key "chapters", "books"
   add_foreign_key "reading_logs", "users"
 end
