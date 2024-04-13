@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Philippians",
+    "slug": "philippians",
+    "chapters": [1, 2, 3, 4]
+  },
+  {
+    "name": "Colossians",
+    "slug": "colossians",
+    "chapters": [1, 2, 3, 4]
+  }
+]
