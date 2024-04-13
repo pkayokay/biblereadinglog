@@ -11,7 +11,11 @@ class CreateBooksService
           name: book["name"],
           slug: book["slug"],
           reading_log: @reading_log,
-          position: book["position"]
+          position: book["position"],
+          chapters_data: book["chapter_count"].times.map do |index|
+            chapter = index + 1
+            { chapter_number: chapter, completed_at: nil }
+          end
         )
       end
     rescue => e
