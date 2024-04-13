@@ -1,5 +1,6 @@
 class BaseController < ApplicationController
   def index
+    @books = current_user.reading_log.books
   end
 
   def admin
