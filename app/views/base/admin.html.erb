@@ -4,11 +4,11 @@
     <div class="mb-3">Set up new user</div>
     <div class="field">
       <%= form.label :email, class: "block" %>
-      <%= form.email_field :email, required: true, class: "border rounded" %>
+      <%= form.email_field :email, required: true, class: "py-1 px-2 border rounded w-full max-w-[400px]" %>
     </div>
-    <div class="field">
+    <div class="field mt-3 mb-3">
       <%= form.label :password, class: "block" %>
-      <%= form.text_field :password, required: true, class: "border rounded"%>
+      <%= form.text_field :password, required: true, class: "py-1 px-2 border rounded w-full max-w-[400px]"%>
     </div>
     <%= form.submit "Submit", class: "border mt-3 py-1 px-2 rounded" %>
   <% end %>
