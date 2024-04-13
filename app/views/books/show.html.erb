@@ -8,8 +8,8 @@
     <%= render "books/book_chapter_header", book: @book, show_page: true %>
   <% end %>
   <div class="mt-5">
-    <% @book.chapters_data.each do |chapter_data| %>
-      <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
+    <% @book_data["chapters_count"].times.each do |chapter_number| %>
+      <%= render "books/book_chapter_form", book: @book, chapter_number: chapter_number + 1 %>
     <% end %>
   </div>
 </section>

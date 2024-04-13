@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   def show
     @book = Book.find_by!(slug: params[:book_slug])
+    books_data = JSON.parse(File.read('./public/books.json'))
+    @book_data = books_data.find {|data| data["slug"] == @book.slug }
   end
 
   def toggle_chapter
