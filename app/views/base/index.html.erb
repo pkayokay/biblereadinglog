@@ -1,6 +1,9 @@
-<%= button_to "Log out", log_out_path, method: :delete %>
-<div class="mb-4">
-  <%= current_user.email %>
+<div class="flex justify-between items-center">
+  <h1 class="text-2xl font-bold">Home</h1>
+  <%= button_to "Log out", log_out_path, method: :delete, class: "border rounded py-1 px-3" %>
+</div>
+<div class="mb-4 font-mono mt-4">
+  <p class="text-sm">Signed in as <%= current_user.email %></p>
 </div>
 
 <% current_user.reading_log.books.each do |book| %>
