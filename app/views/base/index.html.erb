@@ -6,7 +6,7 @@
   <p class="text-sm">Signed in as <%= current_user.email %></p>
 </div>
 
-<% current_user.reading_log.books.each do |book| %>
+<% @books.each do |book| %>
   <div class="border-b py-4">
     <div class="font-semibold mb-2 text-lg"><%= book.name %></div>
     <% book.chapters_data.each do |chapter_data| %>
