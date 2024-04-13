@@ -14,7 +14,7 @@ class CreateBooksService
           position: book["position"],
           chapters_data: book["chapter_count"].times.map do |index|
             chapter = index + 1
-            { chapter_number: chapter, completed: false, completed_date: nil }
+            { chapter_number: chapter, completed_at: nil }
           end
         )
       end
