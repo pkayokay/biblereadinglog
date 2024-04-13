@@ -1,2 +1,6 @@
 <%= button_to "Log out", log_out_path, method: :delete %>
 <%= current_user.email %>
+
+<% current_user.reading_log.books.each do |book| %>
+  <div><%= book.name %></div>
+<% end %>
