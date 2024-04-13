@@ -1,6 +1,15 @@
 <%= button_to "Log out", log_out_path, method: :delete %>
-<%= current_user.email %>
+<div class="mb-4">
+  <%= current_user.email %>
+</div>
 
 <% current_user.reading_log.books.each do |book| %>
-  <div><%= book.name %></div>
+  <div class="border-b py-4">
+    <div class="font-semibold mb-2 text-lg"><%= book.name %></div>
+    <% book.chapters_data.each do |chapter_data| %>
+      <span class="<%= 'bg-green-700 border-green-700 text-white' if chapter_data["completed"] %> text-center w-[40px] mb-2 opacity-50 p-1 border border-gray-300 rounded inline-block">
+        <%= chapter_data["chapter_number"] %>
+      </span>
+    <% end %>
+  </div>
 <% end %>
