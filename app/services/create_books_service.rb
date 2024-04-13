@@ -12,7 +12,7 @@ class CreateBooksService
           slug: book["slug"],
           reading_log: @reading_log,
           position: book["position"],
-          chapters_count: book["chapters_count"],
+          chapters_count: book["chapters_count"]
         )
       end
     rescue => e
