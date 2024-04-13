@@ -20,8 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_012523) do
     t.bigint "reading_log_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "reading_log_id"], name: "index_books_on_name_and_reading_log_id", unique: true
-    t.index ["reading_log_id"], name: "index_books_on_reading_log_id"
+    t.index ["reading_log_id", "name"], name: "index_books_on_reading_log_id_and_name", unique: true
     t.index ["slug", "reading_log_id"], name: "index_books_on_slug_and_reading_log_id", unique: true
   end
 
