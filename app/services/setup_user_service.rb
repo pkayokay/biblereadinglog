@@ -1,13 +1,12 @@
 class SetupUserService
-  def initialize(email:, password: nil)
+  def initialize(email:, password:)
     @email = email
     @password = password
   end
 
   def call
     User.transaction do
-      @password_value = @password || SecureRandom.hex(6)
-      user = User.create!(email: @email, password: @password_value)
+      user = User.create!(email: @email, password: @password)
       ReadingLog.create!(user: user)
     rescue => e
       return { error: e.message }
@@ -16,7 +15,7 @@ class SetupUserService
     {
       success: true,
       email: @email,
-      password: @password_value,
+      password: @password,
     }
   end
 end
