@@ -9,6 +9,12 @@ class BaseController < ApplicationController
   def setup_user
     result = SetupUserService.new(email: params[:email], password: params[:password]).call
 
-    redirect_to admin_path, notice: "#{result[:email]} user created!"
+    if result[:success]
+      flash[:notice] = "#{result[:email]} user created!"
+    else
+      flash[:alert] = result[:error]
+    end
+
+    redirect_to admin_path
   end
 end
