@@ -1,4 +1,4 @@
-<div class="font-mono">
+<div class="font-mono max-w-5xl mx-auto">
   <h1 class="font-bold text-2xl mb-2">Admin</h1>
   <%= form_with url: setup_user_path do |form| %>
     <div class="mb-3">Set up new user</div>
@@ -22,9 +22,9 @@
     </div>
     <% User.order(created_at: :asc).each do |user| %>
       <div class="font-mono flex">
-        <div class="w-[320px] min-w-[320px] text-nowrap text-ellipsis overflow-hidden <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
-        <div class="w-[320px] min-w-[320px] text-nowrap text-ellipsis overflow-hidden <%= 'text-red-600' if user.is_admin? %>"><%= user.created_at %></div>
-        <div class="w-[320px] min-w-[320px] text-nowrap text-ellipsis overflow-hidden <%= 'text-red-600' if user.is_admin? %>"><%= user.is_admin? ? "admin" : "user" %></div>
+        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
+        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.created_at %></div>
+        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.is_admin? ? "admin" : "user" %></div>
       </div>
     <% end %>
   </div>
