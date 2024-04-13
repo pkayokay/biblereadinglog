@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'base#index'
+  get "admin", to: "base#admin"
+  post "setup_user", to: "base#setup_user"
   get "sign_in", to: "sessions#new"
   post 'sign_in', to: "sessions#create"
   delete 'log_out', to: "sessions#destroy"

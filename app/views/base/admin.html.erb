@@ -1,0 +1,31 @@
+<div class="font-mono">
+  <h1 class="font-bold text-2xl mb-2">Admin</h1>
+  <%= form_with url: setup_user_path do |form| %>
+    <div class="mb-3">Set up new user</div>
+    <div class="field">
+      <%= form.label :email, class: "block" %>
+      <%= form.email_field :email, required: true, class: "border rounded" %>
+    </div>
+    <div class="field">
+      <%= form.label :password, class: "block" %>
+      <%= form.text_field :password, required: true, class: "border rounded"%>
+    </div>
+    <%= form.submit "Submit", class: "border mt-3 py-1 px-2 rounded" %>
+  <% end %>
+
+  <h2 class="mt-6 font-bold text-2xl mb-2">Users</h2>
+  <div class="w-full overflow-scroll pb-8">
+    <div class="flex">
+      <div class="w-[320px] min-w-[320px] font-bold">email</div>
+      <div class="w-[320px] min-w-[320px] font-bold">created_at</div>
+      <div class="w-[320px] min-w-[320px] font-bold">is_admin</div>
+    </div>
+    <% User.order(created_at: :asc).each do |user| %>
+      <div class="font-mono flex">
+        <div class="w-[320px] min-w-[320px] text-nowrap text-ellipsis overflow-hidden <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
+        <div class="w-[320px] min-w-[320px] text-nowrap text-ellipsis overflow-hidden <%= 'text-red-600' if user.is_admin? %>"><%= user.created_at %></div>
+        <div class="w-[320px] min-w-[320px] text-nowrap text-ellipsis overflow-hidden <%= 'text-red-600' if user.is_admin? %>"><%= user.is_admin? ? "admin" : "user" %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
