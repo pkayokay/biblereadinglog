@@ -10,7 +10,8 @@ class CreateBooksService
         Book.create!(
           name: book["name"],
           slug: book["slug"],
-          reading_log: @reading_log
+          reading_log: @reading_log,
+          position: book["position"]
         )
       end
     rescue => e
