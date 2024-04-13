@@ -30,7 +30,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_14_002133) do
   create_table "chapters", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.integer "chapter_number", null: false
-    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id", "chapter_number"], name: "index_chapters_on_book_id_and_chapter_number", unique: true
