@@ -7,7 +7,7 @@ class CreateBooksService
     ReadingLog.transaction do
       books_source = JSON.parse(File.read('./public/books.json'))
       books_source.each do |book|
-        Book.create!(
+        book_record = Book.create!(
           name: book["name"],
           slug: book["slug"],
           reading_log: @reading_log,
@@ -18,6 +18,10 @@ class CreateBooksService
             { chapter_number: chapter, completed_at: nil }
           end
         )
+
+        book["chapter_count"].times.map do |index|
+          Chapter.create!(chapter_number: index + 1, book: book_record)
+        end
       end
     rescue => e
       return { error: e.record.errors.full_messages.first }
