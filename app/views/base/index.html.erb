@@ -9,17 +9,19 @@
 <div class="flex flex-start space-x-72">
   <div>
     <% @old_testament_books.each do |book| %>
-      <div class="pt-2 pb-1">
-        <%= render "books/book_chapter_header", book: book %>
-        <%= link_to "View", books_path(book.slug), class: "block -mt-1 text-sm" %>
+      <div class="my-4">
+        <%= link_to books_path(book.slug), class: "inline-block" do %>
+          <%= render "books/book_chapter_header", book: book %>
+        <% end %>
       </div>
     <% end %>
   </div>
   <div>
     <% @new_testament_books.each do |book| %>
-      <div class="pt-2 pb-1">
-        <%= render "books/book_chapter_header", book: book %>
-        <%= link_to "View", books_path(book.slug), class: "block -mt-1 text-sm" %>
+      <div class="my-4">
+        <%= link_to books_path(book.slug), class: "inline-block" do %>
+          <%= render "books/book_chapter_header", book: book %>
+        <% end %>
       </div>
     <% end %>
   </div>
