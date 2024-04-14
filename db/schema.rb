@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_163526) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_14_002133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_163526) do
     t.datetime "updated_at", null: false
     t.integer "position", null: false
     t.jsonb "chapters_data", null: false
+    t.integer "chapters_count", null: false
     t.index ["chapters_data"], name: "index_books_on_chapters_data"
     t.index ["position", "reading_log_id"], name: "index_books_on_position_and_reading_log_id", unique: true
     t.index ["reading_log_id", "name"], name: "index_books_on_reading_log_id_and_name", unique: true
