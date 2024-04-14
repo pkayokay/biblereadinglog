@@ -22,7 +22,7 @@ class BooksController < ApplicationController
       respond_to do |format|
         format.turbo_stream { render turbo_stream: [
           turbo_stream.replace("book-#{book.id}-#{chapter_number}", partial: "books/book_chapter_form", locals: { book: book, chapter_data: chapter_to_update}),
-          turbo_stream.update("book-header-#{book.id}", partial: "books/book_chapter_header", locals: { book: book })
+          turbo_stream.update("book-header-#{book.id}", partial: "books/book_chapter_header", locals: { book: book, show_page: true })
           ]
         }
         format.html         { redirect_to root_path }

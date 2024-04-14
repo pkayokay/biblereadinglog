@@ -1,5 +1,5 @@
 <%= form_with url: book_toggle_chapter_path(book), method: :patch, class: "inline-block", id: "book-#{book.id}-#{chapter_data["chapter_number"]}" do |form| %>
   <%= form.hidden_field :chapter_number, value: chapter_data["chapter_number"] %>
   <%= form.hidden_field :is_completed, value: chapter_data["completed_at"].present? %>
-  <%= form.submit chapter_data["chapter_number"], class: "cursor-pointer #{'bg-green-700 border-green-700 text-white' if chapter_data["completed_at"]} text-center w-[40px] mb-2 mr-1 opacity-50 p-1 border border-gray-300 rounded inline-block" %>
+  <%= form.submit chapter_data["chapter_number"], class: "cursor-pointer #{'bg-gray-800 !border-gray-800 text-white' if chapter_data["completed_at"]} text-center h-[50px] w-[50px] text-lg font-medium mb-3 mr-2 p-1 border border-gray-500 rounded inline-block" %>
 <% end %>
