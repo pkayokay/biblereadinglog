@@ -6,7 +6,7 @@
   <p class="text-sm">Signed in as <%= current_user.email %></p>
 </div>
 
-<div class="flex flex-start space-x-72">
+<div class="flex-col sm:flex-row flex flex-start sm:space-x-32 md:space-x-72">
   <div>
     <% @old_testament_books.each do |book| %>
       <div class="my-4">
