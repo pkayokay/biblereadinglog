@@ -1,0 +1,15 @@
+<section data-controller="cache">
+  <div class="mb-4">
+    <%= link_to root_path, class: "opacity-60" do %>
+      &larr; Back
+    <% end %>
+  </div>
+  <%= turbo_frame_tag "book-header-#{@book.id}",  data: { turbo_temporary: true} do %>
+    <%= render "books/book_chapter_header", book: @book, show_page: true %>
+  <% end %>
+  <div class="mt-5">
+    <% @book.chapters_data.each do |chapter_data| %>
+      <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
+    <% end %>
+  </div>
+</section>

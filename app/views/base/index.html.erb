@@ -1,4 +1,4 @@
-<div class="flex justify-between items-center">
+<div data-controller="cache" class="flex justify-between items-center">
   <h1 class="text-2xl font-bold">Home</h1>
   <%= button_to "Log out", log_out_path, method: :delete, class: "border rounded py-1 px-3" %>
 </div>
@@ -6,6 +6,23 @@
   <p class="text-sm">Signed in as <%= current_user.email %></p>
 </div>
 
-<%= turbo_frame_tag :books, src: books_path, loading: :lazy do %>
-  <div class="text-2xl animate-pulse text-center mt-20">Loading...</div>
-<% end %>
+<div class="flex-col sm:flex-row flex flex-start sm:space-x-32 md:space-x-72">
+  <div>
+    <% @old_testament_books.each do |book| %>
+      <div class="my-4">
+        <%= link_to books_path(book.slug), class: "inline-block" do %>
+          <%= render "books/book_chapter_header", book: book %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <% @new_testament_books.each do |book| %>
+      <div class="my-4">
+        <%= link_to books_path(book.slug), class: "inline-block" do %>
+          <%= render "books/book_chapter_header", book: book %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
