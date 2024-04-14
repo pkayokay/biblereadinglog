@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CacheController from "./cache_controller"
+application.register("cache", CacheController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
