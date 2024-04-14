@@ -1,9 +1,7 @@
 class BaseController < ApplicationController
   def index
-  end
-
-  def books
-    @books = current_user.reading_log.books
+    @old_testament_books = current_user.reading_log.books.where(position: ..39)
+    @new_testament_books = current_user.reading_log.books.where(position: 40..)
   end
 
   def admin
