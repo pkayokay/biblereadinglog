@@ -1,6 +1,6 @@
 <% if local_assigns[:show_page] %>
   <div class="font-semibold text-3xl">
-    <div><%= book.name %></div>
+    <%= render(HeadingComponent.new(title: book.name)) %>
   </div>
   <% completed_count = book.chapters_data.count { |data| data["completed_at"].present? } %>
   <% if completed_count == book.chapters_count %>

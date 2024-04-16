@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# Exit if no arguments provided
+if ARGV.empty?
+  puts "Usage: bin/generate-component COMPONENT_NAME [ADDITIONAL_OPTIONS]"
+  exit 1
+end
+
+args = ARGV.join(" ")
+
+# Call the rails generate command with all arguments
+system("bin/rails generate component #{args} --test-framework=''")
