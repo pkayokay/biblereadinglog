@@ -1,17 +1,39 @@
 <section class="max-w-lg mx-auto">
   <header>
+    <% justify_override_class = if @previous_book.present? && @next_book.present?
+      "justify-between"
+    elsif @previous_book.present?
+      "justify-start"
+    else
+      "justify-end"
+    end %>
+    <div class="mb-5 flex <%= justify_override_class %>">
+      <% if @previous_book.present? %>
+        <%= link_to books_path(@previous_book.slug), class: "opacity-80 underline" do %>
+          &larr; <%= @previous_book.name %>
+        <% end %>
+      <% end %>
+      <% if @next_book.present? %>
+        <%= link_to books_path(@next_book.slug), class: "opacity-80 underline" do %>
+          <%= @next_book.name %> &rarr;
+        <% end %>
+      <% end %>
+    </div>
     <%= turbo_frame_tag "book-header-#{@book.id}" do %>
       <%= render "books/book_chapter_header", book: @book, show_page: true %>
     <% end %>
   </header>
-  <div class="mt-5">
+  <div class="mt-5 grid grid-cols-8 gap-4">
     <% @book.chapters_data.each do |chapter_data| %>
       <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
     <% end %>
   </div>
   <div class="mt-4">
-    <%= link_to root_path, class: "opacity-80 underline" do %>
-      &larr; Go back to all books
-    <% end %>
+
+    <div class="mt-8 text-center">
+      <%= link_to root_path, class: "opacity-60 underline text-sm" do %>
+        Go back to all books
+      <% end %>
+    </div>
   </div>
 </section>

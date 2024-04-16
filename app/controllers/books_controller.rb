@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
   def show
     @book = Book.find_by!(slug: params[:book_slug])
+
+    @previous_book = Book.find_by(position: @book.position - 1)
+    @next_book = Book.find_by(position: @book.position + 1)
   end
 
   def toggle_chapter
