@@ -1,7 +1,9 @@
-<div>
-  <%= turbo_frame_tag "book-header-#{@book.id}",  data: { turbo_temporary: true} do %>
-    <%= render "books/book_chapter_header", book: @book, show_page: true %>
-  <% end %>
+<section class="max-w-lg mx-auto">
+  <header>
+    <%= turbo_frame_tag "book-header-#{@book.id}" do %>
+      <%= render "books/book_chapter_header", book: @book, show_page: true %>
+    <% end %>
+  </header>
   <div class="mt-5">
     <% @book.chapters_data.each do |chapter_data| %>
       <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
@@ -12,4 +14,4 @@
       &larr; Go back to all books
     <% end %>
   </div>
-</div>
+</section>
