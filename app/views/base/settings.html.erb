@@ -1,0 +1,8 @@
+<section class="max-w-md mx-auto">
+  <h1 class="text-4xl font-semibold">Settings</h1>
+  <div class="mb-4 font-mono mt-4">
+    <p class="text-sm">Signed in as <%= current_user.email %></p>
+  </div>
+  <%= button_to "Log out", log_out_path, method: :delete, class: "border rounded py-1 px-3" %>
+</section>
+

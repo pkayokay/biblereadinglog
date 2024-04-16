@@ -19,4 +19,7 @@ class BaseController < ApplicationController
 
     redirect_to admin_path
   end
+
+  def settings
+  end
 end
