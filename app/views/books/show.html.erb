@@ -23,7 +23,7 @@
       <%= render "books/book_chapter_header", book: @book, show_page: true %>
     <% end %>
   </header>
-  <div class="mt-5 grid grid-cols-8 gap-4">
+  <div class="mt-5 sm:grid grid-cols-8 gap-4 *:mb-4 *:mr-2 sm:*:mb-0 sm:*:mr-0">
     <% @book.chapters_data.each do |chapter_data| %>
       <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
     <% end %>
