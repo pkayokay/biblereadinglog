@@ -1,5 +1,5 @@
 <section class="max-w-lg mx-auto">
-  <h1 class="text-4xl font-semibold">Settings</h1>
+  <%= render(HeadingComponent.new(title: "Settings")) %>
   <div class="mb-4 font-mono mt-4">
     <p class="text-sm">Signed in as <%= current_user.email %></p>
   </div>
