@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
   def index
-    @old_testament_books = current_user.reading_log.books.where(position: ..39)
-    @new_testament_books = current_user.reading_log.books.where(position: 40..)
+    @old_testament_books = current_user.reading_log.ordered_books.in_old_testament
+    @new_testament_books = current_user.reading_log.ordered_books.in_new_testament
   end
 
   def admin

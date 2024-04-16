@@ -3,10 +3,10 @@
     <h1 class="text-4xl font-semibold">Books</h1>
   </div>
 
-  <div class="justify-between space-y-2 xs:space-y-0 flex flex-col xs:flex-row flex-wrap xs:space-x-10">
+  <div class="justify-between -space-y-1 xs:space-y-0 flex flex-col xs:flex-row flex-wrap xs:space-x-10">
     <div>
       <% @old_testament_books.each do |book| %>
-        <div class="my-1">
+        <div class="my-1.5">
           <%= link_to books_path(book.slug), class: "inline-block" do %>
             <%= render "books/book_chapter_header", book: book %>
           <% end %>
