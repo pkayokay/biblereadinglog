@@ -1,12 +1,6 @@
-<% if local_assigns[:show_page] %>
-  <% completed_count = book.chapters_data.count { |data| data["completed_at"].present? } %>
-  <% if completed_count == book.chapters_count %>
-    <div class="opacity-40 font-normal text-sm">Congrats! You read the entire book.</div>
-  <% else %>
-    <div class="opacity-40 font-normal text-sm"><%= book.chapters_data.count { |data| data["completed_at"].present? } %> of <%= book.chapters_count %> Completed</div>
-  <% end %>
+<% completed_count = book.chapters_data.count { |data| data["completed_at"].present? } %>
+<% if completed_count == book.chapters_count %>
+  <div class="opacity-40 font-normal text-sm">Congrats! You read the entire book.</div>
 <% else %>
-  <div class="font-medium flex items-center text-lg space-x-2">
-    <div><%= book.name %></div><div class="opacity-40 font-normal"><%= book.chapters_data.count { |data| data["completed_at"].present? } %>/<%= book.chapters_count %></div>
-  </div>
+  <div class="opacity-40 font-normal text-sm"><%= book.chapters_data.count { |data| data["completed_at"].present? } %> of <%= book.chapters_count %> Completed</div>
 <% end %>
