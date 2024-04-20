@@ -1,0 +1,12 @@
+<%= link_to books_path(@book.slug), class: "#{ '' if @book.completed_all_chapters? } items-center justify-between block rounded-lg border shadow-sm py-2.5 px-4 mb-4 p w-full" do %>
+  <div class="mb-2 flex items-center justify-between">
+    <div class="text-lg font-medium"><%= @book.name %></div>
+  </div>
+  <div class="bg-gray-100 h-[4px] rounded-lg w-full">
+    <div class="bg-green-500 w-full h-full rounded-full" style="width:<%= @book.completed_chapter_percentage %>%"></div>
+  </div>
+  <div class="text-xs mt-1 opacity-40 flex items-center justify-between">
+    <div><%= @book.completed_chapter_count %> of <%= @book.chapters_count %> chapters</div>
+    <div><%= @book.completed_chapter_percentage %>%</div>
+  </div>
+<% end %>
