@@ -8,7 +8,7 @@
     <div class="opacity-80 flex items-center justify-between w-full">
       <div>Chapter <%= chapter_data["chapter_number"] %></div>
       <% if chapter_data["completed_at"].present? %>
-        <div class="text-green-800 text-xs"><%= chapter_data["completed_at"].to_datetime.strftime('%a %_m/%-e at %l:%M %p') %></div>
+        <div class="opacity-70 text-xs"><%= chapter_data["completed_at"].to_datetime.strftime('%a %_m/%-e at %l:%M %p') %></div>
       <% end %>
     </div>
   </button>
