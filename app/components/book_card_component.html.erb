@@ -1,8 +1,8 @@
-<%= link_to books_path(@book.slug), class: "#{ '' if @book.completed_all_chapters? } items-center justify-between block rounded-lg border shadow-sm py-2.5 px-3 mb-4 p w-full" do %>
+<%= link_to books_path(@book.slug), class: "#{ 'hover:bg-green-100 bg-green-50 border-green-200 shadow-green-50' if @book.completed_all_chapters? } hover:bg-gray-50 group items-center justify-between block rounded-lg border shadow-sm py-2.5 px-3 mb-4 p w-full" do %>
   <div class="mb-2 flex items-center justify-between">
     <div class="text-base font-medium"><%= @book.name %></div>
   </div>
-  <div class="bg-gray-100 h-[6px] rounded-lg w-full">
+  <div class="bg-gray-100 h-[6px] rounded-lg w-full group-hover:bg-gray-200">
     <div class="bg-green-500 w-full h-full rounded-full" style="width:<%= @book.completed_chapter_percentage %>%"></div>
   </div>
   <div class="text-sm mt-2 opacity-50 flex items-center justify-between">
