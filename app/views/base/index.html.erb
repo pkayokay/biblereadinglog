@@ -3,30 +3,20 @@
     <%= render(HeadingComponent.new(title: "Books")) %>
   </div>
 
-  <div class="justify-between -space-y-1 xs:space-y-0 flex flex-col xs:flex-row flex-wrap xs:space-x-10">
+  <div class="justify-between -space-y-1 xs:space-y-0 flex flex-col xs:flex-row flex-wrap xs:space-x-4">
     <div class="flex-1">
       <% @old_testament_books.each do |book| %>
-        <%= link_to books_path(book.slug), class: "items-center justify-between flex rounded-lg border shadow-sm py-3 px-4 mb-5 p w-full" do %>
-          <div>
-            <div class="text-lg font-medium"><%= book.name %></div>
-            <div class="opacity-40 text-sm"><%= book.chapters_data.count { |data| data["completed_at"].present? } %>/<%= book.chapters_count %></div>
-          </div>
-          <% if book.chapters_data.count { |data| data["completed_at"].present? } == book.chapters_count %>
-            <div>✅</div>
-          <% end %>
+        <%= link_to books_path(book.slug), class: "#{ '' if book.chapters_data.count { |data| data["completed_at"].present? } == book.chapters_count } items-center justify-between flex rounded-lg border shadow-sm py-3 px-4 mb-4 p w-full" do %>
+          <div class="text-base font-medium"><%= book.name %></div>
+          <div class="opacity-40 text-sm"><%= book.chapters_data.count { |data| data["completed_at"].present? } %>/<%= book.chapters_count %></div>
         <% end %>
       <% end %>
     </div>
     <div class="flex-1">
       <% @new_testament_books.each do |book| %>
-        <%= link_to books_path(book.slug), class: "items-center justify-between flex rounded-lg border shadow-sm py-3 px-4 mb-5 p w-full" do %>
-          <div>
-            <div class="text-lg font-medium"><%= book.name %></div>
-            <div class="opacity-40 text-sm"><%= book.chapters_data.count { |data| data["completed_at"].present? } %>/<%= book.chapters_count %></div>
-          </div>
-          <% if book.chapters_data.count { |data| data["completed_at"].present? } == book.chapters_count %>
-            <div>✅</div>
-          <% end %>
+        <%= link_to books_path(book.slug), class: "#{ '' if book.chapters_data.count { |data| data["completed_at"].present? } == book.chapters_count } items-center justify-between flex rounded-lg border shadow-sm py-3 px-4 mb-4 p w-full" do %>
+          <div class="text-base font-medium"><%= book.name %></div>
+          <div class="opacity-40 text-sm"><%= book.chapters_data.count { |data| data["completed_at"].present? } %>/<%= book.chapters_count %></div>
         <% end %>
       <% end %>
     </div>
