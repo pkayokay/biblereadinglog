@@ -1,4 +1,4 @@
-<section class="max-w-xl mx-auto">
+<section class="max-w-2xl mx-auto">
   <header>
     <% justify_override_class = if @previous_book.present? && @next_book.present?
       "justify-between"
@@ -15,7 +15,7 @@
           <% end %>
         <% end %>
       </div>
-      <h1 class=" flex-1 text-3xl  font-bold text-center"><%= @book.name %></h1>
+      <h1 class=" flex-1 text-4xl  font-bold text-center"><%= @book.name %></h1>
       <div class="sm:w-[160px] text-right">
         <% if @next_book.present? %>
           <%= link_to books_path(@next_book.slug), class: "opacity-50 hover:opacity-100 text-3xl sm:text-base w-full  text-right" do %>
@@ -30,7 +30,7 @@
       <% end %>
     </div>
   </header>
-  <div class="mt-5 max-w-sm mx-auto">
+  <div class="mt-5 max-w-md mx-auto">
     <% @book.chapters_data.each do |chapter_data| %>
       <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
     <% end %>

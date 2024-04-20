@@ -3,8 +3,13 @@
   <%= form.hidden_field :is_completed, value: chapter_data["completed_at"].present? %>
   <button type="submit" class="<%= '!bg-green-100' if chapter_data["completed_at"] %> bg-gray-100 w-full rounded mb-2 p-3 flex items-center space-x-4">
     <div class="<%= '!bg-transparent' if chapter_data["completed_at"] %> text-lg bg-white rounded-md h-[24px] w-[24px] cursor-pointer flex items-center justify-center">
-      <%  if chapter_data["completed_at"] %>✅<% end %>
+      <span class="<%= chapter_data["completed_at"] ? '': 'opacity-0' %>">✅</span>
     </div>
-    <div class="opacity-80">Chapter <%= chapter_data["chapter_number"] %></div>
+    <div class="opacity-80 flex items-center justify-between w-full">
+      <div>Chapter <%= chapter_data["chapter_number"] %></div>
+      <% if chapter_data["completed_at"].present? %>
+        <div class="text-green-800 text-xs"><%= chapter_data["completed_at"].to_datetime.strftime('%a %_m/%-e at %l:%M %p') %></div>
+      <% end %>
+    </div>
   </button>
 <% end %>
