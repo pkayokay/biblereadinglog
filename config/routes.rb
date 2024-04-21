@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "settings", to: "users#settings"
   get "admin", to: "base#admin"
-  get "settings", to: "base#settings"
   post "setup_user", to: "base#setup_user"
   get "sign_in", to: "sessions#new"
   post 'sign_in', to: "sessions#create"
