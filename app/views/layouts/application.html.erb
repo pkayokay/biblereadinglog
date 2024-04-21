@@ -10,21 +10,38 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="p-5">
-    <% if user_signed_in? %>
-      <nav class="space-x-6 text-center mb-4">
-        <%= link_to "Home", root_path, class: "font-medium hover:underline opacity-80 hover:opacity-100" %>
-        <%= link_to "Settings", settings_path, class: "font-medium hover:underline opacity-80 hover:opacity-100" %>
-      </nav>
-    <% end %>
+  <body class="p-5 bg-neutral-50">
     <% flash_message = flash[:notice] || flash[:alert] %>
     <% if flash_message.present? %>
       <div class="mb-3 border rounded bg-gray-200 px-2 py-1 inline-block"><%= flash_message %></div>
     <% end %>
 
-    <main class="max-w-3xl mx-auto">
-      <%= render "shared/breadcrumbs" %>
-      <%= yield %>
-    </main>
+    <div class="flex flex-col lg:flex-row mx-auto lg:max-w-5xl">
+      <div class="w-[180px]">
+        <nav class="mb-4 lg:mb-0 sticky top-0 flex flex-col space-y-1 w-[150px] pt-4">
+          <div class="text-5xl mb-3">📚</div>
+          <div class="space-y-1 hidden lg:block">
+            <%= link_to root_path, class: "#{'!text-black bg-[#eee]' if request.path == root_path} flex space-x-1 py-1.5 px-5 text-neutral-600 hover:bg-[#eee] hover:text-black rounded-md" do %>
+              <span>Home</span>
+            <% end %>
+            <%= link_to  account_path, class: "#{'!text-black bg-[#eee]' if request.path == account_path} flex space-x-1 py-1.5 px-5  text-neutral-600 hover:bg-[#eee] hover:text-black rounded-md" do %>
+              <span>Account</span>
+            <% end %>
+          </div>
+          <div class="flex lg:hidden space-x-3">
+            <%= link_to root_path, class: "#{'!text-black' if request.path == root_path} flex py-1.5 underline text-neutral-600 hover:text-black rounded-md" do %>
+              <span>Home</span>
+            <% end %>
+            <%= link_to  account_path, class: "#{'!text-black' if request.path == account_path} flex py-1.5 underline  text-neutral-600 hover:text-black rounded-md" do %>
+              <span>Account</span>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+      <main class="mx-auto w-full lg:flex-1 pt-4">
+        <%= render "shared/breadcrumbs" %>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
