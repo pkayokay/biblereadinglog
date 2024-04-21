@@ -5,12 +5,12 @@
   <div class="justify-between -space-y-1 sm:space-y-0 flex flex-col sm:flex-row flex-wrap sm:space-x-6">
     <div class="flex-1">
       <% @old_testament_books.each do |book| %>
-        <%= render(BookCardComponent.new(book: book )) %>
+        <%= render "books/card", book: book %>
       <% end %>
     </div>
     <div class="flex-1">
       <% @new_testament_books.each do |book| %>
-        <%= render(BookCardComponent.new(book: book )) %>
+        <%= render "books/card", book: book %>
       <% end %>
     </div>
   </div>
