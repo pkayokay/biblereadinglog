@@ -1,5 +1,6 @@
 <div class="mb-4">
-  <%= render(HeadingComponent.new(title: "Books")) %>
+  <%= render(HeadingComponent.new(title: "Reading Log")) %>
+  <span class="text-sm">Started on <%= @reading_log.created_at.strftime('%A %_m/%-e at %l:%M %p') %></span>
 </div>
 <div class="justify-between -space-y-1 sm:space-y-0 flex flex-col sm:flex-row flex-wrap sm:space-x-6">
   <div class="flex-1">
