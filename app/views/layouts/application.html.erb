@@ -16,32 +16,17 @@
       <div class="mb-3 border rounded bg-gray-200 px-2 py-1 inline-block"><%= flash_message %></div>
     <% end %>
 
-    <div class="flex flex-col lg:flex-row mx-auto lg:max-w-5xl">
-      <div class="w-[180px]">
-        <nav class="mb-4 lg:mb-0 sticky top-0 flex flex-col space-y-1 w-[150px] pt-4">
-          <div class="text-5xl mb-3">📚</div>
-          <div class="space-y-1 hidden lg:block">
-            <%= link_to root_path, class: "#{'!text-black bg-[#eee]' if request.path == root_path} flex space-x-1 py-1.5 px-5 text-neutral-600 hover:bg-[#eee] hover:text-black rounded-md" do %>
-              <span>Home</span>
-            <% end %>
-            <%= link_to  account_path, class: "#{'!text-black bg-[#eee]' if request.path == account_path} flex space-x-1 py-1.5 px-5  text-neutral-600 hover:bg-[#eee] hover:text-black rounded-md" do %>
-              <span>Account</span>
-            <% end %>
-          </div>
-          <div class="flex lg:hidden space-x-3">
-            <%= link_to root_path, class: "#{'!text-black' if request.path == root_path} flex py-1.5 underline text-neutral-600 hover:text-black rounded-md" do %>
-              <span>Home</span>
-            <% end %>
-            <%= link_to  account_path, class: "#{'!text-black' if request.path == account_path} flex py-1.5 underline  text-neutral-600 hover:text-black rounded-md" do %>
-              <span>Account</span>
-            <% end %>
-          </div>
-        </nav>
-      </div>
-      <main class="mx-auto w-full lg:flex-1 pt-4">
-        <%= render "shared/breadcrumbs" %>
-        <%= yield %>
-      </main>
-    </div>
+    <nav class="flex mx-auto mb-4 justify-center space-x-2 pt-4">
+      <%= link_to root_path, class: "#{'!text-black bg-[#eee]' if request.path == root_path} flex space-x-1 py-1.5 px-4 text-neutral-600 hover:bg-[#eee] hover:text-black rounded-lg" do %>
+        <span>Home</span>
+      <% end %>
+      <%= link_to  account_path, class: "#{'!text-black bg-[#eee]' if request.path == account_path} flex space-x-1 py-1.5 px-4  text-neutral-600 hover:bg-[#eee] hover:text-black rounded-lg" do %>
+        <span>Account</span>
+      <% end %>
+    </nav>
+    <main class="mx-auto w-full max-w-3xl">
+      <%= render "shared/breadcrumbs" %>
+      <%= yield %>
+    </main>
   </body>
 </html>
