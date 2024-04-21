@@ -2,6 +2,10 @@
   <%= render "books/book_chapter_square", book: @book, chapter_data: @chapter_to_update %>
 <% end %>
 
-<%= turbo_stream.replace book_chapter_details_turbo_frame_id(@book) do %>
-  <%= render "books/book_chapter_details", book: @book %>
+<%= turbo_stream.replace book_progress_line_turbo_frame_id(@book) do %>
+  <%= render "books/book_progress_line", book: @book, opened: true %>
+<% end %>
+
+<%= turbo_stream.replace book_card_percentage_turbo_frame_id(@book) do %>
+  <%= render "books/book_card_percentage", book: @book %>
 <% end %>

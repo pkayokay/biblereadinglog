@@ -11,7 +11,11 @@ module ApplicationHelper
     "book-square-#{book.id}-#{chapter_number}"
   end
 
-  def book_chapter_details_turbo_frame_id(book)
-    "book-chapter-details-#{book.id}"
+  def book_progress_line_turbo_frame_id(book)
+    "book-progress-line-#{book.id}"
+  end
+
+    def book_card_percentage_turbo_frame_id(book)
+    "book-card-percentage-#{book.id}"
   end
 end
