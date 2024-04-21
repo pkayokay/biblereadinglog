@@ -1,0 +1,9 @@
+<%= turbo_frame_tag book_chapter_details_turbo_frame_id(book) do %>
+  <div class=" bg-gray-100 h-[6px] rounded-lg w-full group-hover:bg-gray-200">
+    <div class="bg-green-500 w-full h-full rounded-full" style="width:<%= book.completed_chapter_percentage %>%"></div>
+  </div>
+  <div class="text-sm mt-2 opacity-50 flex items-center justify-between">
+    <div><%= book.completed_chapter_count %> of <%= book.chapters_count %> chapters</div>
+    <div><%= book.completed_chapter_percentage %>%</div>
+  </div>
+<% end %>

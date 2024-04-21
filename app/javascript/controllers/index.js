@@ -9,3 +9,6 @@ application.register("cache", CacheController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LogChapterController from "./log_chapter_controller"
+application.register("log-chapter", LogChapterController)

@@ -1,25 +1,16 @@
-<section class="max-w-lg mx-auto">
-  <div data-controller="cache" class="mb-4">
+<section data-controller="cache" class="max-w-3xl mx-auto">
+  <div class="mb-4">
     <%= render(HeadingComponent.new(title: "Books")) %>
   </div>
-
-  <div class="justify-between -space-y-1 xs:space-y-0 flex flex-col xs:flex-row flex-wrap xs:space-x-10">
-    <div>
+  <div class="justify-between -space-y-1 sm:space-y-0 flex flex-col sm:flex-row flex-wrap sm:space-x-6">
+    <div class="flex-1">
       <% @old_testament_books.each do |book| %>
-        <div class="my-2">
-          <%= link_to books_path(book.slug), class: "inline-block" do %>
-            <%= render "books/book_chapter_header", book: book %>
-          <% end %>
-        </div>
+        <%= render(BookCardComponent.new(book: book )) %>
       <% end %>
     </div>
-    <div>
+    <div class="flex-1">
       <% @new_testament_books.each do |book| %>
-        <div class="my-2">
-          <%= link_to books_path(book.slug), class: "inline-block" do %>
-            <%= render "books/book_chapter_header", book: book %>
-          <% end %>
-        </div>
+        <%= render(BookCardComponent.new(book: book )) %>
       <% end %>
     </div>
   </div>

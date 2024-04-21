@@ -1,46 +1,10 @@
-<section class="max-w-lg mx-auto">
-  <header>
-    <% justify_override_class = if @previous_book.present? && @next_book.present?
-      "justify-between"
-    elsif @previous_book.present?
-      "justify-start"
-    else
-      "justify-end"
-    end %>
-    <div class="mb-5 items-center flex <%= justify_override_class %>">
-      <div class="sm:w-[170px]">
-        <% if @previous_book.present? %>
-          <%= link_to books_path(@previous_book.slug), class: "opacity-50 hover:opacity-100 text-xl sm:text-base w-full  text-left" do %>
-            &larr; <span class="hidden sm:inline"><%= @previous_book.name %></span>
-          <% end %>
-        <% end %>
-      </div>
-      <h1 class=" flex-1 text-2xl  font-bold text-center"><%= @book.name %></h1>
-      <div class="sm:w-[170px] text-right">
-        <% if @next_book.present? %>
-          <%= link_to books_path(@next_book.slug), class: "opacity-50 hover:opacity-100 text-xl sm:text-base w-full  text-right" do %>
-            <span class="hidden sm:inline"><%= @next_book.name %></span> &rarr;
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="text-center">
-      <%= turbo_frame_tag "book-header-#{@book.id}" do %>
-        <%= render "books/book_chapter_header", book: @book, show_page: true %>
+<div class="max-w-xs mx-auto">
+  <h1 class="text-center font-medium text-2xl"><%= @book.name %></h1>
+  <%= turbo_frame_tag book_checklist_turbo_frame_id(@book) do %>
+    <div data-chapter-container-id="<%= book_checklist_turbo_frame_id(@book) %>" class="mb-5 mt-5 grid md:grid-cols-6 grid-cols-4 md:gap-3 gap-5 text-center">
+      <% @book.chapters_data.each do |chapter_data| %>
+        <%= render "book_chapter_square", book: @book, chapter_data: chapter_data %>
       <% end %>
     </div>
-  </header>
-  <div class="mt-5 sm:grid grid-cols-8 gap-4 *:mb-4 *:mr-2 sm:*:mb-0 sm:*:mr-0">
-    <% @book.chapters_data.each do |chapter_data| %>
-      <%= render "books/book_chapter_form", book: @book, chapter_data: chapter_data %>
-    <% end %>
-  </div>
-  <div class="mt-4">
-
-    <div class="mt-10 text-center">
-      <%= link_to root_path, class: "opacity-50 underline text-sm" do %>
-        Go back to all books
-      <% end %>
-    </div>
-  </div>
-</section>
+  <% end %>
+</div>

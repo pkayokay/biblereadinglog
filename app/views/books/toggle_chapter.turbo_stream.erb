@@ -1,0 +1,7 @@
+<%= turbo_stream.replace book_checklist_square_turbo_frame_id(@book, @chapter_number) do %>
+  <%= render "books/book_chapter_square", book: @book, chapter_data: @chapter_to_update %>
+<% end %>
+
+<%= turbo_stream.replace book_chapter_details_turbo_frame_id(@book) do %>
+  <%= render "books/book_chapter_details", book: @book %>
+<% end %>
