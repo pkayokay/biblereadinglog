@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
   def show
-    @book = current_user.reading_log.books.find(params[:id])
+    reading_log = current_user.reading_logs.find(params[:reading_log_id])
+    @book = reading_log.books.find(params[:id])
   end
 
   def toggle_chapter
-    @book = current_user.reading_log.books.find(params[:book_id])
+    reading_log = current_user.reading_logs.find(params[:reading_log_id])
+    @book = reading_log.books.find(params[:book_id])
     @chapter_number = params[:chapter_number].to_i
 
     chapters_data = @book.chapters_data

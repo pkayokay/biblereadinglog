@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root 'base#index'
+  root "reading_logs#index"
+
+  resources :reading_logs, only: [:show] do
+    resources :books, only: [:show] do
+      patch "toggle_chapter", to: "books#toggle_chapter"
+    end
+  end
+
   get "admin", to: "base#admin"
   get "settings", to: "base#settings"
-  resources :books, only: [:show] do
-    patch "toggle_chapter", to: "books#toggle_chapter"
-  end
   post "setup_user", to: "base#setup_user"
   get "sign_in", to: "sessions#new"
   post 'sign_in', to: "sessions#create"

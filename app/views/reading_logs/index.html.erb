@@ -1,0 +1,3 @@
+<% @reading_logs.each do |reading_log| %>
+  <%= link_to reading_log.created_at, reading_log_path(reading_log) %>
+<% end %>
