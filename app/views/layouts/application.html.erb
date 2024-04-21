@@ -16,7 +16,7 @@
       <div class="mb-3 border rounded bg-gray-200 px-2 py-1 inline-block"><%= flash_message %></div>
     <% end %>
 
-    <nav class="bg-white shadow-sm px-5 py-4 flex mx-auto justify-between items-center">
+    <nav class="bg-white shadow-sm px-5 py-3 flex mx-auto justify-between items-center">
       <%= link_to "Bible Reading Log", root_path, class: "text-lg font-semibold" %>
       <div class="flex items-center space-x-1">
         <%= link_to root_path, class: "#{'!text-black bg-neutral-100' if request.path == root_path} flex space-x-1 py-1.5 px-4 text-neutral-600 hover:bg-neutral-100 hover:text-black rounded-md" do %>
