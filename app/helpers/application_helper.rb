@@ -15,7 +15,11 @@ module ApplicationHelper
     "book-progress-line-#{book.id}"
   end
 
-    def book_card_percentage_turbo_frame_id(book)
+  def book_card_percentage_turbo_frame_id(book)
     "book-card-percentage-#{book.id}"
+  end
+
+  def book_card_chapters_turbo_frame_id(book)
+    "book-card-chapters-#{book.id}"
   end
 end

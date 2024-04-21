@@ -1,0 +1,3 @@
+<%= turbo_frame_tag book_card_chapters_turbo_frame_id(book) do %>
+  <div class="mt-2"><%= book.completed_chapter_count %> of <%= book.chapters_count %> chapters</div>
+<% end %>

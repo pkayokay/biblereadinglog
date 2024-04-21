@@ -4,10 +4,11 @@
     <%= render "books/book_card_percentage", book: @book %>
   </div>
 
-  <%= render "books/book_progress_line", book: @book, opened: false %>
+  <%= render "books/book_progress_line", book: @book %>
+
   <div class="text-sm mt-2 flex items-center justify-between">
-    <div class="mt-2"><%= @book.completed_chapter_count %> of <%= @book.chapters_count %> chapters</div>
-    <%= button_to book_path(@book), method: :get, form: { class: "mt-2 text-right"},class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: helpers.book_checklist_turbo_frame_id(@book)} do %>
+    <%= render "books/book_card_chapters", book: @book %>
+    <%= button_to book_path(@book), method: :get, form: { class: "mt-2 text-right"}, class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: helpers.book_checklist_turbo_frame_id(@book)} do %>
       Log chapter
     <% end %>
   </div>
