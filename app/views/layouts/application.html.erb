@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="bg-neutral-50">
+  <body>
     <% flash_message = flash[:notice] || flash[:alert] %>
     <% if flash_message.present? %>
       <div class="mb-3 border rounded bg-gray-200 px-2 py-1 inline-block"><%= flash_message %></div>
