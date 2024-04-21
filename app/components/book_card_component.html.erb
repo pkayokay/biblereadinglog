@@ -4,8 +4,8 @@
   </div>
 
   <%= render "books/book_chapter_details", book: @book %>
-  <%= button_to book_path(@book), method: :get, form: { class: "mt-2 text-right"},class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: "book-checklist-#{@book.id}"} do %>
+  <%= button_to book_path(@book), method: :get, form: { class: "mt-2 text-right"},class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: helpers.book_checklist_turbo_frame_id(@book)} do %>
     Log chapter
   <% end %>
-  <%= helpers.turbo_frame_tag "book-checklist-#{@book.id}" %>
+  <%= helpers.turbo_frame_tag helpers.book_checklist_turbo_frame_id(@book) %>
 <% end %>
