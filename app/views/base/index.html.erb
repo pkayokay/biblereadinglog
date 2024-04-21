@@ -1,9 +1,8 @@
-<section class="max-w-xl mx-auto">
-  <div data-controller="cache" class="mb-4">
+<section data-controller="cache" class="max-w-4xl mx-auto">
+  <div class="mb-4">
     <%= render(HeadingComponent.new(title: "Books")) %>
   </div>
-
-  <div class="justify-between -space-y-1 xs:space-y-0 flex flex-col xs:flex-row flex-wrap xs:space-x-4">
+  <div class="justify-between -space-y-1 sm:space-y-0 flex flex-col sm:flex-row flex-wrap sm:space-x-6">
     <div class="flex-1">
       <% @old_testament_books.each do |book| %>
         <%= render(BookCardComponent.new(book: book )) %>

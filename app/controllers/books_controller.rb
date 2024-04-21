@@ -24,6 +24,8 @@ class BooksController < ApplicationController
     if book.update(chapters_data: chapters_data)
       respond_to do |format|
         format.turbo_stream { render turbo_stream: [
+          turbo_stream.replace("book-square-#{book.id}-#{chapter_number}", partial: "books/book_chapter_square", locals: { book: book, chapter_data: chapter_to_update }),
+          turbo_stream.replace("book-chapter-details-#{book.id}", partial: "books/book_chapter_details", locals: { book: book }),
           turbo_stream.replace("book-#{book.id}-#{chapter_number}", partial: "books/book_chapter_form", locals: { book: book, chapter_data: chapter_to_update}),
           turbo_stream.update("book-header-#{book.id}", partial: "books/book_chapter_header", locals: { book: book, show_page: true })
           ]

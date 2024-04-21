@@ -44,3 +44,13 @@
     </div>
   </div>
 </section>
+
+<% if turbo_frame_request? %>
+  <%= turbo_frame_tag "book-checklist-#{@book.id}" do %>
+      <div data-chapter-container-id="book-checklist-<%= @book.id %>" class="mb-5 mt-5 grid md:grid-cols-7 grid-cols-4 md:gap-3 gap-7 text-center">
+        <% @book.chapters_data.each do |chapter_data| %>
+          <%= render "book_chapter_square", book: @book, chapter_data: chapter_data %>
+        <% end %>
+      </div>
+  <% end %>
+<% end %>

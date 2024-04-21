@@ -1,12 +1,11 @@
-<%= link_to books_path(@book.slug), class: "#{ 'hover:bg-green-100 bg-green-50 border-green-200 shadow-green-50' if @book.completed_all_chapters? } hover:bg-gray-50 group items-center justify-between block rounded-lg border shadow-sm py-2.5 px-3 mb-4 p w-full" do %>
-  <div class="mb-2 flex items-center justify-between">
-    <div class="text-base font-medium"><%= @book.name %></div>
+<%= content_tag :div, class: "items-center justify-between block rounded-lg border shadow-sm py-6 px-5 mb-6 p w-full" do %>
+  <div class="flex items-center justify-between mb-5 sm:mb-3 flex-col sm:flex-row space-y-1 sm:space-y-0">
+    <div class="text-xl font-medium"><%= @book.name %></div>
+    <%= button_to books_path(@book.slug), method: :get, class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: "book-checklist-#{@book.id}"} do %>
+      Log chapter
+    <% end %>
   </div>
-  <div class="bg-gray-100 h-[6px] rounded-lg w-full group-hover:bg-gray-200">
-    <div class="bg-green-500 w-full h-full rounded-full" style="width:<%= @book.completed_chapter_percentage %>%"></div>
-  </div>
-  <div class="text-sm mt-2 opacity-50 flex items-center justify-between">
-    <div><%= @book.completed_chapter_count %> of <%= @book.chapters_count %> chapters</div>
-    <div><%= @book.completed_chapter_percentage %>%</div>
-  </div>
+
+  <%= helpers.turbo_frame_tag "book-checklist-#{@book.id}" %>
+  <%= render "books/book_chapter_details", book: @book %>
 <% end %>
