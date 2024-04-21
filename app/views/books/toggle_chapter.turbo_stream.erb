@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "book-square-#{@book.id}-#{@chapter_number}" do %>
+  <%= render "books/book_chapter_square", book: @book, chapter_data: @chapter_to_update %>
+<% end %>
+
+<%= turbo_stream.replace "book-chapter-details-#{@book.id}" do %>
+  <%= render "books/book_chapter_details", book: @book %>
+<% end %>
