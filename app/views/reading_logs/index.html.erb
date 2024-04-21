@@ -1,0 +1,9 @@
+<div class="mb-4">
+  <%= render(HeadingComponent.new(title: "Home")) %>
+</div>
+<% @reading_logs.each do |reading_log| %>
+  <%= link_to reading_log_path(reading_log), class: "shadow-sm border py-2 px-4 rounded-md block mb-5 hover:bg-gray-50" do %>
+    <p class="text-lg font-medium">Reading Log</p>
+    <span class="text-sm">Started on <%= reading_log.created_at.strftime('%A %_m/%-e at %l:%M %p') %></span>
+  <% end %>
+<% end %>

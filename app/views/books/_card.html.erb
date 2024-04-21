@@ -8,7 +8,7 @@
 
   <div class="text-sm mt-2 flex items-center justify-between">
     <%= render "books/book_card_chapters", book: book %>
-    <%= button_to book_path(book), method: :get, form: { class: "mt-2 text-right"}, class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
+    <%= button_to reading_log_book_path(book), method: :get, form: { class: "mt-2 text-right"}, class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
       Log chapter
     <% end %>
   </div>
