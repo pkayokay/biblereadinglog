@@ -1,9 +1,6 @@
 class BooksController < ApplicationController
   def show
-    @book = current_user.reading_log.books.find_by!(slug: params[:book_slug])
-
-    @previous_book = current_user.reading_log.books.find_by(position: @book.position - 1)
-    @next_book = current_user.reading_log.books.find_by(position: @book.position + 1)
+    @book = current_user.reading_log.books.find(params[:id])
   end
 
   def toggle_chapter
@@ -26,9 +23,7 @@ class BooksController < ApplicationController
         format.turbo_stream { render turbo_stream: [
           turbo_stream.replace("book-square-#{book.id}-#{chapter_number}", partial: "books/book_chapter_square", locals: { book: book, chapter_data: chapter_to_update }),
           turbo_stream.replace("book-chapter-details-#{book.id}", partial: "books/book_chapter_details", locals: { book: book }),
-          turbo_stream.replace("book-#{book.id}-#{chapter_number}", partial: "books/book_chapter_form", locals: { book: book, chapter_data: chapter_to_update}),
-          turbo_stream.update("book-header-#{book.id}", partial: "books/book_chapter_header", locals: { book: book, show_page: true })
-          ]
+        ]
         }
         format.html         { redirect_to root_path }
       end

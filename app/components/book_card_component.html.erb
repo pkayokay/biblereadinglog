@@ -1,7 +1,7 @@
 <%= content_tag :div, class: "items-center justify-between block rounded-lg border shadow-sm py-6 px-5 mb-6 p w-full" do %>
   <div class="flex items-center justify-between mb-5 sm:mb-3 flex-col sm:flex-row space-y-1 sm:space-y-0">
     <div class="text-2xl sm:text-xl font-medium"><%= @book.name %></div>
-    <%= button_to books_path(@book.slug), method: :get, class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: "book-checklist-#{@book.id}"} do %>
+    <%= button_to book_path(@book), method: :get, class: "hover:bg-gray-50 border rounded-lg text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: "book-checklist-#{@book.id}"} do %>
       Log chapter
     <% end %>
   </div>

@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   root 'base#index'
   get "admin", to: "base#admin"
   get "settings", to: "base#settings"
-  get "/books/:book_slug", to: "books#show", as: :books
-  resources :books, only: [] do
+  resources :books, only: [:show] do
     patch "toggle_chapter", to: "books#toggle_chapter"
   end
   post "setup_user", to: "base#setup_user"
