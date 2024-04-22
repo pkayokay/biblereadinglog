@@ -11,11 +11,14 @@ Rails.application.routes.draw do
     end
   end
 
+  get "sign_in", to: "sessions#new"
+  post 'sign_in', to: "sessions#create"
+  get "sign_up", to: "registrations#new"
+  post "sign_up", to: "registrations#create"
+
   get "account", to: "users#account"
   get "admin", to: "base#admin"
   post "setup_user", to: "base#setup_user"
-  get "sign_in", to: "sessions#new"
-  post 'sign_in', to: "sessions#create"
   delete 'log_out', to: "sessions#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
