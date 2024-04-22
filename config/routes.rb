@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   delete 'sign_out', to: "sessions#destroy"
 
   get "account", to: "users#account"
+  patch "update_password", to: "users#update_password"
+
   get "admin", to: "base#admin"
   post "setup_user", to: "base#setup_user"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
