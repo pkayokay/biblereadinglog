@@ -10,19 +10,49 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="p-5">
-    <% if user_signed_in? %>
-      <nav class="space-x-6 text-center mb-4">
-        <%= link_to "Home", root_path, class: "font-medium hover:underline opacity-80 hover:opacity-100" %>
-        <%= link_to "Settings", settings_path, class: "font-medium hover:underline opacity-80 hover:opacity-100" %>
-      </nav>
-    <% end %>
+  <body class="bg-zinc-50">
     <% flash_message = flash[:notice] || flash[:alert] %>
     <% if flash_message.present? %>
       <div class="mb-3 border rounded bg-gray-200 px-2 py-1 inline-block"><%= flash_message %></div>
     <% end %>
 
-    <main class="max-w-3xl mx-auto">
+    <% if user_signed_in? %>
+      <nav class="bg-neutral-800 shadow-sm">
+        <div class="max-w-4xl w-full px-5 py-4 flex flex-col md:flex-row mx-auto justify-between items-center">
+          <%= link_to root_path, class: "flex space-x-2 items-center text-base font-medium text-white tracking-[0.5px]" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
+            </svg>
+            <span>Bible Reading Log</span>
+          <% end %>
+          <div class="flex items-center md:space-y-0 space-y-2 md:space-x-1 flex-col md:flex-row mt-4 md:mt-0">
+            <%= link_to root_path, class: "flex space-x-1 py-1.5 px-5 text-white rounded-md" do %>
+              <span>Reading Logs</span>
+            <% end %>
+            <div
+              data-controller="dropdown"
+              data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
+              class="inline-block relative">
+              <button data-action="dropdown#toggle:stop" class="pl-5 pr-3 py-1.5 bg-neutral-900 rounded-md  text-neutral-200">
+                <span><%= current_user.email %></span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="inline-block fill-current h-4 w-4"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path></svg>
+              </button>
+              <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
+                <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-36">
+                  <%= link_to  account_path, class: "flex space-x-1 py-2 px-4  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
+                    <span>Account</span>
+                  <% end %>
+                  <hr class="border-t" />
+                  <a data-dropdown-target="menuItem" href="#" class='no-underline block pl-4 py-2 text-gray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100'>Sign Out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </nav>
+    <% end %>
+    <main class="p-5 pt-10 mx-auto w-full max-w-4xl">
       <%= render "shared/breadcrumbs" %>
       <%= yield %>
     </main>

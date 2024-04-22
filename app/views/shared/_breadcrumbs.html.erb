@@ -1,15 +1,17 @@
-<ol class="flex space-x-1.5 mb-8 opacity-80">
-  <% breadcrumbs.each do |crumb| %>
-    <li>
-      <% if crumb.link? %>
-        <%= link_to crumb.name, crumb.path, class: "breadcrumb-link" %>
-      <% else %>
-        <span class="breadcrumb-page"><%= crumb.name %></span>
-      <% end %>
+<% if breadcrumbs.present? %>
+  <ol class="flex mb-7">
+    <% breadcrumbs.each do |crumb| %>
+      <li>
+        <% if crumb.link? %>
+          <%= link_to crumb.name, crumb.path, class: "breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-80 font-medium' : 'opacity-50'} " %>
+        <% else %>
+          <span class="breadcrumb-page"><%= crumb.name %></span>
+        <% end %>
 
-      <% unless crumb == breadcrumbs.last %>
-        <span class="breadcrumb-separator">/</span>
-      <% end %>
-    </li>
-  <% end %>
-</ol>
+        <% unless crumb == breadcrumbs.last %>
+          <span class="ml-1 mr-2 opacity-50">/</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>

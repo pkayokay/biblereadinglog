@@ -5,9 +5,13 @@ Rails.application.routes.draw do
     resources :books, only: [:show] do
       patch "toggle_chapter", to: "books#toggle_chapter"
     end
+
+    member do
+      get "settings"
+    end
   end
 
-  get "settings", to: "users#settings"
+  get "account", to: "users#account"
   get "admin", to: "base#admin"
   post "setup_user", to: "base#setup_user"
   get "sign_in", to: "sessions#new"

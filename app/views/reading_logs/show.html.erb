@@ -1,6 +1,9 @@
-<div class="mb-4">
-  <%= render(HeadingComponent.new(title: "Reading Log")) %>
-  <span class="text-sm">Started on <%= @reading_log.created_at.strftime('%A %_m/%-e at %l:%M %p') %></span>
+<div class="mb-4 flex justify-between items-end">
+  <div>
+    <%= render(HeadingComponent.new(title: "Reading Log")) %>
+    <span class="text-sm opacity-60">Started on <%= @reading_log.created_at.strftime('%A %_m/%-e at %l:%M %p') %></span>
+  </div>
+  <%= link_to "Settings", settings_reading_log_path(@reading_log), class: "py-1 px-4 rounded-lg shadow-sm bg-white border" %>
 </div>
 <div class="justify-between -space-y-1 sm:space-y-0 flex flex-col sm:flex-row flex-wrap sm:space-x-6">
   <div class="flex-1">

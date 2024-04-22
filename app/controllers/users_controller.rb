@@ -1,4 +1,4 @@
 class UsersController < ApplicationController
-  def settings
+  def account
   end
 end
