@@ -5,10 +5,10 @@
 
 @layer base {
   .form-input {
-    @apply w-full !mt-0.5 border-0 !px-3 !py-1.5 !rounded focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300
+    @apply w-full !mt-0.5 border-0 !px-3 !py-1.5 !rounded focus:!ring-neutral-700 focus:!border-neutral-700 !border-neutral-300;
   }
 
-  .form-submit {
+  .btn {
     @apply w-full cursor-pointer rounded bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-1.5 px-5 focus:!ring-neutral-700 focus:!border-neutral-700 focus:!outline-neutral-700 ;
   }
 }
