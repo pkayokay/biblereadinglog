@@ -52,12 +52,14 @@
           </div>
         </div>
       </nav>
-    <% else %>
-      <%= link_to "Sign Up", sign_up_path %>
+      <main class="p-5 pt-10 mx-auto w-full max-w-4xl">
+        <%= render "shared/breadcrumbs" %>
+        <%= yield %>
+      </main>
+    <% else  %>
+      <main class="p-5 pt-14">
+        <%= yield %>
+      </main>
     <% end %>
-    <main class="p-5 pt-10 mx-auto w-full max-w-4xl">
-      <%= render "shared/breadcrumbs" %>
-      <%= yield %>
-    </main>
   </body>
 </html>
