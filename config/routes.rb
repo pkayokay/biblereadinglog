@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   post 'sign_in', to: "sessions#create"
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
+  delete 'sign_out', to: "sessions#destroy"
 
   get "account", to: "users#account"
   get "admin", to: "base#admin"
   post "setup_user", to: "base#setup_user"
-  delete 'log_out', to: "sessions#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

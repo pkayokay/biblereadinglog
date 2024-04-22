@@ -43,14 +43,13 @@
                     <span>Account</span>
                   <% end %>
                   <hr class="border-t" />
-                  <%= button_to log_out_path, method: :delete, class: "text-left no-underline block pl-4 w-full py-2 text-gray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100", data: { dropdown_target: "menuItem" } do %>
+                  <%= button_to sign_out_path, method: :delete, class: "text-left no-underline block pl-4 w-full py-2 text-gray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100", data: { dropdown_target: "menuItem" } do %>
                    <span>Log out</span>
                   <% end %>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </nav>
     <% else %>
