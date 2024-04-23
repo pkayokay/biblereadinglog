@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def format_date(datetime_value)
+    datetime_value.in_time_zone('Eastern Time (US & Canada)').strftime('%A %_m/%-e at %l:%M %p')
+  end
+
   def turbo_frame_request?
     request.headers["Turbo-Frame"].present?
   end
