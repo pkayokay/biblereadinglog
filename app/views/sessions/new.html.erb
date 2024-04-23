@@ -1,24 +1,18 @@
-<div class="text-center flex justify-center flex-col items-center mb-5 space-y-2">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-12 h-12">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
-  </svg>
-  <h1 class="text-2xl font-medium">Sign in to Bible Reading Log</h1>
-</div>
-<div class="max-w-xs mx-auto rounded-md bg-white shadow-sm p-6 border border-neutral-200">
+<%= render(AuthHeaderComponent.new(title: "Welcome Back.", subtitle: "Sign in to Bible Reading Log")) %>
+
+<%= render(FormWrapperComponent.new) do |form_card| %>
   <%= form_with model: @user, url: sign_in_path do |form| %>
-    <div>
-      <%= form.label :email, "Email address", class: "block font-medium text-sm" %>
-      <%= form.email_field :email, class: "form-input", required: true %>
-    </div>
-    <div class="mt-4">
-      <%= form.label :password, class: "block font-medium text-sm" %>
-      <%= form.password_field :password, class: "form-input", required: true %>
-    </div>
-    <div class="mt-4">
-      <%= form.submit "Sign in", class: "btn" %>
-    </div>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
+      <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true)) %>
+    <% end %>
+    <%= form.submit "Sign in", class: "btn btn--primary" %>
   <% end %>
-</div>
-<div class="text-center mt-4">
-  <%= link_to "Don't have an account? Sign up", sign_up_path, class: "font-medium opacity-60 text-sm" %>
-</div>
+  <% form_card.with_footer do  %>
+    <%= link_to "Don't have an account? Sign up", sign_up_path, class: "opacity-80" %>
+  <% end %>
+<% end %>

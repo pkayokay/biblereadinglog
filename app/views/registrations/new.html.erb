@@ -1,25 +1,25 @@
-<h1>Sign Up</h1>
-<%= form_with model: @user, url: sign_up_path do |form| %>
-  <% if form.object.errors.any? %>
-    <% form.object.errors.full_messages.each do |message| %>
-      <div><%= message %></div>
+<%= render(AuthHeaderComponent.new(title: "Welcome!", subtitle: "Sign up to Bible Reading Log")) %>
+
+<%= render(FormWrapperComponent.new) do |form_card| %>
+  <%= form_with model: @user, url: sign_up_path do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
+      <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
     <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true)) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true)) %>
+    <% end %>
+    <%= form.submit "Sign up", class: "btn btn--primary" %>
   <% end %>
 
-  <div>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
-  </div>
-  <div>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-  <div>
-    <%= form.submit "Sign Up" %>
-    <%= link_to "Sign in", sign_in_path %>
-  </div>
+  <% form_card.with_footer do  %>
+    <%= link_to "Have an account? Sign in", sign_in_path, class: "opacity-80" %>
+  <% end %>
 <% end %>
