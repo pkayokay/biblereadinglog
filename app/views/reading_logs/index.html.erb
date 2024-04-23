@@ -1,5 +1,5 @@
 <div class="mb-4">
-  <%= render(HeadingComponent.new(title: "Reading Logs")) %>
+  <%= render(HeadingComponent.new(title: "Home")) %>
 </div>
 <% @reading_logs.each do |reading_log| %>
   <%= link_to reading_log_path(reading_log), class: "bg-white shadow-sm border py-4 px-5 rounded-md block mb-5" do %>
