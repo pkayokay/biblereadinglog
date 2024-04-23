@@ -1,4 +1,4 @@
-<%= render(AuthHeaderComponent.new(title: "Welcome Back.", subtitle: "Sign in to Bible Reading Log")) %>
+<%= render(AuthHeaderComponent.new(title: "Welcome Back.", description: "Sign in to Bible Reading Log")) %>
 
 <%= render(FormWrapperComponent.new) do |form_card| %>
   <%= form_with model: @user, url: sign_in_path do |form| %>
@@ -13,6 +13,9 @@
     <%= form.submit "Sign in", class: "btn btn--primary" %>
   <% end %>
   <% form_card.with_footer do  %>
-    <%= link_to "Don't have an account? Sign up", sign_up_path, class: "opacity-80" %>
+    <div class="flex flex-col space-y-3">
+      <%= link_to "Don't have an account? Sign up", sign_up_path, class: "" %>
+      <%= link_to "Forgot your password?", new_password_reset_path, class: "opacity-80 text-sm" %>
+    </div>
   <% end %>
 <% end %>

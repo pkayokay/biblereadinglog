@@ -1,0 +1,14 @@
+<%= render(AuthHeaderComponent.new(title: "Reset your password", description: "Enter your email and we'll send you reset instructions.")) %>
+
+<%= render(FormWrapperComponent.new) do |form_card| %>
+  <%= form_with model: @user, url: password_reset_path do |form| %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
+      <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
+    <% end %>
+    <%= form.submit "Reset your password", class: "btn btn--primary" %>
+  <% end %>
+  <% form_card.with_footer do  %>
+    <%= link_to "Back to sign in page", sign_in_path, class: "" %>
+  <% end %>
+<% end %>

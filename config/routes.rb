@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get "account", to: "users#account"
   patch "update_password", to: "users#update_password"
+  resource :password_reset
 
   get "admin", to: "base#admin"
   post "setup_user", to: "base#setup_user"

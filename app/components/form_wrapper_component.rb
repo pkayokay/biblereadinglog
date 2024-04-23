@@ -6,12 +6,12 @@ class FormWrapperComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="max-w-sm mx-auto">
       <%= content %>
+      <% if footer %>
+        <div class="text-center mt-4">
+          <%= footer %>
+        </div>
+      <% end %>
     </div>
-    <% if footer %>
-      <div class="text-center mt-4">
-        <%= footer %>
-      </div>
-    <% end %>
   ERB
 end
 
