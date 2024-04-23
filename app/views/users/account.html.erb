@@ -1,29 +1,23 @@
-<%= render(HeadingComponent.new(title: "Settings")) %>
-<div class="mb-4 font-mono mt-4">
-  <p class="text-sm">Signed in as <%= current_user.email %></p>
-</div>
+<%= render(HeadingComponent.new(title: "Account")) %>
 
-<h1>Update Password</h1>
-<%= form_with model: current_user, url: update_password_path do |form| %>
-  <% if form.object.errors.any? %>
-    <% form.object.errors.full_messages.each do |message| %>
-      <div><%= message %></div>
+<div class="mt-6">
+  <%= form_with model: current_user, url: update_password_path do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password_challenge", title: "Current password", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_challenge", required: true, custom_classes: "max-w-sm")) %>
     <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password", title: "New Password", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true, custom_classes: "max-w-sm")) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "max-w-sm")) %>
+    <% end %>
+    <div>
+      <%= form.submit "Update Password", class: "btn max-w-sm" %>
+    </div>
   <% end %>
-
-  <div>
-    <%= form.label :password_challenge, "Current Password" %>
-    <%= form.password_field :password_challenge %>
-  </div>
-  <div>
-    <%= form.label :password, "New Password" %>
-    <%= form.password_field :password %>
-  </div>
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-  <div>
-    <%= form.submit "Update Password" %>
-  </div>
-<% end %>
+</div>
