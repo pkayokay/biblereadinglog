@@ -3,11 +3,12 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-import { Dropdown } from "tailwindcss-stimulus-components";
-application.register('dropdown', Dropdown);
 
 import CacheController from "./cache_controller"
 application.register("cache", CacheController)
+
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

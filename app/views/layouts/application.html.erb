@@ -11,12 +11,8 @@
   </head>
 
   <body class="<%= 'bg-neutral-50' if user_signed_in? %>">
-    <% flash_message = flash[:notice] || flash[:alert] %>
-    <% if flash_message.present? %>
-      <div class="mb-3 border rounded bg-gray-200 px-2 py-1 inline-block"><%= flash_message %></div>
-    <% end %>
-
     <% if user_signed_in? %>
+      <%= render "shared/flash" %>
       <nav class="bg-neutral-800 shadow-sm">
         <div class="max-w-4xl w-full px-5 py-4 flex mx-auto justify-between items-center">
           <%= link_to root_path, class: "flex space-x-2 items-center text-base font-medium text-white tracking-[0.5px]" do %>
@@ -27,7 +23,7 @@
           <% end %>
           <div class="flex items-center space-x-1">
             <%= link_to root_path, class: "flex space-x-1 py-1.5 px-5 text-white rounded-md" do %>
-              <span>Reading Logs</span>
+              <span>Home</span>
             <% end %>
             <div
               data-controller="dropdown"
@@ -62,7 +58,8 @@
         <%= yield %>
       </main>
     <% else  %>
-      <main class="p-5 pt-14">
+      <%= render "shared/flash", custom_top_class: "!top-10" %>
+      <main class="p-5 mt-20">
         <%= yield %>
       </main>
     <% end %>

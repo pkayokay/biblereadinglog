@@ -17,4 +17,24 @@
   }
 
   .field_with_errors .form-input {}
+
+  .container--flash {
+    @apply transition-opacity duration-200 ease-out rounded-full py-2 px-5 -translate-x-1/2 opacity-0 left-1/2 top-24 fixed;
+  }
+
+  .container--flash.active {
+    @apply opacity-100;
+  }
+
+  .container--flash.leaving {
+    @apply transition-opacity duration-300 ease-in;
+  }
+
+  .flash-green {
+    @apply text-green-800 bg-green-100;
+  }
+
+  .flash-red {
+    @apply text-red-900 bg-red-100;
+  }
 }
