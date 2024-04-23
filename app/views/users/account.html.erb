@@ -1,0 +1,23 @@
+<%= render(HeadingComponent.new(title: "Account")) %>
+
+<div class="mt-6">
+  <%= form_with model: current_user, url: update_password_path do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password_challenge", title: "Current password", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_challenge", required: true, custom_classes: "max-w-sm")) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password", title: "New Password", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true, custom_classes: "max-w-sm")) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "max-w-sm")) %>
+    <% end %>
+    <div>
+      <%= form.submit "Update Password", class: "btn max-w-sm" %>
+    </div>
+  <% end %>
+</div>

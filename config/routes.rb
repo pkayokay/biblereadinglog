@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :reading_logs, only: [:show] do
     resources :books, only: [:show] do
-      patch "toggle_chapter", to: "books#toggle_chapter"
+      member do
+        patch "toggle_chapter", to: "books#toggle_chapter"
+      end
     end
 
     member do
@@ -11,18 +13,18 @@ Rails.application.routes.draw do
     end
   end
 
-  get "account", to: "users#account"
-  get "admin", to: "base#admin"
-  post "setup_user", to: "base#setup_user"
   get "sign_in", to: "sessions#new"
   post 'sign_in', to: "sessions#create"
-  delete 'log_out', to: "sessions#destroy"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "sign_up", to: "registrations#new"
+  post "sign_up", to: "registrations#create"
+  delete 'sign_out', to: "sessions#destroy"
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "account", to: "users#account"
+  patch "update_password", to: "users#update_password"
+  resource :password_reset
+
+  get "admin", to: "base#admin"
+  post "setup_user", to: "base#setup_user"
+
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

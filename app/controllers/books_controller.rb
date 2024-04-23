@@ -1,12 +1,10 @@
 class BooksController < ApplicationController
+  before_action :set_book
+
   def show
-    reading_log = current_user.reading_logs.find(params[:reading_log_id])
-    @book = reading_log.books.find(params[:id])
   end
 
   def toggle_chapter
-    reading_log = current_user.reading_logs.find(params[:reading_log_id])
-    @book = reading_log.books.find(params[:book_id])
     @chapter_number = params[:chapter_number].to_i
 
     chapters_data = @book.chapters_data
@@ -30,5 +28,12 @@ class BooksController < ApplicationController
 
       redirect_to root_path
     end
+  end
+
+  private
+
+  def set_book
+    reading_log = current_user.reading_logs.find(params[:reading_log_id])
+    @book = reading_log.books.find(params[:id])
   end
 end
