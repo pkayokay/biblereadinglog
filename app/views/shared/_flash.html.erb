@@ -1,5 +1,7 @@
-<% flash.each do |flash_type, message| %>
-  <div data-controller="flash" class="container--flash <%= (flash_type == "notice") ? "flash-green" : "flash-red" %> <%= local_assigns[:custom_top_class] %>">
-    <%= message %>
-  </div>
-<% end %>
+<div data-turbo-temporary>
+  <% flash.each do |flash_type, message| %>
+    <div data-controller="flash" class="container--flash <%= (flash_type == "notice") ? "flash-green" : "flash-red" %> <%= local_assigns[:custom_top_class] %>">
+      <%= message %>
+    </div>
+  <% end %>
+</div>
