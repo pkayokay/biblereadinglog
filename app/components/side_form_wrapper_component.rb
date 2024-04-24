@@ -4,7 +4,7 @@ class SideFormWrapperComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="border rounded-lg p-8 mt-8 flex md:flex-row flex-col <%= @custom_class %>">
       <div class="w-[280px] mb-3">
-        <h3 class="text-xl font-medium"><%= @title %></h3>
+        <h3 class="text-lg font-medium"><%= @title %></h3>
         <p class="opacity-60 text-sm"><%= @description %></p>
       </div>
       <div class="flex-1">
