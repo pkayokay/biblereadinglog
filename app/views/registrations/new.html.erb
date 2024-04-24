@@ -4,6 +4,16 @@
   <%= form_with model: @user, url: sign_up_path, data: { controller: "time-zone" } do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
     <%= form.hidden_field :time_zone, data: {time_zone_target: "timeZoneField"} %>
+    <div class="flex justify-between space-x-3">
+      <%= render(FieldContainerComponent.new) do %>
+        <%= render(LabelComponent.new(for_attribute: "first_name", form: form)) %>
+        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "first_name", required: true)) %>
+      <% end %>
+      <%= render(FieldContainerComponent.new) do %>
+        <%= render(LabelComponent.new(for_attribute: "last_name", form: form)) %>
+        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "last_name", required: true)) %>
+      <% end %>
+    </div>
     <%= render(FieldContainerComponent.new) do %>
       <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
       <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>

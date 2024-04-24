@@ -27,6 +27,15 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def update_name
+    if current_user.update(name_params)
+      redirect_to account_path, notice: "Name updated"
+    else
+      render :account, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def password_params
@@ -43,5 +52,9 @@ class UsersController < ApplicationController
 
   def color_theme_params
     params.require(:user).permit(:color_theme)
+  end
+
+  def name_params
+    params.require(:user).permit(:first_name, :last_name)
   end
 end
