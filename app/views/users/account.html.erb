@@ -32,3 +32,14 @@
     <%= form.submit "Update time zone", class: "btn btn--primary max-w-xs" %>
   <% end %>
 <% end %>
+<%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.")) do  %>
+  <%= form_with(model:  current_user, url: update_color_theme_path, class: "contents") do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "color_theme", title: "Theme", form: form)) %>
+      <%= form.select :color_theme, User.color_themes.keys.map { |theme| [theme.capitalize, theme] }, {}, { class: "form-select" } %>
+    <% end %>
+    <%= form.submit "Update Theme", class: "btn btn--primary max-w-xs" %>
+  <% end %>
+<% end %>
