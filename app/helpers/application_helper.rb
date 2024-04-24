@@ -2,8 +2,8 @@ module ApplicationHelper
   def theme_values
     if current_user.green?
       {
-        line: "bg-green-500",
-        square: "shadow-green-100 border-green-300 bg-green-50 hover:bg-green-100",
+        line: "bg-emerald-500",
+        square: "shadow-emerald-100 border-emerald-300 bg-emerald-50 hover:bg-emerald-100",
       }
     elsif current_user.blue?
       {
