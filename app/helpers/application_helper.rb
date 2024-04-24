@@ -12,7 +12,7 @@ module ApplicationHelper
       }
     elsif current_user.red?
       {
-        line: "bg-red-500",
+        line: "bg-red-600",
         square: "shadow-red-100 border-red-300 bg-red-50 hover:bg-red-100",
       }
     elsif current_user.gray?
