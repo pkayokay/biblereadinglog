@@ -4,6 +4,11 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   normalizes :email, with: ->(email) { email.strip.downcase }
+
+  validates :first_name, :last_name, presence: true
+  normalizes :first_name, with: ->(first_name) { first_name.strip }
+  normalizes :last_name, with: ->(last_name) { last_name.strip }
+
   has_many :reading_logs, dependent: :destroy
 
   enum color_theme: {
@@ -22,15 +27,6 @@ class User < ApplicationRecord
   end
 
   def initials
-    if name.presence
-      name_split = name.split(" ")
-      if name_split.one?
-        return name_split.first[0]
-      else
-        name_split.first[0] + name_split.last[0]
-      end
-    else
-      email.slice(0..1)
-    end
+    first_name.first + last_name.first
   end
 end
