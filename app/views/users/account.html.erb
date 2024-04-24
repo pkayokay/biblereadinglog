@@ -21,9 +21,6 @@
     </div>
   <% end %>
 <% end %>
-<br>
-<br>
-<hr>
 <%= render(SideFormWrapperComponent.new(title: "Time zone", description: "Emails will be sent relative to your time zone.")) do  %>
   <%= form_with(model:  current_user, url: update_time_zone_path, class: "contents") do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
