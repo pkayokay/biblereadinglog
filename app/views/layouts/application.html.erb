@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="bg-neutral-50 pb-14">
+  <body class="<%= 'bg-neutral-50 pb-14' if user_signed_in? %>">
     <% if user_signed_in? %>
       <%= render "shared/flash" %>
       <nav class="bg-white border-b border-stone-200">
