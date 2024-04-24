@@ -23,7 +23,7 @@
   .field_with_errors .form-input {}
 
   .container--flash {
-    @apply z-50 text-center transition-opacity duration-200 ease-out rounded-full text-white py-3 px-4 min-w-[200px] -translate-x-1/2 opacity-0 left-1/2 top-10 fixed;
+    @apply z-50 text-center transition-opacity duration-200 ease-out rounded-full text-white py-3 px-5 -translate-x-1/2 opacity-0 left-1/2 top-10 fixed;
   }
 
   .container--flash.active {

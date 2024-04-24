@@ -1,6 +1,23 @@
 <%= render(HeadingComponent.new(title: "Account")) %>
 
 <p class="opacity-70 text-sm"><%= current_user.email %></p>
+<%= render(SideFormWrapperComponent.new(title: "Name", description: "Edit your first and last name.")) do  %>
+  <%= form_with model: current_user, url: update_name_path do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "first_name", form: form)) %>
+      <%= render(InputComponent.new(type: "text", form: form, id_and_name: "first_name", required: true, custom_classes: "")) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "last_name", form: form)) %>
+      <%= render(InputComponent.new(type: "text", form: form, id_and_name: "last_name", required: true, custom_classes: "")) %>
+    <% end %>
+    <div>
+      <%= form.submit "Save", class: "btn btn--primary w-auto" %>
+    </div>
+  <% end %>
+<% end %>
 <%= render(SideFormWrapperComponent.new(title: "Password", description: "Choose a secure password.")) do  %>
   <%= form_with model: current_user, url: update_password_path do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
