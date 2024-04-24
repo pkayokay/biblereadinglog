@@ -21,7 +21,7 @@
             </svg>
             <span class="hidden md:block">Bible Reading Log</span>
           <% end %>
-          <div class="flex items-center space-x-1">
+          <div class="flex items-center space-x-2">
             <%= link_to root_path, class: "flex space-x-1 py-1.5 px-5 text-white rounded-md" do %>
               <span>Home</span>
             <% end %>
@@ -29,23 +29,22 @@
               data-controller="dropdown"
               data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
               class="inline-block relative">
-              <button data-action="dropdown#toggle:stop" class="pl-5 pr-3 py-2 bg-neutral-900 rounded-md text-white">
-                <span><%= current_user.email %></span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="inline-block fill-current h-4 w-4"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path></svg>
+              <button data-action="dropdown#toggle:stop" class="h-10 w-10  bg-neutral-500 rounded-full text-white">
+                <span class="uppercase font-medium"><%= current_user.initials %></span>
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
-                <div class="text-sm bg-white shadow-sm rounded-md border overflow-hidden w-36">
+                <div class="bg-white shadow-sm rounded-md border overflow-hidden w-36">
                   <%= link_to  account_path, class: "flex space-x-1 py-2 px-4  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
-                    <span>Account</span>
+                    <span class="opacity-80">Account</span>
                   <% end %>
                   <% if current_user.is_admin? %>
                     <%= link_to admin_path, class: "flex space-x-1 py-2 px-4  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
-                      <span>Admin</span>
+                      <span class="opacity-80">Admin</span>
                     <% end %>
                   <% end %>
                   <hr class="border-t" />
                   <%= button_to sign_out_path, method: :delete, class: "text-left no-underline block pl-4 w-full py-2 text-gray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100", data: { dropdown_target: "menuItem" } do %>
-                   <span>Log out</span>
+                   <span class="opacity-80">Log out</span>
                   <% end %>
                 </div>
               </div>

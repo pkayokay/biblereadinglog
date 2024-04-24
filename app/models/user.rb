@@ -20,4 +20,17 @@ class User < ApplicationRecord
   def has_default_time_zone?
     time_zone == "UTC"
   end
+
+  def initials
+    if name.presence
+      name_split = name.split(" ")
+      if name_split.one?
+        return name_split.first[0]
+      else
+        name_split.first[0] + name_split.last[0]
+      end
+    else
+      email.slice(0..1)
+    end
+  end
 end

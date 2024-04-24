@@ -2,7 +2,7 @@
 
 class SideFormWrapperComponent < ViewComponent::Base
   erb_template <<-ERB
-    <div class="border-b pb-8 mt-8 flex md:flex-row flex-col">
+    <div class="border-b pb-8 mt-8 flex md:flex-row flex-col <%= @custom_class %>">
       <div class="w-[280px] mb-3">
         <h3 class="text-xl font-semibold"><%= @title %></h3>
         <p class="opacity-60 text-sm"><%= @description %></p>
@@ -12,9 +12,10 @@ class SideFormWrapperComponent < ViewComponent::Base
       </div>
     </div>
   ERB
-  def initialize(title:, description:)
+  def initialize(title:, description:, custom_class: "")
     @title = title
     @description = description
+    @custom_class = custom_class
   end
 
 end
