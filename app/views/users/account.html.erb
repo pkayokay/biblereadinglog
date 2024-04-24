@@ -1,5 +1,6 @@
 <%= render(HeadingComponent.new(title: "Account")) %>
 
+<p class="opacity-70 text-sm"><%= current_user.email %></p>
 <%= render(SideFormWrapperComponent.new(title: "Password", description: "Choose a secure password.")) do  %>
   <%= form_with model: current_user, url: update_password_path do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
