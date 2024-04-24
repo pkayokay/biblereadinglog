@@ -10,6 +10,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_time_zone
+    if current_user.update(time_zone_params)
+      redirect_to account_path, notice: "Time zone updated"
+    else
+      render :account, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def password_params
@@ -18,5 +26,9 @@ class UsersController < ApplicationController
       :password_confirmation,
       :password_challenge
     ).with_defaults(password_challenge: "")
+  end
+
+  def time_zone_params
+    params.require(:user).permit(:time_zone)
   end
 end

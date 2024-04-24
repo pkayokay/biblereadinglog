@@ -19,6 +19,8 @@ class RegistrationsController < ApplicationController
   private
 
   def registration_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    allowed_params = params.require(:user).permit(:email, :time_zone, :password, :password_confirmation)
+    allowed_params[:time_zone] = ActiveSupport::TimeZone::MAPPING.key(allowed_params[:time_zone])
+    allowed_params
   end
 end

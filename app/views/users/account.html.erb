@@ -17,7 +17,19 @@
       <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "max-w-sm")) %>
     <% end %>
     <div>
-      <%= form.submit "Update Password", class: "btn max-w-sm" %>
+      <%= form.submit "Update Password", class: "btn btn--primary max-w-sm" %>
     </div>
   <% end %>
+</div>
+
+<div class="mt-6">
+<%= form_with(model:  current_user, url: update_time_zone_path, class: "contents") do |form| %>
+  <%= render(FormErrorsComponent.new(form: form)) %>
+
+  <%= render(FieldContainerComponent.new) do %>
+    <%= render(LabelComponent.new(for_attribute: "time_zone", title: "Time zone", form: form)) %>
+    <%= form.select :time_zone, time_zone_options_for_select(form.object.time_zone, nil, ActiveSupport::TimeZone), {}, { class: "form-select max-w-sm" }%>
+  <% end %>
+  <%= form.submit "Update time zone", class: "btn btn--primary max-w-sm" %>
+<% end %>
 </div>
