@@ -15,3 +15,6 @@ application.register("hello", HelloController)
 
 import LogChapterController from "./log_chapter_controller"
 application.register("log-chapter", LogChapterController)
+
+import TimeZoneController from "./time_zone_controller"
+application.register("time-zone", TimeZoneController)
