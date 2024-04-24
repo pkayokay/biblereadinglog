@@ -33,7 +33,7 @@
     <%= form.submit "Save", class: "btn btn--primary w-auto" %>
   <% end %>
 <% end %>
-<%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.", custom_class: "")) do  %>
+<%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.", custom_class: "border-b-0")) do  %>
   <%= form_with(model:  current_user, url: update_color_theme_path, class: "contents") do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
 
