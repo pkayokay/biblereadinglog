@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
 
   def sign_in(user)
     Current.user = user
+    user.update(last_sign_in_at: Time.current)
     reset_session
     session[:user_id] = user.id
   end
