@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate_by(email: params[:email], password: params[:password])
+      user.update(time_zone: params[:time_zone]) if user.has_default_time_zone?
       sign_in(user)
       redirect_to root_path
     else
