@@ -22,7 +22,10 @@
     </div>
     <% User.order(created_at: :asc).each do |user| %>
       <div class="font-mono flex">
-        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
+        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>">
+          <div><%= user.email %></div>
+          <div><%= user.full_name %></div>
+        </div>
         <div class="w-[240px] min-w-[240px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= format_date(user.created_at) %></div>
         <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.last_sign_in_at ? format_date(user.last_sign_in_at) : "" %></div>
       </div>
