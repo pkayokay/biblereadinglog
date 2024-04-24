@@ -8,15 +8,15 @@ class FormErrorsComponent < ViewComponent::Base
 
   erb_template <<-ERB
     <% if @form.object.errors.any? %>
-      <div class="text-sm border border-red-200 bg-red-100 text-red-800 mb-4 px-4 py-3 rounded">
+      <div class="text-sm bg-red-50 text-red-700 mb-4 px-5 py-4 rounded">
         <% if @form.object.errors.one? %>
           <p class="font-medium">You have an error:</p>
         <% else %>
           <p class="font-medium">You have some errors:</p>
         <% end %>
-        <ul class="list-disc list-inside">
+        <ul class="list-disc list-inside mt-1">
           <% @form.object.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+            <li class="pl-3"><%= message %></li>
           <% end %>
         </ul>
       </div>

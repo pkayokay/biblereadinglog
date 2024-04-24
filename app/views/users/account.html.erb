@@ -1,5 +1,6 @@
 <%= render(HeadingComponent.new(title: "Account")) %>
 
+<p class="opacity-70 text-sm"><%= current_user.email %></p>
 <%= render(SideFormWrapperComponent.new(title: "Password", description: "Choose a secure password.")) do  %>
   <%= form_with model: current_user, url: update_password_path do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
@@ -17,7 +18,7 @@
       <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "")) %>
     <% end %>
     <div>
-      <%= form.submit "Update Password", class: "btn btn--primary max-w-xs" %>
+      <%= form.submit "Save", class: "btn btn--primary w-auto" %>
     </div>
   <% end %>
 <% end %>
@@ -29,6 +30,17 @@
       <%= render(LabelComponent.new(for_attribute: "time_zone", title: "Time zone", form: form)) %>
       <%= form.select :time_zone, time_zone_options_for_select(form.object.time_zone, nil, ActiveSupport::TimeZone), {}, { class: "form-select" }%>
     <% end %>
-    <%= form.submit "Update time zone", class: "btn btn--primary max-w-xs" %>
+    <%= form.submit "Save", class: "btn btn--primary w-auto" %>
+  <% end %>
+<% end %>
+<%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.", custom_class: "border-b-0")) do  %>
+  <%= form_with(model:  current_user, url: update_color_theme_path, class: "contents") do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "color_theme", title: "Theme", form: form)) %>
+      <%= form.select :color_theme, User.color_themes.keys.map { |theme| [theme.capitalize, theme] }, {}, { class: "form-select" } %>
+    <% end %>
+    <%= form.submit "Save", class: "btn btn--primary w-auto" %>
   <% end %>
 <% end %>

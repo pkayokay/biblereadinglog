@@ -4,7 +4,7 @@ class FormWrapperComponent < ViewComponent::Base
   renders_one :footer
 
   erb_template <<-ERB
-    <div class="max-w-sm mx-auto">
+    <div class="max-w-[400px] mx-auto">
       <%= content %>
       <% if footer %>
         <div class="text-center mt-4">

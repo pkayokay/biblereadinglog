@@ -18,6 +18,15 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def update_color_theme
+    if current_user.update(color_theme_params)
+      redirect_to account_path, notice: "Color theme updated"
+    else
+      render :account, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def password_params
@@ -30,5 +39,9 @@ class UsersController < ApplicationController
 
   def time_zone_params
     params.require(:user).permit(:time_zone)
+  end
+
+  def color_theme_params
+    params.require(:user).permit(:color_theme)
   end
 end

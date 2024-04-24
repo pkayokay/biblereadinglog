@@ -5,15 +5,15 @@
 
 @layer base {
   .form-input {
-    @apply w-full !mt-0.5 border-0 !px-3 !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3 !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .form-select {
-    @apply w-full !mt-0.5 border-0 !px-3 !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3 !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .btn {
-    @apply w-full cursor-pointer rounded-md bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-2 px-5 focus:!ring-neutral-600 focus:!border-neutral-600 focus:!outline-neutral-600;
+    @apply w-full cursor-pointer rounded-md bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-1.5 px-4 focus:!ring-neutral-600 focus:!border-neutral-600 focus:!outline-neutral-600;
   }
 
   .btn--primary {
@@ -23,7 +23,7 @@
   .field_with_errors .form-input {}
 
   .container--flash {
-    @apply transition-opacity duration-200 ease-out rounded-full py-2 px-5 -translate-x-1/2 opacity-0 left-1/2 top-24 fixed;
+    @apply z-50 transition-opacity duration-200 ease-out rounded-full py-2 px-5 -translate-x-1/2 opacity-0 left-1/2 top-24 fixed;
   }
 
   .container--flash.active {

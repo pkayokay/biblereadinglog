@@ -14,19 +14,17 @@
   <% end %>
 
   <h2 class="mt-6 font-bold text-2xl mb-2">Users (<%= User.count %>)</h2>
-  <div class="w-full overflow-x-scroll pb-8">
+  <div class="w-full overflow-x-scroll pb-8 text-sm">
     <div class="flex">
-      <div class="w-[320px] min-w-[320px] font-semibold">Email</div>
-      <div class="w-[300px] min-w-[300px] font-semibold">Created Date</div>
-      <div class="w-[100px] min-w-[100px] font-semibold">Role</div>
-      <div class="w-[320px] min-w-[320px] font-semibold">Last Sign In</div>
+      <div class="w-[300px] min-w-[300px] font-semibold">Email</div>
+      <div class="w-[240px] min-w-[240px] font-semibold">Created Date</div>
+      <div class="w-[300px] min-w-[300px] font-semibold">Last Sign In</div>
     </div>
     <% User.order(created_at: :asc).each do |user| %>
       <div class="font-mono flex">
-        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
-        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= format_date(user.created_at) %></div>
-        <div class="w-[100px] min-w-[100px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.is_admin? ? "admin" : "user" %></div>
-        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.last_sign_in_at ? format_date(user.last_sign_in_at) : "" %></div>
+        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
+        <div class="w-[240px] min-w-[240px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= format_date(user.created_at) %></div>
+        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.last_sign_in_at ? format_date(user.last_sign_in_at) : "" %></div>
       </div>
     <% end %>
   </div>

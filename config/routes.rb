@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "account", to: "users#account"
   patch "update_password", to: "users#update_password"
   patch "update_time_zone", to: "users#update_time_zone"
+  patch "update_color_theme", to: "users#update_color_theme"
   resource :password_reset
 
   get "admin", to: "base#admin"
