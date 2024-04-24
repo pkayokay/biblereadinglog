@@ -1,35 +1,37 @@
 <%= render(HeadingComponent.new(title: "Account")) %>
 
-<div class="mt-6">
+<%= render(SideFormWrapperComponent.new(title: "Password", description: "Choose a secure password.")) do  %>
   <%= form_with model: current_user, url: update_password_path do |form| %>
     <%= render(FormErrorsComponent.new(form: form)) %>
 
     <%= render(FieldContainerComponent.new) do %>
       <%= render(LabelComponent.new(for_attribute: "password_challenge", title: "Current password", form: form)) %>
-      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_challenge", required: true, custom_classes: "max-w-sm")) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_challenge", required: true, custom_classes: "")) %>
     <% end %>
     <%= render(FieldContainerComponent.new) do %>
       <%= render(LabelComponent.new(for_attribute: "password", title: "New Password", form: form)) %>
-      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true, custom_classes: "max-w-sm")) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true, custom_classes: "")) %>
     <% end %>
     <%= render(FieldContainerComponent.new) do %>
       <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
-      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "max-w-sm")) %>
+      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "")) %>
     <% end %>
     <div>
-      <%= form.submit "Update Password", class: "btn btn--primary max-w-sm" %>
+      <%= form.submit "Update Password", class: "btn btn--primary max-w-xs" %>
     </div>
   <% end %>
-</div>
-
-<div class="mt-6">
-<%= form_with(model:  current_user, url: update_time_zone_path, class: "contents") do |form| %>
-  <%= render(FormErrorsComponent.new(form: form)) %>
-
-  <%= render(FieldContainerComponent.new) do %>
-    <%= render(LabelComponent.new(for_attribute: "time_zone", title: "Time zone", form: form)) %>
-    <%= form.select :time_zone, time_zone_options_for_select(form.object.time_zone, nil, ActiveSupport::TimeZone), {}, { class: "form-select max-w-sm" }%>
-  <% end %>
-  <%= form.submit "Update time zone", class: "btn btn--primary max-w-sm" %>
 <% end %>
-</div>
+<br>
+<br>
+<hr>
+<%= render(SideFormWrapperComponent.new(title: "Time zone", description: "Emails will be sent relative to your time zone.")) do  %>
+  <%= form_with(model:  current_user, url: update_time_zone_path, class: "contents") do |form| %>
+    <%= render(FormErrorsComponent.new(form: form)) %>
+
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "time_zone", title: "Time zone", form: form)) %>
+      <%= form.select :time_zone, time_zone_options_for_select(form.object.time_zone, nil, ActiveSupport::TimeZone), {}, { class: "form-select" }%>
+    <% end %>
+    <%= form.submit "Update time zone", class: "btn btn--primary max-w-xs" %>
+  <% end %>
+<% end %>
