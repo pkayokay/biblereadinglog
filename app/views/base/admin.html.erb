@@ -23,7 +23,7 @@
     <% User.order(created_at: :asc).each do |user| %>
       <div class="font-mono flex">
         <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.email %></div>
-        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%A %_m/%-e at %l:%M %p') %></div>
+        <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= format_date(user.created_at) %></div>
         <div class="w-[320px] min-w-[320px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.is_admin? ? "admin" : "user" %></div>
       </div>
     <% end %>
