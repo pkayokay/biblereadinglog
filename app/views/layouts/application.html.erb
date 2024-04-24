@@ -33,18 +33,18 @@
                 <span class="uppercase font-medium"><%= current_user.initials %></span>
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
-                <div class="bg-white shadow-sm rounded-md border overflow-hidden w-36">
-                  <%= link_to  account_path, class: "flex space-x-1 py-2 px-4  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
-                    <span class="opacity-80">Account</span>
+                <div class="bg-white shadow-sm rounded-md border overflow-hidden w-40">
+                  <%= link_to  account_path, class: "flex space-x-1 py-1.5 px-5  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
+                    <span class="opacity-70">Account</span>
                   <% end %>
                   <% if current_user.is_admin? %>
-                    <%= link_to admin_path, class: "flex space-x-1 py-2 px-4  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
-                      <span class="opacity-80">Admin</span>
+                    <%= link_to admin_path, class: "flex space-x-1 py-1.5 px-5  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
+                      <span class="opacity-70">Admin</span>
                     <% end %>
                   <% end %>
                   <hr class="border-t" />
-                  <%= button_to sign_out_path, method: :delete, class: "text-left no-underline block pl-4 w-full py-2 text-gray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100", data: { dropdown_target: "menuItem" } do %>
-                   <span class="opacity-80">Log out</span>
+                  <%= button_to sign_out_path, method: :delete, class: "text-left no-underline block pl-4 w-full py-1.5 text-5ray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100", data: { dropdown_target: "menuItem" } do %>
+                   <span class="opacity-70">Log out</span>
                   <% end %>
                 </div>
               </div>
