@@ -13,6 +13,16 @@ class ReadingLogsController < ApplicationController
     @reading_log = ReadingLog.new
   end
 
+  def create
+    @reading_log = current_user.reading_logs.new
+    if @reading_log.save
+      redirect_to reading_log_path(@reading_log)
+    else
+      @erros = @reading_log.errors
+      render :new, :unprocessable_entity
+    end
+  end
+
   def show
     add_breadcrumb("Home", root_path)
     add_breadcrumb("Reading Log", reading_log_path(@reading_log))

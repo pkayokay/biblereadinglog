@@ -1,1 +1,4 @@
-new
+<%= form_with model: @reading_log do |form| %>
+  <%= render(FormErrorsComponent.new(errors: @errors)) %>
+  <%= form.submit "Create reading log", class: "btn btn--primary" %>
+<% end %>
