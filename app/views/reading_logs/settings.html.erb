@@ -1,1 +1,15 @@
-<%= render(HeadingComponent.new(title: "Settings")) %>
+<div class="mb-4">
+  <%= render(HeadingComponent.new(title: "Settings")) %>
+</div>
+
+<%= form_with model: @reading_log do |form| %>
+  <%= render(FormErrorsComponent.new(errors: @errors)) %>
+
+  <%= render(FieldContainerComponent.new) do %>
+    <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
+    <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
+  <% end %>
+  <div>
+    <%= form.submit "Save", class: "btn btn--primary w-auto" %>
+  </div>
+<% end %>
