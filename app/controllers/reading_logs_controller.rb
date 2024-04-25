@@ -3,6 +3,14 @@ class ReadingLogsController < ApplicationController
 
   def index
     @reading_logs = current_user.reading_logs
+
+    unless current_user.reading_logs.exists?
+      redirect_to new_reading_log_path
+    end
+  end
+
+  def new
+    @reading_log = ReadingLog.new
   end
 
   def show
