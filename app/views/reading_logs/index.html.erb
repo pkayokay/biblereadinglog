@@ -1,5 +1,8 @@
-<div class="mb-4">
+<div class="mb-4 flex justify-between">
   <%= render(HeadingComponent.new(title: "Home")) %>
+  <%= link_to new_reading_log_path, class: "btn btn--primary w-auto" do %>
+    <span>New Reading Log</span>
+  <% end %>
 </div>
 <% @reading_logs.each do |reading_log| %>
   <%= link_to reading_log_path(reading_log), class: "bg-white shadow-sm border py-4 px-5 rounded-md block mb-5" do %>
