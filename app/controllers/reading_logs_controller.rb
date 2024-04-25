@@ -11,6 +11,7 @@ class ReadingLogsController < ApplicationController
 
   def new
     @reading_log = ReadingLog.new
+    @books_data = JSON.parse(File.read('./public/books.json'))
   end
 
   def update
@@ -24,6 +25,14 @@ class ReadingLogsController < ApplicationController
 
   def create
     @reading_log = current_user.reading_logs.new(reading_log_params)
+    @books_data = JSON.parse(File.read('./public/books.json'))
+
+    if @reading_log.is_entire_bible?
+      BuildBooksService.new(reading_log: @reading_log).call
+    else
+      selected_books = params[:reading_log][:selected_books].as_json.filter_map {|a| {a.first => a.last } if a.last == "1"}
+      BuildBooksService.new(reading_log: @reading_log, selected_books: selected_books).call
+    end
 
     if @reading_log.save
       redirect_to reading_log_path(@reading_log), notice: "Reading log created"
