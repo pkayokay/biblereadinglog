@@ -1,6 +1,6 @@
 <div class="mb-4 flex justify-between items-end">
   <div>
-    <%= render(HeadingComponent.new(title: "Reading Log")) %>
+    <%= render(HeadingComponent.new(title: @reading_log.name)) %>
     <span class="text-sm opacity-60">Started on <%= format_date(@reading_log.created_at) %></span>
   </div>
   <%= link_to settings_reading_log_path(@reading_log), class: "flex items-center space-x-1.5 py-1 pr-3 pl-2.5 rounded-md shadow-sm bg-white border text-neutral-700 hover:bg-neutral-50" do %>
