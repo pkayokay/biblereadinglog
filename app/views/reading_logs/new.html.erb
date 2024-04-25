@@ -2,30 +2,46 @@
   <%= render(HeadingComponent.new(title: "New Reading Log")) %>
 </div>
 
-<%= form_with model: @reading_log do |form| %>
-  <%= render(FormErrorsComponent.new(errors: @errors)) %>
+<%= render(CardComponent.new) do %>
+  <%= form_with model: @reading_log do |form| %>
+    <%= render(FormErrorsComponent.new(errors: @errors)) %>
 
-  <%= render(FieldContainerComponent.new) do %>
-    <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
-    <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
-  <% end %>
-  <div data-controller="book-selection">
-    <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
-      <%= form.check_box :is_entire_bible, class: "w-5 h-5 rounded", data: { action: "change->book-selection#toggleCheck"} %>
-      <%= render(LabelComponent.new(for_attribute: "is_entire_bible", title: "Include all books in the Bible", form: form, custom_classes: "ml-3 !text-base" )) %>
-    <% end %>
-
-    <div data-book-selection-target="bookList" class="<%= 'hidden' if form.object.is_entire_bible? %> mt-6">
-      <p class="mb-4 font-semibold text-xl">Select which books to include</p>
-      <%= form.fields_for :selected_books do |selected_book_form| %>
-        <% book_data_fields = @books_data.map do |book_data| %>
-          <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
-            <%= selected_book_form.check_box book_data["slug"], class: "w-5 h-5 rounded" %>
-            <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "ml-3 w-full !text-base" )) %>
-          <% end %>
-        <% end %>
+    <div class="flex items-end space-x-3 mb-4">
+      <%= render(FieldContainerComponent.new(custom_classes: "!mb-0 flex-1")) do %>
+        <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
+        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
       <% end %>
+      <%= form.submit "Create reading log", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary w-[200px]" %>
     </div>
-  </div>
-  <%= form.submit "Create reading log", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary" %>
+    <div data-controller="book-selection">
+      <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
+        <%= form.check_box :is_entire_bible, class: "w-5 h-5 rounded", data: { action: "change->book-selection#toggleCheck"} %>
+        <%= render(LabelComponent.new(for_attribute: "is_entire_bible", title: "Include all books in the Bible", form: form, custom_classes: "ml-3 !text-base" )) %>
+      <% end %>
+
+      <div data-book-selection-target="bookList" class="<%= 'hidden' if form.object.is_entire_bible? %> mt-8">
+        <p class="mb-4 font-semibold text-lg">Select which books to include</p>
+        <%= form.fields_for :selected_books do |selected_book_form| %>
+          <div class="flex space-x-8">
+            <div>
+              <% @old_testament_books_data.map do |book_data| %>
+                <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-4")) do %>
+                  <%= selected_book_form.check_box book_data["slug"], class: "w-4 h-4 rounded" %>
+                  <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "ml-3 w-full !text-sm" )) %>
+                <% end %>
+              <% end %>
+            </div>
+            <div>
+              <% @new_testament_books_data.map do |book_data| %>
+                <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-4")) do %>
+                  <%= selected_book_form.check_box book_data["slug"], class: "w-4 h-4 rounded" %>
+                  <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "ml-3 w-full !text-sm" )) %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
