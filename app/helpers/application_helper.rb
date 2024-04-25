@@ -18,7 +18,7 @@ module ApplicationHelper
     elsif current_user.gray?
       {
         line: "bg-neutral-700",
-        square: "shadow-neutral-100 border-neutral-300 bg-neutral-100 hover:bg-neutral-200",
+        square: "shadow-neutral-100 border-neutral-300 bg-neutral-200 hover:bg-neutral-300",
       }
     end
   end

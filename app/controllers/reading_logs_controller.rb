@@ -15,6 +15,9 @@ class ReadingLogsController < ApplicationController
   end
 
   def update
+    set_reading_log_breadcrumb
+    set_reading_log_settings_breadcrumb
+
     if @reading_log.update(reading_log_params)
       redirect_to settings_reading_log_path(@reading_log), notice: "Reading log updated!"
     else
@@ -42,19 +45,13 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
-    add_breadcrumb("Home", root_path)
-    add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
-
+    set_reading_log_breadcrumb
     @books = @reading_log.ordered_books
   end
 
   def settings
-    add_breadcrumb("Home", root_path)
-    add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
-    add_breadcrumb("Settings", settings_reading_log_path(@reading_log))
-
-
-
+    set_reading_log_breadcrumb
+    set_reading_log_settings_breadcrumb
   end
 
   private
@@ -71,5 +68,14 @@ class ReadingLogsController < ApplicationController
     @books_data = JSON.parse(File.read('./public/books.json'))
     @old_testament_books_data = @books_data.slice(0,39)
     @new_testament_books_data = @books_data.slice(39,66)
+  end
+
+  def set_reading_log_breadcrumb
+    add_breadcrumb("Home", root_path)
+    add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
+  end
+
+  def set_reading_log_settings_breadcrumb
+    add_breadcrumb("Settings", settings_reading_log_path(@reading_log))
   end
 end
