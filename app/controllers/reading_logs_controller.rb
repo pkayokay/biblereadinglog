@@ -37,7 +37,7 @@ class ReadingLogsController < ApplicationController
     end
 
     if @reading_log.save
-      redirect_to reading_log_path(@reading_log), notice: "Reading log created"
+      redirect_to reading_log_path(@reading_log), notice: "Reading log created!"
     else
       @errors = @reading_log.errors
       render :new, status: :unprocessable_entity
