@@ -1,6 +1,7 @@
 class ReadingLogsController < ApplicationController
   before_action :set_reading_log, only: [:update, :show, :settings]
-before_action :set_books_data, only: [:new, :create]
+  before_action :set_books_data, only: [:new, :create]
+
   def index
     @reading_logs = current_user.reading_logs.order(created_at: :desc)
 
@@ -15,10 +16,10 @@ before_action :set_books_data, only: [:new, :create]
 
   def update
     if @reading_log.update(reading_log_params)
-      redirect_to reading_log_path(@reading_log), notice: "Reading log updated!"
+      redirect_to settings_reading_log_path(@reading_log), notice: "Reading log updated!"
     else
       @errors = @reading_log.errors
-      render :new, status: :unprocessable_entity
+      render "reading_logs/settings", status: :unprocessable_entity
     end
   end
 
