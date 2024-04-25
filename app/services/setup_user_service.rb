@@ -8,7 +8,7 @@ class SetupUserService
     User.transaction do
       @user = User.create!(email: @email, password: @password)
       @reading_log = ReadingLog.create!(user: @user)
-      @books_result = CreateBooksService.new(reading_log: @reading_log).call
+      @books_result = BuildBooksService.new(reading_log: @reading_log).call
 
       if @books_result[:error].present?
         return { error: @books_result[:error]  }

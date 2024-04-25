@@ -2,7 +2,7 @@
 
 <%= render(FormWrapperComponent.new) do |form_card| %>
   <%= form_with model: @user, url: sign_up_path, data: { controller: "time-zone" } do |form| %>
-    <%= render(FormErrorsComponent.new(form: form)) %>
+    <%= render(FormErrorsComponent.new(errors: @errors)) %>
     <%= form.hidden_field :time_zone, data: {time_zone_target: "timeZoneField"} %>
     <div class="flex justify-between space-x-3">
       <%= render(FieldContainerComponent.new) do %>
