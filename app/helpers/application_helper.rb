@@ -23,6 +23,8 @@ module ApplicationHelper
     end
   end
   def format_date(datetime_value)
+    return "" if datetime_value.nil?
+
     datetime_value.in_time_zone(current_user.time_zone).strftime('%A %_m/%-e at %l:%M %p')
   end
 

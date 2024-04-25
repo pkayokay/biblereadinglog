@@ -1,4 +1,63 @@
-<div class="">
+<style>
+  body {
+    background-color: white !important;
+  }
+
+  main {
+    max-width: 1400px !important;
+  }
+</style>
+
+
+<div class="8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-2xl font-semibold leading-6 text-gray-900">Users (<%= User.count %>)</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all the users.</p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <button type="button" class="block rounded-md bg-black px-3 py-2 text-center text-sm font-medium text-white shadow-sm hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600">Add user</button>
+    </div>
+  </div>
+  <div class="mt-8 flow-root">
+    <div class=" -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="overflow-hidden border ring-black ring-opacity-5 rounded-lg">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last Sign In</th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <% User.order(created_at: :asc).each do |user| %>
+                <tr>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= user.full_name %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= user.email %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= format_date(user.created_at) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= format_date(user.last_sign_in_at) %></td>
+                  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                    <a href="#" class="text-neutral-600 hover:text-neutral-900">Edit<span class="sr-only">, <%= user.full_name %></span></a>
+                  </td>
+                </tr>
+              <% end %>
+
+              <!-- More people... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hidden ">
   <h1 class="font-bold text-4xl mb-2">Admin</h1>
   <%= form_with url: setup_user_path, class: "max-w-md" do |form| %>
     <div class="mb-3">Set up new user</div>
@@ -12,23 +71,4 @@
     <% end %>
     <%= form.submit "Submit", class: "btn btn--primary" %>
   <% end %>
-
-  <h2 class="mt-6 font-bold text-2xl mb-2">Users (<%= User.count %>)</h2>
-  <div class="w-full overflow-x-scroll pb-8 text-sm">
-    <div class="flex">
-      <div class="w-[300px] min-w-[300px] font-semibold">Email</div>
-      <div class="w-[240px] min-w-[240px] font-semibold">Created Date</div>
-      <div class="w-[300px] min-w-[300px] font-semibold">Last Sign In</div>
-    </div>
-    <% User.order(created_at: :asc).each do |user| %>
-      <div class="font-mono flex">
-        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>">
-          <div><%= user.email %></div>
-          <div><%= user.full_name %></div>
-        </div>
-        <div class="w-[240px] min-w-[240px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= format_date(user.created_at) %></div>
-        <div class="w-[300px] min-w-[300px] truncate <%= 'text-red-600' if user.is_admin? %>"><%= user.last_sign_in_at ? format_date(user.last_sign_in_at) : "" %></div>
-      </div>
-    <% end %>
-  </div>
 </div>
