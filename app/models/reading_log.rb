@@ -11,4 +11,8 @@ class ReadingLog < ApplicationRecord
   def validate_at_least_one_book
     errors.add(:base, "You must select at least one book") if books.empty?
   end
+
+  def has_books_from_old_and_new_testament?
+    books.in_old_testament.exists? && books.in_new_testament.exists?
+  end
 end

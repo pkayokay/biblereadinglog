@@ -44,8 +44,12 @@ before_action :set_books_data, only: [:new, :create]
     add_breadcrumb("Home", root_path)
     add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
 
-    @old_testament_books = @reading_log.ordered_books.in_old_testament
-    @new_testament_books = @reading_log.ordered_books.in_new_testament
+    if @reading_log.has_books_from_old_and_new_testament?
+      @old_testament_books = @reading_log.ordered_books.in_old_testament
+      @new_testament_books = @reading_log.ordered_books.in_new_testament
+    else
+      @books = @reading_log.ordered_books
+    end
   end
 
   def settings
