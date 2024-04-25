@@ -57,6 +57,6 @@ class ReadingLogsController < ApplicationController
   end
 
   def reading_log_params
-    params.require(:reading_log).permit(:name)
+    params.require(:reading_log).permit(:name, :is_entire_bible)
   end
 end

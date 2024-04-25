@@ -9,5 +9,9 @@
     <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
     <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
   <% end %>
+  <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
+    <%= form.check_box :is_entire_bible, class: "rounded" %>
+    <%= render(LabelComponent.new(for_attribute: "is_entire_bible", title: "Include all books in the bible", form: form, custom_classes: "ml-2" )) %>
+  <% end %>
   <%= form.submit "Create reading log", class: "btn btn--primary" %>
 <% end %>
