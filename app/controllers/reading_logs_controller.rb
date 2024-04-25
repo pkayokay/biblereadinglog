@@ -15,7 +15,7 @@ class ReadingLogsController < ApplicationController
 
   def update
     if @reading_log.update(reading_log_params)
-      redirect_to reading_log_path(@reading_log), notice: "Reading log updated"
+      redirect_to reading_log_path(@reading_log), notice: "Reading log updated!"
     else
       @errors = @reading_log.errors
       render :new, status: :unprocessable_entity

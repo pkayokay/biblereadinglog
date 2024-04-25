@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def update_password
     if current_user.update(password_params)
-      redirect_to account_path, notice: "Password updated"
+      redirect_to account_path, notice: "Password updated!"
     else
       @password_errors = current_user.errors
       render :account, status: :unprocessable_entity
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def update_time_zone
     if current_user.update(time_zone_params)
-      redirect_to account_path, notice: "Time zone updated"
+      redirect_to account_path, notice: "Time zone updated!"
     else
       @time_zone_errors = current_user.errors
       render :account, status: :unprocessable_entity
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update_color_theme
     if current_user.update(color_theme_params)
-      redirect_to account_path, notice: "Color theme updated"
+      redirect_to account_path, notice: "Color theme updated!"
     else
       @color_theme_errors = current_user.errors
       render :account, status: :unprocessable_entity
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def update_name
     if current_user.update(name_params)
-      redirect_to account_path, notice: "Name updated"
+      redirect_to account_path, notice: "Name updated!"
     else
       @name_errors = current_user.errors
       render :account, status: :unprocessable_entity
