@@ -3,6 +3,8 @@ class Book < ApplicationRecord
   validates :name, uniqueness: { scope: :reading_log_id }
   validates :slug, uniqueness: { scope: :reading_log_id }
   validates :position, uniqueness: { scope: :reading_log_id }
+  validates :pin_order, uniqueness: { scope: :reading_log_id }
+  validates :pin_order, numericality: { greater_than_or_equal_to: 0}
 
   belongs_to :reading_log
 
