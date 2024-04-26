@@ -46,7 +46,10 @@ class ReadingLogsController < ApplicationController
 
   def show
     set_reading_log_breadcrumb
-    @books = @reading_log.ordered_books
+    @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
+
+    @old_testament_books = @reading_log.ordered_books.where(pin_order: nil).in_old_testament
+    @new_testament_books = @reading_log.ordered_books.where(pin_order: nil).in_new_testament
   end
 
   def settings
