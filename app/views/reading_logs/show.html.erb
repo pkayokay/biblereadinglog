@@ -9,38 +9,17 @@
   <% end %>
 </div>
 <div class="flex-1 <%= '' if @pinned_books.present? %>">
-  <% if @pinned_books.present? %>
-    <div class="flex flex-col sm:flex-row sm:space-x-5 mt-8 sm:space-y-0 space-y-5">
-      <div class="flex-1 space-y-5">
-        <% @pinned_books.filter_map.with_index {|b, index| b if index.even? }.each do |book| %>
-          <%= render "books/card", book: book %>
-        <% end %>
-      </div>
-      <div class="flex-1 space-y-5">
-        <% @pinned_books.filter_map.with_index {|b, index| b if index.odd? }.each do |book| %>
-          <%= render "books/card", book: book %>
-        <% end %>
-      </div>
-    </div>
-    <hr class="mt-8">
-  <% end %>
-
-  <div class="flex flex-col sm:flex-row sm:space-x-5 mt-8 sm:space-y-0 space-y-8">
-    <% if @old_testament_books.present? %>
-      <div class="flex-1 space-y-5">
-        <p class="mb-3 text-center opacity-40 text-sm uppercase">Old Testament</p>
-        <% @old_testament_books.each do |book| %>
-          <%= render "books/card", book: book %>
-        <% end %>
-      </div>
+  <h4 class="opacity-50 mb-2 uppercase">Pinned books</h4>
+  <div id="<%= pinned_books_turbo_frame_id %>" class="space-y-6">
+    <% @pinned_books.each do |book| %>
+      <%= render "books/card", book: book %>
     <% end %>
-    <% if @new_testament_books.present? %>
-      <div class="flex-1 space-y-5">
-        <p class="mb-3 text-center opacity-40 text-sm uppercase">New Testament</p>
-        <% @new_testament_books.each do |book| %>
-          <%= render "books/card", book: book %>
-        <% end %>
-      </div>
+  </div>
+  <hr class="mt-8 pt-8">
+  <h4 class="opacity-50 mb-2 uppercase">All books</h4>
+  <div id="<%= unpinned_books_turbo_frame_id %>" class="space-y-6">
+    <% @books.each do |book| %>
+      <%= render "books/card", book: book %>
     <% end %>
   </div>
 </div>

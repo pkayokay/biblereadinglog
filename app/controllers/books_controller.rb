@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   end
 
   def pin_book
-    pin_order_value = if @book.pin_order.present?
+    @pin_order_value = if @book.pin_order.present?
       nil
     else
       last_pinned_book = @reading_log.books.where.not(pin_order: nil).order(pin_order: :desc).first
@@ -16,13 +16,17 @@ class BooksController < ApplicationController
       end
     end
 
-    if @book.update(pin_order: pin_order_value)
-      flash[:notice] = "#{@book.name} #{pin_order_value.nil? ? 'unpinned' : 'pinned'}!"
+    if @book.update(pin_order: @pin_order_value)
+      flash.now[:notice] = "#{@book.name} #{@pin_order_value.nil? ? 'unpinned' : 'pinned'}!"
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to reading_log_path(@reading_log) }
+      end
     else
       flash[:alert] = "Sorry, something went wrong."
+      redirect_to reading_log_path(@reading_log)
     end
-
-    redirect_to reading_log_path(@reading_log)
   end
 
   def toggle_chapter

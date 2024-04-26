@@ -51,4 +51,17 @@ module ApplicationHelper
   def book_card_chapters_turbo_frame_id(book)
     "book-card-chapters-#{book.id}"
   end
+
+  def book_card_container_turbo_frame_id(book)
+    "book-card-container-#{book.id}"
+  end
+
+  def pinned_books_turbo_frame_id
+    "pinned-books"
+  end
+
+  def unpinned_books_turbo_frame_id
+    "unpinned-books"
+  end
 end
+

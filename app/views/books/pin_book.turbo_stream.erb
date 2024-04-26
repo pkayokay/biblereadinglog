@@ -1,0 +1,19 @@
+<%= turbo_stream.remove book_card_container_turbo_frame_id(@book) %>
+
+<% if @pin_order_value.present? %>
+  <%= turbo_stream.append pinned_books_turbo_frame_id do %>
+    <%= render "books/card", book: @book %>
+  <% end %>
+<% else %>
+  <%# insert in order, if any unpinned exist, find one before, if no exist insert %>
+  <%= turbo_stream.append unpinned_books_turbo_frame_id do %>
+    <%= render "books/card", book: @book %>
+  <% end %>
+<% end %>
+
+
+
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>
