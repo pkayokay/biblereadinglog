@@ -8,15 +8,17 @@
     <span>Settings</span>
   <% end %>
 </div>
-<div class="flex-1 md:m-[-1%] m-[-3%]">
+<div class="flex-1 md:m-[-1%] mx-[-3%] my-[-2%]">
   <% if @pinned_books.present? %>
-    <div class="flex justify-between flex-wrap  items-start lg:*:w-[31%] md:*:w-[48%] md:*:m-[1%] *:m-[3%]">
+    <div class="flex justify-stretch flex-wrap items-start <%= 'lg:*:w-[31.3%]' if (@pinned_books.count > 2) %> md:*:w-[48%] md:*:m-[1%] *:mx-[3%] *:my-[2%]">
     <% @pinned_books.each do |book| %>
       <%= render "books/card", book: book %>
     <% end %>
     </div>
-    <hr class="mt-8">
+  <% else %>
+    <p>pin books you're reading</p>
   <% end %>
+  <hr class="mt-8">
 
   <div class="flex flex-col sm:flex-row sm:space-x-5 mt-8">
     <% if @old_testament_books.present? %>
