@@ -14,7 +14,7 @@
   <div class="text-sm mt-4 flex items-center justify-between">
     <%= render "books/book_card_chapters", book: book %>
     <div class="flex items-center space-x-3">
-      <%= button_to reading_log_book_path(book.reading_log, book), method: :get, form: { class: " text-right"}, class: "hover:bg-gray-50 border rounded-md text-sm py-1 px-2 text-gray-600 cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
+      <%= button_to reading_log_book_path(book.reading_log, book), method: :get, form: { class: " text-right"}, class: "w-[100px] bg-neutral-800 border border-neutral-800 rounded-md text-sm py-1 px-2 hover:opacity-80 text-white cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
         Log chapter
       <% end %>
     </div>
