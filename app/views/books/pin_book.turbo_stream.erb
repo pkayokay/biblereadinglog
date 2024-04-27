@@ -1,5 +1,13 @@
 <%= turbo_stream.remove book_card_container_turbo_frame_id(@book) %>
 
+<% if @has_pinned_books %>
+  <%= turbo_stream.update pinned_books_empty_turbo_frame_id, "" %>
+<% else %>
+  <%= turbo_stream.update pinned_books_empty_turbo_frame_id do %>
+    <%= render "reading_logs/pinned_books_empty" %>
+  <% end %>
+<% end %>
+
 <% if @pin_order_value.present? %>
   <%= turbo_stream.append pinned_books_turbo_frame_id do %>
     <%= render "books/card", book: @book %>

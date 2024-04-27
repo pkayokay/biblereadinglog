@@ -60,6 +60,10 @@ module ApplicationHelper
     "pinned-books"
   end
 
+  def pinned_books_empty_turbo_frame_id
+    "pinned-books-empty"
+  end
+
   def unpinned_books_turbo_frame_id
     "unpinned-books"
   end

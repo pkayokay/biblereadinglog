@@ -9,7 +9,11 @@
   <% end %>
 </div>
 <div class="flex-1 <%= '' if @pinned_books.present? %>">
-  <h4 class="opacity-50 mb-2 uppercase">Pinned books</h4>
+  <div id="<%= pinned_books_empty_turbo_frame_id %>">
+    <% unless @pinned_books.present? %>
+      <%= render "pinned_books_empty" %>
+    <% end %>
+  </div>
   <div id="<%= pinned_books_turbo_frame_id %>" class="space-y-6">
     <% @pinned_books.each do |book| %>
       <%= render "books/card", book: book %>
