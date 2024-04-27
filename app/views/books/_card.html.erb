@@ -10,18 +10,20 @@
 
   <div class="text-sm mt-4 flex items-center justify-between">
     <%= render "books/book_card_chapters", book: book %>
-    <div class="flex items-center space-x-3">
-      <%= button_to pin_book_reading_log_book_path(book.reading_log, book), method: :patch, class: "group hover:bg-gray-50 items-center border rounded-md p-1 pl-3 pr-1.5 flex space-x-1.5", aria: {label:"Pin Book" } do %>
-        <div class="opacity-80">
+    <div class="flex items-center space-between space-x-3">
+      <%= button_to pin_book_reading_log_book_path(book.reading_log, book), method: :patch, class: "#{book.pin_order.present? ? 'pl-1 w-[88px]' : 'w-[65px]'} pr-1.5 group hover:bg-gray-50 items-center justify-center border rounded-md p-1 flex", aria: {label:"Pin Book" } do %>
+        <div class="flex-1">
           <% if book.pin_order.present? %>
-          Pinned
+            <span class="group-hover:hidden">Pinned</span>
+            <span class="hidden group-hover:inline-block">Unpin</span>
           <% else %>
-          Pin
+            Pin
           <% end %>
         </div>
+        <svg focusable="false" class="hidden <%= book.pin_order.present? ? "group-hover:rotate-0  stroke-yellow-500 fill-yellow-500" : 'group-hover: opacity-30' %> duration-100 group-hover:opacity-100 fill-neutral-700 stroke-neutral-700 cursor-pointer w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg focusable="false" class="<%= book.pin_order.present? ? "group-hover:rotate-0 rotate-45 stroke-neutral-600 fill-neutral-600" : 'group-hover:rotate-45 opacity-30' %> duration-100 group-hover:opacity-100 fill-neutral-700 stroke-neutral-700 cursor-pointer w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pin"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
       <% end %>
-      <%= button_to reading_log_book_path(book.reading_log, book), method: :get, form: { class: " text-right"}, class: "w-[100px] bg-neutral-800 border border-neutral-800 rounded-md text-sm py-1 px-2 hover:opacity-80 text-white cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
+      <%= button_to reading_log_book_path(book.reading_log, book), method: :get, form: { class: " text-right"}, class: "w-[100px] bg-neutral-800 border border-neutral-800 rounded-md text-sm py-1 px-2 hover:opacity-90 text-white cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
         Log chapter
       <% end %>
     </div>
