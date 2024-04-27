@@ -37,7 +37,7 @@ class ReadingLogsController < ApplicationController
     end
 
     if @reading_log.save
-      redirect_to reading_log_path(@reading_log), notice: "Reading log created"
+      redirect_to reading_log_path(@reading_log), notice: "Reading log created!"
     else
       @errors = @reading_log.errors
       render :new, status: :unprocessable_entity
@@ -46,7 +46,9 @@ class ReadingLogsController < ApplicationController
 
   def show
     set_reading_log_breadcrumb
-    @books = @reading_log.ordered_books
+    @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
+    @books = @reading_log.ordered_books.where(pin_order: nil)
+    @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
   end
 
   def settings

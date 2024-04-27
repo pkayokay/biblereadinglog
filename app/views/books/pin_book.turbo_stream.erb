@@ -1,0 +1,41 @@
+<%= turbo_stream.remove book_card_container_turbo_frame_id(@book) %>
+
+<% if @has_pinned_books %>
+  <%= turbo_stream.update pinned_books_empty_turbo_frame_id, "" %>
+<% else %>
+  <%= turbo_stream.update pinned_books_empty_turbo_frame_id do %>
+    <%= render "reading_logs/pinned_books_empty" %>
+  <% end %>
+<% end %>
+
+<% if @has_unpinned_books %>
+  <%= turbo_stream.update unpinned_books_empty_turbo_frame_id do %>
+    <%= render "reading_logs/all_books_header" %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update unpinned_books_empty_turbo_frame_id, "" %>
+<% end %>
+
+
+<% if @pin_order_value.present? %>
+  <%= turbo_stream.append pinned_books_turbo_frame_id do %>
+    <%= render "books/card", book: @book %>
+  <% end %>
+<% else %>
+  <% if @prev_book %>
+    <%= turbo_stream.after book_card_container_turbo_frame_id(@prev_book) do %>
+      <%= render "books/card", book: @book %>
+    <% end %>
+  <% else %>
+    <%= turbo_stream.prepend unpinned_books_turbo_frame_id do %>
+      <%= render "books/card", book: @book %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>
