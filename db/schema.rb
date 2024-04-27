@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_163525) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_163902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_163525) do
     t.integer "chapters_count", null: false
     t.integer "pin_order"
     t.integer "completed_chapters_count", default: 0, null: false
+    t.datetime "completed_at"
     t.index ["chapters_data"], name: "index_books_on_chapters_data"
     t.index ["pin_order", "reading_log_id"], name: "index_books_on_pin_order_and_reading_log_id", unique: true
     t.index ["position", "reading_log_id"], name: "index_books_on_position_and_reading_log_id", unique: true
