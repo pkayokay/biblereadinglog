@@ -17,7 +17,20 @@ class BooksController < ApplicationController
     end
 
     if @book.update(pin_order: @pin_order_value)
-      flash.now[:notice] = "#{@book.name} #{@pin_order_value.nil? ? 'unpinned' : 'pinned'}!"
+      if @pin_order_value.present?
+        flash.now[:notice] = "#{@book.name} pinned!"
+      else
+        flash.now[:notice] = "#{@book.name} unpinned!"
+        unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil)
+        if unpinned_ordered_books.present?
+          current_book_index = unpinned_ordered_books.index(@book)
+
+          if current_book_index != 0
+            @prev_book = unpinned_ordered_books[current_book_index-1]
+            @next_book = unpinned_ordered_books[current_book_index+1]
+          end
+        end
+      end
 
       respond_to do |format|
         format.turbo_stream

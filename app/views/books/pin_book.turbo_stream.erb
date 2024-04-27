@@ -6,8 +6,18 @@
   <% end %>
 <% else %>
   <%# insert in order, if any unpinned exist, find one before, if no exist insert %>
-  <%= turbo_stream.append unpinned_books_turbo_frame_id do %>
-    <%= render "books/card", book: @book %>
+  <% if @prev_book %>
+    <%= turbo_stream.after book_card_container_turbo_frame_id(@prev_book) do %>
+      <%= render "books/card", book: @book %>
+    <% end %>
+  <% elsif @next_book %>
+    <%= turbo_stream.before book_card_container_turbo_frame_id(@next_book) do %>
+      <%= render "books/card", book: @book %>
+    <% end %>
+  <% else %>
+    <%= turbo_stream.prepend unpinned_books_turbo_frame_id do %>
+      <%= render "books/card", book: @book %>
+    <% end %>
   <% end %>
 <% end %>
 
