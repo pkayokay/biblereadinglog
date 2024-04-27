@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "reading_logs#index"
 
-  resources :reading_logs do
+  resources :reading_logs, except: :edit do
     resources :books, only: [:show] do
       member do
         patch "toggle_chapter", to: "books#toggle_chapter"
