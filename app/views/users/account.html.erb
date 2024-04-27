@@ -13,9 +13,7 @@
       <%= render(LabelComponent.new(for_attribute: "last_name", form: form)) %>
       <%= render(InputComponent.new(type: "text", form: form, id_and_name: "last_name", required: true, custom_classes: "")) %>
     <% end %>
-    <div>
-      <%= form.submit "Save", class: "btn btn--primary w-auto" %>
-    </div>
+    <%= form.submit "Save", class: "btn btn--primary w-auto" %>
   <% end %>
 <% end %>
 <%= render(SideFormWrapperComponent.new(title: "Password", description: "Choose a secure password.")) do  %>
