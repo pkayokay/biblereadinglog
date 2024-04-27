@@ -27,7 +27,6 @@ class BooksController < ApplicationController
 
           if current_book_index != 0
             @prev_book = unpinned_ordered_books[current_book_index-1]
-            @next_book = unpinned_ordered_books[current_book_index+1]
           end
         end
       end
