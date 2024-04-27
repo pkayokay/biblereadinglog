@@ -1,7 +1,7 @@
 <div class="max-w-xs mx-auto">
   <h1 class="text-center font-medium text-2xl"><%= @book.name %></h1>
   <%= turbo_frame_tag book_checklist_turbo_frame_id(@book) do %>
-    <div data-chapter-container-id="<%= book_checklist_turbo_frame_id(@book) %>" class="mb-2 mt-5 flex flex-wrap md:grid md:grid-cols-9 w-full gap-4 <%= 'justify-center' unless turbo_frame_request? %>">
+    <div data-chapter-container-id="<%= book_checklist_turbo_frame_id(@book) %>" class="mb-2 mt-5 flex flex-wrap md:grid md:grid-cols-10 w-full gap-6 <%= 'justify-center' unless turbo_frame_request? %>">
       <% @book.chapters_data.each do |chapter_data| %>
         <%= render "book_chapter_square", book: @book, chapter_data: chapter_data %>
       <% end %>
