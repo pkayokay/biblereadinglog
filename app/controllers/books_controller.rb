@@ -58,7 +58,8 @@ class BooksController < ApplicationController
       end
     end
 
-    if @book.update(chapters_data: chapters_data)
+    completed_chapters_count = chapters_data.count { |data| data["completed_at"].present? }
+    if @book.update(chapters_data: chapters_data, completed_chapters_count: completed_chapters_count)
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to reading_log_path(@reading_log) }
