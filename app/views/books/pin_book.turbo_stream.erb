@@ -10,7 +10,6 @@
 
 <% if @has_unpinned_books %>
   <%= turbo_stream.update unpinned_books_empty_turbo_frame_id do %>
-    <hr class="mt-8 pt-8">
     <%= render "reading_logs/all_books_header" %>
   <% end %>
 <% else %>
