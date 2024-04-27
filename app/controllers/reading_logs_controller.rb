@@ -1,5 +1,5 @@
 class ReadingLogsController < ApplicationController
-  before_action :set_reading_log, only: [:update, :show, :settings]
+  before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
   before_action :set_books_data, only: [:new, :create]
 
   def index
@@ -54,6 +54,14 @@ class ReadingLogsController < ApplicationController
   def settings
     set_reading_log_breadcrumb
     set_reading_log_settings_breadcrumb
+  end
+
+  def destroy
+    if @reading_log.destroy
+      redirect_to reading_logs_path, notice: "Reading Log was deleted."
+    else
+      redirect_to settings_reading_log_path(@reading_log), alert: "Reading Log was not destroyed. Please try again."
+    end
   end
 
   private
