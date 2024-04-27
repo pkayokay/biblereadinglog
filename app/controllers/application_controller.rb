@@ -39,13 +39,4 @@ class ApplicationController < ActionController::Base
     Current.user = nil
     reset_session
   end
-
-  helper_method :breadcrumbs
-  def breadcrumbs
-    @breadcrumbs ||= []
-  end
-
-  def add_breadcrumb(name, path = nil)
-    breadcrumbs << Breadcrumb.new(name, path)
-  end
 end
