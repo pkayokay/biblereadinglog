@@ -58,6 +58,7 @@ class BooksController < ApplicationController
       end
     end
 
+
     if @book.update(chapters_data: chapters_data)
       respond_to do |format|
         format.turbo_stream
