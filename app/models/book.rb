@@ -1,13 +1,17 @@
 class Book < ApplicationRecord
+  belongs_to :reading_log
+
   validates :name, :slug, presence: true
   validates :name, uniqueness: { scope: :reading_log_id }
   validates :slug, uniqueness: { scope: :reading_log_id }
   validates :position, uniqueness: { scope: :reading_log_id }
   validates :pin_order, uniqueness: { scope: :reading_log_id }, allow_nil: true
   validates :pin_order, numericality: { greater_than_or_equal_to: 0}, allow_nil: true
+  validates :completed_chapters_count, numericality: { greater_than_or_equal_to: 0}
 
   before_update :update_completed_chapters_count, if: :chapters_data_changed?
   before_update :update_completed_at, if: :chapters_data_changed?
+  after_commit :update_completed_books_count, on: :update, if: :saved_change_to_completed_at?
 
   def update_completed_chapters_count
     self.completed_chapters_count = chapters_data.count { |data| data["completed_at"].present? }
@@ -21,7 +25,16 @@ class Book < ApplicationRecord
     end
   end
 
-  belongs_to :reading_log
+  def update_completed_books_count
+    reading_log_completed_books_count = if completed_at.present?
+      reading_log.completed_books_count + 1
+    else
+      reading_log.completed_books_count - 1
+    end
+
+    reading_log.update!(completed_books_count: reading_log_completed_books_count)
+  end
+
 
   scope :in_old_testament, -> { where(position: ..39)}
   scope :in_new_testament, -> { where(position: 40..)}

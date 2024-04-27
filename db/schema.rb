@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_163902) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_164910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_163902) do
     t.datetime "updated_at", null: false
     t.string "name", default: "Reading Log", null: false
     t.boolean "is_entire_bible", default: true, null: false
+    t.datetime "completed_at"
+    t.integer "completed_books_count", default: 0, null: false
     t.index ["user_id"], name: "index_reading_logs_on_user_id"
   end
 
