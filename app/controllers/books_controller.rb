@@ -17,7 +17,8 @@ class BooksController < ApplicationController
     end
 
     if @book.update(pin_order: @pin_order_value)
-      @has_pinned_books = @reading_log.books.where.not(pin_order: nil).count != 0
+      @has_pinned_books = @reading_log.books.where.not(pin_order: nil).exists?
+      @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
 
       if @pin_order_value.present?
         flash.now[:notice] = "#{@book.name} pinned!"

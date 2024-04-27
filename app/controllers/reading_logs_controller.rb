@@ -48,6 +48,7 @@ class ReadingLogsController < ApplicationController
     set_reading_log_breadcrumb
     @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
     @books = @reading_log.ordered_books.where(pin_order: nil)
+    @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
   end
 
   def settings
