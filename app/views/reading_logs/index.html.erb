@@ -6,10 +6,11 @@
 </div>
 <% @reading_logs.each do |reading_log| %>
   <%= link_to reading_log_path(reading_log), class: "#{reading_log.completed_at ? 'bg-green-100 shadow-green-100 border-green-300' : 'bg-white'} shadow-sm border py-4 px-5 rounded-md block mb-5" do %>
-    <p class="text-2xl font-medium"><%= reading_log.name %></p>
-    <span class="text-sm opacity-60">Started on <%= format_date(reading_log.created_at) %></span>
+    <p class="text-lg font-medium"><%= reading_log.name %></p>
     <% if reading_log.completed_at %>
-      <span class="block text-sm opacity-60">Completed on <%= format_date(reading_log.completed_at) %></span>
+      <span class="block text-sm opacity-50">Completed on <%= format_date(reading_log.completed_at) %></span>
+    <% else %>
+      <span class="text-sm opacity-50">Started on <%= format_date(reading_log.created_at) %></span>
     <% end %>
   <% end %>
 <% end %>
