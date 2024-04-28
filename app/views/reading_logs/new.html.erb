@@ -1,6 +1,8 @@
+
 <div class="mb-4">
   <%= render(HeadingComponent.new(title: "New Reading Log")) %>
 </div>
+<%= render(CardComponent.new) do %>
 
 <div class="">
   <%= form_with model: @reading_log do |form| %>
@@ -44,3 +46,4 @@
     </div>
   <% end %>
 </div>
+  <% end %>

@@ -9,7 +9,7 @@
         <%= render(LabelComponent.new(for_attribute: "name", title: "What do you want to call this reading log?", form: form)) %>
         <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
       <% end %>
-      <%= form.submit "Save", class: "btn btn--primary md:w-auto" %>
+      <%= form.submit "Save changes", class: "btn btn--primary md:w-auto" %>
     </div>
   <% end %>
 </div>
