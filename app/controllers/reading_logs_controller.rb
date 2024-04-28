@@ -15,6 +15,9 @@ class ReadingLogsController < ApplicationController
   end
 
   def update
+    set_reading_log_breadcrumb
+    set_reading_log_settings_breadcrumb
+
     if @reading_log.update(reading_log_params)
       redirect_to settings_reading_log_path(@reading_log), notice: "Reading log updated!"
     else
@@ -42,12 +45,15 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
+    set_reading_log_breadcrumb
     @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
     @books = @reading_log.ordered_books.where(pin_order: nil)
     @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
   end
 
   def settings
+    set_reading_log_breadcrumb
+    set_reading_log_settings_breadcrumb
   end
 
   def destroy
@@ -74,7 +80,12 @@ class ReadingLogsController < ApplicationController
     @new_testament_books_data = @books_data.slice(39,66)
   end
 
-  # (@reading_log.name, reading_log_path(@reading_log))
+  def set_reading_log_breadcrumb
+    add_breadcrumb("Home", root_path)
+    add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
+  end
 
-  # ("Settings", settings_reading_log_path(@reading_log))
+  def set_reading_log_settings_breadcrumb
+    add_breadcrumb("Settings", settings_reading_log_path(@reading_log))
+  end
 end
