@@ -22,4 +22,20 @@ class ReadingLog < ApplicationRecord
   def validate_at_least_one_book
     errors.add(:base, "You must select at least one book") if books.empty?
   end
+
+  enum reminder_frequency:  {
+    daily: 0,
+    weekly: 1,
+    monthly: 2
+  }
+
+enum reminder_day: {
+    monday: 0,
+    tuesday: 1,
+    wednesday: 2,
+    thursday: 3,
+    friday: 4,
+    saturday: 5,
+    sunday: 6,
+  }
 end
