@@ -1,15 +1,17 @@
 <% if breadcrumbs.present? %>
-  <ol class="flex mb-7 -mt-2">
+  <ol class="flex mb-8 -mt-2">
     <% breadcrumbs.each do |crumb| %>
       <li>
         <% if crumb.link? %>
           <%= link_to crumb.name, crumb.path, class: "breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-80 font-medium' : 'opacity-50'} " %>
         <% else %>
-          <span class="breadcrumb-page"><%= crumb.name %></span>
+          <span class="opacity-80 font-medium"><%= crumb.name %></span>
         <% end %>
 
         <% unless crumb == breadcrumbs.last %>
-          <span class="ml-1 mr-2 opacity-50">/</span>
+          <svg class="mb-0.5 mr-0.5 inline h-5 w-5 opacity-50" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+          </svg>
         <% end %>
       </li>
     <% end %>
