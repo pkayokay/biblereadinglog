@@ -16,7 +16,6 @@
   <%= turbo_stream.update unpinned_books_empty_turbo_frame_id, "" %>
 <% end %>
 
-
 <% if @pin_order_value.present? %>
   <%= turbo_stream.append pinned_books_turbo_frame_id do %>
     <%= render "books/card", book: @book %>
@@ -32,9 +31,6 @@
     <% end %>
   <% end %>
 <% end %>
-
-
-
 
 <%= turbo_stream.update "flash" do %>
   <%= render "shared/flash" %>
