@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_183111) do
     t.boolean "is_entire_bible", default: true, null: false
     t.datetime "completed_at"
     t.integer "completed_books_count", default: 0, null: false
-    t.integer "reminder_frequency"
+    t.integer "reminder_frequency", default: 1
     t.integer "reminder_day"
     t.time "reminder_time"
     t.datetime "last_sent_at"

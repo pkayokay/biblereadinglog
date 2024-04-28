@@ -75,7 +75,7 @@ class ReadingLogsController < ApplicationController
   end
 
   def reading_log_params
-    params.require(:reading_log).permit(:name, :is_entire_bible)
+    params.require(:reading_log).permit(:name, :is_entire_bible, :reminder_frequency)
   end
 
   def set_books_data

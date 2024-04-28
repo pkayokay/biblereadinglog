@@ -14,6 +14,16 @@
   <% end %>
 </div>
 <div class="border-t mt-8 pt-8">
+  <%= form_with model: @reading_log do |form| %>
+    <%= render(FormErrorsComponent.new(errors: @errors)) %>
+     <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "reminder_frequency", title: "How often do you want to be reminder?", form: form)) %>
+      <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select" }%>
+    <% end %>
+    <%= form.submit "Save changes", class: "btn btn--primary md:w-auto" %>
+  <% end %>
+</div>
+<div class="border-t mt-8 pt-8">
   <p class="font-medium text-2xl">Delete Reading Log</p>
   <p class="opacity-80 mt-2 mb-5">This will permanently delete the reading log.</p>
   <%= button_to "Delete Reading Log", reading_log_path, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this?"},class: "btn w-auto" %>
