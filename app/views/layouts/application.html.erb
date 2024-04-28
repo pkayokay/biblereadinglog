@@ -15,8 +15,8 @@
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <nav class="border-b border-neutral-200 ">
-        <div class="w-full px-5 py-3 flex mx-auto justify-between items-center">
+      <nav class="border-b mb-6">
+        <div class="max-wd-7xl w-full px-5 py-3 flex mx-auto justify-between items-center">
           <%= link_to root_path, class: "flex space-x-2 items-center text-base sm:text-lg font-medium text-neutral" do %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#333" class="w-7 h-7 sm:w-8 sm:h-8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h1.5m9 0h-9" />
@@ -25,7 +25,7 @@
           <% end %>
           <div class="flex items-center space-x-2">
             <%= link_to root_path, class: "flex space-x-1 py-1.5 px-5 opacity-60 hover:opacity-100 rounded-md" do %>
-              <span>Home</span>
+              <span>Reading Logs</span>
             <% end %>
             <div
               data-controller="dropdown"
@@ -54,7 +54,7 @@
           </div>
         </div>
       </nav>
-      <main class="p-5 pt-10 mx-auto w-full max-w-3xl">
+      <main class="p-5 pt-4 mx-auto w-full max-w-3xl">
         <%= render "shared/breadcrumbs" %>
         <%= yield %>
       </main>

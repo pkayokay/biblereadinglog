@@ -22,10 +22,14 @@ module ApplicationHelper
       }
     end
   end
-  def format_date(datetime_value)
+  def format_date(datetime_value, full = true)
     return "" if datetime_value.nil?
 
-    datetime_value.in_time_zone(current_user.time_zone).strftime('%A %_m/%-e at %l:%M %p')
+    if full
+      datetime_value.in_time_zone(current_user.time_zone).strftime('%A %_m/%-e at %l:%M %p')
+    else
+      datetime_value.in_time_zone(current_user.time_zone).strftime("%B %d, %Y")
+    end
   end
 
   def turbo_frame_request?

@@ -7,7 +7,7 @@
   </div>
 
   <%= render "books/book_progress_line", book: book %>
-  <div class="text-sm mt-4 flex items-center justify-between">
+  <div class="text-sm mt-4 flex space-y-4 sm:space-y-0 flex-col sm:flex-row items-center justify-between">
     <%= render "books/book_card_chapters", book: book %>
     <div class="flex items-center space-between space-x-3">
       <%= button_to pin_book_reading_log_book_path(book.reading_log, book), method: :patch, class: "#{book.pin_order.present? ? 'pl-1 w-[88px]' : 'w-[65px]'} pr-1.5 group hover:bg-gray-50 items-center justify-center border rounded-md p-1 flex", aria: {label:"Pin Book" } do %>
