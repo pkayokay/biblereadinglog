@@ -82,18 +82,24 @@ class ReadingLogsController < ApplicationController
       :is_reminder_enabled,
       :reminder_frequency,
       :reminder_time,
-      reminder_days: []
+      reminder_days: [],
+      reminder_days_multiple: {},
     )
-    if allowed_params[:reminder_days]
-      allowed_params[:reminder_days] = allowed_params[:reminder_days].compact_blank
-    end
-
-    if allowed_params[:is_reminder_enabled] == "0"
+    if allowed_params[:is_reminder_enabled] == "true"
       allowed_params.delete(:reminder_days)
       allowed_params.delete(:reminder_frequency)
     end
 
-    allowed_params
+    if allowed_params[:reminder_frequency] == "daily"
+      selected_days = allowed_params[:reminder_days_multiple].select { |day, value| value == "1" }.keys
+      allowed_params[:reminder_days] = selected_days
+    else
+      if allowed_params[:reminder_days]
+        allowed_params[:reminder_days] = allowed_params[:reminder_days].compact_blank
+      end
+    end
+
+    allowed_params.except(:reminder_days_multiple)
   end
 
   def set_books_data
