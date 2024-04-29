@@ -17,6 +17,7 @@
       <% end %>
 
       <div data-reminder-form-target="reminderSection" class="<%= 'hidden' if !@reading_log.is_reminder_enabled %>">
+
         <%= render(FieldContainerComponent.new) do %>
           <%= render(LabelComponent.new(for_attribute: "reminder_frequency", title: "How often do you want to be reminder?", form: form)) %>
           <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } }%>
@@ -49,6 +50,23 @@
           <%= form.select :reminder_time, time_options_for_select, { selected: @reading_log.reminder_time}, { class: 'form-select' } %>
         <% end %>
       </div>
+      <% if @reading_log.is_reminder_enabled %>
+        <div class="mb-2 text-sm opacity-60">
+          <% if @reading_log.daily? %>
+            <% if @reading_log.reminder_days.count == 7 %>
+            Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
+            <% elsif @reading_log.reminder_days.count == 1 %>
+            Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+            <% else %>
+            On <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+            <% end %>
+            <% elsif @reading_log.weekly? %>
+            Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+            <% elsif @reading_log.monthly? %>
+            <div class="font-medium">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
+          <% end %>
+        </div>
+      <% end %>
     <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
   </div>
   <div class="border-t mt-8 pt-8">

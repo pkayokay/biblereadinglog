@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def render_reminder_time(value)
+    Time.parse(value).strftime('%l:%M %p')
+  end
+
   def time_options_for_select
     hours = (0..23).to_a
     minutes = ['00', '30']
