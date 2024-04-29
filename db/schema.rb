@@ -41,14 +41,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_183111) do
     t.boolean "is_entire_bible", default: true, null: false
     t.datetime "completed_at"
     t.integer "completed_books_count", default: 0, null: false
+    t.boolean "is_reminder_enabled", default: false
     t.integer "reminder_frequency", default: 1
-    t.integer "reminder_day"
+    t.string "reminder_days", default: [], array: true
     t.time "reminder_time"
     t.datetime "last_sent_at"
+    t.index ["is_reminder_enabled"], name: "index_reading_logs_on_is_reminder_enabled"
     t.index ["last_sent_at"], name: "index_reading_logs_on_last_sent_at"
-    t.index ["reminder_day"], name: "index_reading_logs_on_reminder_day"
-    t.index ["reminder_frequency"], name: "index_reading_logs_on_reminder_frequency"
-    t.index ["reminder_time"], name: "index_reading_logs_on_reminder_time"
     t.index ["user_id"], name: "index_reading_logs_on_user_id"
   end
 

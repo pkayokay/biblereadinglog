@@ -23,6 +23,18 @@
     @apply bg-neutral-800 text-white !border-black hover:bg-neutral-900 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
   }
 
+  .select--multiple {
+    @apply !pt-1.5 h-[235px] overflow-hidden !px-0;
+  }
+
+  .select--multiple option {
+    @apply px-3 py-1.5 active:bg-sky-200;
+  }
+
+  .select--multiple option:checked {
+    @apply bg-[#b3d7ff]
+  }
+
   .field_with_errors .form-input {}
 
   .container--flash {
