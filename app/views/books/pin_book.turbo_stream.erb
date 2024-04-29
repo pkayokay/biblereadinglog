@@ -10,7 +10,7 @@
 
 <% if @has_unpinned_books %>
   <%= turbo_stream.update unpinned_books_empty_turbo_frame_id do %>
-    <%= render "reading_logs/all_books_header" %>
+    <%= render "reading_logs/all_books_header", no_border: !@has_pinned_books %>
   <% end %>
 <% else %>
   <%= turbo_stream.update unpinned_books_empty_turbo_frame_id, "" %>
