@@ -21,13 +21,32 @@
           <%= render(LabelComponent.new(for_attribute: "reminder_frequency", title: "How often do you want to be reminder?", form: form)) %>
           <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } }%>
         <% end %>
+
+        <% day_options = Date::DAYNAMES.map { |day| [day, day.downcase] }%>
+
         <%= render(FieldContainerComponent.new) do %>
           <%= form.label :reminder_days, 'Days', { data: { reminder_form_target: "selectLabel" }, class: "opacity-80 block font-medium text-sm"} %>
-          <%= form.select :reminder_days, Date::DAYNAMES.map { |day| [day.humanize, day] }, {}, { data: { reminder_form_target: "selectField" }, multiple: true, class: 'form-select' } %>
+          <div data-reminder-form-target="reminderDaysButtons" class="hidden container--day__select">
+            <% day_options.map {|day| {
+                option: day.last,
+                text: day.first,
+                selected: @reading_log.reminder_days.include?(day.last)
+              }}.each do |day| %>
+              <button
+                type="button"
+                class="day__card <%= day[:selected] ? 'day__card--selected' : '' %>"
+                data-option="<%= day[:option] %>"
+                data-action="reminder-form#setReminderDayOption">
+                <%= day[:text] %>
+              </button>
+            <% end %>
+          </div>
+          <%= form.select :reminder_days, day_options, {}, { data: { reminder_form_target: "selectField" }, multiple: true, class: 'hidden form-select' } %>
         <% end %>
+
         <%= render(FieldContainerComponent.new) do %>
           <%= render(LabelComponent.new(for_attribute: "reminder_time", title: "How often do you want to be reminder?", form: form)) %>
-          <%= form.select :reminder_time, time_options_for_select, { selected: @reading_log.reminder_time.strftime("%H:%M:%S")}, { class: 'form-select' } %>
+          <%= form.select :reminder_time, time_options_for_select, { selected: @reading_log.reminder_time}, { class: 'form-select' } %>
         <% end %>
       </div>
     <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>

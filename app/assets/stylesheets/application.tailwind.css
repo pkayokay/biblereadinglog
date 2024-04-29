@@ -23,16 +23,16 @@
     @apply bg-neutral-800 text-white !border-black hover:bg-neutral-900 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
   }
 
-  .select--multiple {
-    @apply !pt-1.5 h-[235px] overflow-hidden !px-0;
+  .container--day__select {
+    @apply pt-1;
   }
 
-  .select--multiple option {
-    @apply px-3 py-1.5 active:bg-sky-200;
+  .container--day__select .day__card {
+    @apply text-sm border border-neutral-200 mr-2 p-3 mb-3 rounded-lg
   }
 
-  .select--multiple option:checked {
-    @apply bg-[#b3d7ff]
+  .container--day__select .day__card--selected {
+    @apply bg-neutral-200 border-neutral-200
   }
 
   .field_with_errors .form-input {}

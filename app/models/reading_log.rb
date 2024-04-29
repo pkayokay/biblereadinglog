@@ -44,7 +44,8 @@ class ReadingLog < ApplicationRecord
 
 
   def validate_reminder_days
-    valid_days = Date::DAYNAMES
+    # TODO: Validate only one day (array of one string) for weekly or monthly frequencies
+    valid_days = Date::DAYNAMES.map(&:downcase)
 
     reminder_days.compact_blank.each do |day|
       unless valid_days.include?(day)

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="reminder-form"
 export default class extends Controller {
-  static targets = ["frequency", "selectField", "selectLabel", "reminderSection"]
+  static targets = ["frequency", "selectField", "selectLabel", "reminderDaysButtons", "reminderSection"]
 
   connect() {
     this.updateDaysSelectField()
@@ -10,19 +10,20 @@ export default class extends Controller {
 
   updateDaysSelectField() {
     if (this.frequencyTarget.value === "daily") {
+      this.reminderDaysButtonsTarget.classList.remove("hidden")
+      this.selectFieldTarget.classList.add("hidden")
       this.selectFieldTarget.setAttribute("multiple", "multiple")
-      this.selectFieldTarget.classList.add("select--multiple")
       this.selectLabelTarget.innerText = "Days"
     } else if (["weekly", "monthly"].includes(this.frequencyTarget.value)) {
-      this.selectFieldTarget.classList.remove("select--multiple")
+      this.reminderDaysButtonsTarget.classList.add("hidden")
+      this.selectFieldTarget.classList.remove("hidden")
       this.selectFieldTarget.removeAttribute("multiple")
 
       if (this.frequencyTarget.value === "monthly") {
-        this.selectLabelTarget.innerText = "Monthly on this day"
+        this.selectLabelTarget.innerText = "Monthly on the first"
       } else {
         this.selectLabelTarget.innerText = "Weekly on this day"
       }
-
     }
   }
 
@@ -32,6 +33,18 @@ export default class extends Controller {
       this.reminderSectionTarget.classList.remove("hidden")
     } else {
       this.reminderSectionTarget.classList.add("hidden")
+    }
+  }
+
+  setReminderDayOption(event) {
+    const option = this.selectFieldTarget.querySelector(`[value='${event.target.dataset.option}']`)
+    if (option) {
+      event.target.classList.toggle("day__card--selected")
+      if (option.hasAttribute("selected")) {
+        option.removeAttribute("selected")
+      } else {
+        option.setAttribute("selected", true)
+      }
     }
   }
 }
