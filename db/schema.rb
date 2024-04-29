@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_183111) do
     t.integer "completed_books_count", default: 0, null: false
     t.boolean "is_reminder_enabled", default: false, null: false
     t.integer "reminder_frequency", default: 1, null: false
-    t.string "reminder_days", default: ["Monday"], null: false, array: true
-    t.time "reminder_time", default: "2000-01-01 09:00:00", null: false
+    t.string "reminder_days", default: ["monday"], null: false, array: true
+    t.string "reminder_time", default: "09:00:00", null: false
     t.datetime "last_sent_at"
     t.index ["is_reminder_enabled"], name: "index_reading_logs_on_is_reminder_enabled"
     t.index ["last_sent_at"], name: "index_reading_logs_on_last_sent_at"
