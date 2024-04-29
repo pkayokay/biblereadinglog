@@ -2,7 +2,7 @@
 <div class="mb-4">
   <%= render(HeadingComponent.new(title: "New Reading Log")) %>
 </div>
-<div class="">
+<div class="max-w-md">
   <%= form_with model: @reading_log do |form| %>
     <%= render(FormErrorsComponent.new(errors: @errors)) %>
     <div class="flex flex-col md:flex-row items-end md:space-x-3 mb-4">

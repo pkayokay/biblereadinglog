@@ -18,7 +18,8 @@ class ReadingLogsController < ApplicationController
 
   def update
     set_reading_log_index_breadcrumb
-    # set_reading_log_settings_breadcrumb
+    set_reading_log_show_breadcrumb
+    set_reading_log_settings_breadcrumb
 
     if @reading_log.update(reading_log_params)
       redirect_to settings_reading_log_path(@reading_log), notice: "Reading log updated!"
@@ -75,7 +76,24 @@ class ReadingLogsController < ApplicationController
   end
 
   def reading_log_params
-    params.require(:reading_log).permit(:name, :is_entire_bible)
+    allowed_params = params.require(:reading_log).permit(
+      :name,
+      :is_entire_bible,
+      :is_reminder_enabled,
+      :reminder_frequency,
+      :reminder_time,
+      reminder_days: []
+    )
+    if allowed_params[:reminder_days]
+      allowed_params[:reminder_days] = allowed_params[:reminder_days].compact_blank
+    end
+
+    if allowed_params[:is_reminder_enabled] == "0"
+      allowed_params.delete(:reminder_days)
+      allowed_params.delete(:reminder_frequency)
+    end
+
+    allowed_params
   end
 
   def set_books_data

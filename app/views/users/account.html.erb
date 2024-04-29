@@ -13,7 +13,7 @@
       <%= render(LabelComponent.new(for_attribute: "last_name", form: form)) %>
       <%= render(InputComponent.new(type: "text", form: form, id_and_name: "last_name", required: true, custom_classes: "")) %>
     <% end %>
-    <%= form.submit "Save changes", class: "btn btn--primary w-auto" %>
+    <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
   <% end %>
 <% end %>
 <%= render(SideFormWrapperComponent.new(title: "Password", description: "Choose a secure password.")) do  %>
@@ -33,7 +33,7 @@
       <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true, custom_classes: "")) %>
     <% end %>
     <div>
-      <%= form.submit "Save changes", class: "btn btn--primary w-auto" %>
+      <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
     </div>
   <% end %>
 <% end %>
@@ -45,7 +45,7 @@
       <%= render(LabelComponent.new(for_attribute: "time_zone", title: "Time zone", form: form)) %>
       <%= form.select :time_zone, time_zone_options_for_select(form.object.time_zone, nil, ActiveSupport::TimeZone), {}, { class: "form-select" }%>
     <% end %>
-    <%= form.submit "Save changes", class: "btn btn--primary w-auto" %>
+    <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
   <% end %>
 <% end %>
 <%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.", custom_class: "border-b-0")) do  %>
@@ -56,6 +56,6 @@
       <%= render(LabelComponent.new(for_attribute: "color_theme", title: "Theme", form: form)) %>
       <%= form.select :color_theme, User.color_themes.keys.map { |theme| [theme.capitalize, theme] }, {}, { class: "form-select" } %>
     <% end %>
-    <%= form.submit "Save changes", class: "btn btn--primary w-auto" %>
+    <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
   <% end %>
 <% end %>
