@@ -26,17 +26,19 @@
         <% day_options = Date::DAYNAMES.map { |day| [day, day.downcase] }.rotate!(1) %>
 
         <%= render(FieldContainerComponent.new) do %>
-          <%= form.label :reminder_days, 'Days', { data: { reminder_form_target: "selectLabel" }, class: "opacity-80 block font-medium text-sm mb-2"} %>
+          <%= form.label :reminder_days, 'Days', { data: { reminder_form_target: "selectLabel" }, class: "opacity-80 block font-medium text-sm"} %>
 
           <div data-reminder-form-target="reminderDaysButtons" class="hidden container--day__select">
-            <%= form.fields_for :reminder_days_multiple do |reminder_days_multiple_form| %>
-              <% day_options.each do |day| %>
-                <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
-                  <%= reminder_days_multiple_form.check_box day.last, { checked: form.object.reminder_days.include?(day.last), class: "cursor-pointer w-5 h-5 rounded"} %>
-                  <%= render(LabelComponent.new(for_attribute: "reminder_days_multiple_#{day.last}", title: day.first, form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
+            <div class="mt-2">
+              <%= form.fields_for :reminder_days_multiple do |reminder_days_multiple_form| %>
+                <% day_options.each do |day| %>
+                  <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
+                    <%= reminder_days_multiple_form.check_box day.last, { checked: form.object.reminder_days.include?(day.last), class: "cursor-pointer w-5 h-5 rounded"} %>
+                    <%= render(LabelComponent.new(for_attribute: "reminder_days_multiple_#{day.last}", title: day.first, form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
 
           <%= form.select :reminder_days, day_options, {}, { data: { reminder_form_target: "selectField" }, multiple: true, class: 'hidden form-select' } %>
