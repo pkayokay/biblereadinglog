@@ -1,8 +1,10 @@
-<div data-controller="cache" class="mb-4 flex justify-between items-center">
-  <%= render(HeadingComponent.new(title: "Reading Logs")) %>
-  <%= link_to new_reading_log_path, class: "btn btn--primary w-auto btn--slim" do %>
-    <span>New Reading Log</span>
-  <% end %>
+<div class="mb-11">
+  <div data-controller="cache" class="mb-3 flex justify-between items-center">
+    <%= render(HeadingComponent.new(title: "Reading Logs")) %>
+    <%= link_to new_reading_log_path, class: "btn btn--primary w-auto btn--slim" do %>
+      <span>New Reading Log</span>
+    <% end %>
+  </div>
 </div>
 <% @reading_logs.each do |reading_log| %>
   <%= link_to reading_log_path(reading_log), class: "#{reading_log.completed_at ? 'bg-green-100 shadow-green-100 border-green-300' : 'bg-white'} shadow-sm border py-3.5 px-6 rounded-md block mb-5" do %>
