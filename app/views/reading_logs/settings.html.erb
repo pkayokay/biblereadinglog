@@ -51,7 +51,7 @@
         <% end %>
       </div>
       <% if @reading_log.is_reminder_enabled %>
-        <div class="mb-2 text-sm opacity-60">
+        <div class="-mt-2 mb-4 text-sm opacity-60">
           <% if @reading_log.daily? %>
             <% if @reading_log.reminder_days.count == 7 %>
             Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
