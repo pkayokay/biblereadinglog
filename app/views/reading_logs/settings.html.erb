@@ -24,6 +24,10 @@
         <%= form.label :reminder_days, 'Days', { data: { reminder_form_target: "selectLabel" }, class: "opacity-80 block font-medium text-sm"} %>
         <%= form.select :reminder_days, Date::DAYNAMES.map { |day| [day.humanize, day] }, {}, { data: { reminder_form_target: "selectField" }, multiple: true, class: 'form-select' } %>
       <% end %>
+      <%= render(FieldContainerComponent.new) do %>
+        <%= render(LabelComponent.new(for_attribute: "reminder_time", title: "How often do you want to be reminder?", form: form)) %>
+        <%= form.select :reminder_time, time_options_for_select, { selected: @reading_log.reminder_time.strftime("%H:%M:%S")}, { class: 'form-select' } %>
+      <% end %>
     </div>
   <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
   <div class="border-t mt-8 pt-8">

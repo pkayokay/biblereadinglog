@@ -1,4 +1,20 @@
 module ApplicationHelper
+  def time_options_for_select
+    hours = (0..23).to_a
+    minutes = ['00', '30']
+
+    time_options = []
+
+    hours.each do |hour|
+      minutes.each do |minute|
+        time = Time.new(2000, 1, 1, hour, minute)
+        time_options << [time.strftime('%l:%M %p').strip, time.strftime('%H:%M:%S')]
+      end
+    end
+
+    time_options
+  end
+
   def theme_values
     if current_user.green?
       {

@@ -76,7 +76,14 @@ class ReadingLogsController < ApplicationController
   end
 
   def reading_log_params
-    allowed_params = params.require(:reading_log).permit(:name, :is_entire_bible, :is_reminder_enabled, :reminder_frequency, reminder_days: [])
+    allowed_params = params.require(:reading_log).permit(
+      :name,
+      :is_entire_bible,
+      :is_reminder_enabled,
+      :reminder_frequency,
+      :reminder_time,
+      reminder_days: []
+    )
     if allowed_params[:reminder_days]
       allowed_params[:reminder_days] = allowed_params[:reminder_days].compact_blank
     end
