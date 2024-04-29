@@ -28,23 +28,10 @@ export default class extends Controller {
   }
 
   toggleIsReminderEnabled(e) {
-    console.log(e.target.checked)
     if (e.target.checked) {
       this.reminderSectionTarget.classList.remove("hidden")
     } else {
       this.reminderSectionTarget.classList.add("hidden")
-    }
-  }
-
-  setReminderDayOption(event) {
-    const option = this.selectFieldTarget.querySelector(`[value='${event.target.dataset.option}']`)
-    if (option) {
-      event.target.classList.toggle("day__card--selected")
-      if (option.hasAttribute("selected")) {
-        option.removeAttribute("selected")
-      } else {
-        option.setAttribute("selected", true)
-      }
     }
   }
 }
