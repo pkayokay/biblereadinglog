@@ -6,7 +6,7 @@
     <% end %>
   </div>
   <div class="mb-8">
-    <p class="text-lg opacity-60">A list of all your reading logs including their name, status, and start date.</p>
+    <p class="text-lg opacity-60">A list of all your reading logs including their name, status, and when they started.</p>
   </div>
 </div>
 
@@ -24,9 +24,9 @@
         <tbody class="divide-y divide-gray-200 bg-white">
           <% @reading_logs.each do |reading_log| %>
             <tr>
-              <td class="py-3 pl-4 pr-3  sm:pl-0">
+              <td class="py-3 pl-4  sm:pl-0">
                 <div class="flex items-center">
-                  <%= link_to reading_log_path(reading_log), class: "truncate max-w-[420px] whitespace-nowrap text-lg font-normal underline" do %>
+                  <%= link_to reading_log_path(reading_log), class: "truncate max-w-[430px] whitespace-nowrap text-lg font-normal underline" do %>
                     <%= reading_log.name %>
                   <% end %>
                 </div>
