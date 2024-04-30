@@ -44,4 +44,9 @@
   .flash-red {
     @apply  bg-red-500;
   }
+
+  .field_with_errors input,
+  .field_with_errors textarea {
+    @apply !border-red-400;
+  }
 }
