@@ -3,9 +3,9 @@
     <% breadcrumbs.each do |crumb| %>
       <li class="text-ssm">
         <% if crumb.link? %>
-          <%= link_to crumb.name, crumb.path, class: "breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-80 font-medium' : 'opacity-60'} " %>
+          <%= link_to crumb.name, crumb.path, class: "underline breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-80 font-medium' : 'opacity-65'} " %>
         <% else %>
-          <span class="opacity-90"><%= crumb.name %></span>
+          <span class="opacity-80"><%= crumb.name %></span>
         <% end %>
 
         <% unless crumb == breadcrumbs.last %>
