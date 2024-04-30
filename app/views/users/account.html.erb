@@ -37,7 +37,7 @@
     </div>
   <% end %>
 <% end %>
-<%= render(SideFormWrapperComponent.new(title: "Time zone", description: "Email reminders will be sent in your time zone.")) do  %>
+<%= render(SideFormWrapperComponent.new(title: "Time zone", description: "Email reminders will be sent in your time zone.", custom_class: "border-b-0")) do  %>
   <%= form_with(model:  current_user, url: update_time_zone_path, class: "contents") do |form| %>
     <%= render(FormErrorsComponent.new(errors: @time_zone_errors)) %>
 
@@ -48,7 +48,7 @@
     <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
   <% end %>
 <% end %>
-<%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.", custom_class: "border-b-0")) do  %>
+<%= render(SideFormWrapperComponent.new(title: "Theme", description: "Set a theme for the app.", custom_class: "hidden border-b-0")) do  %>
   <%= form_with(model:  current_user, url: update_color_theme_path, class: "contents") do |form| %>
     <%= render(FormErrorsComponent.new(errors: @color_theme_errors)) %>
 
