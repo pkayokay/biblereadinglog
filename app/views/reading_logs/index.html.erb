@@ -1,16 +1,48 @@
-<div data-controller="cache" class="mb-4 flex justify-between items-center">
-  <%= render(HeadingComponent.new(title: "Reading Logs")) %>
-  <%= link_to new_reading_log_path, class: "btn btn--primary w-auto" do %>
-    <span>New Reading Log</span>
-  <% end %>
-</div>
-<% @reading_logs.each do |reading_log| %>
-  <%= link_to reading_log_path(reading_log), class: "#{reading_log.completed_at ? 'bg-green-100 shadow-green-100 border-green-300' : 'bg-white'} shadow-sm border py-3.5 px-6 rounded-md block mb-5" do %>
-    <p class="text-lg font-medium"><%= reading_log.name %></p>
-    <% if reading_log.completed_at %>
-      <span class="block text-sm opacity-50">Completed on <%= format_date(reading_log.completed_at) %></span>
-    <% else %>
-      <span class="text-sm opacity-50">Started on <%= format_date(reading_log.created_at) %></span>
+<div class="">
+  <div data-controller="cache" class="mb-3 flex items-start space-y-3 sm:space-y-0 sm:justify-between sm:items-center flex-col sm:flex-row">
+    <%= render(HeadingComponent.new(title: "Reading Logs")) %>
+    <%= link_to new_reading_log_path, class: "btn btn--primary w-auto btn--slim" do %>
+      <span>Create new</span>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+  <div class="mb-8">
+    <p class="text-lg opacity-60">A list of all your reading logs including their name, status, and when they started.</p>
+  </div>
+</div>
+
+<div class="mt-8 flow-root">
+  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead>
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-medium sm:pl-0 max-w-[1d00px]">Name</th>
+            <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium">Status</th>
+            <th scope="col" class="px-3 py-3.5 text-left font-medium">Started</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <% @reading_logs.each do |reading_log| %>
+            <tr>
+              <td class="py-3 pl-4  sm:pl-0">
+                <div class="flex items-center">
+                  <%= link_to reading_log_path(reading_log), class: "truncate max-w-[430px] whitespace-nowrap text-lg font-normal underline" do %>
+                    <%= reading_log.name %>
+                  <% end %>
+                </div>
+              </td>
+              <td class="whitespace-nowrap px-3 text-gray-500">
+                <span class="inline-flex items-center rounded-md px-2.5 py-1.5 text-sm  ring-1 ring-inset <%= reading_log.completed_at ? 'bg-green-100 text-green-700 ring-green-800/20' : 'bg-yellow-100 text-yellow-700 ring-yellow-600/20' %>">
+                  <%= reading_log.completed_at ? 'Completed' : 'In progress' %>
+                </span>
+              </td>
+              <td class="whitespace-nowrap px-3 text-sm opacity-50">
+                <div class=""><%= time_ago_in_words(reading_log.created_at).capitalize + " ago" %></div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

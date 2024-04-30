@@ -5,19 +5,19 @@
 
 @layer base {
   .form-input {
-    @apply w-full !mt-0.5 border-0 !px-3 !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .form-select {
-    @apply w-full !mt-0.5 border-0 !px-3 !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .btn {
-    @apply duration-100 w-full cursor-pointer rounded-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-1.5 px-4;
+    @apply duration-100 w-full cursor-pointer rounded-md text-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-2 px-4;
   }
 
   .btn--slim {
-    @apply py-1 px-3;
+    @apply py-1.5 px-3 !text-base;
   }
   .btn--primary {
     @apply bg-neutral-800 text-white !border-black hover:bg-neutral-900 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
@@ -43,5 +43,10 @@
 
   .flash-red {
     @apply  bg-red-500;
+  }
+
+  .field_with_errors input,
+  .field_with_errors textarea {
+    @apply !border-red-400;
   }
 }

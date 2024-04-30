@@ -3,7 +3,7 @@
     <%= render(HeadingComponent.new(title: @reading_log.name)) %>
     <span class="text-sm opacity-50">Started on <%= format_date(@reading_log.created_at, false) %></span>
   </div>
-  <%= link_to settings_reading_log_path(@reading_log), class: "btn w-auto" do %>
+  <%= link_to settings_reading_log_path(@reading_log), class: "btn w-auto btn--slim" do %>
     <span>Settings</span>
   <% end %>
 </div>

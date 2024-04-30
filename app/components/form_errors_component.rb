@@ -8,7 +8,7 @@ class FormErrorsComponent < ViewComponent::Base
 
   erb_template <<-ERB
     <% if @errors.present? %>
-      <div class="text-sm bg-red-50 text-red-700 mb-4 px-5 py-4 rounded">
+      <div class="text-sm bg-red-50 border border-red-200 text-red-700 mb-4 px-5 py-4 rounded-md">
         <% if @errors.one? %>
           <p class="font-medium">You have an error:</p>
         <% else %>

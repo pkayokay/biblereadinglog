@@ -12,7 +12,7 @@ class ReadingLogsController < ApplicationController
 
   def new
     set_reading_log_index_breadcrumb
-    add_breadcrumb("New Reading Log")
+    add_breadcrumb("New")
     @reading_log = ReadingLog.new
   end
 
