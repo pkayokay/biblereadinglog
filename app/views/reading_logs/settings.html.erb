@@ -10,26 +10,28 @@
           <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
         <% end %>
         <p class="mt-8 font-medium text-2xl mb-3">Reminders</p>
-      <% if @reading_log.is_reminder_enabled %>
-        <div class="-mt-2 mb-4 text-sm">
-          <% if @reading_log.daily? %>
-            <% if @reading_log.reminder_days.count == 7 %>
-            Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
-            <% elsif @reading_log.reminder_days.count == 1 %>
-            Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
-            <% else %>
-            On <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+        <% if @reading_log.is_reminder_enabled %>
+          <div class="mt-1 mb-6 border border-sky-300 rounded-lg text-sm text-sky-800 bg-sky-100 px-6 py-3">
+            <% if @reading_log.daily? %>
+              <% if @reading_log.reminder_days.count == 7 %>
+              Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
+              <% elsif @reading_log.reminder_days.count == 1 %>
+              Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+              <% else %>
+                <% if @reading_log.reminder_days.present? %>
+                  On <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+                <% end %>
+              <% end %>
+              <% elsif @reading_log.weekly? %>
+              Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+              <% elsif @reading_log.monthly? %>
+              <div class="">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
             <% end %>
-            <% elsif @reading_log.weekly? %>
-            Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
-            <% elsif @reading_log.monthly? %>
-            <div class="">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
-          <% end %>
-          <% if @reading_log.reminder_scheduled_at %>
-            <div class="text-sm">Next occurrence on <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
-          <% end %>
-        </div>
-      <% end %>
+            <% if @reading_log.reminder_scheduled_at %>
+              <div class="">Next occurrence on <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
+            <% end %>
+          </div>
+        <% end %>
         <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
           <%= form.check_box :is_reminder_enabled, { class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->reminder-form#toggleIsReminderEnabled"}} %>
           <%= render(LabelComponent.new(for_attribute: "is_reminder_enabled", title: "Enable email notifications", form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
