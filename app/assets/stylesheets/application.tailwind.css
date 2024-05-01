@@ -13,7 +13,7 @@
   }
 
   .btn {
-    @apply duration-100 w-full cursor-pointer rounded-md text-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-2 px-4;
+    @apply transition-colors w-full cursor-pointer rounded-md text-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-2 px-4;
   }
 
   .btn--slim {
@@ -26,7 +26,7 @@
   .field_with_errors .form-input {}
 
   .container--flash {
-    @apply z-50 text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3 px-5 -translate-x-1/2 opacity-0 left-1/2 top-9 fixed;
+    @apply text-nowrap z-50 text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3 px-5 -translate-x-1/2 opacity-0 left-1/2 top-9 fixed;
   }
 
   .container--flash.active {
