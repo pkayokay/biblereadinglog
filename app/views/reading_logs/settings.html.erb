@@ -2,34 +2,40 @@
   <%= render(HeadingComponent.new(title: "Settings")) %>
 </div>
 <div data-controller="reminder-form">
-  <%= form_with model: @reading_log do |form| %>
+  <%= form_with model: @reading_log, data: { turbo: false} do |form| %>
     <%= render(FormErrorsComponent.new(errors: @errors)) %>
       <div class="">
         <%= render(FieldContainerComponent.new(custom_classes: "md:!mb-0 flex-1 w-full md:w-auto")) do %>
           <%= render(LabelComponent.new(for_attribute: "name", title: "What do you want to call this reading log?", form: form)) %>
           <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
         <% end %>
-        <p class="mt-8 font-medium text-2xl mb-3">Reminders</p>
-        <% if @reading_log.is_reminder_enabled %>
-          <div class="mt-1 mb-6 border border-sky-300 rounded-lg text-sm text-sky-800 bg-sky-100 px-6 py-3">
+        <div class="flex items-center mt-8 mb-3 justify-between">
+          <p class="font-medium text-2xl">Reminders</p>
+          <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
+            <div class="border border-sky-300 rounded-lg text-sm text-sky-800 bg-sky-100 px-2 py-1 inline-block">
+              <div class="">Upcoming reminder on <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
+            </div>
+          <% end %>
+        </div>
+        <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
+          <div class="hidden mt-1 mb-6 border border-sky-300 rounded-lg font-medium text-sm text-sky-800 bg-sky-100 px-3 py-1.5 inline-block">
             <% if @reading_log.daily? %>
-              <% if @reading_log.reminder_days.count == 7 %>
-              Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
-              <% elsif @reading_log.reminder_days.count == 1 %>
-              Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
-              <% else %>
-                <% if @reading_log.reminder_days.present? %>
-                  On <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+              <div class="">
+                <% if @reading_log.reminder_days.count == 7 %>
+                Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
+                <% elsif @reading_log.reminder_days.count == 1 %>
+                Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+                <% else %>
+                  <% if @reading_log.reminder_days.present? %>
+                    On <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+                  <% end %>
                 <% end %>
+                <% elsif @reading_log.weekly? %>
+                Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+                <% elsif @reading_log.monthly? %>
+                <div class="">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
               <% end %>
-              <% elsif @reading_log.weekly? %>
-              Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
-              <% elsif @reading_log.monthly? %>
-              <div class="">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
-            <% end %>
-            <% if @reading_log.reminder_scheduled_at %>
-              <div class="">Next occurrence on <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
-            <% end %>
+            </div>
           </div>
         <% end %>
         <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
@@ -65,7 +71,7 @@
           <% end %>
 
           <%= render(FieldContainerComponent.new) do %>
-            <%= render(LabelComponent.new(for_attribute: "reminder_time", title: "How often do you want to be reminder?", form: form)) %>
+            <%= render(LabelComponent.new(for_attribute: "reminder_time", title: "How often do you want to be reminded?", form: form)) %>
             <%= form.select :reminder_time, time_options_for_select, { selected: @reading_log.reminder_time}, { class: 'form-select' } %>
           <% end %>
         </div>
