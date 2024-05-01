@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_28_183111) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_001831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,8 +46,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_183111) do
     t.string "reminder_days", default: ["monday"], null: false, array: true
     t.string "reminder_time", default: "09:00:00", null: false
     t.datetime "last_sent_at"
+    t.datetime "reminder_scheduled_at"
     t.index ["is_reminder_enabled"], name: "index_reading_logs_on_is_reminder_enabled"
     t.index ["last_sent_at"], name: "index_reading_logs_on_last_sent_at"
+    t.index ["reminder_scheduled_at"], name: "index_reading_logs_on_reminder_scheduled_at"
     t.index ["user_id"], name: "index_reading_logs_on_user_id"
   end
 
