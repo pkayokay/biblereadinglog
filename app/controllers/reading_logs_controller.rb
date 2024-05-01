@@ -21,7 +21,12 @@ class ReadingLogsController < ApplicationController
     set_reading_log_show_breadcrumb
     set_reading_log_settings_breadcrumb
 
-    if @reading_log.update(reading_log_params)
+    @reading_log.assign_attributes(reading_log_params)
+    if @reading_log.is_reminder_enabled?
+      @reading_log.reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log: @reading_log).call
+    end
+
+    if @reading_log.save
       redirect_to settings_reading_log_path(@reading_log), notice: "Reading log updated!"
     else
       @errors = @reading_log.errors
@@ -85,18 +90,12 @@ class ReadingLogsController < ApplicationController
       reminder_days: [],
       reminder_days_multiple: {},
     )
-    if allowed_params[:is_reminder_enabled] == "true"
+    if allowed_params[:is_reminder_enabled] == "1"
+      allowed_params[:reminder_days] = handle_reminder_days_value(allowed_params)
+    else
       allowed_params.delete(:reminder_days)
       allowed_params.delete(:reminder_frequency)
-    end
-
-    if allowed_params[:reminder_frequency] == "daily"
-      selected_days = allowed_params[:reminder_days_multiple].select { |day, value| value == "1" }.keys
-      allowed_params[:reminder_days] = selected_days
-    else
-      if allowed_params[:reminder_days]
-        allowed_params[:reminder_days] = allowed_params[:reminder_days].compact_blank
-      end
+      allowed_params.delete(:reminder_time)
     end
 
     allowed_params.except(:reminder_days_multiple)
@@ -118,5 +117,16 @@ class ReadingLogsController < ApplicationController
 
   def set_reading_log_settings_breadcrumb
     add_breadcrumb("Settings")
+  end
+
+  def handle_reminder_days_value(allowed_params)
+    daily_reminder_frequency = allowed_params[:reminder_frequency] == "daily"
+
+    if daily_reminder_frequency
+      selected_days = allowed_params[:reminder_days_multiple].select { |day, value| value == "1" }.keys
+      selected_days
+    else
+      allowed_params[:reminder_days].compact_blank
+    end
   end
 end
