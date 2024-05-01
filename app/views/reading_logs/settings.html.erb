@@ -9,7 +9,7 @@
           <%= render(LabelComponent.new(for_attribute: "name", title: "What do you want to call this reading log?", form: form)) %>
           <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
         <% end %>
-        <div class="flex items-center mt-8 mb-3 justify-between">
+        <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 mb-5 sm:mb-3 sm:justify-between flex-col sm:flex-row">
           <p class="font-medium text-2xl">Reminders</p>
           <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
             <div class="border border-sky-300 rounded-lg text-sm text-sky-800 bg-sky-100 px-2 py-1 inline-block">
