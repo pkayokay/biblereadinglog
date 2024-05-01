@@ -11,7 +11,7 @@
         <% end %>
         <p class="mt-8 font-medium text-2xl mb-3">Reminders</p>
       <% if @reading_log.is_reminder_enabled %>
-        <div class="-mt-2 mb-4 text-sm opacity-60">
+        <div class="-mt-2 mb-4 text-sm">
           <% if @reading_log.daily? %>
             <% if @reading_log.reminder_days.count == 7 %>
             Daily at <%= render_reminder_time(@reading_log.reminder_time) %>
@@ -23,7 +23,10 @@
             <% elsif @reading_log.weekly? %>
             Every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
             <% elsif @reading_log.monthly? %>
-            <div class="font-medium">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
+            <div class="">Monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %></div>
+          <% end %>
+          <% if @reading_log.reminder_scheduled_at %>
+            <div class="text-sm">Next occurrence on <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
           <% end %>
         </div>
       <% end %>

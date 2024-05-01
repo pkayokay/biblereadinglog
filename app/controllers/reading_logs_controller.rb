@@ -26,7 +26,7 @@ class ReadingLogsController < ApplicationController
       @reading_log.reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log: @reading_log).call
     end
 
-    if @reading_log.save(reading_log_params)
+    if @reading_log.save
       redirect_to settings_reading_log_path(@reading_log), notice: "Reading log updated!"
     else
       @errors = @reading_log.errors

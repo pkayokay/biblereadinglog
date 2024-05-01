@@ -11,14 +11,14 @@ class CalculateReminderScheduledAtService
     return if reading_log.reminder_days.blank?
 
     # Determine the target date based on scheduled frequency
-    target_date = case reading_log.scheduled_frequency
+    target_date = case reading_log.reminder_frequency
                   when "daily" then set_daily_target_date
                   when "weekly" then set_weekly_target_date
                   when "monthly" then set_first_monthly_target_date
                   else nil
                   end
 
-    reminder_scheduled_at = build_scheduled_time(target_date) if target_date.present?
+    reminder_scheduled_at = build_remimder_time(target_date) if target_date.present?
     reminder_scheduled_at
   end
 
@@ -27,16 +27,20 @@ class CalculateReminderScheduledAtService
   def set_daily_target_date
     sorted_reminder_days = reading_log.reminder_days.filter_map { |day_name|
       day_number = (current_time - 1.day).next_occurring(day_name.to_sym).day
-      if today_day_number <= day_number
-        { day_name: day_name.to_sym, day_number:, for_today: today_day_number == day_number}
-      end
+      { day_name: day_name.to_sym, day_number:, for_today: today_day_number == day_number}
     }.sort_by { |day| day[:day_number] }
 
     scheduled_today = sorted_reminder_days.find {|day| day[:for_today] }
 
     if scheduled_today
       if already_past_today?
-        current_time.next_occurring(sorted_reminder_days[1][:day_name]) if sorted_reminder_days[1]
+        only_has_one_day_selected = sorted_reminder_days.length == 1
+        if only_has_one_day_selected
+          current_time.next_occurring(scheduled_today[:day_name])
+        else
+          sorted_reminder_days_without_today = sorted_reminder_days.filter_map {|a| a unless a[:for_today]}
+          current_time.next_occurring(sorted_reminder_days_without_today.first[:day_name])
+        end
       else
         current_time
       end
@@ -64,8 +68,8 @@ class CalculateReminderScheduledAtService
   end
 
   # Build the scheduled time using the target date and scheduled time from the question
-  def build_scheduled_time(target_date)
-    hour, minutes, seconds = reading_log.scheduled_time.split(":")
+  def build_remimder_time(target_date)
+    hour, minutes, seconds = reading_log.reminder_time.split(":")
     reminder_scheduled_at = ActiveSupport::TimeZone[user.time_zone].local(
       target_date.year,
       target_date.month,
@@ -82,28 +86,28 @@ class CalculateReminderScheduledAtService
     Time.now.in_time_zone(user.time_zone)
   end
 
-  def scheduled_time
-    Time.parse(reading_log.scheduled_time).in_time_zone(user.time_zone)
+  def remimder_time
+    Time.parse(reading_log.reminder_time).in_time_zone(user.time_zone)
   end
 
   def already_past_today?
-    scheduled_time <= current_time
+    remimder_time <= current_time
   end
 
-  def scheduled_day
+  def reminder_day
     reading_log.reminder_days.first.to_sym
   end
 
   def scheduled_same_day?
-    scheduled_day == current_time.strftime("%A").downcase.to_sym
+    reminder_day == current_time.strftime("%A").downcase.to_sym
   end
 
   def next_occurrence
-    current_time.next_occurring(scheduled_day)
+    current_time.next_occurring(reminder_day)
   end
 
   def first_occurrence_this_month
-    (current_time.beginning_of_month - 1.day).next_occurring(scheduled_day)
+    (current_time.beginning_of_month - 1.day).next_occurring(reminder_day)
   end
 
   def first_day_number
@@ -131,6 +135,6 @@ class CalculateReminderScheduledAtService
   end
 
   def next_occurance_next_month
-    (current_time.next_month.beginning_of_month - 1.day).next_occurring(scheduled_day)
+    (current_time.next_month.beginning_of_month - 1.day).next_occurring(reminder_day)
   end
 end

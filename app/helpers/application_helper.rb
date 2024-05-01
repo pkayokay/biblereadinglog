@@ -3,6 +3,10 @@ module ApplicationHelper
     Time.parse(value).strftime('%l:%M %p')
   end
 
+  def render_next_occurrence(value)
+    value.in_time_zone(current_user.time_zone).strftime('%_m/%-e %A %l:%M %p')
+  end
+
   def time_options_for_select
     hours = (0..23).to_a
     minutes = ['00', '30']
