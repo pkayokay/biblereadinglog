@@ -1,6 +1,6 @@
-<div class="hover:bg-neutral-50 hover:scale-[102%] focus-within:scale-[102%] focus-within:bg-neutral-50 border mb-3 rounded-lg duration-100 text-lg flex items-center pr-4  border-b border-neutral-200" id="<%= book_card_container_turbo_frame_id(book) %>">
+<div class="hover:bg-neutral-50 hover:scale-[102%] shadow-sm focus-within:scale-[102%] focus-within:bg-neutral-50 border mb-3 rounded-lg duration-100 flex items-center pr-4  border-b border-neutral-200" id="<%= book_card_container_turbo_frame_id(book) %>">
   <%= link_to reading_log_book_path(book.reading_log, book), class: "pl-5 pr-2 w-full block py-3" do %>
-    <div class="text-lg flex items-center justify-between w-full">
+    <div class=" flex items-center justify-between w-full">
       <%= book.name %>
       <div class="opacity-50 text-sm"><%= book.completed_chapter_percentage %>%</div>
     </div>
