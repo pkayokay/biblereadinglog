@@ -25,11 +25,17 @@
         </thead>
         <tbody class="divide-y divide-gray-200 bg-white" data-controller="reading-log-index">
           <% @reading_logs.each do |reading_log| %>
-            <tr class="hover:bg-neutral-100 cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
-              <td class="py-4 pl-4  sm:pl-0">
+            <tr class="hover:bg-neutral-50 group cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
+              <td class="py-4 pl-4 sm:pl-0">
                 <div class="flex items-center">
-                  <%= link_to reading_log_path(reading_log), class: "pl-3 w-full text-base truncate max-w-[430px] whitespace-nowrap" do %>
+                  <%= link_to reading_log_path(reading_log), class: "flex flex-col pl-3 w-full text-lg truncate max-w-[430px] whitespace-nowrap" do %>
                     <%= reading_log.name %>
+                    <div>
+                      <div class=" bg-gray-100 h-[8px] rounded-lg w-full max-w-[120px] mt-1">
+                        <div class="<%= theme_values[:line] %> w-full h-full rounded-full" style="width:<%= reading_log.completed_book_percentage %>%"></div>
+                      </div>
+                      <span class="text-xs opacity-50">Read <%= reading_log.completed_books_count %> of <%= reading_log.books.count %> books</span>
+                    </div>
                   <% end %>
                 </div>
               </td>
@@ -38,7 +44,7 @@
                   <%= reading_log.completed_at ? 'Completed' : 'In progress' %>
                 </span>
               </td>
-              <td class="whitespace-nowrap px-3 text-sm opacity-50">
+              <td class="whitespace-nowrap px-3 text-sm opacity-60">
                 <div class=""><%= time_ago_in_words(reading_log.created_at).capitalize + " ago" %></div>
               </td>
             </tr>

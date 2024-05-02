@@ -18,6 +18,11 @@ class ReadingLog < ApplicationRecord
   validate :validate_reminder_days
   validate :validate_at_least_one_book
 
+
+  def completed_book_percentage
+    (completed_books_count.to_f/books_count * 100).ceil
+  end
+
   private
 
   def reminder_fields_when_enabled
