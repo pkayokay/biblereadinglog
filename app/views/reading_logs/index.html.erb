@@ -25,7 +25,7 @@
         </thead>
         <tbody class="divide-y divide-gray-200 bg-white" data-controller="reading-log-index">
           <% @reading_logs.each do |reading_log| %>
-            <tr class="hover:bg-neutral-100 cursor-pointer" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
+            <tr class="hover:bg-neutral-100 cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
               <td class="py-4 pl-4  sm:pl-0">
                 <div class="flex items-center">
                   <%= link_to reading_log_path(reading_log), class: "pl-3 w-full text-base truncate max-w-[430px] whitespace-nowrap" do %>
