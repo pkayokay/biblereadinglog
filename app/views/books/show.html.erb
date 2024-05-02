@@ -1,9 +1,20 @@
-<div class="max-w-md mx-auto">
-  <h1 class="text-center font-medium text-2xl"><%= @book.name %></h1>
+<div class="mx-auto">
+  <h1 class="text-center font-medium text-3xl"><%= @book.name %></h1>
+  <div class="text-center space-y-3 mb-12 mt-3">
+    <div class="flex justify-between">
+      <%= render "books/book_card_chapters", book: @book %>
+      <%= render "books/book_card_percentage", book: @book %>
+    </div>
+    <div>
+      <%= render "books/book_progress_line", book: @book %>
+    </div>
+
+  </div>
+
   <%= turbo_frame_tag book_checklist_turbo_frame_id(@book) do %>
     <div
       data-chapter-container-id="<%= book_checklist_turbo_frame_id(@book) %>"
-      class="grid <%= turbo_frame_request? ? 'grid-cols-4 xs:grid-cols-6 sm:grid-cols-10 gap-4' : 'grid-cols-5 xs:grid-cols-6 sm:grid-cols-7 gap-3' %>  justify-items-stretch mb-2 mt-5"
+      class="grid <%= turbo_frame_request? ? 'grid-cols-4 xs:grid-cols-6 sm:grid-cols-10 gap-4' : 'grid-cols-5 xs:grid-cols-6 sm:grid-cols-10 gap-3' %>  justify-items-stretch mb-2 mt-5"
     >
       <% @book.chapters_data.each do |chapter_data| %>
         <%= render "book_chapter_square", book: @book, chapter_data: chapter_data %>

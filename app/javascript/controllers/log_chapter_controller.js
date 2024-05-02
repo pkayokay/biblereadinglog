@@ -12,7 +12,7 @@ export default class extends Controller {
       if (chapterContainer.classList.contains("!hidden")) {
         event.target.innerText = "Close"
       } else {
-        event.target.innerText = "Log chapter"
+        event.target.innerText = "Track"
       }
       chapterContainer.classList.toggle("!hidden")
     } else {

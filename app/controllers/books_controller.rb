@@ -2,6 +2,9 @@ class BooksController < ApplicationController
   before_action :set_book
 
   def show
+    add_breadcrumb("Reading Logs", root_path)
+    add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
+    add_breadcrumb(@book.name)
   end
 
   def pin_book

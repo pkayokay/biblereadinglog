@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "items-center justify-between block rounded-lg border shadow-sm py-4 px-5 p w-full bg-white relative", id: book_card_container_turbo_frame_id(book) do %>
+<%= content_tag :div, class: "items-center justify-between block rounded-lg border shadow-sm py-5 px-5 p w-full bg-white relative", id: book_card_container_turbo_frame_id(book) do %>
   <div class="flex items-center justify-between mb-5 sm:mb-3 flex-col sm:flex-row space-y-1 sm:space-y-0">
     <div class="text-2xl sm:text-xl font-medium"><%= book.name %></div>
     <div class="flex items-center sm:space-y-0 sm:space-x-3 flex-col-reverse sm:flex-row">
@@ -21,9 +21,12 @@
   <%= render "books/book_progress_line", book: book %>
   <div class="text-sm mt-4 flex space-y-4 sm:space-y-0 flex-col sm:flex-row items-center justify-between">
     <%= render "books/book_card_chapters", book: book %>
-    <div class="flex items-center space-between space-x-3">
-      <%= button_to reading_log_book_path(book.reading_log, book), method: :get, form: { class: " text-right"},class: "w-[100px] bg-neutral-800 border border-neutral-800 rounded-md text-sm py-1 px-2 hover:opacity-90 text-white cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
-        Log chapter
+    <div class="flex items-center space-between space-y-5 sm:space-y-0 sm:space-x-5 sm:flex-row flex-col">
+      <%= link_to reading_log_book_path(book.reading_log, book), class: "opacity-60 underline", data: {turbo_frame: "_top"} do %>
+        More details
+      <% end %>
+      <%= button_to reading_log_book_path(book.reading_log, book), method: :get, form: { class: " text-right"},class: "w-[100px] bg-neutral-800 border border-neutral-800 rounded-md text-sm py-1.5 px-3 hover:opacity-90 text-white cursor-pointer", data: { controller: "log-chapter", action: "log-chapter#toggle", log_chapter_opened_value: false, turbo_frame: book_checklist_turbo_frame_id(book)} do %>
+        Track
       <% end %>
     </div>
   </div>
