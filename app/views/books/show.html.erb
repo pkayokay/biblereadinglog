@@ -16,7 +16,7 @@
       <%= turbo_frame_tag book_checklist_turbo_frame_id(@book) do %>
         <div
           data-chapter-container-id="<%= book_checklist_turbo_frame_id(@book) %>"
-          class="grid <%= turbo_frame_request? ? 'grid-cols-4 xs:grid-cols-6 sm:grid-cols-10 gap-4 mb-2 mt-5' : 'grid-cols-3 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-3' %>  justify-items-stretch"
+          class="grid <%= turbo_frame_request? ? 'grid-cols-4 xs:grid-cols-6 sm:grid-cols-10 gap-4 mb-2 mt-5' : 'grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-3' %>  justify-items-stretch"
         >
           <% @book.chapters_data.each do |chapter_data| %>
             <%= render "book_chapter_square", book: @book, chapter_data: chapter_data %>
