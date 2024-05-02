@@ -5,11 +5,10 @@
       <div class="opacity-50 text-sm"><%= book.completed_chapter_percentage %>%</div>
     </div>
   <% end %>
-    <%= button_to pin_book_reading_log_book_path(book.reading_log, book), method: :patch, class: "#{book.pin_order.present? ? '' : ''} sm:mb-0 mb-3 text-sm group hover:bg-gray-50 items-center justify-center rounded-md p-2 flex", aria: {label:"Pin Book" } do %>
+    <%= button_to pin_book_reading_log_book_path(book.reading_log, book), method: :patch, class: "text-sm group hover:bg-gray-50 items-center justify-center rounded-md p-2 flex", aria: {label:"Pin Book" } do %>
     <div class="flex-1 sr-only">
       <% if book.pin_order.present? %>
-        <span class="group-hover:hidden">Pinned</span>
-        <span class="hidden group-hover:inline-block">Unpin</span>
+        Unpin
       <% else %>
         Pin
       <% end %>
