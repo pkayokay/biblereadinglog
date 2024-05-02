@@ -18,16 +18,16 @@
 
 <% if @pin_order_value.present? %>
   <%= turbo_stream.append pinned_books_turbo_frame_id do %>
-    <%= render "books/card_2", book: @book %>
+    <%= render "books/card", book: @book %>
   <% end %>
 <% else %>
   <% if @prev_book %>
     <%= turbo_stream.after book_card_container_turbo_frame_id(@prev_book) do %>
-      <%= render "books/card_2", book: @book %>
+      <%= render "books/card", book: @book %>
     <% end %>
   <% else %>
     <%= turbo_stream.prepend unpinned_books_turbo_frame_id do %>
-      <%= render "books/card_2", book: @book %>
+      <%= render "books/card", book: @book %>
     <% end %>
   <% end %>
 <% end %>

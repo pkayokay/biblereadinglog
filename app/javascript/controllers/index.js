@@ -16,9 +16,6 @@ application.register("flash", FlashController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import LogChapterController from "./log_chapter_controller"
-application.register("log-chapter", LogChapterController)
-
 import ReadingLogIndexController from "./reading_log_index_controller"
 application.register("reading-log-index", ReadingLogIndexController)
 

@@ -15,7 +15,7 @@
   </div>
   <div id="<%= pinned_books_turbo_frame_id %>">
     <% @pinned_books.each do |book| %>
-      <%= render "books/card_2", book: book %>
+      <%= render "books/card", book: book %>
     <% end %>
   </div>
   <div id="<%= unpinned_books_empty_turbo_frame_id %>">
@@ -25,7 +25,7 @@
   </div>
   <div id="<%= unpinned_books_turbo_frame_id %>">
     <% @books.each do |book| %>
-      <%= render "books/card_2", book: book %>
+      <%= render "books/card", book: book %>
     <% end %>
   </div>
 </div>
