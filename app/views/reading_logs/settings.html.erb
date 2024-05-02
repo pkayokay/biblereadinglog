@@ -13,7 +13,7 @@
           <p class="font-medium text-2xl">Reminders</p>
           <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
             <div class="border border-sky-300 rounded-lg text-sm text-sky-800 bg-sky-100 px-2 py-1 inline-block">
-              <div class="">Upcoming reminder on <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
+              <div class="">Upcoming reminder <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></div>
             </div>
           <% end %>
         </div>

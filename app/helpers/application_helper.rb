@@ -4,7 +4,20 @@ module ApplicationHelper
   end
 
   def render_next_occurrence(value)
-    value.in_time_zone(current_user.time_zone).strftime('%_m/%-e %A %l:%M %p')
+    current_time = Time.now.in_time_zone(current_user.time_zone)
+    next_occurrence = value.in_time_zone(current_user.time_zone)
+
+    if current_time.to_date == next_occurrence.to_date
+      period = (0..17).include?(next_occurrence.hour) ? 'Today' : 'Tonight'
+      return "#{period} at #{next_occurrence.strftime('%l:%M %p')}"
+    end
+
+    tomorrow = current_time.advance(days: 1)
+    if tomorrow.to_date == next_occurrence.to_date
+      return "Tomorrow at #{next_occurrence.strftime('%l:%M %p')}"
+    end
+
+    "on #{next_occurrence.strftime('%A %_m/%-e %l:%M %p')}"
   end
 
   def time_options_for_select
