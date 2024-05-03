@@ -10,9 +10,9 @@
   </div>
 </div>
 <div class="space-x-2 mb-3">
-  <% completed_params = params[:status] == "complete" %>
+  <% completed_params = params[:status] == "completed" %>
   <%= link_to 'In Progress', root_path, class: "#{'btn btn--primary' unless completed_params} btn btn--slim !text-sm" %>
-  <%= link_to 'Completed', root_path(status: 'complete'), class: "#{'btn btn--primary' if completed_params} btn btn--slim !text-sm" %>
+  <%= link_to 'Completed', root_path(status: 'completed'), class: "#{'btn btn--primary' if completed_params} btn btn--slim !text-sm" %>
 </div>
 
 <div class="flow-root">
