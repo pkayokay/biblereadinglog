@@ -7,6 +7,8 @@ class ReadingLog < ApplicationRecord
   belongs_to :user
 
   before_update :update_completed_at, if: :completed_books_count_changed?
+  scope :complete, -> { where.not(completed_at: nil)}
+  scope :in_progress, -> { where(completed_at: nil)}
 
   enum reminder_frequency:  {
     daily: 0,

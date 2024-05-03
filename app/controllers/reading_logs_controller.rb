@@ -3,7 +3,11 @@ class ReadingLogsController < ApplicationController
   before_action :set_books_data, only: [:new, :create]
 
   def index
-    @reading_logs = current_user.reading_logs.order(created_at: :desc)
+    @reading_logs = if params[:status] == "complete"
+      current_user.reading_logs.complete.order(created_at: :desc)
+    else
+      current_user.reading_logs.in_progress.order(created_at: :desc)
+    end
 
     unless current_user.reading_logs.exists?
       redirect_to new_reading_log_path
