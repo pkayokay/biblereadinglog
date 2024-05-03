@@ -40,7 +40,7 @@ module ApplicationHelper
     if current_user.green?
       {
         line: "bg-emerald-500",
-        square: "shadow-emerald-100 border-emerald-300 bg-emerald-50 hover:!bg-emerald-100",
+        square: "shadow-emerald-100 border-emerald-300 bg-emerald-50 hover:!bg-emerald-100 text-emerald-900",
       }
     elsif current_user.blue?
       {
@@ -71,10 +71,6 @@ module ApplicationHelper
 
   def turbo_frame_request?
     request.headers["Turbo-Frame"].present?
-  end
-
-  def book_checklist_turbo_frame_id(book)
-    "book-checklist-#{book.id}"
   end
 
   def book_checklist_square_turbo_frame_id(book, chapter_number)

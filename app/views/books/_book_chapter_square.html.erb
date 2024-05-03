@@ -1,1 +1,13 @@
-<%= button_to chapter_data["chapter_number"], toggle_chapter_reading_log_book_path(book.reading_log, book, chapter_number: chapter_data["chapter_number"], is_completed: chapter_data["completed_at"].present?), method: :patch, class: "w-full h-full", form: { id: book_checklist_square_turbo_frame_id(book, chapter_data["chapter_number"]), class: "#{ theme_values[:square] if chapter_data["completed_at"]} hover:bg-gray-50 border shadow-sm rounded-lg inline-flex items-center justify-center text-base cursor-pointer aspect-square" }%>
+<%= button_to toggle_chapter_reading_log_book_path(book.reading_log, book, chapter_number: chapter_data["chapter_number"], is_completed: chapter_data["completed_at"].present?), method: :patch, class: "justify-center space-y-1 w-full h-full text-center py-3 px-4 flex flex-col items-center", form: { id: book_checklist_square_turbo_frame_id(book, chapter_data["chapter_number"]), class: "#{ theme_values[:square] if chapter_data["completed_at"]}  aspect-square group hover:bg-gray-50 border shadow-sm rounded-lg inline-flex items-center justify-center  cursor-pointer duration-100 hover:scale-[103%] focus-within:scale-[103%]" } do %>
+  <% if chapter_data["completed_at"].present? %>
+    <div class="flex items-center">
+      <svg class="w-[20px] h-[20px] stroke-emerald-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+    </div>
+  <% else %>
+    <div class="flex items-center">
+      <svg class="w-[20px] h-[20px] stroke-neutral-300 group-focus-within:hidden group-hover:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle"><circle cx="12" cy="12" r="10"/></svg>
+      <svg class="w-[20px] h-[20px] stroke-neutral-300 hidden group-focus-within:inline group-hover:inline group-hover:stroke-neutral-500 group-focus-within:stroke-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+    </div>
+  <% end %>
+  <span><%= chapter_data["chapter_number"] %></span>
+<% end %>

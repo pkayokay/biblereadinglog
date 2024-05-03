@@ -24,9 +24,9 @@ class BooksController < ApplicationController
       @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
 
       if @pin_order_value.present?
-        flash.now[:notice] = "#{@book.name} pinned!"
+        flash.now[:notice] = "#{@book.name} starred!"
       else
-        flash.now[:notice] = "#{@book.name} unpinned!"
+        flash.now[:notice] = "#{@book.name} unstarred!"
         unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil)
         if unpinned_ordered_books.present?
           current_book_index = unpinned_ordered_books.index(@book)
