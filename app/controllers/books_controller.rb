@@ -63,6 +63,9 @@ class BooksController < ApplicationController
 
 
     if @book.update(chapters_data: chapters_data)
+      if @book.completed_at_previously_changed? && @book.completed_at.present?
+        flash.now[:notice] = "Congrats, you read the entire book! 🎉"
+      end
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to reading_log_path(@reading_log) }

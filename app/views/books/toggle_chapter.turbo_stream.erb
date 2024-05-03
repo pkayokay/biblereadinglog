@@ -13,3 +13,7 @@
 <%= turbo_stream.replace book_card_chapters_turbo_frame_id(@book) do %>
   <%= render "books/book_card_chapters", book: @book %>
 <% end %>
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>
