@@ -1,5 +1,5 @@
 <div class="mx-auto">
-  <h1 class="mb-3 font-semibold text-3xl"><%= @book.name %></h1>
+  <%= render(HeadingComponent.new(title: @book.name)) %>
   <div class="flex flex-col">
     <div class="w-full flex-1 mb-10">
       <div class="space-y-3">

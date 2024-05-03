@@ -28,7 +28,7 @@
             <tr class="hover:bg-neutral-50 group cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
               <td class="py-4 pl-4 sm:pl-0">
                 <div class="flex items-center" >
-                  <%= link_to reading_log_path(reading_log), class: "pl-3 w-full text-base truncate max-w-[260px] whitespace-nowrap" do %>
+                  <%= link_to reading_log_path(reading_log), class: "pl-3 w-full text-lg truncate max-w-[340px] whitespace-nowrap" do %>
                     <%= reading_log.name %>
                     <div class="flex items-center">
                     <span class="text-xs opacity-50">Read <%= reading_log.completed_books_count %> of <%= reading_log.books_count %> books</span>
