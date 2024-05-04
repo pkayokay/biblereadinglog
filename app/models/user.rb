@@ -22,6 +22,10 @@ class User < ApplicationRecord
     password_salt&.last(10)
   end
 
+  generates_token_for :email_confirmation, expires_in: 15.minutes do
+    last_sign_in_at
+  end
+
   def has_default_time_zone?
     time_zone == "UTC"
   end
