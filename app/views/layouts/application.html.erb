@@ -36,7 +36,8 @@
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
                 <div class="bg-white shadow-sm rounded-md border overflow-hidden w-40">
-                  <%= link_to  account_path, class: "group flex space-x-1 rounded-md mx-1 my-1.5 py-1.5 px-5  hover:bg-neutral-100", data: { dropdown_target: "menuItem"} do %>
+                  <%= link_to account_path, class: "group flex rounded-md mx-1 my-1.5 py-1.5 pl-3 pr-7 space-x-3 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                    <svg class="group-hover:opacity-100 opacity-80 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
                     <span class="group-hover:opacity-100 opacity-60">Account</span>
                   <% end %>
                   <% if current_user.is_admin? %>
@@ -45,8 +46,9 @@
                     <% end %>
                   <% end %>
                   <hr class="border-t" />
-                  <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-5", form: {class: "group flex rounded-md mx-1 my-1.5  hover:bg-neutral-100" }, data: { dropdown_target: "menuItem" } do %>
-                   <span class="group-hover:opacity-100 opacity-60">Log out</span>
+                  <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 pl-3 pr-7 flex space-x-3 items-center", form: {class: "group flex rounded-md mx-1 my-1.5  hover:bg-neutral-100" }, data: { dropdown_target: "menuItem" } do %>
+                    <svg class="group-hover:opacity-100 opacity-80 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                    <span class="group-hover:opacity-100 opacity-60">Log out</span>
                   <% end %>
                 </div>
               </div>
