@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   def account
   end
 
+  def email_confirmation
+  end
+
   def update_password
     if current_user.update(password_params)
       redirect_to account_path, notice: "Password updated!"
