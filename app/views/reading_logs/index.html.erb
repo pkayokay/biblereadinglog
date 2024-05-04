@@ -10,9 +10,8 @@
   </div>
 </div>
 <div class="space-x-2 mb-3">
-  <% completed_params = params[:status] == "completed" %>
-  <%= link_to 'In Progress', root_path, class: "#{'btn btn--primary' unless completed_params} btn btn--slim !text-sm" %>
-  <%= link_to 'Completed', root_path(status: 'completed'), class: "#{'btn btn--primary' if completed_params} btn btn--slim !text-sm" %>
+  <%= link_to 'In Progress', root_path, class: "#{'btn btn--primary bg-yellow-100 text-yellow-800 !border-yellow-400 hover:bg-yellow-200 focus:!border-yellow-400' unless @has_completed_params} btn btn--slim !text-sm rounded-full" %>
+  <%= link_to 'Completed', root_path(status: 'completed'), class: "#{'btn btn--primary bg-emerald-100 text-emerald-800 !border-emerald-400 hover:bg-emerald-200 focus:!border-emerald-400' if @has_completed_params} btn btn--slim !text-sm rounded-full" %>
 </div>
 
 <div class="flow-root">
@@ -25,8 +24,13 @@
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-medium sm:pl-0 max-w-[1d00px]">
                 <span class="pl-3">Name</span>
               </th>
-              <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium">Status</th>
-              <th scope="col" class="px-3 py-3.5 text-left font-medium">Started</th>
+              <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium">Books</th>
+              <% if @has_completed_params %>
+                <th scope="col" class="px-3 py-3.5 text-left font-medium">Completed</th>
+              <% else %>
+                <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium">Percentage</th>
+                <th scope="col" class="px-3 py-3.5 text-left font-medium">Started</th>
+              <% end %>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white" data-controller="reading-log-index">
@@ -36,27 +40,31 @@
                     <div class="flex items-center" >
                       <%= link_to reading_log_path(reading_log), class: "pl-3 w-full text-lg truncate max-w-[340px] whitespace-nowrap" do %>
                         <%= reading_log.name %>
-                        <div class="flex items-center">
-                        <span class="text-xs opacity-50">Read <%= reading_log.completed_books_count %> of <%= reading_log.books_count %> books</span>
-                      </div>
                       <% end %>
                     </div>
                   </td>
-                  <td class="whitespace-nowrap px-3 text-gray-500">
-                    <span class="inline-flex items-center rounded-md px-2.5 py-1.5 text-sm  ring-1 ring-inset <%= reading_log.completed_at ? 'bg-green-100 text-green-700 ring-green-800/20' : 'bg-yellow-100 text-yellow-700 ring-yellow-600/20' %>">
-                      <%= reading_log.completed_at ? 'Completed' : 'In progress' %>
-                    </span>
+                  <td class="whitespace-nowrap px-3">
+                    <div class="text-base opacity-50"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></div>
                   </td>
-                  <td class="whitespace-nowrap px-3 text-sm opacity-60">
-                    <div class=""><%= time_ago_in_words(reading_log.created_at).capitalize + " ago" %></div>
-                  </td>
+                  <% if @has_completed_params %>
+                    <td class="whitespace-nowrap px-3 opacity-60">
+                      <div class=""><%= reading_log.completed_at.strftime("%B %-d, %Y") %></div>
+                    </td>
+                  <% else %>
+                    <td class="whitespace-nowrap px-3">
+                      <div class="text-base opacity-50"><%= reading_log.completed_book_percentage %>%</div>
+                    </td>
+                    <td class="whitespace-nowrap px-3 opacity-60">
+                      <div class=""><%= reading_log.created_at.strftime("%B %-d, %Y") %></div>
+                    </td>
+                  <% end %>
                 </tr>
               <% end %>
           </tbody>
         </table>
       <% else %>
         <div class="mt-8 border bg-[#fdfdfd] border-dashed px-4 py-8 rounded-lg text-center ">
-          <% if completed_params %>
+          <% if @has_completed_params %>
           <p class="opacity-50">You don't have any completed reading logs.</p>
           <% else %>
           <p class="opacity-50">You don't have any reading logs in progress.</p>
