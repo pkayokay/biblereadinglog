@@ -1,10 +1,10 @@
 <% if breadcrumbs.present? %>
-  <ol class="flex mb-8 -mt-2 text-breadcrumbs">
+  <ol class="flex mb-10 -mt-2 text-breadcrumbs">
     <% breadcrumbs.each_with_index do |crumb, index| %>
       <% is_back_breadcrumb = index == breadcrumbs.length - 2 %>
 
       <li class="<%= 'hidden' unless is_back_breadcrumb %> sm:block">
-        <% crumb_name = crumb.name.length > 42 ? "#{crumb.name.slice(0..42)}..." : "#{crumb.name}"%>
+        <% crumb_name = crumb.name.length > 50 ? "#{crumb.name.slice(0..50)}..." : "#{crumb.name}"%>
         <% if crumb.link? %>
           <%= link_to crumb.path, class: "breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-60 font-medium' : 'opacity-100'} " do %><% if is_back_breadcrumb %><span class="inline sm:hidden">&larr; </span><% else %><% end %><%= crumb_name %><% end %>
         <% else %>
