@@ -23,15 +23,32 @@ class BooksController < ApplicationController
       @has_pinned_books = @reading_log.books.where.not(pin_order: nil).exists?
       @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
 
+      @status_param_value = params[:status]
+      @should_insert_back_to_books_list =
+        @status_param_value.nil? ||
+        @status_param_value == "pending" &&  @book.completed_at.nil? ||
+        @status_param_value == "completed" &&  @book.completed_at.present?
+
       if @pin_order_value.present?
         flash.now[:notice] = "#{@book.name} starred!"
       else
         flash.now[:notice] = "#{@book.name} unstarred!"
-        unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil)
+
+        @has_pending_status = params[:status] == "pending"
+        @has_completed_status = params[:status] == "completed"
+
+        if @has_pending_status
+          unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil, completed_at: nil)
+        elsif @has_completed_status
+          unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil).where.not(completed_at: nil)
+        else
+          unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil)
+        end
+
         if unpinned_ordered_books.present?
           current_book_index = unpinned_ordered_books.index(@book)
 
-          if current_book_index != 0
+          if current_book_index.present? && current_book_index != 0
             @prev_book = unpinned_ordered_books[current_book_index-1]
           end
         end

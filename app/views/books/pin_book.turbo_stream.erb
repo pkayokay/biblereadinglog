@@ -21,13 +21,15 @@
     <%= render "books/card", book: @book %>
   <% end %>
 <% else %>
-  <% if @prev_book %>
-    <%= turbo_stream.after book_card_container_turbo_frame_id(@prev_book) do %>
-      <%= render "books/card", book: @book %>
-    <% end %>
-  <% else %>
-    <%= turbo_stream.prepend unpinned_books_turbo_frame_id do %>
-      <%= render "books/card", book: @book %>
+  <% if @should_insert_back_to_books_list %>
+    <% if @prev_book %>
+      <%= turbo_stream.after book_card_container_turbo_frame_id(@prev_book) do %>
+        <%= render "books/card", book: @book %>
+      <% end %>
+    <% else %>
+      <%= turbo_stream.prepend unpinned_books_turbo_frame_id do %>
+        <%= render "books/card", book: @book %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
