@@ -7,7 +7,7 @@ class ReadingLogsController < ApplicationController
     @reading_logs = if @has_completed_params
       current_user.reading_logs.complete.order(created_at: :desc)
     else
-      current_user.reading_logs.in_progress.order(created_at: :desc)
+      current_user.reading_logs.pending.order(created_at: :desc)
     end
 
     unless current_user.reading_logs.exists?
@@ -66,17 +66,17 @@ class ReadingLogsController < ApplicationController
     @has_no_status = ["pending", "completed"].exclude?(params[:status])
 
     if @has_pending_status
-      @books = @reading_log.ordered_books.where(pin_order: nil, completed_at: nil)
-      @pinned_books = @reading_log.books.where.not(pin_order: nil).where(completed_at: nil).order(pin_order: :asc)
+      @books = @reading_log.ordered_books.pending.unpinned
+      @pinned_books = @reading_log.books.pending.pinned.order(pin_order: :asc)
     elsif @has_completed_status
-      @books = @reading_log.ordered_books.where(pin_order: nil).where.not(completed_at: nil)
-      @pinned_books = @reading_log.books.where.not(pin_order: nil).where.not(completed_at: nil).order(pin_order: :asc)
+      @books = @reading_log.ordered_books.complete.unpinned
+      @pinned_books = @reading_log.books.complete.pinned.order(pin_order: :asc)
     else
-      @books = @reading_log.ordered_books.where(pin_order: nil)
-      @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
+      @books = @reading_log.ordered_books.unpinned
+      @pinned_books = @reading_log.books.pinned.order(pin_order: :asc)
     end
 
-    @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
+    @has_unpinned_books = @reading_log.books.unpinned.exists?
   end
 
   def settings

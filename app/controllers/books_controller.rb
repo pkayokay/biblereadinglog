@@ -11,7 +11,7 @@ class BooksController < ApplicationController
     @pin_order_value = if @book.pin_order.present?
       nil
     else
-      last_pinned_book = @reading_log.books.where.not(pin_order: nil).order(pin_order: :desc).first
+      last_pinned_book = @reading_log.books.pinned.order(pin_order: :desc).first
       if last_pinned_book.present?
         last_pinned_book.pin_order + 1
       else
@@ -20,6 +20,7 @@ class BooksController < ApplicationController
     end
 
     if @book.update(pin_order: @pin_order_value)
+      # TODO: Set variables based on status params
       @has_pinned_books = @reading_log.books.where.not(pin_order: nil).exists?
       @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
 
@@ -32,11 +33,11 @@ class BooksController < ApplicationController
         @has_completed_status = params[:status] == "completed"
 
         if @has_pending_status
-          unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil, completed_at: nil)
+          unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
         elsif @has_completed_status
-          unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil).where.not(completed_at: nil)
+          unpinned_ordered_books = @reading_log.ordered_books.complete.unpinned
         else
-          unpinned_ordered_books = @reading_log.ordered_books.where(pin_order: nil)
+          unpinned_ordered_books = @reading_log.ordered_books.unpinned
         end
 
         if unpinned_ordered_books.present?
