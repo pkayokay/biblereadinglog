@@ -61,7 +61,19 @@ class ReadingLogsController < ApplicationController
     set_reading_log_index_breadcrumb
     set_reading_log_show_breadcrumb(with_link: false)
     @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
-    @books = @reading_log.ordered_books.where(pin_order: nil)
+
+    @has_pending_status = params[:status] == "pending"
+    @has_completed_status = params[:status] == "completed"
+    @has_no_status = ["pending", "completed"].exclude?(params[:status])
+
+    if @has_pending_status
+      @books = @reading_log.ordered_books.where(pin_order: nil, completed_at: nil)
+    elsif @has_completed_status
+      @books = @reading_log.ordered_books.where(pin_order: nil).where.not(completed_at: nil)
+    else
+      @books = @reading_log.ordered_books.where(pin_order: nil)
+    end
+
     @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
   end
 
