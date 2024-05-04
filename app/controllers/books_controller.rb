@@ -21,17 +21,17 @@ class BooksController < ApplicationController
 
     if @book.update(pin_order: @pin_order_value)
       if has_pending_status?
-        @has_pinned_books = @reading_log.books.pending.pinned.exists?
-        @has_unpinned_books = @reading_log.books.pending.unpinned.exists?
         unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
+        @has_pinned_books = @reading_log.books.pending.pinned.exists?
+        @has_unpinned_books = unpinned_ordered_books.present?
       elsif has_completed_status?
-        @has_pinned_books = @reading_log.books.complete.pinned.exists?
-        @has_unpinned_books = @reading_log.books.complete.unpinned.exists?
         unpinned_ordered_books = @reading_log.ordered_books.complete.unpinned
+        @has_pinned_books = @reading_log.books.complete.pinned.exists?
+        @has_unpinned_books = unpinned_ordered_books.present?
       else
-        @has_pinned_books = @reading_log.books.pinned.exists?
-        @has_unpinned_books = @reading_log.books.unpinned.exists?
         unpinned_ordered_books = @reading_log.ordered_books.unpinned
+        @has_pinned_books = @reading_log.books.pinned.exists?
+        @has_unpinned_books = unpinned_ordered_books.present?
       end
 
       if @pin_order_value.present?
