@@ -20,25 +20,24 @@ class BooksController < ApplicationController
     end
 
     if @book.update(pin_order: @pin_order_value)
-      # TODO: Set variables based on status params
-      @has_pinned_books = @reading_log.books.where.not(pin_order: nil).exists?
-      @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
+      if has_pending_status?
+        @has_pinned_books = @reading_log.books.pending.pinned.exists?
+        @has_unpinned_books = @reading_log.books.pending.unpinned.exists?
+        unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
+      elsif has_completed_status?
+        @has_pinned_books = @reading_log.books.complete.pinned.exists?
+        @has_unpinned_books = @reading_log.books.complete.unpinned.exists?
+        unpinned_ordered_books = @reading_log.ordered_books.complete.unpinned
+      else
+        @has_pinned_books = @reading_log.books.pinned.exists?
+        @has_unpinned_books = @reading_log.books.unpinned.exists?
+        unpinned_ordered_books = @reading_log.ordered_books.unpinned
+      end
 
       if @pin_order_value.present?
         flash.now[:notice] = "#{@book.name} starred!"
       else
         flash.now[:notice] = "#{@book.name} unstarred!"
-
-        @has_pending_status = params[:status] == "pending"
-        @has_completed_status = params[:status] == "completed"
-
-        if @has_pending_status
-          unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
-        elsif @has_completed_status
-          unpinned_ordered_books = @reading_log.ordered_books.complete.unpinned
-        else
-          unpinned_ordered_books = @reading_log.ordered_books.unpinned
-        end
 
         if unpinned_ordered_books.present?
           current_book_index = unpinned_ordered_books.index(@book)
@@ -93,5 +92,13 @@ class BooksController < ApplicationController
   def set_book
     @reading_log = current_user.reading_logs.find(params[:reading_log_id])
     @book = @reading_log.books.find(params[:id])
+  end
+
+  def has_pending_status?
+    params[:status] == "pending"
+  end
+
+  def has_completed_status?
+    params[:status] == "completed"
   end
 end
