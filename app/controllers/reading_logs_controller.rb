@@ -76,7 +76,7 @@ class ReadingLogsController < ApplicationController
       @pinned_books = @reading_log.books.pinned.order(pin_order: :asc)
     end
 
-    @has_unpinned_books = @reading_log.books.unpinned.exists?
+    @has_unpinned_books = @books.present?
   end
 
   def settings

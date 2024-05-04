@@ -23,16 +23,14 @@ class BooksController < ApplicationController
       if has_pending_status?
         unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
         @has_pinned_books = @reading_log.books.pending.pinned.exists?
-        @has_unpinned_books = unpinned_ordered_books.present?
       elsif has_completed_status?
         unpinned_ordered_books = @reading_log.ordered_books.complete.unpinned
         @has_pinned_books = @reading_log.books.complete.pinned.exists?
-        @has_unpinned_books = unpinned_ordered_books.present?
       else
         unpinned_ordered_books = @reading_log.ordered_books.unpinned
         @has_pinned_books = @reading_log.books.pinned.exists?
-        @has_unpinned_books = unpinned_ordered_books.present?
       end
+      @has_unpinned_books = unpinned_ordered_books.present?
 
       if @pin_order_value.present?
         flash.now[:notice] = "#{@book.name} starred!"

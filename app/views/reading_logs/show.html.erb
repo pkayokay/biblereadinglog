@@ -26,25 +26,38 @@
 </div>
 
 <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
-  <div id="<%= pinned_books_empty_turbo_frame_id %>" class="">
-    <% if @pinned_books.empty? %>
-      <%= render "reading_logs/pinned_books_empty" %>
-    <% end %>
-  </div>
-  <div id="<%= pinned_books_turbo_frame_id %>">
-    <% @pinned_books.each do |book| %>
-      <%= render "books/card", book: book %>
-    <% end %>
-  </div>
-  <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
-    <% if @has_unpinned_books && %>
-      <%= render "reading_logs/all_books_header", no_border: @pinned_books.empty? %>
-    <% end %>
-  </div>
+  <% if @books.present? || @pinned_books.present? %>
+    <div id="<%= pinned_books_empty_turbo_frame_id %>" class="">
+      <% if @pinned_books.empty? %>
+        <%= render "reading_logs/pinned_books_empty" %>
+      <% end %>
+    </div>
+    <div id="<%= pinned_books_turbo_frame_id %>">
+      <% @pinned_books.each do |book| %>
+        <%= render "books/card", book: book %>
+      <% end %>
+    </div>
+    <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
+      <% if @has_unpinned_books %>
+        <%= render "reading_logs/all_books_header", no_border: @pinned_books.empty? %>
+      <% end %>
+    </div>
 
-  <div id="<%= unpinned_books_turbo_frame_id %>">
-    <% @books.each do |book| %>
-      <%= render "books/card", book: book %>
-    <% end %>
-  </div>
+    <div id="<%= unpinned_books_turbo_frame_id %>">
+      <% @books.each do |book| %>
+        <%= render "books/card", book: book %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="border bg-[#fdfdfd] border-dashed px-4 py-8 rounded-lg text-center ">
+      <p class="opacity-40 text-lg">
+        <% if @has_pending_status %>
+        You don't have any books in progress.
+        <% elsif @has_completed_status %>
+        You don't have any completed books.
+        <% end %>
+      </p>
+    </div>
+  <% end %>
 </div>
+
