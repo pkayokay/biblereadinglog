@@ -20,7 +20,7 @@
       <%= render "books/card", book: book %>
     <% end %>
   </div>
-  <div id="<%= unpinned_books_empty_turbo_frame_id %>">
+  <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
     <% if @has_unpinned_books && %>
       <%= render "reading_logs/all_books_header", no_border: @pinned_books.empty? %>
     <% end %>

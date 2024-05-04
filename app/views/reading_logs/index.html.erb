@@ -35,32 +35,28 @@
               <% if @has_completed_params %>
                 <th scope="col" class="px-3 py-3.5 text-left font-medium">Completed</th>
               <% else %>
-                <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium">Percentage</th>
                 <th scope="col" class="px-3 py-3.5 text-left font-medium">Started</th>
               <% end %>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white" data-controller="reading-log-index">
               <% @reading_logs.each do |reading_log| %>
-                <tr class="hover:bg-neutral-50 group cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
+                <tr class="text-base hover:bg-neutral-50 group cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
                   <td class="py-4 pl-4 sm:pl-0">
-                    <div class="flex items-center">
-                      <%= link_to reading_log_path(reading_log), class: "pl-3 w-full text-lg truncate xs:max-w-[400px] whitespace-normal xs:whitespace-nowrap" do %>
+                    <div class="flex items-center text-lg">
+                      <%= link_to reading_log_path(reading_log), class: "pl-3 w-full truncate xs:max-w-[440px] whitespace-normal xs:whitespace-nowrap" do %>
                         <%= reading_log.name %>
                       <% end %>
                     </div>
                   </td>
                   <td class="whitespace-nowrap px-3 hidden xs:table-cell">
-                    <div class="text-base opacity-50"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></div>
+                    <div class="opacity-50"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></div>
                   </td>
                   <% if @has_completed_params %>
                     <td class="whitespace-nowrap px-3 opacity-50">
                       <div class=""><%= reading_log.completed_at.strftime("%B %-d, %Y") %></div>
                     </td>
                   <% else %>
-                    <td class="whitespace-nowrap px-3">
-                      <div class="text-base opacity-50 text-center xs:text-left"><%= reading_log.completed_book_percentage %>%</div>
-                    </td>
                     <td class="whitespace-nowrap px-3 opacity-50">
                       <div class=""><%= reading_log.created_at.strftime("%B %-d, %Y") %></div>
                     </td>
