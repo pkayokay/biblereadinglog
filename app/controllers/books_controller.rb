@@ -23,12 +23,6 @@ class BooksController < ApplicationController
       @has_pinned_books = @reading_log.books.where.not(pin_order: nil).exists?
       @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
 
-      @status_param_value = params[:status]
-      @should_insert_back_to_books_list =
-        @status_param_value.nil? ||
-        @status_param_value == "pending" &&  @book.completed_at.nil? ||
-        @status_param_value == "completed" &&  @book.completed_at.present?
-
       if @pin_order_value.present?
         flash.now[:notice] = "#{@book.name} starred!"
       else
