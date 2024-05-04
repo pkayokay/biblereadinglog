@@ -7,7 +7,7 @@ class ReadingLogsController < ApplicationController
     @reading_logs = if @has_completed_params
       current_user.reading_logs.complete.order(created_at: :desc)
     else
-      current_user.reading_logs.in_progress.order(created_at: :desc)
+      current_user.reading_logs.pending.order(created_at: :desc)
     end
 
     unless current_user.reading_logs.exists?
@@ -60,9 +60,23 @@ class ReadingLogsController < ApplicationController
   def show
     set_reading_log_index_breadcrumb
     set_reading_log_show_breadcrumb(with_link: false)
-    @pinned_books = @reading_log.books.where.not(pin_order: nil).order(pin_order: :asc)
-    @books = @reading_log.ordered_books.where(pin_order: nil)
-    @has_unpinned_books = @reading_log.books.where(pin_order: nil).exists?
+
+    @has_pending_status = params[:status] == "pending"
+    @has_completed_status = params[:status] == "completed"
+    @has_no_status = ["pending", "completed"].exclude?(params[:status])
+
+    if @has_pending_status
+      @books = @reading_log.ordered_books.pending.unpinned
+      @pinned_books = @reading_log.books.pending.pinned.order(pin_order: :asc)
+    elsif @has_completed_status
+      @books = @reading_log.ordered_books.complete.unpinned
+      @pinned_books = @reading_log.books.complete.pinned.order(pin_order: :asc)
+    else
+      @books = @reading_log.ordered_books.unpinned
+      @pinned_books = @reading_log.books.pinned.order(pin_order: :asc)
+    end
+
+    @has_unpinned_books = @books.present?
   end
 
   def settings
