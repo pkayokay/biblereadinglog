@@ -13,7 +13,7 @@ class Book < ApplicationRecord
   before_update :update_completed_at, if: :chapters_data_changed?
   after_commit :update_completed_books_count, on: :update, if: :saved_change_to_completed_at?
   scope :complete, -> { where.not(completed_at: nil)}
-  scope :pending, -> { where(completed_at: nil)}
+  scope :pending, -> { where("completed_chapters_count > ?", 0).where(completed_at: nil) }
   scope :pinned, -> { where.not(pin_order: nil)}
   scope :unpinned, -> { where(pin_order: nil)}
 
