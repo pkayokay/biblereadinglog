@@ -3,8 +3,8 @@ class ReadingLogsController < ApplicationController
   before_action :set_books_data, only: [:new, :create]
 
   def index
-    @has_completed_params = params[:status] == "completed"
-    @reading_logs = if @has_completed_params
+    @has_completed_status = params[:status] == "completed"
+    @reading_logs = if @has_completed_status
       current_user.reading_logs.complete.order(created_at: :desc)
     else
       current_user.reading_logs.pending.order(created_at: :desc)
