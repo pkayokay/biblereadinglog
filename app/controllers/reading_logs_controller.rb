@@ -70,7 +70,7 @@ class ReadingLogsController < ApplicationController
 
     @has_pending_status = params[:status] == "pending"
     @has_completed_status = params[:status] == "completed"
-    @has_no_status = ["pending", "completed"].exclude?(params[:status])
+    @has_no_status = params[:status].blank?
 
     if @has_pending_status
       @books = @reading_log.ordered_books.pending.unpinned

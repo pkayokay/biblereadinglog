@@ -20,10 +20,13 @@ class BooksController < ApplicationController
     end
 
     if @book.update(pin_order: @pin_order_value)
-      if has_pending_status?
+      @has_pending_status = params[:status] == "pending"
+      @has_completed_status = params[:status] == "completed"
+
+      if @has_pending_status
         unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
         @has_pinned_books = @reading_log.books.pending.pinned.exists?
-      elsif has_completed_status?
+      elsif @has_completed_status
         unpinned_ordered_books = @reading_log.ordered_books.complete.unpinned
         @has_pinned_books = @reading_log.books.complete.pinned.exists?
       else
@@ -94,9 +97,5 @@ class BooksController < ApplicationController
 
   def has_pending_status?
     params[:status] == "pending"
-  end
-
-  def has_completed_status?
-    params[:status] == "completed"
   end
 end
