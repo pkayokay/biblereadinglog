@@ -24,7 +24,7 @@
             <span class="sm:inline hidden text-neutral-800">Bible Reading Log</span>
           <% end %>
           <div class="flex items-center space-x-2">
-            <% if current_user.confirmed_at.present? %>
+            <% if current_user.confirmed? %>
               <%= link_to root_path, class: "flex space-x-1 py-1.5 px-5 opacity-70 hover:opacity-100 rounded-md" do %>
                 <span>Reading Logs</span>
               <% end %>

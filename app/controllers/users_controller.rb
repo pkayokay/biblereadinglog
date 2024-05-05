@@ -3,19 +3,20 @@ class UsersController < ApplicationController
   end
 
   def email_confirmation
-    redirect_to root_path if current_user.confirmed_at.present?
+    redirect_to root_path if current_user.confirmed?
   end
 
   def verify_email_confirmation_token
-    if current_user.confirmed_at.present?
+    if current_user.confirmed?
       redirect_to root_path
     else
-      @user = User.find_by_token_for(:email_confirmation, params[:token])
+      token_user = User.find_by_token_for(:email_confirmation, params[:token])
 
-      if @user.present?
-        if @user == current_user
+      if token_user.present?
+        if token_user == current_user
           flash[:notice] = "Your email has been confirmed!"
           current_user.update!(confirmed_at: Time.current)
+
           redirect_to root_path
         else
           flash[:alert] = "Email confirmation invalid, please try again."
