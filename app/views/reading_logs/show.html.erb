@@ -28,7 +28,7 @@
 </div>
 
 <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
-  <% if @books.present? || @pinned_books.present? %>
+  <% if @has_no_status %>
     <div id="<%= pinned_books_empty_turbo_frame_id %>" class="">
       <% if @pinned_books.empty? %>
         <%= render "reading_logs/pinned_books_empty" %>
@@ -44,7 +44,9 @@
         <%= render "reading_logs/all_books_header", no_border: @pinned_books.empty? %>
       <% end %>
     </div>
+  <% end %>
 
+  <% if @books.present? || @pinned_books.present? %>
     <div id="<%= unpinned_books_turbo_frame_id %>">
       <% @books.each do |book| %>
         <%= render "books/card", book: book %>

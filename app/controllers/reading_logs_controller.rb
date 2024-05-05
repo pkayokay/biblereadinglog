@@ -73,11 +73,9 @@ class ReadingLogsController < ApplicationController
     @has_no_status = params[:status].blank?
 
     if @has_pending_status
-      @books = @reading_log.ordered_books.pending.unpinned
-      @pinned_books = @reading_log.books.pending.pinned.order(pin_order: :asc)
+      @books = @reading_log.ordered_books.pending
     elsif @has_completed_status
-      @books = @reading_log.ordered_books.complete.unpinned
-      @pinned_books = @reading_log.books.complete.pinned.order(pin_order: :asc)
+      @books = @reading_log.ordered_books.complete
     else
       @books = @reading_log.ordered_books.unpinned
       @pinned_books = @reading_log.books.pinned.order(pin_order: :asc)

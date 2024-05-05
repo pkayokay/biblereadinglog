@@ -12,14 +12,16 @@
       <div class="opacity-50 text-base"><%= book.completed_chapter_percentage %>%</div>
     </div>
   <% end %>
+  <% if @has_no_status %>
     <%= button_to pin_book_reading_log_book_path(book.reading_log, book, status: params[:status]), method: :patch, class: "text-sm group items-center justify-center rounded-md p-2 flex", aria: {label:"Pin Book" } do %>
-    <div class="flex-1 sr-only">
-      <% if book.pin_order.present? %>
-        Unpin
-      <% else %>
-        Pin
-      <% end %>
-    </div>
-    <svg focusable="false" class="<%= book.pin_order.present? ? "group-hover:rotate-0 stroke-yellow-500 fill-yellow-500" : 'group-hover:stroke-yellow-500 group-hover:fill-yellow-500 opacity-20' %> duration-100 group-hover:opacity-100 group-focus-within:rotate-45  group-hover:rotate-45 <%= book.completed_at && book.pin_order.nil? ? 'fill-emerald-700 stroke-emerald-700' : 'fill-neutral-700 stroke-neutral-700' %> cursor-pointer w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="flex-1 sr-only">
+        <% if book.pin_order.present? %>
+          Unpin
+        <% else %>
+          Pin
+        <% end %>
+      </div>
+      <svg focusable="false" class="<%= book.pin_order.present? ? "group-hover:rotate-0 stroke-yellow-500 fill-yellow-500" : 'group-hover:stroke-yellow-500 group-hover:fill-yellow-500 opacity-20' %> duration-100 group-hover:opacity-100 group-focus-within:rotate-45  group-hover:rotate-45 <%= book.completed_at && book.pin_order.nil? ? 'fill-emerald-700 stroke-emerald-700' : 'fill-neutral-700 stroke-neutral-700' %> cursor-pointer w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <% end %>
   <% end %>
 </div>
