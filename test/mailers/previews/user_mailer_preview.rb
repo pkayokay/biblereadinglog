@@ -3,4 +3,8 @@ class UserMailerPreview < ActionMailer::Preview
   def password_reset
     UserMailer.with(user: User.first).password_reset
   end
+
+  def email_confirmation
+    UserMailer.with(user: User.first, token: "12345").email_confirmation
+  end
 end

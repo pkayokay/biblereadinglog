@@ -22,6 +22,12 @@ class User < ApplicationRecord
     password_salt&.last(10)
   end
 
+  generates_token_for :email_confirmation, expires_in: 15.minutes do
+    updated_at
+    # Invalidates old timestamp when user signs-in again via last_sign_in_at update
+    # Invalidates old timestamp when user re-sends email confirmation when a user is touched user.touch
+  end
+
   def has_default_time_zone?
     time_zone == "UTC"
   end
@@ -32,5 +38,9 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def confirmed?
+    confirmed?
   end
 end

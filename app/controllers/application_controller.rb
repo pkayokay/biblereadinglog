@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   def current_user
     Current.user ||= authenticate_user_from_session
   end
+
   helper_method :current_user
 
   def authenticate_user_from_session

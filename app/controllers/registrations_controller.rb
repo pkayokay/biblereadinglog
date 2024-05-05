@@ -10,6 +10,12 @@ class RegistrationsController < ApplicationController
     @user = User.new(registration_params)
     if @user.save
       sign_in(@user)
+
+      UserMailer.with(
+        user: @user,
+        token: @user.generate_token_for(:email_confirmation)
+      ).email_confirmation.deliver_later
+
       redirect_to root_path
     else
       @errors = @user.errors

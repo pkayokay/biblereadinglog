@@ -10,12 +10,19 @@ class ReadingLogsController < ApplicationController
       current_user.reading_logs.pending.order(created_at: :desc)
     end
 
-    unless current_user.reading_logs.exists?
-      redirect_to new_reading_log_path
+    if current_user.confirmed_at.nil?
+      redirect_to email_confirmation_path
+    else
+      unless current_user.reading_logs.exists?
+        redirect_to new_reading_log_path
+      end
     end
   end
 
   def new
+    if current_user.confirmed_at.nil?
+      redirect_to email_confirmation_path
+    end
     set_reading_log_index_breadcrumb
     add_breadcrumb("New")
     @reading_log = ReadingLog.new

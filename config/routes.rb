@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   patch "update_time_zone", to: "users#update_time_zone"
   patch "update_color_theme", to: "users#update_color_theme"
   patch "update_name", to: "users#update_name"
+  get "email_confirmation", to: "users#email_confirmation"
+  get "verify_email_confirmation_token", to: "users#verify_email_confirmation_token", as: :verify_email_confirmation_token
+  post "resend_email_confirmation", to: "users#resend_email_confirmation"
   resource :password_reset
 
   get "admin", to: "base#admin"
