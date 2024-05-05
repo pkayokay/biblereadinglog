@@ -22,6 +22,7 @@ class BooksController < ApplicationController
     if @book.update(pin_order: @pin_order_value)
       @has_pending_status = params[:status] == "pending"
       @has_completed_status = params[:status] == "completed"
+      @has_no_status = params[:status].blank?
 
       if @has_pending_status
         unpinned_ordered_books = @reading_log.ordered_books.pending.unpinned
