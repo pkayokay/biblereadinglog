@@ -22,10 +22,11 @@ class Book < ApplicationRecord
   end
 
   def update_completed_at
-    self.completed_at = if chapters_count == chapters_data.count { |data| data["completed_at"].present? }
-      Time.zone.now
+    if chapters_count == chapters_data.count { |data| data["completed_at"].present? }
+      self.completed_at = Time.zone.now
+      self.pin_order = nil
     else
-      nil
+      self.completed_at = nil
     end
   end
 

@@ -1,25 +1,41 @@
-<div class="<%= book.completed_at ? 'border-emerald-300 bg-emerald-50' : 'focus-within:bg-neutral-50 hover:bg-neutral-50' %>  hover:scale-[102%] shadow-sm focus-within:scale-[102%] border mb-3 rounded-lg duration-100 flex items-center pr-4" id="<%= book_card_container_turbo_frame_id(book) %>">
+<% card_status_class = if book.completed_at
+  'border-emerald-300 bg-emerald-50'
+elsif book.completed_chapters_count > 0
+'border-yellow-400 bg-yellow-50'
+else
+'focus-within:bg-neutral-50 hover:bg-neutral-50' end %>
+<div class="<%= card_status_class %>  hover:scale-[102%] shadow-sm focus-within:scale-[102%] border mb-3 rounded-lg duration-100 flex items-center pr-4" id="<%= book_card_container_turbo_frame_id(book) %>">
   <%= link_to reading_log_book_path(book.reading_log, book), class: "pl-5 pr-2 w-full flex py-3.5 space-x-5" do %>
     <div class="flex items-center">
       <% if book.completed_at %>
         <svg class="w-[23px] h-[23px] stroke-emerald-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+      <% elsif book.completed_chapters_count > 0 %>
+        <svg class="w-[23px] h-[23px] stroke-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
       <% else %>
         <svg class="w-[23px] h-[23px] stroke-neutral-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
       <% end %>
     </div>
     <div class=" flex items-center justify-between w-full text-lg">
       <%= book.name %>
-      <div class="opacity-50 text-base"><%= book.completed_chapter_percentage %>%</div>
+      <div class="opacity-80 text-base"><%= book.completed_chapter_percentage %>%</div>
     </div>
   <% end %>
+  <% if @has_no_status %>
     <%= button_to pin_book_reading_log_book_path(book.reading_log, book, status: params[:status]), method: :patch, class: "text-sm group items-center justify-center rounded-md p-2 flex", aria: {label:"Pin Book" } do %>
-    <div class="flex-1 sr-only">
-      <% if book.pin_order.present? %>
-        Unpin
-      <% else %>
-        Pin
-      <% end %>
-    </div>
-    <svg focusable="false" class="<%= book.pin_order.present? ? "group-hover:rotate-0 stroke-yellow-500 fill-yellow-500" : 'group-hover:stroke-yellow-500 group-hover:fill-yellow-500 opacity-20' %> duration-100 group-hover:opacity-100 group-focus-within:rotate-45  group-hover:rotate-45 <%= book.completed_at && book.pin_order.nil? ? 'fill-emerald-700 stroke-emerald-700' : 'fill-neutral-700 stroke-neutral-700' %> cursor-pointer w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="flex-1 sr-only">
+        <% if book.pin_order.present? %>
+          Unpin
+        <% else %>
+          Pin
+        <% end %>
+      </div>
+      <% color_for_star = if book.completed_at
+        'fill-emerald-700 stroke-emerald-700'
+      elsif book.completed_chapters_count > 0
+      'fill-yellow-700 stroke-yellow-700'
+      else
+      'fill-neutral-700 stroke-neutral-700' end %>
+      <svg focusable="false" class="<%= book.pin_order.present? ? "group-hover:rotate-0 !stroke-yellow-500 !fill-yellow-500" : 'group-hover:stroke-yellow-500 group-hover:fill-yellow-500 opacity-20' %> <%= color_for_star %> duration-100 group-hover:opacity-100 group-focus-within:rotate-45  group-hover:rotate-45 cursor-pointer w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <% end %>
   <% end %>
 </div>
