@@ -41,6 +41,6 @@ class User < ApplicationRecord
   end
 
   def confirmed?
-    confirmed?
+    confirmed_at.present?
   end
 end
