@@ -1,2 +1,11 @@
-<h1>Email Confirmation</h1>
-<p><%= params[:token] %></p>
+<h1>Confirm your email address to get started</h1>
+<div>
+  <p>Thanks for signing up to Bible Reading Log. To get started, please confirm that <span style="font-weight:500"><%= params[:user].email %></span> is your email address by clicking the link below.</p>
+  <%= link_to "Confirm Email Adress", verify_email_confirmation_token_url(token: params[:token]) %>
+</div>
+<br>
+<div>
+  <p>You can also copy and paste the link directly in your browser, make sure you are signed in.</p>
+  <%= link_to verify_email_confirmation_token_url(token: params[:token]), verify_email_confirmation_token_url(token: params[:token]) %>
+</div>
+
