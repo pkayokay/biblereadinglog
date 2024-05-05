@@ -23,7 +23,9 @@ class User < ApplicationRecord
   end
 
   generates_token_for :email_confirmation, expires_in: 15.minutes do
-    last_sign_in_at
+    updated_at
+    # Invalidates old timestamp when user signs-in again via last_sign_in_at update
+    # Invalidates old timestamp when user re-sends email confirmation when a user is touched user.touch
   end
 
   def has_default_time_zone?

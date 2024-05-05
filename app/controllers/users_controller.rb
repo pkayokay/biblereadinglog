@@ -5,6 +5,18 @@ class UsersController < ApplicationController
   def email_confirmation
   end
 
+  def resend_email_confirmation
+    flash[:notice] = "Email confirmation sent!"
+    current_user.touch # Invalidate previous token
+
+    UserMailer.with(
+      user: current_user,
+      token: current_user.generate_token_for(:email_confirmation)
+    ).email_confirmation.deliver_later
+
+    redirect_to email_confirmation_path
+  end
+
   def update_password
     if current_user.update(password_params)
       redirect_to account_path, notice: "Password updated!"
