@@ -5,15 +5,15 @@
 
 @layer base {
   .form-input {
-    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .form-select {
-    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .btn {
-    @apply transition-colors w-full cursor-pointer rounded-md text-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-2 px-4;
+    @apply transition-colors w-full cursor-pointer rounded-md text-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-1.5 px-4;
   }
 
   .btn--slim {

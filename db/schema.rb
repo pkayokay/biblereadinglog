@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_190904) do
     t.datetime "completed_at"
     t.index ["chapters_data"], name: "index_books_on_chapters_data"
     t.index ["completed_at"], name: "index_books_on_completed_at"
-    t.index ["pin_order", "reading_log_id"], name: "index_books_on_pin_order_and_reading_log_id", unique: true
     t.index ["position", "reading_log_id"], name: "index_books_on_position_and_reading_log_id", unique: true
     t.index ["reading_log_id", "name"], name: "index_books_on_reading_log_id_and_name", unique: true
     t.index ["slug", "reading_log_id"], name: "index_books_on_slug_and_reading_log_id", unique: true
