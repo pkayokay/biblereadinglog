@@ -88,5 +88,5 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  config.session_store :cookie_store, expire_after: 10.minutes
+  config.session_store :cookie_store, expire_after: 1.month
 end
