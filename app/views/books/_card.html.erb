@@ -4,8 +4,8 @@ elsif book.completed_chapters_count > 0
 'border-yellow-400 bg-yellow-50'
 else
 'focus-within:bg-neutral-50 hover:bg-neutral-50' end %>
-<div class="<%= card_status_class %>  hover:scale-[102%] shadow-sm focus-within:scale-[102%] border mb-3 rounded-lg duration-100 flex items-center pr-4" id="<%= book_card_container_turbo_frame_id(book) %>">
-  <%= link_to reading_log_book_path(book.reading_log, book), class: "pl-5 pr-2 w-full flex py-3.5 space-x-5" do %>
+<div class="<%= card_status_class %>  hover:scale-[102%] shadow-sm focus-within:scale-[102%] border mb-3 rounded-lg duration-100 flex items-center <%= 'pr-4' if @has_no_status %>" id="<%= book_card_container_turbo_frame_id(book) %>">
+  <%= link_to reading_log_book_path(book.reading_log, book), class: "#{@has_no_status ? 'pr-2' : 'pr-5'} pl-5 w-full flex py-3.5 space-x-5" do %>
     <div class="flex items-center">
       <% if book.completed_at %>
         <svg class="w-[23px] h-[23px] stroke-emerald-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
