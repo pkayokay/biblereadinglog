@@ -3,14 +3,11 @@
     <%= render(HeadingComponent.new(title: @reading_log.name)) %>
     <span class="text-base opacity-50">Started on <%= format_date(@reading_log.created_at, false) %></span>
   </div>
-  <%= link_to settings_reading_log_path(@reading_log), class: "btn w-auto btn--slim  flex items-center space-x-1.5 pl-2.5" do %>
-    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-    <span>Settings</span>
-  <% end %>
+
 </div>
 <%= render "upcoming_reminder" %>
 
-<div class="flex justify-end">
+<div class="flex justify-between">
   <div
     data-controller="dropdown"
     data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
@@ -30,8 +27,8 @@
       </div>
       <svg class="w-4 h-4 opacity-60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
     </button>
-    <div data-dropdown-target="menu" class="text-sm hidden absolute top-5 right-0 z-10 mt-5 flex">
-      <div class="bg-white shadow-sm rounded-md border overflow-hidden w-40">
+    <div data-dropdown-target="menu" class="text-sm hidden absolute top-5 left-0 z-10 mt-5 flex">
+      <div class="bg-white shadow-sm rounded-md border overflow-hidden w-[160px]">
         <%= link_to reading_log_path(@reading_log), class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
           <span class="group-hover:opacity-100 opacity-60 w-full">All Books</span>
         <% end %>
@@ -44,6 +41,10 @@
       </div>
     </div>
   </div>
+  <%= link_to settings_reading_log_path(@reading_log), class: "ml-3 btn w-auto btn--slim !text-sm flex items-center space-x-1.5 pl-2.5" do %>
+    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+    <span>Settings</span>
+  <% end %>
 </div>
 <div class="hidden mt-6 sm:space-x-2 mb-4 flex justify-start items-start flex-col sm:flex-row">
   <%= link_to reading_log_path(@reading_log), class: "rounded-full w-full #{'btn btn--primary' if @has_no_status } btn btn--slim !text-sm space-x-2 sm:space-x-0 sm:w-[124px] flex items-center sm:justify-between justify-start space-x-2.5 sm:space-x-0 text-nowrap" do %>
