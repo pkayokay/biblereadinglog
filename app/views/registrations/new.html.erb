@@ -1,35 +1,66 @@
-<%= render(AuthHeaderComponent.new(title: "Welcome!", subtitle: "Sign up to Bible Reading Log")) %>
+<% if params[:code]&.downcase == "jesus" %>
+  <%= render(AuthHeaderComponent.new(title: "Welcome!", subtitle: "Sign up to Bible Reading Log")) %>
 
-<%= render(FormWrapperComponent.new) do |form_card| %>
-  <%= form_with model: @user, url: sign_up_path, data: { controller: "time-zone" } do |form| %>
-    <%= render(FormErrorsComponent.new(errors: @errors)) %>
-    <%= form.hidden_field :time_zone, data: {time_zone_target: "timeZoneField"} %>
-    <div class="flex justify-between space-x-3">
+  <%= render(FormWrapperComponent.new) do |form_card| %>
+    <%= form_with model: @user, url: sign_up_path, data: { controller: "time-zone" } do |form| %>
+      <%= render(FormErrorsComponent.new(errors: @errors)) %>
+      <%= form.hidden_field :time_zone, data: {time_zone_target: "timeZoneField"} %>
+      <div class="flex justify-between space-x-3">
+        <%= render(FieldContainerComponent.new) do %>
+          <%= render(LabelComponent.new(for_attribute: "first_name", form: form)) %>
+          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "first_name", required: true)) %>
+        <% end %>
+        <%= render(FieldContainerComponent.new) do %>
+          <%= render(LabelComponent.new(for_attribute: "last_name", form: form)) %>
+          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "last_name", required: true)) %>
+        <% end %>
+      </div>
       <%= render(FieldContainerComponent.new) do %>
-        <%= render(LabelComponent.new(for_attribute: "first_name", form: form)) %>
-        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "first_name", required: true)) %>
+        <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
+        <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
       <% end %>
       <%= render(FieldContainerComponent.new) do %>
-        <%= render(LabelComponent.new(for_attribute: "last_name", form: form)) %>
-        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "last_name", required: true)) %>
+        <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
+        <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true)) %>
       <% end %>
-    </div>
-    <%= render(FieldContainerComponent.new) do %>
-      <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
-      <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
+      <%= render(FieldContainerComponent.new) do %>
+        <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
+        <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true)) %>
+      <% end %>
+      <%= form.submit "Sign up", class: "btn btn--primary" %>
     <% end %>
-    <%= render(FieldContainerComponent.new) do %>
-      <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
-      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password", required: true)) %>
-    <% end %>
-    <%= render(FieldContainerComponent.new) do %>
-      <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
-      <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true)) %>
-    <% end %>
-    <%= form.submit "Sign up", class: "btn btn--primary" %>
-  <% end %>
 
-  <% form_card.with_footer do  %>
-    <%= link_to "Have an account? Sign in", sign_in_path, class: "" %>
+    <% form_card.with_footer do  %>
+      <%= link_to "Have an account? Sign in", sign_in_path, class: "" %>
+    <% end %>
   <% end %>
+<% else %>
+  <%= render(AuthHeaderComponent.new(title: "Bible Reading Log", subtitle: "Invite-only while in beta.")) %>
+  <div class="">
+    <% if params[:success] == "true" %>
+      <div class="text-center mb-8">
+        <p class="mb-5">Thank you for signing up! Expect to receive an email soon.</p>
+        <%= link_to "biblereadinglog.com", "https://biblereadinglog.com", class: "underline" %>
+      </div>
+    <% else %>
+      <p class="text-center mb-8">If you would like to request an invitation, please provide your email address.</p>
+      <form class="max-w-sm mx-auto" action="https://submit-form.com/U2vDzdNUk">
+        <input
+          type="hidden"
+          name="_redirect"
+          value="<%= sign_up_url(success: true) %>"
+        />
+        <input type="hidden" name="_append" value="false" />
+        <div class="mb-5">
+          <label for="name" class="opacity-70 block font-medium text-sm">Name</label>
+          <input type="text" name="name" required class="form-input">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="opacity-70 block font-medium text-sm">Email</label>
+          <input type="email" name="email" required class="form-input">
+        </div>
+        <input type="submit" value="Submit" class="btn btn--primary"/>
+      </form>
+    <% end %>
+  </div>
 <% end %>
