@@ -1,4 +1,4 @@
-<% if Rails.env.production? && params[:code]&.downcase == "jesus" %>
+<% if !Rails.env.production? || params[:code]&.downcase == "jesus" %>
   <%= render(AuthHeaderComponent.new(title: "Welcome!", subtitle: "Sign up to Bible Reading Log")) %>
 
   <%= render(FormWrapperComponent.new) do |form_card| %>
