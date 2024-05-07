@@ -90,4 +90,17 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.session_store :cookie_store, expire_after: 1.month
   config.action_mailer.default_url_options = {host: "my.biblereadinglog.com"}
+
+  # SMTP2GO.com - https://www.smtp2go.com/setupguide/rubyonrails/
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "mail.smtp2go.com",
+    port: 2525,
+    domain: "biblereadinglog.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["SMTP2GO_USERNAME"],
+    password: ENV["SMTP2GO_PASSWORD"]
+  }
 end
