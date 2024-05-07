@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: :verify_email_confirmation_token
+
   def account
   end
 
@@ -7,25 +9,33 @@ class UsersController < ApplicationController
   end
 
   def verify_email_confirmation_token
-    if current_user.confirmed?
-      redirect_to root_path
-    else
-      token_user = User.find_by_token_for(:email_confirmation, params[:token])
+    if user_signed_in?
+      if current_user.confirmed?
+        redirect_to root_path
+      else
+        if params[:token]
+          token_user = User.find_by_token_for(:email_confirmation, params[:token])
+          if token_user.present?
+            if token_user == current_user
+              flash[:notice] = "Your email has been confirmed!"
+              current_user.update!(confirmed_at: Time.current)
 
-      if token_user.present?
-        if token_user == current_user
-          flash[:notice] = "Your email has been confirmed!"
-          current_user.update!(confirmed_at: Time.current)
-
-          redirect_to root_path
+              redirect_to root_path
+            else
+              flash[:alert] = "Email confirmation invalid, please try again."
+              redirect_to email_confirmation_path
+            end
+          else
+            flash[:alert] = "Email confirmation invalid, please try again."
+            redirect_to email_confirmation_path
+          end
         else
-          flash[:alert] = "Email confirmation invalid, please try again."
           redirect_to email_confirmation_path
         end
-      else
-        flash[:alert] = "Email confirmation invalid, please try again."
-        redirect_to email_confirmation_path
       end
+    else
+      flash[:alert] = "You must be signed in to confirm your email."
+      redirect_to sign_in_path
     end
   end
 
