@@ -10,6 +10,6 @@ class UserMailer < ApplicationMailer
 
   def email_confirmation
     return if skip_email?
-    mail to: params[:user].email, subject: "Confirm Your Email Address for Bible Reading Log"
+    mail to: params[:user].email, subject: "Confirm Your Email Address"
   end
 end
