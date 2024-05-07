@@ -8,6 +8,6 @@
   <br>
   <div>
     <p>You can also copy and paste the link directly in your browser.</p>
-    <p><%= verify_email_confirmation_token_url(token: params[:token]) %></p>
+    <%= link_to verify_email_confirmation_token_url(token: params[:token]), verify_email_confirmation_token_url(token: params[:token]) %>
   </div>
 </div>
