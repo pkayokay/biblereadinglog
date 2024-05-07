@@ -12,8 +12,8 @@
     data-controller="dropdown"
     data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
     class="inline-block relative ">
-    <button data-action="dropdown#toggle:stop" class="space-x-1.5 justify-center pr-2.5 flex items-center btn text-sm ">
-      <div class="flex items-center space-x-2">
+    <button data-action="dropdown#toggle:stop" class="space-x-2 justify-center pl-3 pr-2.5 flex items-center btn text-sm ">
+      <div class="flex items-center space-x-3">
         <% if @has_completed_status %>
           <svg class="stroke-emerald-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
           <span class="">Completed</span>
@@ -25,17 +25,20 @@
           <span class="">All Books</span>
         <% end %>
       </div>
-      <svg class="w-4 h-4 opacity-60" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="w-4 h-4 opacity-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div data-dropdown-target="menu" class="text-sm hidden absolute top-5 left-0 z-10 mt-5 flex">
-      <div class="bg-white shadow-sm rounded-md border overflow-hidden w-[160px]">
-        <%= link_to reading_log_path(@reading_log), class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+      <div class="bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
+        <%= link_to reading_log_path(@reading_log), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+          <svg class="w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
           <span class="group-hover:opacity-100 opacity-60 w-full">All Books</span>
         <% end %>
-        <%= link_to reading_log_path(@reading_log, status: "pending"), class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+        <%= link_to reading_log_path(@reading_log, status: "pending"), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+          <svg class="stroke-yellow-600  w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
           <span class="group-hover:opacity-100 opacity-60 w-full">In Progress</span>
         <% end %>
-        <%= link_to reading_log_path(@reading_log, status: "completed"), class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+        <%= link_to reading_log_path(@reading_log, status: "completed"), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
+          <svg class="stroke-emerald-600 w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
           <span class="group-hover:opacity-100 opacity-60 w-full">Completed</span>
         <% end %>
       </div>
