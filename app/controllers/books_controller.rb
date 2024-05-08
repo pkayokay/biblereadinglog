@@ -83,7 +83,7 @@ class BooksController < ApplicationController
       if @book.completed_at_previously_changed?
         if @book.completed_at.present?
           @completed_status = "complete"
-          flash.now[:notice] = "Congrats, you read the entire book! 🎉"
+          flash.now[:notice] = "Congrats, you finished the book! 🎉"
         else
           @completed_status = "incomplete"
         end
