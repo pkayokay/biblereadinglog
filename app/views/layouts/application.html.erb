@@ -15,6 +15,14 @@
     <% if @skip_turbo_cache_control == true %>
       <meta name="turbo-cache-control" content="no-cache">
     <% end %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: "Rubik", system-ui;
+      }
+    </style>
   </head>
 
   <body class="<%= "md:mt-16 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'}" if user_signed_in? %>">
@@ -42,7 +50,7 @@
               data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
               class="inline-block relative">
               <button data-action="dropdown#toggle:stop" class="ml-1 h-10 w-10  bg-neutral-400 rounded-full text-white">
-                <span class="uppercase font-medium"><%= current_user.initials %></span>
+                <span class="uppercase"><%= current_user.initials %></span>
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
                 <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-45">
