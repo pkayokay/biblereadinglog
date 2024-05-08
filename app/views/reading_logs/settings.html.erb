@@ -10,7 +10,7 @@
           <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
         <% end %>
         <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 mb-5 sm:mb-3 sm:justify-between flex-col sm:flex-row">
-          <p class="font-medium text-subheading">Reminders</p>
+          <p class="font-semibold text-subheading">Reminders</p>
           <%= render "upcoming_reminder" %>
         </div>
         <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
@@ -55,7 +55,7 @@
   <% end %>
 </div>
 <div class="border-t mt-8 pt-8">
-  <p class="font-medium text-subheading">Delete Reading Log</p>
+  <p class="font-semibold text-subheading">Delete Reading Log</p>
   <p class="opacity-70 mt-2 mb-5">This will permanently delete the reading log.</p>
   <%= button_to "Delete Reading Log", reading_log_path, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this?"},class: "btn w-auto btn--slim" %>
 </div>
