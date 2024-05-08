@@ -7,7 +7,7 @@
         <% if breadcrumbs.length > 0 && index == 0 %>
           <span class="hidden sm:inline text-neutral-400 -ml-1 mr-2">/</span>
         <% end %>
-        <% crumb_name = crumb.name.length > 62 ? "#{crumb.name.slice(0..62)}..." : "#{crumb.name}"%>
+        <% crumb_name = crumb.name.length > 46 ? "#{crumb.name.slice(0..46)}..." : "#{crumb.name}"%>
         <% if crumb.link? %>
           <%= link_to crumb.path, class: "breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-60 font-medium' : 'opacity-100'} " do %><% if is_back_breadcrumb %><span class="inline sm:hidden">&larr; </span><% else %><% end %><%= crumb_name %><% end %>
         <% else %>
