@@ -11,11 +11,11 @@
   </div>
 </div>
 <div class="space-x-2 mb-3 flex justify-start">
-  <%= link_to root_path, class: "rounded-full #{'btn btn--primary' unless @has_completed_status} btn btn--slim !text-sm w-full xs:w-auto flex items-center space-x-1.5 text-nowrap" do %>
+  <%= link_to root_path, class: "#{'btn btn--primary' unless @has_completed_status} btn btn--slim !text-sm w-full xs:w-auto flex items-center space-x-1.5 text-nowrap" do %>
     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
     <span>Reading Logs</span>
   <% end %>
-  <%= link_to  root_path(status: 'completed'), class: "rounded-full #{'btn btn--primary bg-emerald-100 text-emerald-800 !border-emerald-400 hover:bg-emerald-200 focus:!border-emerald-400' if @has_completed_status} btn btn--slim !text-sm w-full xs:w-auto flex items-center space-x-1.5 text-nowrap" do %>
+  <%= link_to  root_path(status: 'completed'), class: "#{'bg-emerald-50 text-emerald-800 !border-emerald-400 hover:bg-emerald-100 focus:!border-emerald-400' if @has_completed_status} btn btn--slim !text-sm w-full xs:w-auto flex items-center space-x-1.5 text-nowrap" do %>
     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
     <span>Completed</span>
   <% end %>
