@@ -1,5 +1,5 @@
 <% if !Rails.env.production? || params[:code]&.downcase == "jesus" %>
-  <%= render(AuthHeaderComponent.new(title: "Welcome!", subtitle: "Sign up to Bible Reading Log")) %>
+  <%= render(AuthHeaderComponent.new(title: "Welcome!", description: "Sign up to Bible Reading Log")) %>
 
   <%= render(FormWrapperComponent.new) do |form_card| %>
     <%= form_with model: @user, url: sign_up_path, data: { controller: "time-zone" } do |form| %>
