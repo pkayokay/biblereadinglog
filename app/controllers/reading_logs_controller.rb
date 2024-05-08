@@ -23,8 +23,10 @@ class ReadingLogsController < ApplicationController
     if current_user.confirmed_at.nil?
       redirect_to email_confirmation_path
     end
-    set_reading_log_index_breadcrumb
-    add_breadcrumb("New")
+    if current_user.reading_logs.exists?
+      set_reading_log_index_breadcrumb
+      add_breadcrumb("New")
+    end
     @reading_log = ReadingLog.new
   end
 
