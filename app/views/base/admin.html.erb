@@ -9,53 +9,45 @@
 </style>
 
 
-<div class="8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-2xl font-semibold leading-6 text-gray-900">Users (<%= User.count %>)</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of all the users.</p>
-    </div>
-    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <button type="button" class="block rounded-md bg-black px-3 py-2 text-center text-sm font-medium text-white shadow-sm hover:bg-neutral-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-600">Add user</button>
-    </div>
-  </div>
-  <div class="mt-8 flow-root">
-    <div class=" -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <div class="overflow-hidden border ring-black ring-opacity-5 rounded-lg">
-          <table class="min-w-full divide-y divide-gray-300">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last Sign In</th>
-                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                  <span class="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200 bg-white">
-              <% User.order(created_at: :asc).each do |user| %>
-                <tr>
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= user.full_name %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= user.email %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= format_date(user.created_at) %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= format_date(user.last_sign_in_at) %></td>
-                  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <a href="#" class="text-neutral-600 hover:text-neutral-900">Edit<span class="sr-only">, <%= user.full_name %></span></a>
-                  </td>
-                </tr>
-              <% end %>
-
-              <!-- More people... -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mb-2">
+  <%= render(HeadingComponent.new(title: "Users (#{User.count})")) %>
 </div>
+<table class="min-w-full divide-y divide-gray-300">
+  <thead>
+    <tr>
+      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Name</th>
+      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
+      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
+      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
+      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Reading Logs</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200 bg-white">
+    <% User.order(created_at: :asc).each do |user| %>
+      <tr class="text-base hover:bg-neutral-50 group cursor-pointer duration-100 <%= 'border-emerald-100 bg-emerald-50' if user.is_admin %>">
+        <td class="py-2 whitespace-nowrap px-3">
+          <div class=""><%= user.email %></div>
+        </td>
+        <td class="whitespace-nowrap px-3">
+          <div class=""><%= user.full_name %></div>
+        </td>
+        <td class="whitespace-nowrap px-3">
+          <div class=""><%= user.created_at.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
+          <div class="text-sm opacity-50"><%= time_ago_in_words(user.created_at) %> ago</div>
+        </td>
+        <td class="py-2 whitespace-nowrap px-3">
+          <% if user.last_sign_in_at %>
+            <div class=""><%= user.last_sign_in_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
+            <div class="text-sm opacity-50"><%= time_ago_in_words(user.last_sign_in_at) %> ago</div>
+          <% end %>
+        </td>
+        <td class="whitespace-nowrap px-3">
+          <div class=""><%= user.reading_logs.count %></div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <div class="hidden ">
   <h1 class="font-bold text-4xl mb-2">Admin</h1>
