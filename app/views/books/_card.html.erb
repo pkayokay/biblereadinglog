@@ -16,8 +16,11 @@ else
       <% end %>
     </div>
     <div class=" flex items-center justify-between w-full text-lg">
-      <%= book.name %>
-      <div class="opacity-80 text-base"><%= book.completed_chapter_percentage %>%</div>
+      <div><%= book.name %></div>
+      <div class="opacity-80 flex items-center space-x-4">
+        <div class="text-base"><%= book.completed_chapter_percentage %>%</div>
+        <div class="opacity-60 text-xs"><%= book.completed_chapters_count %>/<%= book.chapters_count %></div>
+      </div>
     </div>
   <% end %>
   <% if @has_no_status %>
