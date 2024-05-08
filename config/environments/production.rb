@@ -90,7 +90,7 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.session_store :cookie_store, expire_after: 1.month
   config.action_mailer.default_url_options = {host: "my.biblereadinglog.com"}
-  config.log_file_size = 500.megabytes
+  # config.log_file_size = 500.megabytes
 
   # SMTP2GO.com - https://www.smtp2go.com/setupguide/rubyonrails/
   config.action_mailer.raise_delivery_errors = false
