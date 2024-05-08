@@ -108,5 +108,9 @@ module ApplicationHelper
   def unpinned_books_empty_turbo_frame_id
     "unpinned-books-empty"
   end
+
+  def completed_banner_turbo_frame_id
+    "completed-book"
+  end
 end
 

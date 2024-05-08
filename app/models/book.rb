@@ -44,8 +44,8 @@ class Book < ApplicationRecord
   scope :in_old_testament, -> { where(position: ..39)}
   scope :in_new_testament, -> { where(position: 40..)}
 
-  def completed_all_chapters?
-    completed_chapters_count == chapters_count
+  def completed?
+    completed_at.present?
   end
 
   def completed_chapter_percentage

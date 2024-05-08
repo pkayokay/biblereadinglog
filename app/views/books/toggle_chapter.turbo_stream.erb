@@ -17,3 +17,11 @@
 <%= turbo_stream.update "flash" do %>
   <%= render "shared/flash" %>
 <% end %>
+
+<% if @completed_status == "complete" %>
+  <%= turbo_stream.update completed_banner_turbo_frame_id do %>
+    <%= render "book_completed_banner" %>
+  <% end %>
+<% elsif @completed_status == "incomplete" %>
+  <%= turbo_stream.update completed_banner_turbo_frame_id, nil %>
+<% end %>

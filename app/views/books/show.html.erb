@@ -1,4 +1,9 @@
 <div class="mx-auto">
+  <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
+    <% if @book.completed? %>
+      <%= render "book_completed_banner" %>
+    <% end %>
+  <% end %>
   <%= render(HeadingComponent.new(title: @book.name)) %>
   <div class="flex flex-col">
     <div class="w-full flex-1 mb-10">
