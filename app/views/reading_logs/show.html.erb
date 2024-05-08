@@ -14,7 +14,7 @@
     class="inline-block relative ">
     <button
       data-action="dropdown#toggle:stop"
-      class="<%= '' if @has_completed_status %> <%= '' if @has_pending_status %> space-x-2 justify-center pl-3 pr-2.5 flex items-center btn text-sm ">
+      class="<%= '' if @has_completed_status %> <%= '' if @has_pending_status %> space-x-2 justify-center pl-3 pr-2.5 flex items-center btn">
       <div class="flex items-center space-x-3">
         <% if @has_completed_status %>
           <svg class="stroke-emerald-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
@@ -29,7 +29,7 @@
       </div>
       <svg class="w-4 h-4 opacity-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
     </button>
-    <div data-dropdown-target="menu" class="text-sm hidden absolute top-5 left-0 z-10 mt-5 flex">
+    <div data-dropdown-target="menu" class="hidden absolute top-7 left-0 z-10 mt-5 flex">
       <div class="bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
         <%= link_to reading_log_path(@reading_log), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-neutral-100 items-center", data: { dropdown_target: "menuItem"} do %>
           <svg class="w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <%= link_to settings_reading_log_path(@reading_log), class: "ml-3 btn btn--primary w-auto btn--slim !text-sm flex items-center space-x-1.5 pl-2.5" do %>
+  <%= link_to settings_reading_log_path(@reading_log), class: "ml-3 btn btn--primary w-auto btn--slim flex items-center space-x-1.5 pl-2.5" do %>
     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
     <span>Settings</span>
   <% end %>
