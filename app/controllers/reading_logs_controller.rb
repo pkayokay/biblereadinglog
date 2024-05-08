@@ -23,15 +23,18 @@ class ReadingLogsController < ApplicationController
     if current_user.confirmed_at.nil?
       redirect_to email_confirmation_path
     end
+
+    add_breadcrumb("New Reading Log")
     if current_user.reading_logs.exists?
-      set_reading_log_index_breadcrumb
-      add_breadcrumb("New")
+      @back_button_values = {
+        path: root_path,
+        text: "Reading Logs"
+      }
     end
     @reading_log = ReadingLog.new
   end
 
   def update
-    set_reading_log_index_breadcrumb
     set_reading_log_show_breadcrumb
     set_reading_log_settings_breadcrumb
 
@@ -67,7 +70,11 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
-    set_reading_log_index_breadcrumb
+    @back_button_values = {
+      path: root_path,
+      text: "Reading Logs"
+    }
+
     set_reading_log_show_breadcrumb(with_link: false)
 
     @has_pending_status = params[:status] == "pending"
@@ -87,7 +94,10 @@ class ReadingLogsController < ApplicationController
   end
 
   def settings
-    set_reading_log_index_breadcrumb
+    @back_button_values = {
+      path: reading_log_path(@reading_log),
+      text: @reading_log.name,
+    }
     set_reading_log_show_breadcrumb
     set_reading_log_settings_breadcrumb
   end
@@ -131,10 +141,6 @@ class ReadingLogsController < ApplicationController
     @books_data = JSON.parse(File.read('./public/books.json'))
     @old_testament_books_data = @books_data.slice(0,39)
     @new_testament_books_data = @books_data.slice(39,66)
-  end
-
-  def set_reading_log_index_breadcrumb
-    add_breadcrumb("Reading Logs", root_path)
   end
 
   def set_reading_log_show_breadcrumb(with_link: true)
