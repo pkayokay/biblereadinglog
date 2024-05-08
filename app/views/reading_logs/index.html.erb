@@ -31,7 +31,7 @@
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-medium sm:pl-0 max-w-[1d00px]">
                 <span class="pl-3">Name</span>
               </th>
-              <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium hidden xs:block">Books</th>
+              <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium ">Books</th>
               <th scope="col" class="px-3 py-3.5 text-left font-medium">Started</th>
               <% if @has_completed_status %>
                 <th scope="col" class="px-3 py-3.5 text-left font-medium">Completed</th>
@@ -48,7 +48,7 @@
                       <% end %>
                     </div>
                   </td>
-                  <td class="whitespace-nowrap px-3 hidden xs:table-cell">
+                  <td class="whitespace-nowrap px-3 ">
                     <div class="opacity-50"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></div>
                   </td>
                   <td class="whitespace-nowrap px-3 opacity-50">
