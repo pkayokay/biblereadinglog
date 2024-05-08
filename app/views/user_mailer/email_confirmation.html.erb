@@ -1,13 +1,12 @@
-<h1>Confirm Your Email Address</h1>
 <div>
-  <div>
-    <p>Hey <%= params[:user].first_name %>,</p>
-    <p>Thanks for signing up. Please confirm that <span style="font-weight:500"><%= params[:user].email %></span> is your email address.</p>
-    <%= link_to "Confirm Email Address", verify_email_confirmation_token_url(token: params[:token]) %>
-  </div>
+  Hey <%= params[:user].first_name %>,
   <br>
-  <div>
-    <p>You can also copy and paste the link directly in your browser.</p>
-    <%= link_to verify_email_confirmation_token_url(token: params[:token]), verify_email_confirmation_token_url(token: params[:token]) %>
-  </div>
+  <br>
+  Thanks for signing up. Please take a second to make sure we have your correct email address.
+  <br>
+  <br>
+  <%= link_to "Confirm Email Address", verify_email_confirmation_token_url(token: params[:token]) %>
+  <br>
+  <br>
+  If you didn't request this email, you can safely ignore it.
 </div>
