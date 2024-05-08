@@ -23,5 +23,7 @@ module Biblereadinglog
     #
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join("services")
+  
+    config.session_store :cookie_store, expire_after: 1.month
   end
 end
