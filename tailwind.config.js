@@ -18,7 +18,10 @@ module.exports = {
         'heading': ['2.1rem','2.25rem'],
         'breadcrumbs': ['0.95rem'],
         'subheading': ['1.35rem','2.25rem']
-      }
+      },
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],

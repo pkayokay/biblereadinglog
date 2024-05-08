@@ -9,9 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
 
-  <body class="<%= 'md:-mt-2 pt-20 md:pt-24 pb-14' if user_signed_in? %>">
+  <body class="<%= 'md:-mt-2 pt-20 md:pt-24 pb-14' if user_signed_in? %> font-sans">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
