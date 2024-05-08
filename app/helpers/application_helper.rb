@@ -63,7 +63,7 @@ module ApplicationHelper
     return "" if datetime_value.nil?
 
     if full
-      datetime_value.in_time_zone(current_user.time_zone).strftime('%A %_m/%-e at %l:%M %p')
+      datetime_value.in_time_zone(current_user.time_zone).strftime('%A %m/%-e at %l:%M %p')
     else
       datetime_value.in_time_zone(current_user.time_zone).strftime("%B %d, %Y")
     end
