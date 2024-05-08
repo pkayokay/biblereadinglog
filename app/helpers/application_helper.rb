@@ -65,7 +65,12 @@ module ApplicationHelper
     if full
       datetime_value.in_time_zone(current_user.time_zone).strftime('%A %_m/%-e at %l:%M %p')
     else
-      datetime_value.in_time_zone(current_user.time_zone).strftime("%B %_d, %Y")
+      datetime_value = datetime_value.in_time_zone(current_user.time_zone)
+      if Time.current.in_time_zone(current_user.time_zone).year == datetime_value.year
+        datetime_value.strftime("%A %B %_d")
+      else
+        datetime_value.strftime("%A %B %_d, %Y")
+      end
     end
   end
 
