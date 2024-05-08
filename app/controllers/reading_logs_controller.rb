@@ -23,8 +23,13 @@ class ReadingLogsController < ApplicationController
     if current_user.confirmed_at.nil?
       redirect_to email_confirmation_path
     end
+
+    add_breadcrumb("New Reading Log")
     if current_user.reading_logs.exists?
-      add_breadcrumb("New Reading Log")
+      @back_button_values = {
+        path: root_path,
+        text: "Reading Logs"
+      }
     end
     @reading_log = ReadingLog.new
   end
@@ -65,6 +70,11 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
+    @back_button_values = {
+      path: root_path,
+      text: "Reading Logs"
+    }
+
     set_reading_log_show_breadcrumb(with_link: false)
 
     @has_pending_status = params[:status] == "pending"
@@ -84,6 +94,10 @@ class ReadingLogsController < ApplicationController
   end
 
   def settings
+    @back_button_values = {
+      path: reading_log_path(@reading_log),
+      text: @reading_log.name,
+    }
     set_reading_log_show_breadcrumb
     set_reading_log_settings_breadcrumb
   end

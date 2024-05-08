@@ -10,12 +10,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="<%= 'pt-24 pb-14' if user_signed_in? %>">
+  <body class="<%= 'md:-mt-2 pt-20 md:pt-24 pb-14' if user_signed_in? %>">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <nav class="bg-white z-50 border-b mb-5 fixed w-full top-0 left-0">
+      <nav class="bg-white z-50 border-b fixed w-full top-0 left-0">
         <div class="w-full px-4 py-2.5 flex mx-auto justify-between items-center">
           <div class="flex items-center space-x-4">
             <%= link_to root_path, class: "flex space-x-2 items-center text-lg text-nowrap font-medium text-neutral" do %>
@@ -66,7 +66,12 @@
           </div>
         </div>
       </nav>
-      <main data-turbo-prefetch="false" class="p-5 pt-4 mx-auto w-full max-w-3xl">
+      <main data-turbo-prefetch="false" class="p-5 mx-auto w-full max-w-3xl">
+        <% if @back_button_values %>
+          <%= link_to @back_button_values[:path], class: "inline-block md:hidden mb-8 text-lg hover:underline" do %>
+            &larr; <%= @back_button_values[:text]  %>
+          <% end %>
+        <% end %>
         <%= yield %>
       </main>
     <% else  %>
