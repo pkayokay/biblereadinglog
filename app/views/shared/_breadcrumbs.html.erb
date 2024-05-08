@@ -9,7 +9,7 @@
         <% end %>
         <% crumb_name = crumb.name.length > 46 ? "#{crumb.name.slice(0..46)}..." : "#{crumb.name}"%>
         <% if crumb.link? %>
-          <%= link_to crumb.path, class: "breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-60 font-medium' : 'opacity-100'} " do %><% if is_back_breadcrumb %><span class="inline sm:hidden">&larr; </span><% else %><% end %><%= crumb_name %><% end %>
+          <%= link_to crumb.path, class: "hover:underline breadcrumb-link #{crumb == breadcrumbs.last ? 'opacity-60 font-medium' : 'opacity-100'} " do %><% if is_back_breadcrumb %><span class="inline sm:hidden">&larr; </span><% else %><% end %><%= crumb_name %><% end %>
         <% else %>
           <span class="opacity-50"><%= crumb_name %></span>
         <% end %>

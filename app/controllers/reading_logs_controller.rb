@@ -24,7 +24,7 @@ class ReadingLogsController < ApplicationController
       redirect_to email_confirmation_path
     end
     if current_user.reading_logs.exists?
-      add_breadcrumb("New")
+      add_breadcrumb("New Reading Log")
     end
     @reading_log = ReadingLog.new
   end
