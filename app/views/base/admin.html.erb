@@ -12,42 +12,44 @@
 <div class="mb-2">
   <%= render(HeadingComponent.new(title: "Users (#{User.count})")) %>
 </div>
-<table class="min-w-full divide-y divide-gray-300">
-  <thead>
-    <tr>
-      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Name</th>
-      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
-      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
-      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
-      <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Reading Logs</th>
-    </tr>
-  </thead>
-  <tbody class="divide-y divide-gray-200 bg-white">
-    <% User.order(created_at: :asc).each do |user| %>
-      <tr class="text-base hover:bg-neutral-50 group cursor-pointer duration-100 <%= 'border-emerald-100 bg-emerald-50' if user.is_admin %>">
-        <td class="py-2 whitespace-nowrap px-3">
-          <div class=""><%= user.email %></div>
-        </td>
-        <td class="whitespace-nowrap px-3">
-          <div class=""><%= user.full_name %></div>
-        </td>
-        <td class="whitespace-nowrap px-3">
-          <div class=""><%= user.created_at.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
-          <div class="text-sm opacity-50"><%= time_ago_in_words(user.created_at) %> ago</div>
-        </td>
-        <td class="py-2 whitespace-nowrap px-3">
-          <% if user.last_sign_in_at %>
-            <div class=""><%= user.last_sign_in_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
-            <div class="text-sm opacity-50"><%= time_ago_in_words(user.last_sign_in_at) %> ago</div>
-          <% end %>
-        </td>
-        <td class="whitespace-nowrap px-3">
-          <div class=""><%= user.reading_logs.count %></div>
-        </td>
+<div class="pb-4 overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead>
+      <tr>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Name</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Reading Logs</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="divide-y divide-gray-200 bg-white">
+      <% User.order(created_at: :asc).each do |user| %>
+        <tr class="text-base cursor-pointer duration-100 <%= 'border-emerald-100 bg-emerald-50' if user.is_admin %>">
+          <td class="py-2 whitespace-nowrap px-3">
+            <div class=""><%= user.email %></div>
+          </td>
+          <td class="whitespace-nowrap px-3">
+            <div class=""><%= user.full_name %></div>
+          </td>
+          <td class="whitespace-nowrap px-3">
+            <div class=""><%= user.created_at.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
+            <div class="text-sm opacity-50"><%= time_ago_in_words(user.created_at) %> ago</div>
+          </td>
+          <td class="py-2 whitespace-nowrap px-3">
+            <% if user.last_sign_in_at %>
+              <div class=""><%= user.last_sign_in_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
+              <div class="text-sm opacity-50"><%= time_ago_in_words(user.last_sign_in_at) %> ago</div>
+            <% end %>
+          </td>
+          <td class="whitespace-nowrap px-3">
+            <div class=""><%= user.reading_logs.count %></div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <div class="hidden ">
   <h1 class="font-bold text-4xl mb-2">Admin</h1>
