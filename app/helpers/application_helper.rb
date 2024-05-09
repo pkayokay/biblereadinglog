@@ -67,9 +67,9 @@ module ApplicationHelper
     else
       datetime_value = datetime_value.in_time_zone(current_user.time_zone)
       if Time.current.in_time_zone(current_user.time_zone).year == datetime_value.year
-        datetime_value.strftime("%A %B %_d")
+        datetime_value.strftime("%B #{datetime_value.day.ordinalize}")
       else
-        datetime_value.strftime("%A %B %_d, %Y")
+        datetime_value.strftime("%B #{datetime_value.day.ordinalize}, %Y")
       end
     end
   end
