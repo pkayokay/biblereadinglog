@@ -3,6 +3,7 @@ class ReadingLogsController < ApplicationController
   before_action :set_books_data, only: [:new, :create]
 
   def index
+    @skip_turbo_cache_control = true
     @has_completed_status = params[:status] == "completed"
     @reading_logs = if @has_completed_status
       current_user.reading_logs.complete.order(created_at: :desc)
@@ -70,6 +71,7 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
+    @skip_turbo_cache_control = true
     @back_button_values = {
       path: root_path,
       text: "Reading Logs"
