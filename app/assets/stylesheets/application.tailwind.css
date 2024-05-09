@@ -4,6 +4,11 @@
 
 
 @layer base {
+  input[type='password'] {
+    font-family: Verdana;
+    letter-spacing: 0.125em;
+  }
+
   .form-input {
     @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-1.5 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
