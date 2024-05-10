@@ -2,5 +2,6 @@
   "name": "Bible Reading Log",
   "short_name": "Bible Reading Log",
   "start_url": "/",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "display": "standalone"
 }
