@@ -4,5 +4,6 @@
   "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "description": "A simple bible reading tracker."
 }
