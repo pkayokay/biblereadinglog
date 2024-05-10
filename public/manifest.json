@@ -3,5 +3,7 @@
   "short_name": "Bible Reading Log",
   "start_url": "/",
   "orientation": "portrait",
-  "display": "standalone"
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
 }
