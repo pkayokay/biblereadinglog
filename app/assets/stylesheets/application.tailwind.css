@@ -22,7 +22,7 @@
   }
 
   .btn {
-    @apply rounded-md transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-neutral-100 border-neutral-300 shadow-sm py-2 px-4;
+    @apply rounded-md transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-4;
   }
 
   .btn--slim {

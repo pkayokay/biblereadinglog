@@ -9,13 +9,14 @@
           <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
           <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: "")) %>
         <% end %>
-        <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 mb-5 sm:mb-3 sm:justify-between flex-col sm:flex-row">
+        <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 sm:justify-between flex-col sm:flex-row">
           <p class="font-semibold text-subheading">Reminders</p>
           <%= render "upcoming_reminder" %>
         </div>
+        <p class="mb-5">Set up a recurring email notification for your reading log.</p>
         <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
           <%= form.check_box :is_reminder_enabled, { class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->reminder-form#toggleIsReminderEnabled"}} %>
-          <%= render(LabelComponent.new(for_attribute: "is_reminder_enabled", title: "Enable email notifications", form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
+          <%= render(LabelComponent.new(for_attribute: "is_reminder_enabled", title: "Enable Notifications", form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
         <% end %>
 
         <div data-reminder-form-target="reminderSection" class="<%= 'hidden' if !@reading_log.is_reminder_enabled %>">
