@@ -15,12 +15,12 @@
     <% end %>
   </head>
 
-  <body class="<%= "md:mt-20 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'} md:bg-stone-50" if user_signed_in? %> font-sans">
+  <body class="<%= "md:mt-16 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'}" if user_signed_in? %> font-sans">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <nav class="border-b bg-white md:bg-stone-50 md:border-0 z-50 fixed  w-full top-0 left-0">
+      <nav class="border-b bg-white md:border-0d z-50 fixed  w-full top-0 left-0">
         <div class="w-full px-4 py-2.5 flex mx-auto justify-between items-center">
           <div class="flex items-center space-x-4">
             <%= link_to root_path, class: "flex space-x-2 items-center text-lg text-nowrap font-medium text-neutral" do %>
@@ -65,9 +65,9 @@
           </div>
         </div>
       </nav>
-      <main data-turbo-prefetch="false" class="md:bg-white md:border border-stone-100 p-5 md:p-9 md:shadow-lg md:rounded-lg mx-auto w-full max-w-3xl">
+      <main data-turbo-prefetch="false" class="md:bg-white md:dborder border-stone-100 p-5 md:p-9 md:dshadow-lg md:rounded-lg mx-auto w-full max-w-3xl">
         <% if @back_button_values %>
-          <%= link_to @back_button_values[:path], class: "inline-block md:hidden mb-8 text-lg hover:underline" do %>
+          <%= link_to @back_button_values[:path], class: "inline-block md:hidden mb-8 text-base hover:underline" do %>
             &larr; <%= @back_button_values[:text]  %>
           <% end %>
         <% end %>
