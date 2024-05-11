@@ -15,7 +15,7 @@
     <% end %>
   </head>
 
-  <body class="<%= "mt-20 md:mt-24 pb-14 #{@back_button_values ? 'mt-16' : ''}" if user_signed_in? %> font-sans">
+  <body class="<%= "md:mt-24 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'}" if user_signed_in? %> font-sans">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
