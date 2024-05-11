@@ -1,7 +1,7 @@
 <div class='relative md:pt-7'>
   <div class="mb-2 space-y-3 text-center">
     <div class="pr-2 text-center">
-      <%= render(HeadingComponent.new(title: @reading_log.name)) %>
+      <h1 class=text-4xl font-bold"><%= @reading_log.name %></h1>
       <div class="text-sm space-y-1">
         <div class="">Started on <%= format_date(@reading_log.created_at, false) %></div>
         <%= render "upcoming_reminder" %>
