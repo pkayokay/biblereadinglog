@@ -55,7 +55,7 @@ module ApplicationHelper
     elsif current_user.gray?
       {
         line: "bg-neutral-700",
-        square: "shadow-neutral-100 border-neutral-300 bg-neutral-200 hover:!bg-neutral-300",
+        square: "shadow-stone-100 border-neutral-300 bg-neutral-200 hover:!bg-neutral-300",
       }
     end
   end
@@ -67,7 +67,7 @@ module ApplicationHelper
     else
       datetime_value = datetime_value.in_time_zone(current_user.time_zone)
       if Time.current.in_time_zone(current_user.time_zone).year == datetime_value.year
-        datetime_value.strftime("%B #{datetime_value.day.ordinalize}")
+        datetime_value.strftime("%B %_d")
       else
         datetime_value.strftime("%B #{datetime_value.day.ordinalize}, %Y")
       end
