@@ -2,7 +2,7 @@
 <div class="mb-2 flex flex-col sm:flex-row sm:justify-between space-y-3 sm:space-y-0 items-start sm:items-start">
   <div class="pr-2">
     <%= render(HeadingComponent.new(title: @reading_log.name)) %>
-    <span class="">Started on <%= format_date(@reading_log.created_at, false) %></span>
+    <span class="text-sm">Started on <%= format_date(@reading_log.created_at, false) %></span>
   </div>
 
 </div>
