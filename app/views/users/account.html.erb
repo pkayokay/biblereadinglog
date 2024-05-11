@@ -1,3 +1,5 @@
+<% render_title "Account" %>
+
 <%= render(HeadingComponent.new(title: "Account")) %>
 <p class="text-sm"><%= current_user.email %></p>
 <%= render(SideFormWrapperComponent.new(title: "Name", description: "Edit your first and last name.")) do  %>

@@ -1,3 +1,4 @@
+<% render_title "#{@book.name} | #{@reading_log.name}" %>
 <div class="mx-auto">
   <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
     <% if @book.completed? %>

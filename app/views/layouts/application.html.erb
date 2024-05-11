@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bible Reading Log</title>
+    <title>
+      <%= content_for?(:html_title) ? yield(:html_title) : "Bible Reading Log" %>
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
