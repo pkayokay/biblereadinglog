@@ -1,114 +1,117 @@
-
-<div class="mb-2 space-y-3 text-center">
-  <div class="pr-2 text-center">
-    <%= render(HeadingComponent.new(title: @reading_log.name)) %>
-    <div>
-      <span class="text-sm">Started on <%= format_date(@reading_log.created_at, false) %>
-      <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
-      - <span class="text-emerald-600">Reminders enabled</span>
+<div class='relative pt-7'>
+  <div class="mb-2 space-y-3 text-center">
+    <div class="pr-2 text-center">
+      <%= render(HeadingComponent.new(title: @reading_log.name)) %>
+      <div>
+        <span class="text-sm">Started on <%= format_date(@reading_log.created_at, false) %>
+        <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
+        - <span class="text-emerald-600">Reminders enabled</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-between md:justify-center mt-6 mb-7 items-center">
+    <div
+      data-controller="dropdown"
+      data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
+      class="inline-block relative sm:hidden">
+      <button
+        data-action="dropdown#toggle:stop"
+        class="<%= '' if @has_completed_status %> <%= '' if @has_pending_status %> space-x-2 justify-center pl-3.5 pr-2.5 flex items-center btn">
+        <div class="flex items-center space-x-3 text-base">
+          <% if @has_completed_status %>
+            <svg class="stroke-emerald-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <span class="">Completed</span>
+          <% elsif @has_pending_status %>
+            <svg class="stroke-yellow-600  w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
+            <span class="">In Progress</span>
+          <% else %>
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+            <span class="">All Books</span>
+          <% end %>
+        </div>
+        <svg class="w-4 h-4 opacity-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div data-dropdown-target="menu" class="hidden absolute top-7 left-0 z-10 mt-5 flex">
+        <div class="bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
+          <%= link_to reading_log_path(@reading_log), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+            <svg class="w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+            <span class="w-full">All Books</span>
+          <% end %>
+          <%= link_to reading_log_path(@reading_log, status: "pending"), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+            <svg class="stroke-yellow-600  w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
+            <span class="w-full">In Progress</span>
+          <% end %>
+          <%= link_to reading_log_path(@reading_log, status: "completed"), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+            <svg class="stroke-emerald-600 w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <span class="w-full">Completed</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="sm:flex sm:space-x-2 hidden justify-start">
+      <%= link_to reading_log_path(@reading_log), class: "rounded-full w-full #{'btn btn--primary' if @has_no_status } btn px-5 btn--slim flex items-center sm:justify-between justify-start space-x-2.5 text-nowrap" do %>
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+        <span>All Books</span>
       <% end %>
-    </div>
-  </div>
-
-</div>
-
-<div class="flex justify-between mt-6 mb-7 items-center">
-  <div
-    data-controller="dropdown"
-    data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
-    class="inline-block relative sm:hidden">
-    <button
-      data-action="dropdown#toggle:stop"
-      class="<%= '' if @has_completed_status %> <%= '' if @has_pending_status %> space-x-2 justify-center pl-3.5 pr-2.5 flex items-center btn">
-      <div class="flex items-center space-x-3 text-base">
-        <% if @has_completed_status %>
-          <svg class="stroke-emerald-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          <span class="">Completed</span>
-        <% elsif @has_pending_status %>
-          <svg class="stroke-yellow-600  w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
-          <span class="">In Progress</span>
-        <% else %>
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-          <span class="">All Books</span>
+      <div class="flex space-x-2 w-full mt-3 sm:mt-0">
+        <%= link_to reading_log_path(@reading_log, status: "pending"), class: "rounded-full w-full #{'btn btn--primary bg-yellow-50 text-yellow-700 !border-yellow-400 hover:bg-yellow-100 focus:!border-yellow-400' if @has_pending_status} btn px-5 btn--slim flex items-center sm:justify-between justify-start space-x-2.5 text-nowrap" do %>
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
+          <span>In Progress</span>
         <% end %>
-      </div>
-      <svg class="w-4 h-4 opacity-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
-    </button>
-    <div data-dropdown-target="menu" class="hidden absolute top-7 left-0 z-10 mt-5 flex">
-      <div class="bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
-        <%= link_to reading_log_path(@reading_log), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-          <svg class="w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-          <span class="w-full">All Books</span>
-        <% end %>
-        <%= link_to reading_log_path(@reading_log, status: "pending"), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-          <svg class="stroke-yellow-600  w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
-          <span class="w-full">In Progress</span>
-        <% end %>
-        <%= link_to reading_log_path(@reading_log, status: "completed"), class: "space-x-3 group flex rounded-md mx-1 my-1 py-1.5 pl-2.5 pr-4 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-          <svg class="stroke-emerald-600 w-4 h-4 min-h-4 min-w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          <span class="w-full">Completed</span>
+        <%= link_to  reading_log_path(@reading_log, status: 'completed'), class: "rounded-full w-full #{'btn btn--primary bg-emerald-100 text-emerald-800 !border-emerald-400 hover:bg-emerald-200 focus:!border-emerald-400' if @has_completed_status} btn px-5 btn--slim flex items-center sm:justify-between justify-start space-x-2.5 text-nowrap" do %>
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <span>Completed</span>
         <% end %>
       </div>
     </div>
-  </div>
-  <div class="sm:flex sm:space-x-2 hidden justify-start">
-    <%= link_to reading_log_path(@reading_log), class: "rounded-full w-full #{'btn btn--primary' if @has_no_status } btn px-5 btn--slim flex items-center sm:justify-between justify-start space-x-2.5 text-nowrap" do %>
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-      <span>All Books</span>
+    <%= link_to settings_reading_log_path(@reading_log), id: "mobile-settings", class: "md:hidden btn btn--primary w-auto btn--slim flex items-center space-x-2 pl-3 pr-4" do %>
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Settings</span>
     <% end %>
-    <div class="flex space-x-2 w-full mt-3 sm:mt-0">
-      <%= link_to reading_log_path(@reading_log, status: "pending"), class: "rounded-full w-full #{'btn btn--primary bg-yellow-50 text-yellow-700 !border-yellow-400 hover:bg-yellow-100 focus:!border-yellow-400' if @has_pending_status} btn px-5 btn--slim flex items-center sm:justify-between justify-start space-x-2.5 text-nowrap" do %>
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dashed"><path d="M10.1 2.182a10 10 0 0 1 3.8 0"/><path d="M13.9 21.818a10 10 0 0 1-3.8 0"/><path d="M17.609 3.721a10 10 0 0 1 2.69 2.7"/><path d="M2.182 13.9a10 10 0 0 1 0-3.8"/><path d="M20.279 17.609a10 10 0 0 1-2.7 2.69"/><path d="M21.818 10.1a10 10 0 0 1 0 3.8"/><path d="M3.721 6.391a10 10 0 0 1 2.7-2.69"/><path d="M6.391 20.279a10 10 0 0 1-2.69-2.7"/></svg>
-        <span>In Progress</span>
-      <% end %>
-      <%= link_to  reading_log_path(@reading_log, status: 'completed'), class: "rounded-full w-full #{'btn btn--primary bg-emerald-100 text-emerald-800 !border-emerald-400 hover:bg-emerald-200 focus:!border-emerald-400' if @has_completed_status} btn px-5 btn--slim flex items-center sm:justify-between justify-start space-x-2.5 text-nowrap" do %>
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-        <span>Completed</span>
-      <% end %>
-    </div>
+   <%= link_to settings_reading_log_path(@reading_log), class: "hidden md:flex items-center space-x-1.5 md:absolute -right-3 -top-3" do %>
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Settings</span>
+    <% end %>
   </div>
-  <%= link_to settings_reading_log_path(@reading_log), class: "ml-3 btn btn--primary w-auto btn--slim flex items-center space-x-2 pl-3 pr-4" do %>
-    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-    <span>Settings</span>
-  <% end %>
-</div>
 
 
-<div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
-  <% if @has_no_status %>
-    <div id="<%= pinned_books_empty_turbo_frame_id %>" class="">
-      <% if @pinned_books.empty? %>
-        <%= render "reading_logs/pinned_books_empty" %>
-      <% end %>
-    </div>
-    <div id="<%= pinned_books_turbo_frame_id %>">
-      <% @pinned_books.each do |book| %>
-        <%= render "books/card", book: book %>
-      <% end %>
-    </div>
-    <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
-      <% if @has_unpinned_books %>
-        <%= render "reading_logs/all_books_header", no_border: @pinned_books.empty? %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <% if @books.present? || @pinned_books.present? %>
-    <div id="<%= unpinned_books_turbo_frame_id %>">
-      <% @books.each do |book| %>
-        <%= render "books/card", book: book %>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="border bg-[#fdfdfd] border-dashed px-4 py-10 rounded-lg text-center ">
-      <p class="opacity-40 text-lg">
-        <% if @has_pending_status %>
-        You don't have any books in progress.
-        <% elsif @has_completed_status %>
-        You don't have any completed books.
+  <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
+    <% if @has_no_status %>
+      <div id="<%= pinned_books_empty_turbo_frame_id %>" class="">
+        <% if @pinned_books.empty? %>
+          <%= render "reading_logs/pinned_books_empty" %>
         <% end %>
-      </p>
-    </div>
-  <% end %>
+      </div>
+      <div id="<%= pinned_books_turbo_frame_id %>">
+        <% @pinned_books.each do |book| %>
+          <%= render "books/card", book: book %>
+        <% end %>
+      </div>
+      <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
+        <% if @has_unpinned_books %>
+          <%= render "reading_logs/all_books_header", no_border: @pinned_books.empty? %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @books.present? || @pinned_books.present? %>
+      <div id="<%= unpinned_books_turbo_frame_id %>">
+        <% @books.each do |book| %>
+          <%= render "books/card", book: book %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="border bg-[#fdfdfd] border-dashed px-4 py-10 rounded-lg text-center ">
+        <p class="opacity-40 text-lg">
+          <% if @has_pending_status %>
+          You don't have any books in progress.
+          <% elsif @has_completed_status %>
+          You don't have any completed books.
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+</div>
 </div>
 
