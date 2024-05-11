@@ -1,14 +1,16 @@
 class ReadingLogsController < ApplicationController
-  before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
+  before_action :set_reading_log, only: [:update, :show, :row, :settings, :destroy]
   before_action :set_books_data, only: [:new, :create]
 
   def index
     @skip_turbo_cache_control = true
     @has_completed_status = params[:status] == "completed"
-    @reading_logs = if @has_completed_status
-      current_user.reading_logs.complete.order(created_at: :desc)
+    if @has_completed_status
+      @reading_logs = current_user.reading_logs.complete.order(created_at: :desc).limit(10)
+      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: @reading_logs.ids).complete.order(created_at: :desc)
     else
-      current_user.reading_logs.pending.order(created_at: :desc)
+      @reading_logs = current_user.reading_logs.pending.order(created_at: :desc).limit(10)
+      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: @reading_logs.ids).pending.order(created_at: :desc)
     end
 
     if current_user.confirmed_at.nil?
@@ -68,6 +70,10 @@ class ReadingLogsController < ApplicationController
       @errors = @reading_log.errors
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def row
+    redirect_to root_path unless request.headers["Turbo-Frame"].present?
   end
 
   def show

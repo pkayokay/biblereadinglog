@@ -121,5 +121,9 @@ module ApplicationHelper
   def completed_banner_turbo_frame_id
     "completed-book"
   end
+
+  def reading_log_row_turbo_frame_id(reading_log)
+    "row-#{reading_log.id}"
+  end
 end
 

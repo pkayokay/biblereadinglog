@@ -22,8 +22,15 @@
     <span>Completed</span>
   <% end %>
 </div>
-
-<div class="flow-root">
+<% @reading_logs.each do |reading_log| %>
+   <%= render "row", reading_log: reading_log %>
+<% end %>
+<% @lazy_loaded_reading_logs.each do |reading_log| %>
+  <%= turbo_frame_tag reading_log_row_turbo_frame_id(reading_log), src: row_reading_log_path(reading_log), loading: :lazy do %>
+    <div>Loading...</div>
+  <% end %>
+<% end %>
+<div class="hidden flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <% if @reading_logs.present? %>
