@@ -15,7 +15,7 @@
     <% end %>
   </head>
 
-  <body class="<%= 'md:-mt-2 pt-20 md:pt-24 pb-14' if user_signed_in? %> font-sans">
+  <body class="<%= "mt-20 md:mt-24 pb-14 #{@back_button_values ? 'mt-16' : ''}" if user_signed_in? %> font-sans">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
@@ -71,7 +71,7 @@
       </nav>
       <main data-turbo-prefetch="false" class="p-5 mx-auto w-full max-w-2xl">
         <% if @back_button_values %>
-          <%= link_to @back_button_values[:path], class: "inline-block md:hidden -mt-2 mb-8 text-lg hover:underline" do %>
+          <%= link_to @back_button_values[:path], class: "inline-block md:hidden mb-8 text-lg hover:underline" do %>
             &larr; <%= @back_button_values[:text]  %>
           <% end %>
         <% end %>
