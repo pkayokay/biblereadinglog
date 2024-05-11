@@ -1,6 +1,5 @@
 <%= render(HeadingComponent.new(title: "Account")) %>
-
-<p class="opacity-70 text-sm"><%= current_user.email %></p>
+<p class="text-sm"><%= current_user.email %></p>
 <%= render(SideFormWrapperComponent.new(title: "Name", description: "Edit your first and last name.")) do  %>
   <%= form_with model: current_user, url: update_name_path do |form| %>
     <%= render(FormErrorsComponent.new(errors: @name_errors)) %>
