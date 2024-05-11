@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def render_title(title)
     content_for :html_title, title
   end
