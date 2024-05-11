@@ -15,12 +15,12 @@
     <% end %>
   </head>
 
-  <body class="<%= "md:mt-24 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'} md:bg-stone-50" if user_signed_in? %> font-sans">
+  <body class="<%= "md:mt-20 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'} md:bg-stone-50" if user_signed_in? %> font-sans">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <nav class="bg-white z-50 border-b fixed w-full top-0 left-0">
+      <nav class="z-50 fixed w-full top-0 left-0">
         <div class="w-full px-4 py-2.5 flex mx-auto justify-between items-center">
           <div class="flex items-center space-x-4">
             <%= link_to root_path, class: "flex space-x-2 items-center text-lg text-nowrap font-medium text-neutral" do %>
