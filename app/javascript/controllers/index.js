@@ -21,3 +21,6 @@ application.register("reminder-form", ReminderFormController)
 
 import TimeZoneController from "./time_zone_controller"
 application.register("time-zone", TimeZoneController)
+
+import ToggleChapterController from "./toggle_chapter_controller"
+application.register("toggle-chapter", ToggleChapterController)

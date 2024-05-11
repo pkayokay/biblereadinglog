@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :reading_logs, except: :edit do
     resources :books, only: [:show] do
       member do
-        patch "toggle_chapter", to: "books#toggle_chapter"
+        post "toggle_chapter", to: "books#toggle_chapter"
         patch "pin_book", to: "books#pin_book"
       end
     end

@@ -88,8 +88,7 @@ class BooksController < ApplicationController
         end
       end
     else
-      flash[:alert] = "Sorry, something went wrong."
-      redirect_to reading_log_book_path(@reading_log, @book)
+      flash.now[:alert] = "Sorry, something went wrong."
     end
   end
 
