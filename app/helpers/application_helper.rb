@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def render_title(title)
+    content_for :html_title, title
+  end
+
   def render_reminder_time(value)
     Time.parse(value).strftime('%l:%M %p')
   end

@@ -1,3 +1,5 @@
+<% render_title "Books | #{@reading_log.name}" %>
+
 <div class='relative md:pt-12'>
   <div class="hidden md:block -left-3 -top-0 absolute opacity-40">Started on <%= format_date(@reading_log.created_at, false) %></div>
   <%= link_to settings_reading_log_path(@reading_log), class: "hover:opacity-100 opacity-60 hidden md:flex items-center space-x-1.5 md:absolute -right-3 -top-0" do %>
