@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="w-full flex-1">
-      <div class="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-7 lg:grid-cols-8 gap-3">
+      <div class="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 lg:grid-cols-7 gap-3">
         <% @book.chapters_data.each do |chapter_data| %>
           <%= render "book_chapter_square", book: @book, chapter_data: chapter_data %>
         <% end %>
