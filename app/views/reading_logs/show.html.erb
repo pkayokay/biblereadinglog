@@ -1,12 +1,16 @@
 
-<div class="mb-2 flex flex-col sm:flex-row sm:justify-between space-y-3 sm:space-y-0 items-start sm:items-start">
-  <div class="pr-2">
+<div class="mb-2 space-y-3 text-center">
+  <div class="pr-2 text-center">
     <%= render(HeadingComponent.new(title: @reading_log.name)) %>
-    <span class="text-sm">Started on <%= format_date(@reading_log.created_at, false) %></span>
+    <div>
+      <span class="text-sm">Started on <%= format_date(@reading_log.created_at, false) %>
+      <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
+      - Reminders enabled
+      <% end %>
+    </div>
   </div>
 
 </div>
-<%= render "upcoming_reminder" %>
 
 <div class="flex justify-between mt-6">
   <div
