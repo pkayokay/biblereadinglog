@@ -1,6 +1,26 @@
 <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
-  <div class="inline-flex items-center border mb-2 space-x-2  border-stone-400 rounded-md text-sm text-stone-800 bg-stone-100 px-3 py-1">
+  <div class="hidden inline-flex items-center border mb-2 space-x-2  border-stone-400 rounded-md text-sm text-stone-800 bg-stone-100 px-3 py-1">
     <svg class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
     <span>Upcoming reminder <%= render_next_occurrence(@reading_log.reminder_scheduled_at) %></span>
+  </div>
+  <div class="inline-flex items-center border mb-2 space-x-2  border-stone-400 rounded-md text-sm text-stone-800 bg-stone-100 px-3 py-1">
+    <svg class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    <span>Notifying
+      <% if @reading_log.daily? %>
+        <% if @reading_log.reminder_days.count == 7 %>
+        daily at <%= render_reminder_time(@reading_log.reminder_time) %>
+        <% elsif @reading_log.reminder_days.count == 1 %>
+        every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+        <% else %>
+          <% if @reading_log.reminder_days.present? %>
+            On <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+          <% end %>
+        <% end %>
+      <% elsif @reading_log.weekly? %>
+        every <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+      <% elsif @reading_log.monthly? %>
+        monthly on the first <%= @reading_log.reminder_days.map(&:capitalize).join(", ") %> at <%= render_reminder_time(@reading_log.reminder_time) %>
+      <% end %>
+    </span>
   </div>
 <% end %>
