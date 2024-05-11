@@ -2,11 +2,9 @@
   <div class="mb-2 space-y-3 text-center">
     <div class="pr-2 text-center">
       <%= render(HeadingComponent.new(title: @reading_log.name)) %>
-      <div>
-        <span class="text-sm">Started on <%= format_date(@reading_log.created_at, false) %>
-        <% if @reading_log.is_reminder_enabled && @reading_log.reminder_scheduled_at %>
-        - <span class="text-emerald-600">Reminders enabled</span>
-        <% end %>
+      <div class="text-sm space-y-1">
+        <div class="">Started on <%= format_date(@reading_log.created_at, false) %></div>
+        <%= render "upcoming_reminder" %>
       </div>
     </div>
   </div>
