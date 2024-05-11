@@ -7,10 +7,12 @@ class ReadingLogsController < ApplicationController
     @has_completed_status = params[:status] == "completed"
     if @has_completed_status
       @reading_logs = current_user.reading_logs.complete.order(created_at: :desc).limit(10)
-      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: @reading_logs.ids).complete.order(created_at: :desc)
+      ids = @reading_logs.map {|reading_log| reading_log.id}
+      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: ids).complete.order(created_at: :desc)
     else
       @reading_logs = current_user.reading_logs.pending.order(created_at: :desc).limit(10)
-      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: @reading_logs.ids).pending.order(created_at: :desc)
+      ids = @reading_logs.map {|reading_log| reading_log.id}
+      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: ids).pending.order(created_at: :desc)
     end
 
     if current_user.confirmed_at.nil?
