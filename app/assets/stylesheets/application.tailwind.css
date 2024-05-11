@@ -36,7 +36,7 @@
   .field_with_errors .form-input {}
 
   .container--flash {
-    @apply w-full max-w-[90%] xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-[999] text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 top-5 md:top-12 fixed;
+    @apply w-full max-w-[90%] xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-[999] text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 top-5 md:top-14 fixed;
   }
 
   .container--flash.active {
