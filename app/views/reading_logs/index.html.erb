@@ -22,12 +22,24 @@
     <span>Completed</span>
   <% end %>
 </div>
-<%= turbo_frame_tag reading_logs_turbo_frame_id do %>
-  <%= render @reading_logs %>
+
+<% if @reading_logs.present? %>
+  <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
+    <%= render @reading_logs %>
+  <% end %>
+  <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
+    src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]),
+    loading: :lazy %>
+<% else %>
+  <div class="mx-4 sm:mx-0 mt-8 border border-dashed px-4 py-10 rounded-lg text-lg text-center">
+    <% if @has_completed_status %>
+    <p class="opacity-50">You don't have any completed reading logs.</p>
+    <% else %>
+    <p class="opacity-50">You don't have any reading logs in progress.</p>
+    <% end %>
+  </div>
 <% end %>
-<%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
-  src: root_path(format: :turbo_stream, page: @pagy.next),
-  loading: :lazy %>
+
 
 <div class="hidden flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
