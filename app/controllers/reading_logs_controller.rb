@@ -72,10 +72,6 @@ class ReadingLogsController < ApplicationController
     end
   end
 
-  def row
-    redirect_to root_path unless request.headers["Turbo-Frame"].present?
-  end
-
   def show
     @skip_turbo_cache_control = true
     @back_button_values = {
