@@ -4,12 +4,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["bookList"];
 
-  connect() {
-  }
-
-  toggleCheck(e) {
-    console.log(e.target.checked)
-    if (e.target.checked) {
+  toggleRadio(e) {
+    if (e.target.value === "true") {
       this.bookListTarget.classList.add("hidden")
     } else {
       this.bookListTarget.classList.remove("hidden")
