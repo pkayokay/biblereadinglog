@@ -13,7 +13,7 @@
         <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 sm:justify-between flex-col sm:flex-row">
           <p class="font-semibold text-subheading">Reminders</p>
         </div>
-        <p class="mb-5">Set up a recurring email notification for your reading log.</p>
+        <p class="mb-5">Set up a recurring email notifications for your reading log.</p>
         <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
           <%= form.check_box :is_reminder_enabled, { class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->reminder-form#toggleIsReminderEnabled"}} %>
           <%= render(LabelComponent.new(for_attribute: "is_reminder_enabled", title: "Enable Notifications", form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
