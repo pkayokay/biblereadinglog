@@ -14,9 +14,10 @@
         <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
         <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
       <% end %>
+      <small class="mb-4 block md:hidden mt-1 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles, etc.</small>
       <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary md:w-auto" %>
     </div>
-    <small class="mb-4 block mt-1 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles, etc.</small>
+    <small class="mb-4 hiden md:block mt-1 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles, etc.</small>
     <div data-controller="book-selection">
       <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
         <%= form.check_box :is_entire_bible, class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->book-selection#toggleCheck"} %>
