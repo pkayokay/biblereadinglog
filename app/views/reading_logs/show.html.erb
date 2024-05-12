@@ -10,7 +10,7 @@
     <h1 class="font-bold text-4xl"><%= @reading_log.name %></h1>
     <%= render "upcoming_reminder" %>
   </div>
-  <div class="flex md:justify-center justify-between mb-7 items-center">
+  <div class="flex justify-center mb-7 items-center w-full">
     <div
       data-controller="dropdown"
       data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
