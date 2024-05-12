@@ -38,8 +38,13 @@
 							 <% book_activity = user.books.order(updated_at: :desc).first.updated_at %>
               <% reading_log_activity = user.reading_logs.order(updated_at: :desc).first.updated_at %>
 							 <div class="">Book - <%= book_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
-              <div class="">Log - <%= reading_log_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
-            <% end %>
+                <div class="text-sm opacity-50"><%= time_ago_in_words(book_activity) %> ago</div>
+       
+
+<div class="">Log - <%= reading_log_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
+              <div class="text-sm opacity-50"><%= time_ago_in_words(reading_log_activity) %> ago</div>
+       
+<% end %>
           </td>
           <td class="whitespace-nowrap px-3">
             <div class=""><%= user.reading_logs.count %></div>
