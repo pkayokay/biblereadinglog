@@ -36,7 +36,7 @@
 	        <td class="py-2 whitespace-nowrap px-3">
             <% if user.reading_logs.exists? %>
 							 <% book_activity = user.books.order(updated_at: :desc).first.updated_at %>
-              <% reading_log_activity = user.reading_logs.order(updated_at: :desc).first.updated_at
+              <% reading_log_activity = user.reading_logs.order(updated_at: :desc).first.updated_at %>
 							 <div class=""><%= book_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
               <div class=""><%= reading_log_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
             <% end %>
