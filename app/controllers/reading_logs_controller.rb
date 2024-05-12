@@ -6,13 +6,9 @@ class ReadingLogsController < ApplicationController
     @skip_turbo_cache_control = true
     @has_completed_status = params[:status] == "completed"
     if @has_completed_status
-      @reading_logs = current_user.reading_logs.complete.order(created_at: :desc).limit(10)
-      ids = @reading_logs.map {|reading_log| reading_log.id}
-      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: ids).complete.order(created_at: :desc)
+      @pagy, @reading_logs = pagy(current_user.reading_logs.complete.order(created_at: :desc), items: 10)
     else
-      @reading_logs = current_user.reading_logs.pending.order(created_at: :desc).limit(10)
-      ids = @reading_logs.map {|reading_log| reading_log.id}
-      @lazy_loaded_reading_logs = current_user.reading_logs.where.not(id: ids).pending.order(created_at: :desc)
+      @pagy, @reading_logs = pagy(current_user.reading_logs.pending.order(created_at: :desc), items: 10)
     end
 
     if current_user.confirmed_at.nil?

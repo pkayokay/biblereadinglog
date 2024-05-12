@@ -124,8 +124,12 @@ module ApplicationHelper
     "completed-book"
   end
 
-  def reading_log_row_turbo_frame_id(reading_log)
-    "row-#{reading_log.id}"
+  def reading_logs_turbo_frame_id
+    "reading_logs"
+  end
+
+  def reading_logs_pagination_turbo_frame_id
+    "reading_logs_pagination"
   end
 end
 
