@@ -1,9 +1,11 @@
-<%= turbo_stream.append reading_logs_turbo_frame_id do %>
-  <%= render @reading_logs %>
-<% end %>
+<% if @pagy.count > @item_count %>
+  <%= turbo_stream.append reading_logs_turbo_frame_id do %>
+    <%= render @reading_logs %>
+  <% end %>
 
-<% if @pagy.next.present? %>
-  <%= turbo_stream.replace reading_logs_pagination_turbo_frame_id do %>
-    <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id, src: root_path(format: :turbo_stream, page: @pagy.next), loading: :lazy %>
+  <% if @pagy.next.present? %>
+    <%= turbo_stream.replace reading_logs_pagination_turbo_frame_id do %>
+      <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id, src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]), loading: :lazy %>
+    <% end %>
   <% end %>
 <% end %>
