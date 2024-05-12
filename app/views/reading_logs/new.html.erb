@@ -17,8 +17,8 @@
       <small class="mb-4 block md:hidden -mt-2 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles, etc.</small>
       <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary md:w-auto" %>
     </div>
-    <small class="mb-4 hidden md:block mt-1 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles, etc.</small>
-    <div data-controller="book-selection">
+    <small class="hidden md:block mt-1 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles, etc.</small>
+    <div data-controller="book-selection" class="mt-4">
       <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
         <%= form.check_box :is_entire_bible, class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->book-selection#toggleCheck"} %>
         <%= render(LabelComponent.new(for_attribute: "is_entire_bible", title: "Include every book in the Bible", form: form, custom_classes: "!font-normal cursor-pointer ml-3 !text-base" )) %>
