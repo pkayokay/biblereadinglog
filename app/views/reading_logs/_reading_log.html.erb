@@ -12,7 +12,7 @@
       <span class="opacity-40 text-sm"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></span>
     </div>
     <% if @has_completed_status %>
-      <div class="opacity-60 text-sm">Completed <%= reading_log.completed_at&.strftime("%B %-d, %Y") %></div>
+      <div class="opacity-40 text-sm">Completed <%= reading_log.completed_at&.strftime("%B %-d, %Y") %></div>
     <% end %>
   </div>
 <% end %>
