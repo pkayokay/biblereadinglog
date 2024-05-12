@@ -1,5 +1,5 @@
 class ReadingLogsController < ApplicationController
-  before_action :set_reading_log, only: [:update, :show, :row, :settings, :destroy]
+  before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
   before_action :set_books_data, only: [:new, :create]
 
   def index
