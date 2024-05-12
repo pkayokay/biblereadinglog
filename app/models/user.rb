@@ -10,7 +10,8 @@ class User < ApplicationRecord
   normalizes :last_name, with: ->(last_name) { last_name.strip }
 
   has_many :reading_logs, dependent: :destroy
-
+  has_many :books, through: :reading_logs
+  
   enum color_theme: {
     green: 0,
     red: 1,

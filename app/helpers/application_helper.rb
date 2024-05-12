@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def render_title(title)
     content_for :html_title, title
   end
@@ -120,6 +122,14 @@ module ApplicationHelper
 
   def completed_banner_turbo_frame_id
     "completed-book"
+  end
+
+  def reading_logs_turbo_frame_id
+    "reading_logs"
+  end
+
+  def reading_logs_pagination_turbo_frame_id
+    "reading_logs_pagination"
   end
 end
 

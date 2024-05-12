@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root "reading_logs#index"
 
   resources :reading_logs, except: :edit do
+    member do
+      get "row"
+    end
     resources :books, only: [:show] do
       member do
         post "toggle_chapter", to: "books#toggle_chapter"

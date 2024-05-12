@@ -8,11 +8,11 @@
       <span>New Reading Log</span>
     <% end %>
   </div>
-  <div class="mb-8">
+  <div class="mb-7">
     <p class="">A list of all your reading logs including their name, books, and started or completed date.</p>
   </div>
 </div>
-<div class="space-x-2.5 mb-3 flex justify-start">
+<div class="space-x-2.5 mb-5 flex justify-start">
   <%= link_to root_path, class: "#{'btn btn--primary' unless @has_completed_status} rounded-full px-4 !text-sm  btn btn--slim w-auto flex items-center space-x-2 text-nowrap" do %>
     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-align-justify"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
     <span>Reading Logs</span>
@@ -23,7 +23,33 @@
   <% end %>
 </div>
 
-<div class="flow-root">
+<% if @reading_logs.present? %>
+  <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
+    <%= render @reading_logs %>
+  <% end %>
+	<div class="infinite-scroll">
+    <style>
+		  .infinite-scroll turbo-frame[loading="lazy"]:empty {
+			  margin-top: -80px; /* lazy load offset */
+			  display: block;
+			}
+		</style>
+	  <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
+	    src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]),
+	    loading: :lazy %>
+	</div>
+<% else %>
+  <div class="mx-4 sm:mx-0 mt-8 border border-dashed px-4 py-10 rounded-lg text-lg text-center">
+    <% if @has_completed_status %>
+    <p class="opacity-50">You don't have any completed reading logs.</p>
+    <% else %>
+    <p class="opacity-50">You don't have any reading logs in progress.</p>
+    <% end %>
+  </div>
+<% end %>
+
+
+<div class="hidden flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <% if @reading_logs.present? %>
