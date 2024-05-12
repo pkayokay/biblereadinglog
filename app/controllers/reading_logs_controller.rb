@@ -5,10 +5,11 @@ class ReadingLogsController < ApplicationController
   def index
     @skip_turbo_cache_control = true
     @has_completed_status = params[:status] == "completed"
-    if @has_completed_status
-      @pagy, @reading_logs = pagy(current_user.reading_logs.complete.order(created_at: :desc), items: 10)
+
+    @pagy, @reading_logs = if @has_completed_status
+      pagy(current_user.reading_logs.complete.order(created_at: :desc), items: 10)
     else
-      @pagy, @reading_logs = pagy(current_user.reading_logs.pending.order(created_at: :desc), items: 10)
+      pagy(current_user.reading_logs.pending.order(created_at: :desc), items: 10)
     end
 
     if current_user.confirmed_at.nil?
