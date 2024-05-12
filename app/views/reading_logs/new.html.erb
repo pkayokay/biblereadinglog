@@ -9,15 +9,11 @@
       <p class="">Add a name for your new reading log and include all or some books of the bible.</p>
     </div>
     <%= render(FormErrorsComponent.new(errors: @errors)) %>
-    <div class="flex flex-col md:flex-row items-start md:items-end md:space-x-3">
-      <%= render(FieldContainerComponent.new(custom_classes: "md:!mb-0 flex-1 w-full md:w-auto")) do %>
-        <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
-        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
-      <% end %>
-      <small class="mb-4 block md:hidden -mt-2 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles.</small>
-      <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary md:w-auto" %>
-    </div>
-    <small class="hidden md:block mt-1 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles.</small>
+    <%= render(FieldContainerComponent.new(custom_classes: "md:!mb-0 flex-1 w-full md:w-auto")) do %>
+      <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
+      <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
+    <% end %>
+    <small class="block mt-0.5 opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles.</small>
     <div data-controller="book-selection" class="mt-4">
       <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
         <%= form.check_box :is_entire_bible, class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->book-selection#toggleCheck"} %>
@@ -25,7 +21,7 @@
       <% end %>
 
       <div data-book-selection-target="bookList" class="<%= 'hidden' if form.object.is_entire_bible? %> mt-8">
-        <p class="mb-4 font-medium text-lg">Select which books to include</p>
+        <p class="mb-4 font-semibold text-xl">Select which books to include</p>
         <%= form.fields_for :selected_books do |selected_book_form| %>
           <div class="flex space-x-1 sm:space-x-16">
             <div>
@@ -48,5 +44,6 @@
         <% end %>
       </div>
     </div>
+    <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary max-w-[200px] w-full mt-3" %>
   <% end %>
 </div>
