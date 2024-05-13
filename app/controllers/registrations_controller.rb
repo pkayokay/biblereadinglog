@@ -17,7 +17,7 @@ class RegistrationsController < ApplicationController
         user: @user,
         token: @user.generate_token_for(:email_confirmation)
       ).email_confirmation.deliver_later
-
+      flash[:notice] = "Welcome!"
       redirect_to root_path
     else
       @errors = @user.errors
