@@ -40,7 +40,7 @@
           </div>
           <div class="flex items-center space-x-2">
             <% if current_user.confirmed? %>
-              <%= link_to root_path, class: "hidden space-x-1 py-1.5 px-5 opacity-70 hover:opacity-100 rounded-md" do %>
+              <%= link_to root_path, class: "space-x-1 py-1.5 px-5 opacity-70 hover:opacity-100 rounded-md" do %>
                 <span>Reading Logs</span>
               <% end %>
             <% end %>
@@ -75,6 +75,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </nav>
       <main data-turbo-prefetch="false" class="md:bg-white md:dborder border-stone-100 p-5 md:p-9 md:dshadow-lg md:rounded-lg mx-auto w-full max-w-3xl">

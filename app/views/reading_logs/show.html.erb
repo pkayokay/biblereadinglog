@@ -50,14 +50,14 @@
         </div>
       </div>
     </div>
-    <div class="flex">
-      <%= link_to reading_log_path(@reading_log), class: "#{'border-b-black' if @has_no_status } flex justify-center items-center text-nowrap border-b-2 py-2 px-3" do %>
+    <div class="flex w-full">
+      <%= link_to reading_log_path(@reading_log), class: "#{'!opacity-100 border-b-black' if @has_no_status } font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
         <span class="">All Books</span>
       <% end %>
-      <%= link_to reading_log_path(@reading_log, status: "pending"), class: "#{'border-b-black' if @has_pending_status} flex justify-center items-center text-nowrap border-b-2 py-2 px-3" do %>
+      <%= link_to reading_log_path(@reading_log, status: "pending"), class: "#{'!opacity-100 border-b-black' if @has_pending_status} font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
         <span class="">In Progress</span>
       <% end %>
-      <%= link_to  reading_log_path(@reading_log, status: 'completed'), class: "#{'border-b-black' if @has_completed_status} flex justify-center items-center text-nowrap border-b-2 py-2 px-3" do %>
+      <%= link_to  reading_log_path(@reading_log, status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
         <span class="">Completed</span>
       <% end %>
     </div>
