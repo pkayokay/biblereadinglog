@@ -34,16 +34,16 @@
             <div>
               <% @old_testament_books_data.map do |book_data| %>
                 <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
-                  <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded" %>
-                  <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-lg text-nowrap font-normal" )) %>
+                  <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded text-neutral-700 focus:ring-neutral-500" %>
+                  <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-base text-nowrap font-normal" )) %>
                 <% end %>
               <% end %>
             </div>
             <div>
               <% @new_testament_books_data.map do |book_data| %>
                 <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
-                  <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded" %>
-                  <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-lg text-nowrap font-normal" )) %>
+                  <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded text-neutral-700 focus:ring-neutral-500" %>
+                  <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-base text-nowrap font-normal" )) %>
                 <% end %>
               <% end %>
             </div>
