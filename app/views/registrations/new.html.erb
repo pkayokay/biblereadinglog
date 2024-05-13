@@ -1,3 +1,5 @@
+<% render_title 'Sign up to Bible Reading Log'%>
+
 <% if !Rails.env.production? || params[:code]&.downcase == "jesus" %>
   <%= render(AuthHeaderComponent.new(title: "Welcome!", description: "Sign up to Bible Reading Log")) %>
 
