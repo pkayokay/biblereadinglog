@@ -7,12 +7,19 @@
     <div class="opacity-40 text-sm"><%= reading_log.created_at.strftime("%B %-d, %Y") %></div>
   </div>
   <div class="text-right">
-    <div class="items-center flex space-x-3.5 justify-end">
-      <span class="text-lg"><%= reading_log.completed_book_percentage %>%</span>
-      <span class="opacity-40 text-sm"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></span>
-    </div>
     <% if @has_completed_status %>
-      <div class="opacity-40 text-sm">Completed <%= reading_log.completed_at&.strftime("%B %-d, %Y") %></div>
+      <div class="items-end flex flex-col justify-end">
+        <div class="flex space-x-3 items-center">
+          <span class="opacity-40 text-sm"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></span>
+          <span class="text-lg"><%= reading_log.completed_book_percentage %>%</span>
+        </div>
+          <div class="opacity-40 text-sm">Completed <%= reading_log.completed_at&.strftime("%B %-d, %Y") %></div>
+      </div>
+    <% else %>
+      <div class="items-end flex flex-col justify-end">
+        <span class="text-lg"><%= reading_log.completed_book_percentage %>%</span>
+        <span class="opacity-40 text-sm"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></span>
+      </div>
     <% end %>
   </div>
 <% end %>
