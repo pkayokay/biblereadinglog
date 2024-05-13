@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './app/views/**/*.html.erb',
@@ -16,6 +18,9 @@ module.exports = {
         'heading': ['1.75rem','2.25rem'],
         'breadcrumbs': ['0.95rem'],
         'subheading': ['1.35rem','2.25rem']
+      },
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
   },
