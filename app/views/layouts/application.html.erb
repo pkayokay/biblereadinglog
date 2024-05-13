@@ -52,7 +52,7 @@
                 <span class="uppercase font-medium"><%= current_user.initials %></span>
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
-                <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-45">
+                <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
                   <%= link_to root_path, class: "group flex rounded-md mx-1.5 mt-2 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
                     <span class="">Reading Logs</span>
                   <% end %>
