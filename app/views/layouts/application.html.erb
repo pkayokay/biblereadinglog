@@ -11,14 +11,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="manifest" href="/manifest.json" />
     <% if @skip_turbo_cache_control == true %>
       <meta name="turbo-cache-control" content="no-cache">
     <% end %>
   </head>
 
-  <body class="<%= "md:mt-16 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'}" if user_signed_in? %> font-sans">
+  <body class="<%= "md:mt-16 pb-14 #{@back_button_values ? 'mt-16' : 'mt-20'}" if user_signed_in? %>">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
