@@ -3,7 +3,7 @@
 class AuthHeaderComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="text-center flex justify-center flex-col items-center mb-5 space-y-2">
-      <span class="text-7xl">📚</span>
+      <%= render "shared/logo", width: '60px' %>
       <h1 class="text-4xl font-bold"><%= @title %></h1>
       <% if @subtitle %>
         <h2 class="text-2xl font-medium"><%= @subtitle %></h1>
