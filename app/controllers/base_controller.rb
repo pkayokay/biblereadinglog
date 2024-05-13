@@ -3,6 +3,9 @@ class BaseController < ApplicationController
     redirect_to root_path unless current_user.is_admin?
   end
 
+  def feedback
+  end
+
   def setup_user
     result = SetupUserService.new(email: params[:email], password: params[:password]).call
 
