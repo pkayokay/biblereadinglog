@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import BookDeletionController from "./book_deletion_controller"
+application.register("book-deletion", BookDeletionController)
+
 import BookSelectionController from "./book_selection_controller"
 application.register("book-selection", BookSelectionController)
 

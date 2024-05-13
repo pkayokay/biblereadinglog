@@ -58,5 +58,5 @@
 <div class="border-t mt-8 pt-8">
   <p class="font-semibold text-subheading">Delete Reading Log</p>
   <p class="opacity-70  mb-5">This will permanently delete the reading log.</p>
-  <%= button_to "Delete", reading_log_path, method: :delete, data: { turbo_confirm: "Are you sure you want to delete this?"},class: "btn w-auto btn--slim" %>
+  <%= button_to "Delete", reading_log_path, method: :delete, data: {turbo: false, controller: "book-deletion", action: "book-deletion#delete"},class: "btn w-auto btn--slim" %>
 </div>
