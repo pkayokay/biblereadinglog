@@ -10,8 +10,7 @@
     <% if @has_completed_status %>
       <div class="items-end flex flex-col justify-end">
         <div class="flex space-x-3 items-center">
-          <span class="opacity-40 text-sm">Read <%= reading_log.completed_books_count %> of <%= reading_log.books_count %></span>
-          <span class="text-lg"><%= reading_log.completed_book_percentage %>%</span>
+          <span class="text-sm">Read <%= reading_log.completed_books_count %> of <%= reading_log.books_count %></span>
         </div>
         <div class="opacity-40 text-sm">Completed <%= reading_log.completed_at&.strftime("%B %-d, %Y") %></div>
       </div>
