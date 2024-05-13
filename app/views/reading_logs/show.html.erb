@@ -2,7 +2,7 @@
 
 <div class='relative md:pt-12'>
   <div class="hidden md:block left-0 -top-0 absolute opacity-40">Started on <%= format_date(@reading_log.created_at, false) %></div>
-  <%= link_to settings_reading_log_path(@reading_log), class: "flex items-center space-x-1.5 absolute right-0 -top-16 md:-top-0 mt-1 md:mt-0" do %>
+  <%= link_to settings_reading_log_path(@reading_log), class: "opacity-40 hover:opacity-100 flex items-center space-x-1.5 absolute right-0 -top-16 md:-top-0 mt-1 md:mt-0" do %>
     <svg aria-label="More" role="img" viewBox="0 0 24 24" class="w-5 h-5" style="--fill: currentColor; --height: 20px; --width: 20px;"><title>More</title><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
     <span>Settings</span>
   <% end %>
