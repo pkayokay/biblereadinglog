@@ -14,15 +14,15 @@
   }
 
   .form-input {
-    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full  !placeholder-neutral-400 !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .form-select {
-    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-md focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .btn {
-    @apply rounded-md transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-4;
+    @apply rounded-lg transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-4;
   }
 
   .btn--slim {
