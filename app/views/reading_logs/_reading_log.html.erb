@@ -1,7 +1,7 @@
 <div class="-mx-5 sm:mx-0 ">
 <%= link_to reading_log_path(reading_log),
   data: { turbo_frame: "_top" },
-  class: "min-h-[75px] space-x-2 flex items-center justify-between py-4 px-5  hover:bg-neutral-50 border-l-2 border-l-transparent w-full truncate whitespace-nowrap" do %>
+  class: "min-h-[75px] space-x-2 flex items-end justify-between py-4 px-5  hover:bg-neutral-50 border-l-2 border-l-transparent w-full truncate whitespace-nowrap" do %>
   <div>
     <p class="font-medium text-lg truncate text-wrap sm:text-nowrap"><%= reading_log.name %></p>
     <% if @has_completed_status %>
@@ -20,7 +20,7 @@
       </div>
     <% else %>
       <div class="flex flex-col items-end">
-        <span class="text-sm"><%= reading_log.completed_book_percentage %>%</span>
+        <span class="text-lg"><%= reading_log.completed_book_percentage %>%</span>
         <div class="text-sm opacity-40">Started on <%= format_on_date(reading_log.created_at) %></div>
       </div>
     <% end %>
