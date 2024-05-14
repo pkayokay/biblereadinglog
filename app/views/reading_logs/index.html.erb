@@ -1,7 +1,7 @@
 <% render_title 'Reading Logs'%>
 
 <div class="">
-  <div class="mb-6 flex items-start space-y-3 sm:space-y-0 sm:justify-between sm:items-center flex-col sm:flex-row">
+  <div class="mb-3 flex items-start space-y-3 sm:space-y-0 sm:justify-between sm:items-center flex-col sm:flex-row">
     <%= render(HeadingComponent.new(title: "Reading Logs")) %>
     <%= link_to new_reading_log_path, class: "btn btn--primary w-auto btn--slim flex items-center space-x-1 pl-1.5" do %>
       <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
@@ -12,11 +12,11 @@
     <p class="">A list of all your reading logs including their name, books, and started or completed date.</p>
   </div>
 </div>
-<div class="flex justify-start">
-  <%= link_to root_path, class: "#{'border-b-black' unless @has_completed_status} flex justify-center items-center text-nowrap border-b-2 pb-2 pt-2 px-3" do %>
+<div class="flex justify-start w-full">
+  <%= link_to root_path, class: "#{'!opacity-100 border-b-black' unless @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
     <span>Started</span>
   <% end %>
-  <%= link_to  root_path(status: 'completed'), class: "#{'border-b-black' if @has_completed_status} flex justify-center items-center text-nowrap border-b-2 pb-2 pt-2 px-3" do %>
+  <%= link_to  root_path(status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
     <span>Completed</span>
   <% end %>
 </div>
@@ -37,7 +37,7 @@
 	    loading: :lazy %>
 	</div>
 <% else %>
-  <div class="mx-4 sm:mx-0 mt-8 border border-dashed px-4 py-10 rounded-lg text-lg text-center">
+  <div class="mx-4 sm:mx-0 mt-8 px-4 py-10 rounded-lg text-lg text-center">
     <% if @has_completed_status %>
     <p class="opacity-50">You don't have any completed reading logs.</p>
     <% else %>
@@ -90,7 +90,7 @@
           </tbody>
         </table>
       <% else %>
-        <div class="mx-4 sm:mx-0 mt-8 border border-dashed px-4 py-10 rounded-lg text-lg text-center">
+        <div class="mx-4 sm:mx-0 mt-8 px-4 py-10 rounded-lg text-lg text-center">
           <% if @has_completed_status %>
           <p class="opacity-50">You don't have any completed reading logs.</p>
           <% else %>
