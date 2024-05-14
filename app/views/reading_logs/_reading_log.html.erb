@@ -4,15 +4,19 @@
   class: "min-h-[75px] space-x-2 flex items-center justify-between py-4 px-5  hover:bg-neutral-50 border-l-2 border-l-transparent w-full truncate whitespace-nowrap" do %>
   <div>
     <p class="font-medium truncate text-wrap sm:text-nowrap"><%= reading_log.name %></p>
-    <span class="opacity-40 text-sm">Read <%= reading_log.completed_books_count %>/<%= reading_log.books_count %> books</span>
+    <% if @has_completed_status %>
+      <div class="text-sm opacity-40">Started <%= reading_log.created_at.strftime("%B %-d") %></div>
+    <% else %>
+      <span class="opacity-40 text-sm">Read <%= reading_log.completed_books_count %>/<%= reading_log.books_count %> books</span>
+    <% end %>
   </div>
   <div class="text-right">
     <% if @has_completed_status %>
       <div class="items-end flex flex-col justify-end">
         <div class="flex space-x-3 items-center">
-          <span class="text-sm"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %> read</span>
+          <span class="text-sm">Read <%= reading_log.completed_books_count %> books</span>
         </div>
-        <div class="opacity-40 text-sm">Completed <%= reading_log.completed_at&.strftime("%B %-d, %Y") %></div>
+        <div class="text-sm opacity-40">Completed <%= reading_log.created_at.strftime("%B %-d") %></div>
       </div>
     <% else %>
       <div class="flex flex-col items-end">
