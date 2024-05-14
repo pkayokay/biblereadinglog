@@ -1,20 +1,18 @@
 <% render_title "Books | #{@reading_log.name}" %>
 
 <div class=''>
-  <div class="text-center md:text-left">
-    <%= render "upcoming_reminder" %>
-  </div>
-  <div class="text-center md:text-left mb-7 space-x-3 flex justify-center md:justify-between items-start">
-    <div class="">
-      <h1 class="text-3xl font-semibold"><%= @reading_log.name %></h1>
-      <% if @reading_log.books_count != 1 %>
-        <div class="text-base opacity-50">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
-      <% end %>
-    </div>
-    <%= link_to settings_reading_log_path(@reading_log), class: "absolute md:relative top-4 right-5 md:right-0 md:top-0 btn !text-base btn--slim flex items-center md:px-4 w-auto" do %>
+  <div class="flex justify-between items-center mb-4 <%= 'justify-end' if @reading_log.books_count != 1 %>">
+    <% if @reading_log.books_count != 1 %>
+      <div class="text-base opacity-50">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
+    <% end %>
+    <%= link_to settings_reading_log_path(@reading_log), class: " btn !text-base btn--slim flex items-center md:px-4 w-auto" do %>
       <svg aria-label="More" role="img" viewBox="0 0 24 24" class="w-5 h-5 inline md:hidden" style="--fill: currentColor; --height: 20px; --width: 20px;"><title>More</title><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
       <span class="sr-only md:not-sr-only">Settings</span>
     <% end %>
+  </div>
+  <div class="text-center mb-7">
+    <%= render "upcoming_reminder" %>
+    <h1 class="text-3xl font-semibold"><%= @reading_log.name %></h1>
   </div>
   <div class="flex mb-7 justify-center items-center">
     <div
