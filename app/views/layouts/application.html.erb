@@ -80,7 +80,7 @@
       </nav>
       <main data-turbo-prefetch="false" class="relative md:bg-white md:dborder border-stone-100 p-5 md:p-9 md:dshadow-lg md:rounded-lg mx-auto w-full max-w-3xl">
         <% if @back_button_values %>
-          <%= link_to @back_button_values[:path], class: "inline-block md:hidden mb-9 text-base hover:underline" do %>
+          <%= link_to @back_button_values[:path], class: "inline-block md:hidden mb-9 text-base underline" do %>
             &larr; <%= @back_button_values[:text]  %>
           <% end %>
         <% end %>
