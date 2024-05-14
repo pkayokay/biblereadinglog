@@ -7,7 +7,7 @@
   <div class="text-center md:text-left mb-5 space-x-3 flex justify-center md:justify-between items-start">
     <div class="">
       <h1 class="text-3xl font-semibold"><%= @reading_log.name %></h1>
-      <% if reading_log.books_count != 1 %>
+      <% if @reading_log.books_count != 1 %>
         <div class="text-base opacity-50">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
       <% end %>
     </div>
