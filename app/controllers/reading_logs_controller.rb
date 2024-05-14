@@ -100,7 +100,7 @@ class ReadingLogsController < ApplicationController
   def settings
     @back_button_values = {
       path: reading_log_path(@reading_log),
-      text: @reading_log.name,
+      text: "Back to #{@reading_log.name}",
     }
     set_reading_log_show_breadcrumb
     set_reading_log_settings_breadcrumb
