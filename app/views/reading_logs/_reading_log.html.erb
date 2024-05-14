@@ -7,14 +7,14 @@
     <% if @has_completed_status %>
       <div class="text-sm opacity-40">Started on <%= format_on_date(reading_log.created_at) %></div>
     <% else %>
-      <span class="opacity-40 text-sm">Read <%= reading_log.completed_books_count %>/<%= pluralize(reading_log.books_count, "book") %></span>
+      <span class="opacity-40 text-sm"><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
     <% end %>
   </div>
   <div class="text-right">
     <% if @has_completed_status %>
       <div class="items-end flex flex-col justify-end">
         <div class="flex space-x-3 items-center">
-          <span class="text-sm">Read <%= pluralize(reading_log.completed_books_count, "book") %></span>
+          <span class="text-sm"><%= reading_log.completed_books_count %></span>
         </div>
         <div class="text-sm opacity-40">Completed on <%= format_on_date(reading_log.created_at) %></div>
       </div>
