@@ -1,8 +1,8 @@
 <% render_title "Books | #{@reading_log.name}" %>
 
 <div class='relative'>
+	<%= render "upcoming_reminder" %>
   <div class="mb-5 space-x-3 flex justify-between items-start">
-    <%= render "upcoming_reminder" %>
     <div class="">
       <%= render(HeadingComponent.new(title: @reading_log.name)) %>
       <div class="text-base opacity-50">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
