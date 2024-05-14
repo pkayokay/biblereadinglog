@@ -3,7 +3,7 @@
   data: { turbo_frame: "_top" },
   class: "min-h-[75px] space-x-2 flex items-end justify-between py-4 px-5  hover:bg-neutral-50 border-l-2 border-l-transparent w-full truncate whitespace-nowrap" do %>
   <div>
-    <p class="font-semibold text-lg truncate text-wrap sm:text-nowrap"><%= reading_log.name %></p>
+    <p class="font-medium text-lg truncate text-wrap sm:text-nowrap"><%= reading_log.name %></p>
     <% if @has_completed_status %>
       <div class="text-sm opacity-40">Started on <%= format_on_date(reading_log.created_at) %></div>
     <% else %>
