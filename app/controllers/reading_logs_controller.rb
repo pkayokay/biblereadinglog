@@ -76,7 +76,7 @@ class ReadingLogsController < ApplicationController
     @skip_turbo_cache_control = true
     @back_button_values = {
       path: root_path,
-      text: "Back"
+      text: "Back to Reading Logs"
     }
 
     set_reading_log_show_breadcrumb(with_link: false)
