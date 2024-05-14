@@ -4,7 +4,7 @@
 	<%= render "upcoming_reminder" %>
   <div class="mb-5 space-x-3 flex justify-between items-start">
     <div class="">
-      <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
+      <h1 class="text-heading font-semibold"><%= @reading_log.name %></h1>
       <div class="text-base opacity-50">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
     </div>
     <%= link_to settings_reading_log_path(@reading_log), class: "btn !text-base btn--slim flex items-center space-x-2 w-auto" do %>
