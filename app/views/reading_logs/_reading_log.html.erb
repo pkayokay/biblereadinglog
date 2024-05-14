@@ -5,7 +5,7 @@
   <div>
     <p class="font-medium truncate text-wrap sm:text-nowrap"><%= reading_log.name %></p>
     <% if @has_completed_status %>
-      <div class="text-sm opacity-40">Started <%= reading_log.created_at.strftime("%B %-d") %></div>
+      <div class="text-sm opacity-40">Started on <%= format_on_date(reading_log.created_at) %></div>
     <% else %>
       <span class="opacity-40 text-sm">Read <%= reading_log.completed_books_count %>/<%= pluralize(reading_log.books_count, "book") %></span>
     <% end %>
@@ -16,12 +16,12 @@
         <div class="flex space-x-3 items-center">
           <span class="text-sm">Read <%= pluralize(reading_log.completed_books_count, "book") %></span>
         </div>
-        <div class="text-sm opacity-40">Completed <%= reading_log.created_at.strftime("%B %-d") %></div>
+        <div class="text-sm opacity-40">Completed on <%= format_on_date(reading_log.created_at) %></div>
       </div>
     <% else %>
       <div class="flex flex-col items-end">
         <span class="text-sm"><%= reading_log.completed_book_percentage %>%</span>
-        <div class="text-sm opacity-40"><%= reading_log.created_at.strftime("%B %-d") %></div>
+        <div class="text-sm opacity-40">Started on <%= format_on_date(reading_log.created_at) %></div>
       </div>
     <% end %>
   </div>

@@ -65,6 +65,16 @@ module ApplicationHelper
       }
     end
   end
+
+  def format_on_date(datetime_value)
+    datetime_value = datetime_value.in_time_zone(current_user.time_zone)
+    if Time.current.in_time_zone(current_user.time_zone).year == datetime_value.year
+      datetime_value.strftime("%B %_d")
+    else
+      datetime_value.strftime("%B #{datetime_value.day.ordinalize}, %Y")
+    end
+  end
+
   def format_date(datetime_value, full = true)
     return "" if datetime_value.nil?
 
