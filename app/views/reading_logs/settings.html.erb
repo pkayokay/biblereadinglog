@@ -15,7 +15,7 @@
         </div>
         <p class="mb-5">Set up a recurring email notifications for your reading log.</p>
         <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
-          <%= form.check_box :is_reminder_enabled, { class: "cursor-pointer w-5 h-5 rounded", data: { action: "change->reminder-form#toggleIsReminderEnabled"}} %>
+          <%= form.check_box :is_reminder_enabled, { class: "text-neutral-700 focus:ring-neutral-500 cursor-pointer w-5 h-5 rounded", data: { action: "change->reminder-form#toggleIsReminderEnabled"}} %>
           <%= render(LabelComponent.new(for_attribute: "is_reminder_enabled", title: "Enable Notifications", form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
         <% end %>
 
@@ -58,5 +58,5 @@
 <div class="border-t mt-8 pt-8">
   <p class="font-semibold text-subheading">Delete Reading Log</p>
   <p class="opacity-70  mb-5">This will permanently delete the reading log.</p>
-  <%= button_to "Delete", reading_log_path, method: :delete, data: {turbo: false, controller: "book-deletion", action: "book-deletion#delete"},class: "btn w-auto btn--slim" %>
+  <%= button_to "Delete", reading_log_path, method: :delete, data: {turbo: false, controller: "book-deletion", action: "book-deletion#delete"},class: "btn btn--danger w-auto btn--slim" %>
 </div>
