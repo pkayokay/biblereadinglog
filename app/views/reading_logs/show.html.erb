@@ -1,7 +1,7 @@
 <% render_title "Books | #{@reading_log.name}" %>
 
 <div class=''>
-  <div class="flex justify-between items-center mb-4 <%= 'justify-end' if @reading_log.books_count != 1 %>">
+  <div class="flex items-center mb-4 <%= @reading_log.books_count == 1 ? 'justify-end absolute md:relative top-4 right-5 md:top-0 md:right-0' : 'justify-between' %>">
     <% if @reading_log.books_count != 1 %>
       <div class="text-base opacity-50">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
     <% end %>
