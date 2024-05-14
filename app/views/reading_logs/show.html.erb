@@ -1,7 +1,10 @@
 <% render_title "Books | #{@reading_log.name}" %>
 
 <div class='relative'>
-  <div class="mb-8">
+  <div class="mb-5">
+    <div class="text-center">
+      <%= render "upcoming_reminder" %>
+    </div>
     <h1 class="font-bold text-4xl"><%= @reading_log.name %></h1>
     <div class="flex items-center justify-between">
       <div class="">Read <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "book") %></div>
@@ -9,7 +12,6 @@
         <span>Settings</span>
       <% end %>
     </div>
-    <%= render "upcoming_reminder" %>
   </div>
   <div class="flex mb-7 justify-center items-center">
     <div
