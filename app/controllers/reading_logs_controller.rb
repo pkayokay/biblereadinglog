@@ -38,6 +38,10 @@ class ReadingLogsController < ApplicationController
   end
 
   def update
+    @back_button_values = {
+      path: reading_log_path(@reading_log),
+      text: "Back to #{@reading_log.name}",
+    }
     set_reading_log_show_breadcrumb
     set_reading_log_settings_breadcrumb
 
