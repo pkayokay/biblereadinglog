@@ -1,8 +1,10 @@
 <%= turbo_stream.remove book_card_container_turbo_frame_id(@book) %>
 
-<% if @has_unpinned_books %>
+<% if @has_pinned_books.present? %>
   <%= turbo_stream.update unpinned_books_empty_turbo_frame_id do %>
-    <%= render "reading_logs/all_books_header", no_border: !@has_pinned_books %>
+    <% if @has_unpinned_books.present? %>
+      <%= render "reading_logs/all_books_header" %>
+    <% end %>
   <% end %>
 <% else %>
   <%= turbo_stream.update unpinned_books_empty_turbo_frame_id, "" %>
