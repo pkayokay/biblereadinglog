@@ -16,7 +16,7 @@
   <%= link_to root_path, class: "#{'!opacity-100 border-b-black' unless @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
     <span>Started</span>
   <% end %>
-  <%= link_to  root_path(status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
+  <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
     <span>Completed</span>
   <% end %>
 </div>

@@ -1,7 +1,7 @@
 <% render_title "Books | #{@reading_log.name}" %>
 
 <div class=''>
-  <div class="flex items-center mb-4 justify-end absolute md:relative top-4 right-5 md:top-0 md:right-0 space-x-3">
+  <div class="flex items-center mb-4 md:justify-between justify-end absolute md:relative top-4 right-5 md:top-0 md:right-0 space-x-3">
     <div class="text-sm opacity-40">Read <%= @reading_log.completed_books_count %> of <%= pluralize(@reading_log.books_count, "book") %></div>
     <%= link_to settings_reading_log_path(@reading_log), class: "btn !text-sm btn--slim flex items-center p-1.5 w-auto" do %>
       <svg aria-label="Settings" role="img" viewBox="0 0 24 24" class="w-5 h-5" style="--fill: currentColor; --height: 20px; --width: 20px;"><title>More</title><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
