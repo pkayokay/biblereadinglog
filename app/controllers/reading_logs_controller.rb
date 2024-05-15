@@ -27,14 +27,10 @@ class ReadingLogsController < ApplicationController
       redirect_to email_confirmation_path
     end
 
-    add_breadcrumb("New Reading Log")
     @reading_log = ReadingLog.new
   end
 
   def update
-    set_reading_log_show_breadcrumb
-    set_reading_log_settings_breadcrumb
-
     @reading_log.assign_attributes(reading_log_params)
     if @reading_log.is_reminder_enabled?
       @reading_log.reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log: @reading_log).call
@@ -69,8 +65,6 @@ class ReadingLogsController < ApplicationController
   def show
     @skip_turbo_cache_control = true
 
-    set_reading_log_show_breadcrumb(with_link: false)
-
     @has_pending_status = params[:status] == "pending"
     @has_completed_status = params[:status] == "completed"
     @has_no_status = params[:status].blank?
@@ -88,8 +82,6 @@ class ReadingLogsController < ApplicationController
   end
 
   def settings
-    set_reading_log_show_breadcrumb
-    set_reading_log_settings_breadcrumb
   end
 
   def destroy
@@ -131,14 +123,6 @@ class ReadingLogsController < ApplicationController
     @books_data = JSON.parse(File.read('./public/books.json'))
     @old_testament_books_data = @books_data.slice(0,39)
     @new_testament_books_data = @books_data.slice(39,66)
-  end
-
-  def set_reading_log_show_breadcrumb(with_link: true)
-    add_breadcrumb(@reading_log.name, with_link ? reading_log_path(@reading_log) : nil)
-  end
-
-  def set_reading_log_settings_breadcrumb
-    add_breadcrumb("Settings")
   end
 
   def handle_reminder_days_value(allowed_params)
