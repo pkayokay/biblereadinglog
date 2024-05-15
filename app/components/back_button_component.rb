@@ -2,7 +2,7 @@
 
 class BackButtonComponent < ViewComponent::Base
   erb_template <<-ERB
-    <%= link_to @path, class: "inline-block text-base hover:underline " + (@include_margin ? 'mb-9' : '')  do %>
+    <%= link_to @path, class: "inline-block text-base hover:underline " + (@include_margin ? 'mb-7' : '')  do %>
       &larr; <%= @title  %>
     <% end %>
   ERB
