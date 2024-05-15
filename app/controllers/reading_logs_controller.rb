@@ -28,12 +28,6 @@ class ReadingLogsController < ApplicationController
     end
 
     add_breadcrumb("New Reading Log")
-    if current_user.reading_logs.exists?
-      @back_button_values = {
-        path: root_path,
-        text: "Back to Reading Logs"
-      }
-    end
     @reading_log = ReadingLog.new
   end
 
@@ -78,10 +72,6 @@ class ReadingLogsController < ApplicationController
 
   def show
     @skip_turbo_cache_control = true
-    @back_button_values = {
-      path: root_path,
-      text: "Back"
-    }
 
     set_reading_log_show_breadcrumb(with_link: false)
 

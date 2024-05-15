@@ -2,14 +2,15 @@
 
 class BackButtonComponent < ViewComponent::Base
   erb_template <<-ERB
-    <%= link_to @path, class: "text-base hover:underline" do %>
+    <%= link_to @path, class: "inline-block text-base hover:underline " + (@include_margin ? 'mb-9' : '')  do %>
       &larr; <%= @title  %>
     <% end %>
   ERB
 
-  def initialize(title: "Back", path:)
+  def initialize(title: "Back", path:, include_margin: false)
     @title = title
     @path = path
+    @include_margin = include_margin
   end
 
 end
