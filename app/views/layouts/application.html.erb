@@ -24,7 +24,7 @@
     <% end %>
   </head>
 
-  <body class="<%= "pb-14 mt-20" if user_signed_in? %>">
+  <body class="<%= "pb-14 #{request.path == root_path || request.path == feedback_path ? 'mt-20' : 'mt-16'}" if user_signed_in? %>">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
@@ -40,7 +40,7 @@
           </div>
           <div class="flex items-center space-x-2">
             <% if current_user.confirmed? %>
-              <%= link_to root_path, class: "hidden xs:inline space-x-1 py-1.5 px-2 opacity-70 hover:opacity-100 rounded-md" do %>
+              <%= link_to root_path, class: "hidden sm:inline space-x-1 py-1.5 px-2 opacity-70 hover:opacity-100 rounded-md" do %>
                 <span>Reading Logs</span>
               <% end %>
             <% end %>
@@ -53,7 +53,7 @@
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
                 <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
-                  <%= link_to root_path, class: "group flex xs:hidden rounded-md mx-1.5 mt-2 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                  <%= link_to root_path, class: "group flex sm:hidden rounded-md mx-1.5 mt-2 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
                     <span class="">Reading Logs</span>
                   <% end %>
                   <%= link_to feedback_path, class: "group flex rounded-md mx-1.5 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
