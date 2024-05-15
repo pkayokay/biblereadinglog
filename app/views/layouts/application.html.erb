@@ -52,19 +52,19 @@
               </button>
               <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
                 <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
-                  <%= link_to root_path, class: "group flex sm:hidden rounded-md mx-1.5 mt-2 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                  <%= link_to root_path, class: "group flex sm:hidden rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
                     <span class="">Reading Logs</span>
                   <% end %>
-                  <%= link_to feedback_path, class: "group flex rounded-md mx-1.5 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                  <%= link_to feedback_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
                     <span class="">Share Feedback</span>
                   <% end %>
-                  <hr class="border-t" />
                   <% if current_user.is_admin? %>
-                    <%= link_to admin_path, class: "group flex rounded-md mx-1.5 mb-2 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                    <%= link_to admin_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
                       <span class="">Admin</span>
                     <% end %>
                   <% end %>
-                  <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-4 flex space-x-3 items-center", form: {class: "group flex rounded-md mx-1.5 my-1.5  hover:bg-stone-100" }, data: { dropdown_target: "menuItem" } do %>
+                  <hr class="border-t" />
+                  <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-4 flex space-x-3 items-center", form: {class: "group flex rounded-md mx-1 my-1.5  hover:bg-stone-100" }, data: { dropdown_target: "menuItem" } do %>
                     <span class="">Log out</span>
                   <% end %>
                 </div>
