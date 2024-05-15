@@ -1,4 +1,6 @@
 <% render_title "#{@book.name} | #{@reading_log.name}" %>
+<%= render(BackButtonComponent.new(title: "Reading Log", path: reading_log_path(@reading_log), include_margin: true)) %>
+
 <div class="mx-auto">
   <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
     <% if @book.completed? %>
