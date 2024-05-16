@@ -29,26 +29,13 @@
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <nav class="w-full">
-        <div class="w-full px-4 py-2.5 flex mx-auto justify-between items-center">
-          <div class="flex items-center space-x-4">
-            <%= link_to root_path, class: "flex space-x-2 items-center text-lg text-nowrap font-medium text-neutral" do %>
-              <%= render "shared/logo" %>
-              <span class="text-neutral-800">Bible Reading Log</span>
-            <% end %>
-          </div>
-          <div class="flex items-center space-x-2">
-            <% if current_user.confirmed? %>
-              <%= link_to root_path, class: "hidden sm:inline space-x-1 py-1.5 px-2 opacity-70 hover:opacity-100 rounded-md" do %>
-                <span>Reading Logs</span>
-              <% end %>
-            <% end %>
-
-          </div>
-
-        </div>
+      <nav class="w-full py-4 px-5">
+        <%= link_to root_path, class: "w-full flex space-x-2 items-center text-lg text-nowrap font-medium text-neutral" do %>
+          <%= render "shared/logo" %>
+          <span class="text-neutral-800">Bible Reading Log</span>
+        <% end %>
       </nav>
-      <main data-turbo-prefetch="false" class="px-8 <%= request.path == root_path ? 'pt-8' : 'py-8' %> flex-1 relative md:bg-white md:border border-gray-200 md:shadow-sm md:rounded-lg mx-auto w-full max-w-2xl">
+      <main data-turbo-prefetch="false" class="px-5 sm:px-8 <%= request.path == root_path ? 'pt-8' : 'py-8' %> flex-1 relative bg-white border-0 sm:border border-gray-200 md:shadow-sm md:rounded-lg mx-auto w-full max-w-2xl">
         <%= yield %>
       </main>
     <% else  %>
