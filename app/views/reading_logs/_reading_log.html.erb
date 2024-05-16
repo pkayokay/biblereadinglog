@@ -16,7 +16,10 @@
         <div class="flex space-x-3 items-center">
           <span class="text-sm"><%= pluralize(reading_log.completed_books_count, "book") %></span>
         </div>
-        <div class="text-sm opacity-40">Completed on <%= format_on_date(reading_log.created_at) %></div>
+        <div class="text-sm flex items-center space-x-1.5 text-emerald-600">
+            <svg class="w-5 h-5 stroke-emerald-600" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="">Completed on <%= format_on_date(reading_log.created_at) %></span>
+          </div>
       </div>
     <% else %>
       <div class="flex flex-col items-end">
