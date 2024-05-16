@@ -2,24 +2,21 @@
 
 <div class="">
   <div class="mb-5 flex items-start space-y-3 sm:space-y-0 sm:justify-between sm:items-center flex-col sm:flex-row">
-    <%= render(HeadingComponent.new(title: "Reading Logs")) %>
+    <h1 class="text-2xl font-semibold">Reading Logs</h1>
     <%= link_to new_reading_log_path, class: "btn btn--primary w-auto btn--slim flex items-center space-x-1 pl-1.5" do %>
       <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
       <span>New Reading Log</span>
     <% end %>
   </div>
-  <div class="mb-6">
-    <p class="">A list of all your reading logs including their name, books, and started or completed date.</p>
-  </div>
 </div>
 <div class="flex justify-start mb-6 space-x-5">
   <%= link_to root_path, class: "#{'!opacity-100 border-red-700 text-red-700
-  ' unless @has_completed_status} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-    <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-1 border-b-2 border-transparent <%= 'border-b-red-700' unless @has_completed_status %>">Started</span>
+  ' unless @has_completed_status} group block text-lg text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+    <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' unless @has_completed_status %>">Started</span>
   <% end %>
   <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
-  ' if @has_completed_status} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-    <span class="group-hover:text-red-700  group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-1 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
+  ' if @has_completed_status} group block text-lg text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+    <span class="group-hover:text-red-700  group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
   <% end %>
 </div>
 
