@@ -24,7 +24,7 @@
     <% end %>
   </head>
 
-  <body class="<%= "pb-14 #{request.path == root_path || request.path == feedback_path ? 'mt-20' : 'mt-16'}" if user_signed_in? %>">
+  <body class="<%= "pb-14 mt-20" if user_signed_in? %>">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
