@@ -11,11 +11,11 @@
 </div>
 <div class="flex justify-start mb-6 space-x-5">
   <%= link_to root_path, class: "#{'!opacity-100 border-red-700 text-red-700
-  ' unless @has_completed_status} group block text-lg text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+  ' unless @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
     <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' unless @has_completed_status %>">Started</span>
   <% end %>
   <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
-  ' if @has_completed_status} group block text-lg text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+  ' if @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
     <span class="group-hover:text-red-700  group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
   <% end %>
 </div>
