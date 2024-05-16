@@ -12,12 +12,14 @@
     <p class="">A list of all your reading logs including their name, books, and started or completed date.</p>
   </div>
 </div>
-<div class="flex justify-start w-full">
-  <%= link_to root_path, class: "#{'!opacity-100 border-b-black' unless @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
-    <span>Started</span>
+<div class="flex justify-start mb-6 space-x-5">
+  <%= link_to root_path, class: "#{'!opacity-100 border-red-700 text-red-700
+  ' unless @has_completed_status} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+    <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-1 border-b-2 border-transparent <%= 'border-b-red-700' unless @has_completed_status %>">Started</span>
   <% end %>
-  <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
-    <span>Completed</span>
+  <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
+  ' if @has_completed_status} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+    <span class="group-hover:text-red-700  group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-1 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
   <% end %>
 </div>
 
@@ -39,7 +41,7 @@
     </div>
   </div>
 <% else %>
-  <div class="mx-4 sm:mx-0 mt-8 px-4 py-10 rounded-lg text-lg text-center">
+  <div class="mx-4 px-4 pt-20 pb-24 rounded-lg text-lg text-center">
     <% if @has_completed_status %>
     <p class="opacity-50">You don't have any completed reading logs.</p>
     <% else %>
