@@ -9,7 +9,7 @@
     <% end %>
   </div>
   <div class="text-center mb-7">
-    <div class="text-sm opacity-40">Read <%= @reading_log.completed_books_count %> of <%= pluralize(@reading_log.books_count, "book") %></div>
+    <div class="text-sm opacity-40"><%= @reading_log.completed_books_count %> of <%= pluralize(@reading_log.books_count, "book") %> read</div>
 
     <h1 class="text-4xl font-bold"><%= @reading_log.name %></h1>
     <%= render "upcoming_reminder" %>
