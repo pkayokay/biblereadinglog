@@ -1,5 +1,5 @@
 <% render_title "Books | #{@reading_log.name}" %>
-<%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path)) do |c|%>
+<%= render(BackButtonComponent.new(title: "Home", path: root_path)) do |c|%>
   <%= c.with_middle_content do %>
     <% if @reading_log.completed? %>
       <div class="text-sm opacity-40 font-medium"><%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></div>
