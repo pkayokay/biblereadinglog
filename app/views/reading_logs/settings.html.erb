@@ -1,4 +1,5 @@
 <% render_title "Settings | #{@reading_log.name}" %>
+<%= render(BackButtonComponent.new(title: "Books", path: reading_log_path(@reading_log), include_margin: true)) %>
 <div class="mb-4">
   <%= render(HeadingComponent.new(title: "Settings")) %>
 </div>

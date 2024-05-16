@@ -2,12 +2,6 @@ class BooksController < ApplicationController
   before_action :set_book
 
   def show
-    @back_button_values = {
-      path: reading_log_path(@reading_log),
-      text: @reading_log.name,
-    }
-    add_breadcrumb(@reading_log.name, reading_log_path(@reading_log))
-    add_breadcrumb(@book.name)
   end
 
   def pin_book

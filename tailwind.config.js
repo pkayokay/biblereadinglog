@@ -16,7 +16,6 @@ module.exports = {
       },
       fontSize: {
         'heading': ['1.75rem','2.25rem'],
-        'breadcrumbs': ['0.95rem'],
         'subheading': ['1.35rem','2.25rem']
       },
       fontFamily: {

@@ -1,5 +1,8 @@
 <% render_title "New Reading Log" %>
 
+<% if current_user.reading_logs.exists? %>
+  <%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path, include_margin: true)) %>
+<% end %>
 <div class="mb-3">
   <%= render(HeadingComponent.new(title: "New Reading Log")) %>
 </div>
