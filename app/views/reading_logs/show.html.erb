@@ -1,68 +1,66 @@
 <% render_title "Books | #{@reading_log.name}" %>
-
-<div class=''>
-  <div class="mb-4">
-    <%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path)) do |c|%>
-      <%= c.with_right_content do %>
-        <%= link_to settings_reading_log_path(@reading_log), class: "btn !text-sm btn--slim flex items-center p-1.5 w-auto", data: { turbo_frame: "settings_form"} do %>
-          <svg aria-label="Settings" role="img" viewBox="0 0 24 24" class="w-5 h-5" style="--fill: currentColor; --height: 20px; --width: 20px;"><title>More</title><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
-          <span class="sr-only">Settings</span>
-        <% end %>
-      <% end %>
+<%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path)) do |c|%>
+  <%= c.with_right_content do %>
+    <%= link_to settings_reading_log_path(@reading_log), class: "btn !text-sm btn--slim flex items-center p-1.5 w-auto", data: { turbo_frame: "settings_form"} do %>
+      <svg aria-label="Settings" role="img" viewBox="0 0 24 24" class="w-5 h-5" style="--fill: currentColor; --height: 20px; --width: 20px;"><title>More</title><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
+      <span class="sr-only">Settings</span>
     <% end %>
-  <%= turbo_frame_tag "settings_form" %>
-  </div>
-  <div class="text-center mb-7">
-    <div class="text-sm opacity-40"><%= @reading_log.completed_books_count %> of <%= pluralize(@reading_log.books_count, "book") %> read</div>
-    <h1 class="text-4xl font-bold"><%= @reading_log.name %></h1>
-    <%= render "upcoming_reminder" %>
-  </div>
-  <div class="flex mb-7 justify-center items-center">
-    <div class="flex w-full">
-      <%= link_to reading_log_path(@reading_log), class: "#{'!opacity-100 border-b-black' if @has_no_status } font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
-        <span class="">All Books</span>
-      <% end %>
-      <%= link_to reading_log_path(@reading_log, status: "pending"), class: "#{'!opacity-100 border-b-black' if @has_pending_status} font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
-        <span class="">In Progress</span>
-      <% end %>
-      <%= link_to  reading_log_path(@reading_log, status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
-        <span class="">Completed</span>
-      <% end %>
+  <% end %>
+<% end %>
+<%= turbo_frame_tag "settings_form" %>
+<%= render(CardWrapperComponent.new) do %>
+  <div class=''>
+    <div class="text-center mb-7">
+      <div class="text-sm opacity-40"><%= @reading_log.completed_books_count %> of <%= pluralize(@reading_log.books_count, "book") %> read</div>
+      <h1 class="text-4xl font-bold"><%= @reading_log.name %></h1>
+      <%= render "upcoming_reminder" %>
     </div>
-  </div>
-
-
-  <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
-    <% if @has_no_status %>
-      <div id="<%= pinned_books_turbo_frame_id %>">
-        <% @pinned_books.each do |book| %>
-          <%= render "books/card", book: book %>
+    <div class="flex mb-7 justify-center items-center">
+      <div class="flex w-full">
+        <%= link_to reading_log_path(@reading_log), class: "#{'!opacity-100 border-b-black' if @has_no_status } font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
+          <span class="">All Books</span>
+        <% end %>
+        <%= link_to reading_log_path(@reading_log, status: "pending"), class: "#{'!opacity-100 border-b-black' if @has_pending_status} font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
+          <span class="">In Progress</span>
+        <% end %>
+        <%= link_to  reading_log_path(@reading_log, status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} font-medium opacity-50 text-center w-full text-nowrap border-b-2 py-3 px-3" do %>
+          <span class="">Completed</span>
         <% end %>
       </div>
-      <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
-        <% if @pinned_books.present? && @has_unpinned_books.present? %>
-          <%= render "reading_logs/all_books_header" %>
-        <% end %>
-      </div>
-    <% end %>
+    </div>
 
-    <% if @books.present? || @pinned_books.present? %>
-      <div id="<%= unpinned_books_turbo_frame_id %>">
-        <% @books.each do |book| %>
-          <%= render "books/card", book: book %>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="px-4 py-10 rounded-lg text-center ">
-        <p class="opacity-40 text-lg">
-          <% if @has_pending_status %>
-          You don't have any books in progress.
-          <% elsif @has_completed_status %>
-          You don't have any completed books.
+
+    <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
+      <% if @has_no_status %>
+        <div id="<%= pinned_books_turbo_frame_id %>">
+          <% @pinned_books.each do |book| %>
+            <%= render "books/card", book: book %>
           <% end %>
-        </p>
-      </div>
-    <% end %>
-</div>
-</div>
+        </div>
+        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
+          <% if @pinned_books.present? && @has_unpinned_books.present? %>
+            <%= render "reading_logs/all_books_header" %>
+          <% end %>
+        </div>
+      <% end %>
 
+      <% if @books.present? || @pinned_books.present? %>
+        <div id="<%= unpinned_books_turbo_frame_id %>">
+          <% @books.each do |book| %>
+            <%= render "books/card", book: book %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="px-4 py-10 rounded-lg text-center ">
+          <p class="opacity-40 text-lg">
+            <% if @has_pending_status %>
+            You don't have any books in progress.
+            <% elsif @has_completed_status %>
+            You don't have any completed books.
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+  </div>
+  </div>
+<% end %>
