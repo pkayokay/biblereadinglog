@@ -21,7 +21,7 @@
   <% end %>
 <% end %>
 <%= turbo_frame_tag "settings_form" %>
-<%= render(CardWrapperComponent.new) do %>
+<%= render(CardWrapperComponent.new(custom_classes: "pb-0 sm:pb-8")) do %>
   <div class="text-center mb-7">
       <div class="text-sm opacity-60 font-medium"><%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></div>
     <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
@@ -44,12 +44,12 @@
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
       <% if @has_no_status %>
-        <div id="<%= pinned_books_turbo_frame_id %>">
+        <div id="<%= pinned_books_turbo_frame_id %>" class="divide-y">
           <% @pinned_books.each do |book| %>
             <%= render "books/card", book: book %>
           <% end %>
         </div>
-        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
+        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="divide-y">
           <% if @pinned_books.present? && @has_unpinned_books.present? %>
             <%= render "reading_logs/all_books_header" %>
           <% end %>
@@ -57,7 +57,7 @@
       <% end %>
 
       <% if @books.present? || @pinned_books.present? %>
-        <div id="<%= unpinned_books_turbo_frame_id %>">
+        <div id="<%= unpinned_books_turbo_frame_id %>" class="divide-y">
           <% @books.each do |book| %>
             <%= render "books/card", book: book %>
           <% end %>
