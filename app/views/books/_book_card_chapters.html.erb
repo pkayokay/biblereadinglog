@@ -1,3 +1,6 @@
 <%= turbo_frame_tag book_card_chapters_turbo_frame_id(book) do %>
-  <div class="text-2xl font-bold ">Chapters <%= book.completed_chapters_count %>/<%= book.chapters_count %></div>
+  <div class="mt-0.5 flex items-center space-x-1.5 text-base font-medium text-neutral-900 bg-neutral-200   py-1 px-3 rounded-lg">
+    <svg class="w-5 h-5 stroke-neutral-900" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    <span>Chapters <%= book.completed_chapters_count %>/<%= book.chapters_count %></span>
+  </div>
 <% end %>
