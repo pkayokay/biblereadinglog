@@ -1,103 +1,77 @@
 <% render_title 'Reading Logs'%>
 
-<div class="">
-  <div class="mb-5 flex items-start space-y-3 sm:space-y-0 sm:justify-between sm:items-center flex-col sm:flex-row">
-    <%= render(HeadingComponent.new(title: "Reading Logs")) %>
-    <%= link_to new_reading_log_path, class: "btn btn--primary w-auto btn--slim flex items-center space-x-1 pl-1.5" do %>
-      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-      <span>New Reading Log</span>
-    <% end %>
-  </div>
-  <div class="mb-6">
-    <p class="">A list of all your reading logs including their name, books, and started or completed date.</p>
-  </div>
-</div>
-<div class="flex justify-start w-full">
-  <%= link_to root_path, class: "#{'!opacity-100 border-b-black' unless @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
-    <span>Started</span>
-  <% end %>
-  <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-b-black' if @has_completed_status} w-full block text-center font-medium text-nowrap border-b-2 py-3 px-3 opacity-50" do %>
-    <span>Completed</span>
-  <% end %>
-</div>
-
-<% if @reading_logs.present? %>
-  <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
-    <%= render @reading_logs %>
-  <% end %>
-	<div class="infinite-scroll">
-    <style>
-		  .infinite-scroll turbo-frame[loading="lazy"]:empty {
-			  margin-top: -80px; /* lazy load offset */
-			  display: block;
-			}
-		</style>
-	  <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
-	    src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]),
-	    loading: :lazy %>
-	</div>
-<% else %>
-  <div class="mx-4 sm:mx-0 mt-8 px-4 py-10 rounded-lg text-lg text-center">
-    <% if @has_completed_status %>
-    <p class="opacity-50">You don't have any completed reading logs.</p>
-    <% else %>
-    <p class="opacity-50">You don't have any reading logs in progress.</p>
-    <% end %>
-  </div>
-<% end %>
-
-
-<div class="hidden flow-root">
-  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <% if @reading_logs.present? %>
-        <table class="min-w-full divide-y divide-gray-300">
-          <thead>
-            <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left font-medium sm:pl-0 max-w-[1d00px]">
-                <span class="pl-3">Name</span>
-              </th>
-              <th scope="col" class="px-3 pr-1 py-3.5 text-left font-medium ">Books</th>
-              <th scope="col" class="px-3 py-3.5 text-left font-medium">Started</th>
-              <% if @has_completed_status %>
-                <th scope="col" class="px-3 py-3.5 text-left font-medium">Completed</th>
+<%= render(CardWrapperComponent.new) do %>
+  <div>
+    <div class="mb-5 flex items-center justify-between">
+      <h1 class="text-2xl xs:text-heading font-bold text-nowrap">Bible Reading Logs</h1>
+      <div
+        data-controller="dropdown"
+        data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
+        class="inline-block relative !ml-4">
+        <button data-action="dropdown#toggle:stop" class="btn !text-base flex items-center space-x-2">
+          <span class="">Menu</span>
+          <svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 5H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
+          <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
+            <%= link_to new_reading_log_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <span class="">New Reading Log</span>
+            <% end %>
+            <%= link_to feedback_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <span class="">Share Feedback</span>
+            <% end %>
+            <%= link_to account_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <span class="">Account</span>
+            <% end %>
+            <% if current_user.is_admin? %>
+              <%= link_to admin_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                <span class="">Admin</span>
               <% end %>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200 bg-white" data-controller="reading-log-index">
-              <% @reading_logs.each do |reading_log| %>
-                <tr class="text-base hover:bg-neutral-50 group cursor-pointer duration-100" data-action="click->reading-log-index#navigate" data-url="<%= reading_log_path(reading_log) %>">
-                  <td class="py-4 pl-4 sm:pl-0">
-                    <div class="flex items-center text-lg">
-                      <%= link_to reading_log_path(reading_log), class: "pl-3 w-full truncate xs:max-w-[440px] whitespace-nowrap" do %>
-                        <%= reading_log.name %>
-                      <% end %>
-                    </div>
-                  </td>
-                  <td class="whitespace-nowrap px-3 ">
-                    <div class="opacity-50"><%= reading_log.completed_books_count %> of <%= reading_log.books_count %></div>
-                  </td>
-                  <td class="whitespace-nowrap px-3 opacity-50">
-                    <div class=""><%= reading_log.created_at.strftime("%B %-d, %Y") %></div>
-                  </td>
-                  <% if @has_completed_status %>
-                    <td class="whitespace-nowrap px-3 opacity-50">
-                      <div class=""><%= reading_log.completed_at.strftime("%B %-d, %Y") %></div>
-                    </td>
-                  <% end %>
-                </tr>
-              <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <div class="mx-4 sm:mx-0 mt-8 px-4 py-10 rounded-lg text-lg text-center">
-          <% if @has_completed_status %>
-          <p class="opacity-50">You don't have any completed reading logs.</p>
-          <% else %>
-          <p class="opacity-50">You don't have any reading logs in progress.</p>
-          <% end %>
+            <% end %>
+            <hr class="border-t" />
+            <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-4 flex space-x-3 items-center", form: {class: "group flex rounded-md mx-1 my-1.5  hover:bg-stone-100" }, data: { dropdown_target: "menuItem" } do %>
+              <span class="">Log out</span>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+  <div class="flex justify-start mb-6 space-x-5">
+    <%= link_to root_path, class: "#{'!opacity-100 border-red-700 text-red-700
+    ' unless @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' unless @has_completed_status %>">Started</span>
+    <% end %>
+    <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
+    ' if @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+      <span class="group-hover:text-red-700  group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
+    <% end %>
+  </div>
+
+  <% if @reading_logs.present? %>
+    <div class="pb-24">
+      <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
+        <%= render @reading_logs %>
+      <% end %>
+      <div class="infinite-scroll">
+        <style>
+          .infinite-scroll turbo-frame[loading="lazy"]:empty {
+            margin-top: -80px; /* lazy load offset */
+            display: block;
+          }
+        </style>
+        <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
+          src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]),
+          loading: :lazy %>
+      </div>
+    </div>
+  <% else %>
+    <div class="pt-20 pb-24 rounded-lg text-lg text-center">
+      <% if @has_completed_status %>
+      <p class="opacity-50">You don't have any completed reading logs.</p>
+      <% else %>
+      <p class="opacity-50">You don't have any reading logs in progress.</p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

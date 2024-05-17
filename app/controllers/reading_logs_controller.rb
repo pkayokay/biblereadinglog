@@ -86,7 +86,7 @@ class ReadingLogsController < ApplicationController
 
   def destroy
     if @reading_log.destroy
-      redirect_to reading_logs_path, notice: "Reading Log was deleted."
+      redirect_to root_path, notice: "Reading Log was deleted."
     else
       redirect_to settings_reading_log_path(@reading_log), alert: "Reading Log was not destroyed. Please try again."
     end

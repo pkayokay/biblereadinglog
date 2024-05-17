@@ -1,22 +1,25 @@
-<div class="-mx-5 sm:mx-0 ">
+<div class="-mx-5">
 <%= link_to reading_log_path(reading_log),
   data: { turbo_frame: "_top" },
-  class: "min-h-[75px] space-x-2 flex items-end justify-between py-4 px-5  hover:bg-neutral-50 border-l-2 border-l-transparent w-full truncate whitespace-nowrap" do %>
+  class: "min-h-[75px] space-x-2 flex items-end justify-between py-4 px-4  rounded-md hover:bg-stone-50 border-l-2 border-l-transparent w-full truncate whitespace-nowrap" do %>
   <div>
     <p class="font-medium text-lg text-wrap leading-snug"><%= reading_log.name %></p>
     <% if @has_completed_status %>
       <div class="text-sm opacity-40">Started on <%= format_on_date(reading_log.created_at) %></div>
     <% else %>
-      <span class="opacity-40 text-sm">Read <%= reading_log.completed_books_count %> of <%= pluralize(reading_log.books_count, "book") %></span>
+      <span class="opacity-40 text-sm">Completed <%= reading_log.completed_books_count %>/<%= pluralize(reading_log.books_count, "book") %></span>
     <% end %>
   </div>
   <div class="text-right">
     <% if @has_completed_status %>
       <div class="items-end flex flex-col justify-end">
         <div class="flex space-x-3 items-center">
-          <span class="text-sm">Read <%= pluralize(reading_log.completed_books_count, "book") %></span>
+          <span class="text-sm"><%= pluralize(reading_log.completed_books_count, "book") %></span>
         </div>
-        <div class="text-sm opacity-40">Completed on <%= format_on_date(reading_log.created_at) %></div>
+        <div class="text-sm flex items-center space-x-1.5 text-emerald-600">
+            <svg class="w-5 h-5 stroke-emerald-600" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="font-medium">Completed on <%= format_on_date(reading_log.created_at) %></span>
+          </div>
       </div>
     <% else %>
       <div class="flex flex-col items-end">

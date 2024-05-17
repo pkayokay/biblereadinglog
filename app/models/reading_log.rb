@@ -24,6 +24,10 @@ class ReadingLog < ApplicationRecord
     (completed_books_count.to_f/books_count * 100).ceil
   end
 
+  def completed?
+    completed_at.present?
+  end
+
   private
 
   def reminder_fields_when_enabled

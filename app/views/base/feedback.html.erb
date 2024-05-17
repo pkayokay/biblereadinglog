@@ -1,27 +1,31 @@
 <% render_title "Share Feedback" %>
-<div class="mb-6 space-y-1">
-  <%= render(HeadingComponent.new(title: "Share Feedback")) %>
-  <p class="">Please take a moment to share your thoughts, suggestions, or feature ideas.</p>
-</div>
+<%= render(BackButtonComponent.new(title: "Home", path: root_path)) %>
 
-<% if params[:success] == "true" %>
-  <p>Thanks for sharing your thoughts!</p>
-  <%= link_to "Go To Reading Logs", root_path, class: "btn text-sm mt-4 inline-block w-auto btn--primary" %>
-<% else %>
-  <form action="https://submit-form.com/eBS3poFrP">
-    <input type="hidden" name="_replyto" />
-		<input type="hidden" name="_append" value="false" />
-    <input
-      type="hidden"
-      name="_redirect"
-      value="<%= feedback_url(success: true) %>"
-    />
-    <input type="hidden" name="name" class="form-input" value="<%= current_user.full_name %>">
-    <input type="hidden" name="email" class="form-input" value="<%= current_user.email %>">
-    <div class="mb-4">
-      <label for="message" class="opacity-70 block font-medium text-sm">Message</label>
-      <textarea rows="3" class="form-input" id="message" name="message" placeholder="" required></textarea>
-    </div>
-    <button type="submit" class="btn btn--primary w-full max-w-[140px]">Submit</button>
-  </form>
+<%= render(CardWrapperComponent.new) do %>
+  <div class="mb-6 space-y-1">
+    <%= render(HeadingComponent.new(title: "Share Feedback")) %>
+    <p class="">Please take a moment to share your thoughts, suggestions, or feature ideas.</p>
+  </div>
+
+  <% if params[:success] == "true" %>
+    <p>Thanks for sharing your thoughts!</p>
+    <%= link_to "Go To Reading Logs", root_path, class: "btn text-sm mt-4 inline-block w-auto btn--primary" %>
+  <% else %>
+    <form action="https://submit-form.com/eBS3poFrP">
+      <input type="hidden" name="_replyto" />
+      <input type="hidden" name="_append" value="false" />
+      <input
+        type="hidden"
+        name="_redirect"
+        value="<%= feedback_url(success: true) %>"
+      />
+      <input type="hidden" name="name" class="form-input" value="<%= current_user.full_name %>">
+      <input type="hidden" name="email" class="form-input" value="<%= current_user.email %>">
+      <div class="mb-4">
+        <label for="message" class="opacity-70 block font-medium text-sm">Message</label>
+        <textarea rows="3" class="form-input" id="message" name="message" placeholder="" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary w-full max-w-[140px]">Submit</button>
+    </form>
+  <% end %>
 <% end %>

@@ -78,5 +78,7 @@
     </div>
   <% end %>
 <% else %>
-  <%= @form_content %>
+  <%= render(CardWrapperComponent.new) do %>
+    <%= @form_content %>
+  <% end %>
 <% end %>
