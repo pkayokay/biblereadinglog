@@ -23,7 +23,7 @@
 <%= turbo_frame_tag "settings_form" %>
 <%= render(CardWrapperComponent.new(custom_classes: "pb-8")) do %>
   <div class="text-center mb-7">
-      <div class="text-sm opacity-60 font-medium"><%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></div>
+      <div class="text-sm opacity-40 font-medium">Completed <%= @reading_log.completed_books_count %>/<%= pluralize(@reading_log.books_count, "Book") %></div>
     <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
     <%= render "upcoming_reminder" %>
   </div>
