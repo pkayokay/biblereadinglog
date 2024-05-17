@@ -1,8 +1,8 @@
 <% render_title "Books | #{@reading_log.name}" %>
 <%= render(BackButtonComponent.new(title: "Home", path: root_path)) do |c|%>
   <%= c.with_middle_content do %>
-  <div class="flex items-center space-x-2 text-base font-medium text-white bg-neutral-900   py-1.5 px-3 rounded-lg">
-    <svg class="w-[18px] h-[18px] stroke-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+  <div class="flex items-center space-x-2 text-base font-medium text-neutral-900 bg-neutral-200   py-1.5 px-3 rounded-lg">
+    <svg class="w-[18px] h-[18px] stroke-neutral-900" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
     <span><%= "Book".pluralize(@reading_log.books_count) %> <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
   </div>
   <% end %>
