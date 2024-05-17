@@ -1,6 +1,6 @@
 <% render_title "#{@book.name} | #{@reading_log.name}" %>
 
-<%= render(BackButtonComponent.new(title: "Reading Log", path: reading_log_path(@reading_log))) do |c| %>
+<%= render(BackButtonComponent.new(title: "Back", path: reading_log_path(@reading_log))) do |c| %>
   <%= c.with_middle_content do %>
     <%= render "books/book_card_chapters", book: @book %>
     <%# if @book.completed? %>
