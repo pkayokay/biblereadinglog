@@ -66,11 +66,14 @@
       </div>
     </div>
   <% else %>
-    <div class="pt-20 pb-24 rounded-lg text-lg text-center">
+    <div class="pt-16 pb-24 rounded-lg text-lg text-center">
       <% if @has_completed_status %>
       <p class="opacity-50">You don't have any completed reading logs.</p>
       <% else %>
-      <p class="opacity-50">You don't have any reading logs in progress.</p>
+      <p class="mb-7 opacity-50">You don't have any reading logs in progress.</p>
+      <%= link_to new_reading_log_path, class: "btn btn--primary" do %>
+        <span class="">Get Started</span>
+      <% end %>
       <% end %>
     </div>
   <% end %>

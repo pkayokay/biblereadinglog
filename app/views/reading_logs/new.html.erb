@@ -1,8 +1,6 @@
 <% render_title "New Reading Log" %>
 
-<% if current_user.reading_logs.exists? %>
-  <%= render(BackButtonComponent.new(title: "Home", path: root_path)) %>
-<% end %>
+<%= render(BackButtonComponent.new(title: "Home", path: root_path)) %>
 <%= render(CardWrapperComponent.new) do %>
   <div class="mb-3">
     <%= render(HeadingComponent.new(title: "New Reading Log")) %>

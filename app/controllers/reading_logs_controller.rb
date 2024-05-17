@@ -15,10 +15,6 @@ class ReadingLogsController < ApplicationController
 
     if current_user.confirmed_at.nil?
       redirect_to email_confirmation_path
-    else
-      unless current_user.reading_logs.exists?
-        redirect_to new_reading_log_path
-      end
     end
   end
 
