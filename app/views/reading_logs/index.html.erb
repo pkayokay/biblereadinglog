@@ -3,7 +3,7 @@
 <%= render(CardWrapperComponent.new) do %>
   <div>
     <div class="mb-5 flex items-center justify-between">
-      <h1 class="text-heading font-semibold text-nowrap">Reading Logs</h1>
+      <%= render(HeadingComponent.new(title: "Reading Logs")) %>
       <div
         data-controller="dropdown"
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"

@@ -15,12 +15,15 @@ module.exports = {
         'xs': '440px',
       },
       fontSize: {
-        'heading': ['1.75rem','2.25rem'],
+        'heading': ['1.65rem','2.25rem'],
         'subheading': ['1.35rem','2.25rem']
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      boxShadow: {
+        'custom': '0px 0px 20px 0px rgba(226, 221, 215, 0.5)',
+      }
     },
   },
   plugins: [require('@tailwindcss/forms')],

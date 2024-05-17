@@ -24,7 +24,7 @@
     <% end %>
   </head>
 
-  <body class="<%= "bg-white sm:bg-stone-50 flex-col pb-16 #{request.path == root_path || request.path == reading_logs_path ? 'sm:mt-12' : 'sm:mt-0'}" if user_signed_in? %>">
+  <body class="<%= "bg-white sm:bg-neutral-50 flex-col pb-16 #{request.path == root_path || request.path == reading_logs_path ? 'sm:mt-12' : 'sm:mt-0'}" if user_signed_in? %>">
     <% if user_signed_in? %>
       <div id="flash">
         <%= render "shared/flash" %>
