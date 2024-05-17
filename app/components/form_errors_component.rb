@@ -8,17 +8,11 @@ class FormErrorsComponent < ViewComponent::Base
 
   erb_template <<-ERB
     <% if @errors.present? %>
-      <div class="text-sm bg-red-50 border border-red-500 text-red-700 mb-4 px-5 py-4 rounded-md">
-        <% if @errors.one? %>
-          <p class="font-medium">You have an error:</p>
-        <% else %>
-          <p class="font-medium">You have some errors:</p>
-        <% end %>
-        <ul class="list-disc list-inside mt-1">
-          <% @errors.full_messages.each do |message| %>
-            <li class="pl-3"><%= message %></li>
-          <% end %>
-        </ul>
+      <div class="flex items-center text-sm bg-red-100 mb-4 pl-4 pr-5 py-4 rounded-lg">
+        <div class="w-[40px] mr-3">
+          <svg class="stroke-red-700" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+        </div>
+        <span class="text-red-800"><%= @errors.full_messages.to_sentence %>.</span>
       </div>
     <% end %>
   ERB
