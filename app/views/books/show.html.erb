@@ -2,7 +2,6 @@
 
 <%= render(BackButtonComponent.new(title: "Reading Log", path: reading_log_path(@reading_log))) do |c| %>
   <%= c.with_middle_content do %>
-    <h1 class="text-xl font-semibold">Chapters</h1>
     <%= render "books/book_card_chapters", book: @book %>
     <%# if @book.completed? %>
 <!--      <div class="mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100   py-1 px-3 rounded-lg">
