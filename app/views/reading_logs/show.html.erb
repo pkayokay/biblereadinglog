@@ -24,7 +24,7 @@
     <% else %>
       <%= render "upcoming_reminder" %>
     <% end %>
-    <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
+    <h1 class="text-3xl font-semibold"><%= @reading_log.name %></h1>
   </div>
   <div class="w-full flex justify-center mb-6 space-x-5">
     <%= link_to reading_log_path(@reading_log), class: "#{'!opacity-100 border-red-700 text-red-700
