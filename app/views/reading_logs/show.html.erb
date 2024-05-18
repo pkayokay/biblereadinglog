@@ -18,7 +18,7 @@
   <div class="text-center mb-11 sm:mb-6">
 
     <% if @reading_log.is_group_reading_log? %>
-      <div class="border">
+      <div class="border p-1">
         <p class="font-semibold text-xl">Reading group</p>
           <%= render "stats", reading_log: @reading_log %>
          <% if @reading_log.template_reading_log_id.present? %>

@@ -1,5 +1,5 @@
 class ReadingLogsController < ApplicationController
-  before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
+  before_action :set_reading_log, only: [:update, :settings, :destroy]
   before_action :set_books_data, only: [:new, :create]
 
   skip_before_action :authenticate_user!, only: [:invite]
@@ -74,6 +74,7 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
+    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find(params[:id])
     @skip_turbo_cache_control = true
 
     @has_pending_status = params[:status] == "pending"

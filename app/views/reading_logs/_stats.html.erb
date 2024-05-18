@@ -1,12 +1,16 @@
-<div class="bg-neutral-100 mb-4">
-  <% if reading_log.user == current_user %>
-    <div class="font-semibold text-red-600"><%= reading_log.user.full_name %> (you)</div>
-  <% else %>
-    <div class="font-semibold black"><%= reading_log.user.full_name %></div>
-  <% end %>
-
-  <div>
-    <span><%= reading_log.completed_book_percentage %>%</span>
-    <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
+<div class="text-left mb-4 p-5">
+  <div class="flex justify-between items-center">
+    <% if reading_log.user == current_user %>
+      <div class="font-semibold text-red-600"><%= reading_log.user.full_name %> (you)</div>
+    <% else %>
+      <div class="font-semibold black"><%= reading_log.user.full_name %></div>
+    <% end %>
+    <div>
+      <span><%= reading_log.completed_book_percentage %>%</span>
+      <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
+    </div>
+  </div>
+  <div class=" bg-gray-100 h-[8px] rounded-lg w-full group-hover:bg-gray-200">
+    <div class="bg-emerald-500 w-full h-full rounded-full" style="width:<%= reading_log.completed_book_percentage %>%"></div>
   </div>
 </div>
