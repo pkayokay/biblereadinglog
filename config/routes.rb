@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "reading_logs#index"
 
-  resources :reading_logs, except: :edit do
+  resources :reading_logs, except: [:index, :edit] do
     member do
       get "row"
     end
