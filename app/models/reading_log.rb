@@ -1,11 +1,30 @@
 class ReadingLog < ApplicationRecord
   validates :name, :slug, presence: true
+  validates :template_reading_log_id, uniqueness: { scope: :user_id }, allow_nil: true
   normalizes :name, with: ->(name) { name.strip }
   has_many :books, dependent: :destroy
   has_many :ordered_books, -> { order(position: :asc)}, dependent: :destroy, class_name: "Book"
+  has_many :child_reading_logs, class_name: "ReadingLog", foreign_key: "template_reading_log_id"
+  has_one :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id"
   belongs_to :user
 
   before_validation :autoset_slug, on: :create
+
+  validate :check_template_reading_log_id
+
+  def check_template_reading_log_id
+    if template_reading_log_id
+      if template_reading_log_id == id
+        errors.add(:template_reading_log_id, "A reading log cannot be a template of itself")
+      end
+
+      if template_reading_log = ReadingLog.find_by(id: template_reading_log_id)
+        if template_reading_log.template_reading_log_id.present?
+          errors.add(:template_reading_log_id, "A child reading log cannot be template reading log")
+        end
+      end
+    end
+  end
 
   before_update :update_completed_at, if: :completed_books_count_changed?
   scope :complete, -> { where.not(completed_at: nil)}
