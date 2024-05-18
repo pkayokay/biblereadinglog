@@ -92,6 +92,10 @@ class ReadingLogsController < ApplicationController
     end
   end
 
+  def join_invite
+    flash.clear
+  end
+
   def destroy
     if @reading_log.destroy
       redirect_to root_path, notice: "Reading Log was deleted."

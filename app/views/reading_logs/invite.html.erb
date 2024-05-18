@@ -7,7 +7,7 @@
       <% if @is_reading_log_member %>
         <p class="">You are already part of this reading log, share this link with others!</p>
       <% else %>
-        <%= button_to "Join Reading Log", root_path, method: :get, class: "w-fit btn btn--primary" %>
+        <%= link_to "Join Reading Log", join_reading_log_invite_path(@reading_log.slug), class: "w-fit btn btn--primary" %>
       <% end %>
     <% else %>
       <p>Sorry, that reading log doesn't exist.</p>

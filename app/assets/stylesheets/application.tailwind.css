@@ -14,11 +14,11 @@
   }
 
   .form-input {
-    @apply w-full  !placeholder-neutral-400 !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full bg-white !placeholder-neutral-400 !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .form-select {
-    @apply w-full !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full bg-white !mt-0.5 border-0 !px-3.5 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .btn {
