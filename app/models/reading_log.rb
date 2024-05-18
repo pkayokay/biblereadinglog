@@ -5,12 +5,22 @@ class ReadingLog < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :ordered_books, -> { order(position: :asc)}, dependent: :destroy, class_name: "Book"
   has_many :child_reading_logs, class_name: "ReadingLog", foreign_key: "template_reading_log_id", dependent: :destroy
-  belongs_to :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id"
+  belongs_to :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id",optional: true
+
   belongs_to :user
 
   before_validation :autoset_slug, on: :create, unless: -> { template_reading_log_id.present? }
 
   validate :check_template_reading_log_id
+
+
+  def is_group_reading_log?
+    template_reading_log_id.present? || child_reading_logs.exists?
+  end
+
+  def parent_reading_log_slug
+    slug || template_reading_log.slug
+  end
 
   def check_template_reading_log_id
     if template_reading_log_id

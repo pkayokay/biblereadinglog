@@ -29,12 +29,25 @@ class ReadingLogsController < ApplicationController
   end
 
   def update
-    @reading_log.assign_attributes(reading_log_params)
-    if @reading_log.is_reminder_enabled?
-      @reading_log.reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log: @reading_log).call
+    save_reading_log = ReadingLog.transaction do
+      @reading_log.assign_attributes(reading_log_params)
+
+      if @reading_log.is_reminder_enabled?
+        @reading_log.reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log: @reading_log).call
+      end
+
+      unless @reading_log.template_reading_log_id.present?
+        @reading_log.child_reading_logs.each do |child_reading_log|
+          child_reading_log.name = @reading_log.name
+          child_reading_log.save
+        end
+      end
+
+
+      @reading_log.save
     end
 
-    if @reading_log.save
+    if save_reading_log
       redirect_to reading_log_path(@reading_log), notice: "Reading log updated!"
     else
       @errors = @reading_log.errors
@@ -128,7 +141,7 @@ class ReadingLogsController < ApplicationController
             )
           end
           if @child_reading_log.save
-            flash[:notice] = "Adding you to the reading log..."
+            flash[:notice] = "You've been adding to the reading log!"
             redirect_to reading_log_path(@child_reading_log)
           else
             flash[:alert] = "Something went wrong, try again."
