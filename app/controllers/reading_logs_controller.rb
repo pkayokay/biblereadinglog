@@ -84,6 +84,12 @@ class ReadingLogsController < ApplicationController
 
   def invite
     @reading_log = ReadingLog.find_by(slug: params[:slug])
+
+    if @reading_log
+      if user_signed_in?
+        @is_reading_log_member = @reading_log.user == current_user || @reading_log.child_reading_logs.where(user: current_user).exists?
+      end
+    end
   end
 
   def destroy
