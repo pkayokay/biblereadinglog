@@ -2,6 +2,8 @@ class ReadingLogsController < ApplicationController
   before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
   before_action :set_books_data, only: [:new, :create]
 
+  skip_before_action :authenticate_user!, only: [:invite]
+
   def index
     @skip_turbo_cache_control = true
     @has_completed_status = params[:status] == "completed"
@@ -78,6 +80,10 @@ class ReadingLogsController < ApplicationController
   end
 
   def settings
+  end
+
+  def invite
+    @reading_log = ReadingLog.find_by(slug: params[:slug])
   end
 
   def destroy

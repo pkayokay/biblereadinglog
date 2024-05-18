@@ -31,10 +31,10 @@ class ReadingLog < ApplicationRecord
   end
 
   def autoset_slug
-    self.slug = generate_slug!
+    self.slug = self.generate_slug!
   end
 
-  def generate_slug!
+  def self.generate_slug!
     SecureRandom.alphanumeric(10)
   end
 

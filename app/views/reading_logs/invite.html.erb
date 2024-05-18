@@ -1,0 +1,9 @@
+<div class="text-center mt-20">
+  <% if @reading_log.present? %>
+    <h1 class="text-2xl mb-3">You've been invited to join this Reading Log</h1>
+    <h1 class="font-semibold text-4xl mb-8"><%= @reading_log.name %></h1>
+    <%= link_to "Click here to join", root_path, class: "btn btn--primary" %>
+  <% else %>
+    <p>Sorry, that reading log doesn't exist.</p>
+  <% end %>
+</div>

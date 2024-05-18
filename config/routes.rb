@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/r/:slug", to: "reading_logs#invite", as: :reading_log_invite
   get "sign_in", to: "sessions#new"
   post 'sign_in', to: "sessions#create"
   get "sign_up", to: "registrations#new"
