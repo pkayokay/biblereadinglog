@@ -1,9 +1,11 @@
 class ReadingLog < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :slug, presence: true
   normalizes :name, with: ->(name) { name.strip }
   has_many :books, dependent: :destroy
   has_many :ordered_books, -> { order(position: :asc)}, dependent: :destroy, class_name: "Book"
   belongs_to :user
+
+  before_validation :autoset_slug, on: :create
 
   before_update :update_completed_at, if: :completed_books_count_changed?
   scope :complete, -> { where.not(completed_at: nil)}
@@ -26,6 +28,14 @@ class ReadingLog < ApplicationRecord
 
   def completed?
     completed_at.present?
+  end
+
+  def autoset_slug
+    self.slug = generate_slug!
+  end
+
+  def generate_slug!
+    SecureRandom.alphanumeric(10)
   end
 
   private
