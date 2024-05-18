@@ -7,7 +7,7 @@ export default class extends Controller {
       this.element.classList.add("active");
     });
 
-    // setTimeout(() => this.close(), 5000);
+    setTimeout(() => this.close(), 5000);
   }
 
   close() {
