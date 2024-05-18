@@ -1,14 +1,14 @@
 class ReadingLog < ApplicationRecord
-  validates :name, :slug, presence: true
+  validates :name, presence: true
   validates :template_reading_log_id, uniqueness: { scope: :user_id }, allow_nil: true
   normalizes :name, with: ->(name) { name.strip }
   has_many :books, dependent: :destroy
   has_many :ordered_books, -> { order(position: :asc)}, dependent: :destroy, class_name: "Book"
-  has_many :child_reading_logs, class_name: "ReadingLog", foreign_key: "template_reading_log_id"
-  has_one :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id"
+  has_many :child_reading_logs, class_name: "ReadingLog", foreign_key: "template_reading_log_id", dependent: :destroy
+  belongs_to :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id"
   belongs_to :user
 
-  before_validation :autoset_slug, on: :create
+  before_validation :autoset_slug, on: :create, unless: -> { template_reading_log_id.present? }
 
   validate :check_template_reading_log_id
 
@@ -50,7 +50,7 @@ class ReadingLog < ApplicationRecord
   end
 
   def autoset_slug
-    self.slug = self.generate_slug!
+    self.slug = ReadingLog.generate_slug!
   end
 
   def self.generate_slug!
