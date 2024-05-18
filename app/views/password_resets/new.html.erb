@@ -2,7 +2,7 @@
 <%= render(AuthHeaderComponent.new(title: "Reset your password", description: "Enter your email and we'll send you reset instructions.")) %>
 
 <%= render(FormWrapperComponent.new) do |form_card| %>
-  <%= form_with model: @user, url: password_reset_path do |form| %>
+  <%= form_with model: @user, url: password_reset_path, data: { turbo: false } do |form| %>
     <%= render(FieldContainerComponent.new) do %>
       <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
       <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
