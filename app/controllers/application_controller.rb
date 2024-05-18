@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_user!
-    redirect_to sign_in_path, alert: "You must be signed in" unless user_signed_in?
+    redirect_to sign_in_path(dest: request.path), alert: "You must be signed in" unless user_signed_in?
   end
 
   def require_no_user!

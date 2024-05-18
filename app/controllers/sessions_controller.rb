@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       user.update(time_zone: params[:time_zone]) if user.has_default_time_zone?
       sign_in(user)
       flash[:notice] = "Welcome back!"
-      redirect_to root_path
+      redirect_to params[:dest] || root_path
     else
       user = User.new
       user.errors.add(:base, "Invalid email or password")
