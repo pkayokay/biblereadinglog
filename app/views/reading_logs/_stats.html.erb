@@ -1,0 +1,12 @@
+<div class="bg-neutral-100 mb-4">
+  <% if reading_log.user == current_user %>
+    <div class="font-semibold text-red-600"><%= reading_log.user.full_name %> (you)</div>
+  <% else %>
+    <div class="font-semibold black"><%= reading_log.user.full_name %></div>
+  <% end %>
+
+  <div>
+    <span><%= reading_log.completed_book_percentage %>%</span>
+    <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
+  </div>
+</div>

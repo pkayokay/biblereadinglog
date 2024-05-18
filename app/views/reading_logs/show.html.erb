@@ -20,14 +20,15 @@
     <% if @reading_log.is_group_reading_log? %>
       <div class="border">
         <p class="font-semibold text-xl">Reading group</p>
+          <%= render "stats", reading_log: @reading_log %>
          <% if @reading_log.template_reading_log_id.present? %>
-            <div><%= @reading_log.template_reading_log.user.full_name %></div>
+            <%= render "stats", reading_log: @reading_log.template_reading_log %>
             <% @reading_log.template_reading_log.child_reading_logs.where.not(user: current_user).each do |child_reading_log| %>
-              <div><%= child_reading_log.user.full_name %></div>
+              <%= render "stats", reading_log: child_reading_log %>
             <% end %>
          <% else %>
           <% @reading_log.child_reading_logs.each do |child_reading_log| %>
-            <div><%= child_reading_log.user.full_name %></div>
+              <%= render "stats", reading_log: child_reading_log %>
           <% end %>
          <% end %>
       </div>

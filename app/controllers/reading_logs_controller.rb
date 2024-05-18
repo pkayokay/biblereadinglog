@@ -141,7 +141,7 @@ class ReadingLogsController < ApplicationController
             )
           end
           if @child_reading_log.save
-            flash[:notice] = "You've been adding to the reading log!"
+            flash[:notice] = "You've been added to the reading log!"
             redirect_to reading_log_path(@child_reading_log)
           else
             flash[:alert] = "Something went wrong, try again."
