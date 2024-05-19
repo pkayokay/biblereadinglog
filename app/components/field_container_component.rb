@@ -2,7 +2,7 @@
 
 class FieldContainerComponent < ViewComponent::Base
   erb_template <<-ERB
-    <div class="mb-4 <%= @custom_classes %>">
+    <div class="mb-3 <%= @custom_classes %>">
       <%= content %>
     </div>
   ERB

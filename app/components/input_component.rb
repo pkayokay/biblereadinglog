@@ -2,7 +2,7 @@
 
 class InputComponent < ViewComponent::Base
   erb_template <<-ERB
-    <%= @form.send(field_type, @id_and_name, class: "form-input " + @custom_classes, required: @required, placeholder: @placeholder, autofocus: @autofocus, disabled: @disabled) %>
+    <%= @form.send(field_type, @id_and_name, class: "form-control " + @custom_classes, required: @required, placeholder: @placeholder, autofocus: @autofocus, disabled: @disabled) %>
   ERB
 
   def initialize(form:, type:, id_and_name:, required: false, custom_classes: "", placeholder: nil, autofocus: false, disabled: false)
