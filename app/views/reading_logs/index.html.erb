@@ -1,7 +1,10 @@
 <% render_title 'Reading Logs'%>
 
-<h1>Reading Logs</h1>
-<ul class="nav nav-pills">
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Home</h1>
+  <%= link_to "New Reading Log", new_reading_log_path, class: "btn btn-dark" %>
+</div>
+<ul class="nav nav-underline mt-3 mb-4">
   <li class="nav-item">
     <%= link_to "Started", root_path,
       class: "nav-link #{'active' unless @has_completed_status}",
