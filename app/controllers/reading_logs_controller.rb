@@ -74,23 +74,28 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
-    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find(params[:id])
-    @skip_turbo_cache_control = true
+    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find_by(id: params[:id], user: current_user)
 
-    @has_pending_status = params[:status] == "pending"
-    @has_completed_status = params[:status] == "completed"
-    @has_no_status = params[:status].blank?
+    if @reading_log.present?
+      @skip_turbo_cache_control = true
 
-    if @has_pending_status
-      @books = @reading_log.ordered_books.pending
-    elsif @has_completed_status
-      @books = @reading_log.ordered_books.complete
+      @has_pending_status = params[:status] == "pending"
+      @has_completed_status = params[:status] == "completed"
+      @has_no_status = params[:status].blank?
+
+      if @has_pending_status
+        @books = @reading_log.ordered_books.pending
+      elsif @has_completed_status
+        @books = @reading_log.ordered_books.complete
+      else
+        @books = @reading_log.ordered_books.unpinned
+        @pinned_books = @reading_log.books.pinned.order(pin_order: :asc)
+      end
+
+      @has_unpinned_books = @books.present?
     else
-      @books = @reading_log.ordered_books.unpinned
-      @pinned_books = @reading_log.books.pinned.order(pin_order: :asc)
+      redirect_to root_path, alert: "That reading log doesn't exist."
     end
-
-    @has_unpinned_books = @books.present?
   end
 
   def settings
