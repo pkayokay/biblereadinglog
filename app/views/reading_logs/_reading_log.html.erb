@@ -1,32 +1,28 @@
-<div class="card" style="">
-  <div class="card-body">
-    <h5 class="card-title"><%= reading_log.name %></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">
-      <% if @has_completed_status %>
-        <div>Started on <%= format_on_date(reading_log.created_at) %></div>
-      <% else %>
-        <div class="d-flex align-items-center">
-          <div class="me-2"><%= reading_log.completed_book_percentage %>%</div>
-          <div><%= "Book".pluralize(reading_log.books_count) %> <%= reading_log.completed_books_count %>/<%= reading_log.books_count %></div>
-        </div>
-      <% end %>
-    </h6>
-    <p class="card-text">
-      <% if @has_completed_status %>
-          <div class="">
-            <span class="text-sm"><%= pluralize(reading_log.completed_books_count, "book") %></span>
+<div class="card mb-3">
+  <div class="card-body d-flex align-items-center justify-content-between">
+    <div>
+      <h5 class="card-title fw-semibold"><%= reading_log.name %></h5>
+      <div class="card-subtitle mb-2 text-body-secondary">
+        <% if @has_completed_status %>
+          <span><%= pluralize(reading_log.completed_books_count, "book") %></span>
+        <% else %>
+          <div class="d-flex align-items-center">
+            <div><%= "Book".pluralize(reading_log.books_count) %> <%= reading_log.completed_books_count %>/<%= reading_log.books_count %></div>
+            <div class="ms-2"><%= reading_log.completed_book_percentage %>%</div>
           </div>
-          <div class="">
-              <span class="font-medium">Completed on <%= format_on_date(reading_log.created_at) %></span>
-          </div>
-      <% else %>
-        <div class="flex flex-col items-end">
+        <% end %>
+      </div>
+      <div class="card-text">
+        <% if @has_completed_status %>
           <div>Started on <%= format_on_date(reading_log.created_at) %></div>
-        </div>
-      <% end %>
-    </p>
-    <%= link_to reading_log_path(reading_log), data: { turbo_frame: "_top" }, class: "card-link" do %>
-      View Reading Log
+          <div>Completed on <%= format_on_date(reading_log.created_at) %></div>
+        <% else %>
+          <div>Started on <%= format_on_date(reading_log.created_at) %></div>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to reading_log_path(reading_log), data: { turbo_frame: "_top" }, class: "btn btn-primary" do %>
+      View
     <% end %>
   </div>
 </div>
