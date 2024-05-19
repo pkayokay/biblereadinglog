@@ -1,11 +1,8 @@
 <% render_title "Share Feedback" %>
 <%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path)) %>
 
-<%= render(CardWrapperComponent.new) do %>
-  <div class="mb-6 space-y-1">
-    <%= render(HeadingComponent.new(title: "Share Feedback")) %>
-    <p class="">Please take a moment to share your thoughts, suggestions, or feature ideas.</p>
-  </div>
+  <%= render(HeadingComponent.new(title: "Share Feedback")) %>
+  <p class="mb-4">Please take a moment to share your thoughts, suggestions, or feature ideas.</p>
 
   <% if params[:success] == "true" %>
     <p>Thanks for sharing your thoughts!</p>
@@ -22,10 +19,9 @@
       <input type="hidden" name="name" class="form-input" value="<%= current_user.full_name %>">
       <input type="hidden" name="email" class="form-input" value="<%= current_user.email %>">
       <div class="mb-4">
-        <label for="message" class="opacity-70 block font-medium text-sm">Message</label>
-        <textarea rows="3" class="form-input" id="message" name="message" placeholder="" required></textarea>
+        <label for="message" class="form-label">Message</label>
+        <textarea rows="3" class="form-control" id="message" name="message" placeholder="" required></textarea>
       </div>
-      <button type="submit" class="btn btn--primary w-full max-w-[140px]">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   <% end %>
-<% end %>
