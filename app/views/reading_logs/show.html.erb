@@ -1,13 +1,13 @@
 <% render_title "Books | #{@reading_log.name}" %>
 <%= render(BackButtonComponent.new(title: "Back", path: root_path)) do |c|%>
   <%= c.with_middle_content do %>
-  <div class="flex items-center space-x-2 text-base font-medium text-neutral-900 bg-neutral-200   py-1.5 px-3 rounded-lg">
-    <svg class="w-[18px] h-[18px] stroke-neutral-900" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+  <div class="d-flex align-items-center">
+    <svg class="me-2 stroke-neutral-900" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
     <span><%= "Book".pluralize(@reading_log.books_count) %> <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
   </div>
   <% end %>
   <%= c.with_right_content do %>
-    <%= link_to settings_reading_log_path(@reading_log), class: "space-x-1.5 hover:underline flex items-center w-auto", data: { turbo_frame: "settings_form"} do %>
+    <%= link_to settings_reading_log_path(@reading_log), class: "btn btn-light", data: { turbo_frame: "settings_form"} do %>
       <svg aria-label="Settings" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
       <span class="">Settings</span>
     <% end %>
@@ -44,20 +44,27 @@
       <%= render "upcoming_reminder" %>
     <% end %>
   </div>
-  <div class="w-full flex justify-center mb-6 space-x-5">
-    <%= link_to reading_log_path(@reading_log), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_no_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_no_status %>">All Books</span>
-    <% end %>
-    <%= link_to reading_log_path(@reading_log, status: "pending"), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_pending_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_pending_status %>">In Progress</span>
-    <% end %>
-    <%= link_to reading_log_path(@reading_log, status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
-    <% end %>
-  </div>
+
+  <ul class="nav nav-underline mt-3 mb-4 justify-content-center">
+    <li class="nav-item">
+      <%= link_to "All Books", reading_log_path(@reading_log),
+        class: "nav-link #{'active' if @has_no_status}",
+        aria: { current: @has_no_status  ? "page" : nil}
+        %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Completed", reading_log_path(@reading_log, status: "pending"),
+        class: "nav-link #{'active' if @has_pending_status}",
+        aria: { current: @has_pending_status  ? "page" : nil}
+        %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Completed", reading_log_path(@reading_log, status: 'completed'),
+        class: "nav-link #{'active' if @has_completed_status}",
+        aria: { current: @has_completed_status  ? "page" : nil}
+        %>
+    </li>
+  </ul>
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
       <% if @has_no_status %>
@@ -80,14 +87,12 @@
           <% end %>
         </div>
       <% else %>
-        <div class="pt-16 pb-24 rounded-lg text-lg text-center">
-          <p class="opacity-40 text-lg">
+        <div class="text-center">
             <% if @has_pending_status %>
             You don't have any books in progress.
             <% elsif @has_completed_status %>
             You don't have any completed books.
             <% end %>
-          </p>
         </div>
       <% end %>
   </div>
