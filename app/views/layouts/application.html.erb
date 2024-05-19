@@ -30,7 +30,7 @@
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false">
+      <main data-turbo-prefetch="false" class="container-fluid p-3" style="max-width:700px;padding-top: 2.5rem !important">
         <%= yield %>
       </main>
     <% else  %>
