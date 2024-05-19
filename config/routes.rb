@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "reading_logs#index"
 
-  resources :reading_logs, except: :edit do
+  resources :reading_logs, except: [:index, :edit] do
     member do
       get "row"
     end
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/r/:slug", to: "reading_logs#invite", as: :reading_log_invite
+  get "/r/:slug/join", to: "reading_logs#join_invite", as: :join_reading_log_invite
   get "sign_in", to: "sessions#new"
   post 'sign_in', to: "sessions#create"
   get "sign_up", to: "registrations#new"

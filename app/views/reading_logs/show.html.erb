@@ -16,6 +16,23 @@
 <%= turbo_frame_tag "settings_form" %>
 <%= render(CardWrapperComponent.new(custom_classes: "pb-8")) do %>
   <div class="text-center mb-11 sm:mb-6">
+
+    <% if @reading_log.is_group_reading_log? %>
+      <div class="border p-5 rounded-lg mb-5">
+        <p class="font-semibold text-xl">Reading group</p>
+          <%= render "stats", reading_log: @reading_log %>
+         <% if @reading_log.template_reading_log_id.present? %>
+            <%= render "stats", reading_log: @reading_log.template_reading_log %>
+            <% @reading_log.template_reading_log.child_reading_logs.where.not(user: current_user).each do |child_reading_log| %>
+              <%= render "stats", reading_log: child_reading_log %>
+            <% end %>
+         <% else %>
+          <% @reading_log.child_reading_logs.each do |child_reading_log| %>
+              <%= render "stats", reading_log: child_reading_log %>
+          <% end %>
+         <% end %>
+      </div>
+    <% end %>
     <% if @reading_log.completed? %>
       <div class="mx-auto mb-3 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
         <svg class="w-5 h-5 stroke-emerald-700" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>

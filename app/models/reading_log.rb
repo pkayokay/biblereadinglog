@@ -1,9 +1,42 @@
 class ReadingLog < ApplicationRecord
   validates :name, presence: true
+  validates :template_reading_log_id, uniqueness: { scope: :user_id }, allow_nil: true
   normalizes :name, with: ->(name) { name.strip }
   has_many :books, dependent: :destroy
   has_many :ordered_books, -> { order(position: :asc)}, dependent: :destroy, class_name: "Book"
+  has_many :child_reading_logs, class_name: "ReadingLog", foreign_key: "template_reading_log_id", dependent: :destroy
+  belongs_to :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id",optional: true
+
   belongs_to :user
+
+  before_validation :autoset_slug, on: :create, unless: -> { template_reading_log_id.present? }
+
+  validate :check_template_reading_log_id
+  before_validation :autoset_is_group_reading_log
+
+  def autoset_is_group_reading_log
+    if template_reading_log_id.present?
+      self.is_group_reading_log = true
+    end
+  end
+
+  def parent_reading_log_slug
+    slug || template_reading_log.slug
+  end
+
+  def check_template_reading_log_id
+    if template_reading_log_id
+      if template_reading_log_id == id
+        errors.add(:template_reading_log_id, "A reading log cannot be a template of itself")
+      end
+
+      if template_reading_log = ReadingLog.find_by(id: template_reading_log_id)
+        if template_reading_log.template_reading_log_id.present?
+          errors.add(:template_reading_log_id, "A child reading log cannot be template reading log")
+        end
+      end
+    end
+  end
 
   before_update :update_completed_at, if: :completed_books_count_changed?
   scope :complete, -> { where.not(completed_at: nil)}
@@ -26,6 +59,14 @@ class ReadingLog < ApplicationRecord
 
   def completed?
     completed_at.present?
+  end
+
+  def autoset_slug
+    self.slug = ReadingLog.generate_slug!
+  end
+
+  def self.generate_slug!
+    SecureRandom.alphanumeric(10)
   end
 
   private

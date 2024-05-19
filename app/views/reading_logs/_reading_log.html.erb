@@ -11,6 +11,9 @@
     <% end %>
   </div>
   <div class="text-right">
+    <% if reading_log.is_group_reading_log? %>
+      <p class="bg-red-500 rounded-md text-white p-1">group reading log</p>
+    <% end %>
     <% if @has_completed_status %>
       <div class="items-end flex flex-col justify-end">
         <div class="flex space-x-3 items-center">
