@@ -12,10 +12,12 @@ class ReadingLog < ApplicationRecord
   before_validation :autoset_slug, on: :create, unless: -> { template_reading_log_id.present? }
 
   validate :check_template_reading_log_id
+  before_validation :autoset_is_group_reading_log
 
-
-  def is_group_reading_log?
-    template_reading_log_id.present? || child_reading_logs.exists?
+  def autoset_is_group_reading_log
+    if template_reading_log_id.present?
+      self.is_group_reading_log = true
+    end
   end
 
   def parent_reading_log_slug

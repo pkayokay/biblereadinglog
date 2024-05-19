@@ -143,6 +143,8 @@ class ReadingLogsController < ApplicationController
               end,
             )
           end
+          @reading_log.update(is_group_reading_log: true) unless @reading_log.is_group_reading_log
+
           if @child_reading_log.save
             flash[:notice] = "You've been added to the reading log!"
             redirect_to reading_log_path(@child_reading_log)
@@ -159,6 +161,12 @@ class ReadingLogsController < ApplicationController
   end
 
   def destroy
+    if @reading_log.template_reading_log.present?
+      if @reading_log.template_reading_log.child_reading_logs.where.not(id: @reading_log.id).empty?
+        @reading_log.template_reading_log.update(is_group_reading_log: false)
+      end
+    end
+
     if @reading_log.destroy
       redirect_to root_path, notice: "Reading Log was deleted."
     else
