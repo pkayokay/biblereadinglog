@@ -11,9 +11,7 @@ class BackButtonComponent < ViewComponent::Base
         <span><%= @title %></span>
       <% end %>
       <% if middle_content %>
-        <div class="absolute text-center -translate-x-1/2 left-1/2 top-5 sm:top-6">
-          <%= middle_content %>
-        </div>
+        <%= middle_content %>
       <% end %>
       <%= right_content %>
     </div>
