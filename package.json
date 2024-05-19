@@ -14,9 +14,7 @@
     "nodemon": "^3.1.0",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
-    "sass": "^1.77.2",
-    "tailwindcss": "^3.4.3",
-    "tailwindcss-stimulus-components": "^5.1.1"
+    "sass": "^1.77.2"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
@@ -24,9 +22,6 @@
     "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.7"
   },
   "browserslist": [
     "defaults"
