@@ -1,0 +1,50 @@
+<nav class="bg-neutral-800 w-full">
+  <div class="w-full px-5 py-3.5 flex mx-auto justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <%= link_to root_path, class: "flex space-x-2 items-center text-lg text-nowrap text-neutral" do %>
+        <%= render "shared/logo", stroke: "white" %>
+        <span class="text-white">Bible Reading Log</span>
+      <% end %>
+    </div>
+    <div class="flex items-center space-x-3">
+      <%= link_to root_path, class: "hidden sm:inline py-1 px-1 text-white #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+        <span>Home</span>
+      <% end %>
+      <%= link_to account_path, class: "hidden sm:inline py-1 px-1 text-white #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+        <span>Account</span>
+      <% end %>
+      <div
+        data-controller="dropdown"
+        data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
+        class="inline-block relative !ml-4">
+        <button data-action="dropdown#toggle:stop" class="flex items-center py-1 space-x-1 text-white opacity-60 hover:opacity-100 focus-within:opacity-100">
+          <span class="hidden sm:inline text-nowrap"><%= helpers.current_user.full_name %></span>
+          <span class="sm:hidden inline text-nowrap">Menu</span>
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div data-dropdown-target="menu" class="hidden absolute top-10 right-0 z-10 flex w-screen max-w-max">
+          <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px] py-1.5">
+            <%= link_to root_path, class: "group flex sm:hidden py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <span class="">Home</span>
+            <% end %>
+            <%= link_to root_path, class: "group flex sm:hidden py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <span class="">Account</span>
+            <% end %>
+            <%= link_to feedback_path, class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <span class="">Share Feedback</span>
+            <% end %>
+            <% if helpers.current_user.is_admin? %>
+              <%= link_to admin_path, class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+                <span class="">Admin</span>
+              <% end %>
+            <% end %>
+            <hr class="border-t mt-1.5" />
+            <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-4 flex space-x-3 items-center", form: {class: "group flex mt-1.5  hover:bg-stone-100" }, data: { dropdown_target: "menuItem" } do %>
+              <span class="">Log out</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
