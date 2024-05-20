@@ -10,7 +10,7 @@
     <% end %>
   </div>
   <div class="flex sm:space-x-2 items-center flex-col sm:flex-row space-y-3 sm:space-y-0">
-    <div class="flex ietms-center justify-center opacity-60 mr-2 text-sm space-x-3">
+    <div class="flex ietms-center justify-center opacity-60 sm:mr-2 text-sm space-x-3">
       <% if @has_completed_status %>
         <span><%= pluralize(reading_log.completed_books_count, "book") %></span>
       <% else %>
