@@ -14,7 +14,6 @@
   <% end %>
 <% end %>
 <%= turbo_frame_tag "settings_form" %>
-<%= render(CardWrapperComponent.new(custom_classes: "pb-8")) do %>
   <div class="text-center mb-11 sm:mb-6">
 
     <% if @reading_log.is_group_reading_log? %>
@@ -49,7 +48,8 @@
     {title: "All Books", path: reading_log_path(@reading_log), is_active: @has_no_status},
     {title: "In Progress", path: reading_log_path(@reading_log, status: "pending"), is_active: @has_pending_status},
     {title: "Completed", path: reading_log_path(@reading_log, status: 'completed'), is_active: @has_completed_status}
-  ]
+  ],
+  is_center: true
   )) %>
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
@@ -85,4 +85,3 @@
       <% end %>
   </div>
   </div>
-<% end %>
