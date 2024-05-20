@@ -44,20 +44,13 @@
       <%= render "upcoming_reminder" %>
     <% end %>
   </div>
-  <div class="w-full flex justify-center mb-6 space-x-5">
-    <%= link_to reading_log_path(@reading_log), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_no_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_no_status %>">All Books</span>
-    <% end %>
-    <%= link_to reading_log_path(@reading_log, status: "pending"), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_pending_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_pending_status %>">In Progress</span>
-    <% end %>
-    <%= link_to reading_log_path(@reading_log, status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
-    <% end %>
-  </div>
+<%= render(TabsComponent.new(
+  items: [
+    {title: "All Books", path: reading_log_path(@reading_log), is_active: @has_no_status},
+    {title: "In Progress", path: reading_log_path(@reading_log, status: "pending"), is_active: @has_pending_status},
+    {title: "Completed", path: reading_log_path(@reading_log, status: 'completed'), is_active: @has_completed_status}
+  ]
+  )) %>
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
       <% if @has_no_status %>

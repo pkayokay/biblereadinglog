@@ -30,7 +30,8 @@
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false">
+      <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-10 px-5">
+
         <%= yield %>
       </main>
     <% else  %>

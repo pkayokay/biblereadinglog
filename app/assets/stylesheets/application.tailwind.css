@@ -29,6 +29,7 @@
     @apply py-2 px-3 !text-base;
   }
 
+
   .btn--primary {
     @apply bg-neutral-900 text-white !border-black hover:bg-neutral-800 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
   }

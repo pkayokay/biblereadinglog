@@ -1,0 +1,10 @@
+<div class="flex justify-start mb-6 space-x-5">
+  <% @items.each do |item| %>
+    <%= link_to item[:path],
+      class: "#{'!opacity-100 border-blue-700 text-blue-700' if item[:is_active]} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
+      <span class="group-hover:text-blue-700 group-focus-visible:text-blue-700 group-focus-visible:border-b-blue-700 pb-2 border-b-2 border-transparent <%= 'border-b-blue-700' if item[:is_active] %>">
+        <%= item[:title] %>
+      </span>
+    <% end %>
+  <% end %>
+</div>
