@@ -11,22 +11,6 @@
 <% end %>
 <%= turbo_frame_tag "settings_form" %>
   <div class="text-center mb-11 sm:mb-6">
-    <% if @reading_log.is_group_reading_log? %>
-      <div class="border p-5 rounded-lg mb-5">
-        <p class="font-semibold text-xl">Reading group</p>
-          <%= render "stats", reading_log: @reading_log %>
-         <% if @reading_log.template_reading_log_id.present? %>
-            <%= render "stats", reading_log: @reading_log.template_reading_log %>
-            <% @reading_log.template_reading_log.child_reading_logs.where.not(user: current_user).each do |child_reading_log| %>
-              <%= render "stats", reading_log: child_reading_log %>
-            <% end %>
-         <% else %>
-          <% @reading_log.child_reading_logs.each do |child_reading_log| %>
-              <%= render "stats", reading_log: child_reading_log %>
-          <% end %>
-         <% end %>
-      </div>
-    <% end %>
     <% if @reading_log.completed? %>
       <div class="mx-auto mb-3 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
         <span>Completed <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
@@ -37,10 +21,28 @@
       </div>
     <% end %>
     <h1 class="text-3xl font-semibold"><%= @reading_log.name %></h1>
+    <% if @reading_log.is_group_reading_log? %>
+      <p class="mt-2 mx-auto w-fit bg-red-500 rounded-full text-white p-0.5 px-2.5 text-xs font-medium">Group Reading</p>
+    <% end %>
     <% unless @reading_log.completed? %>
       <%= render "upcoming_reminder" %>
     <% end %>
   </div>
+  <% if @reading_log.is_group_reading_log? %>
+    <div class="mb-10">
+        <%= render "stats", reading_log: @reading_log %>
+        <% if @reading_log.template_reading_log_id.present? %>
+          <%= render "stats", reading_log: @reading_log.template_reading_log %>
+          <% @reading_log.template_reading_log.child_reading_logs.where.not(user: current_user).each do |child_reading_log| %>
+            <%= render "stats", reading_log: child_reading_log %>
+          <% end %>
+        <% else %>
+          <% @reading_log.child_reading_logs.each do |child_reading_log| %>
+              <%= render "stats", reading_log: child_reading_log %>
+          <% end %>
+        <% end %>
+    </div>
+  <% end %>
 <%= render(TabsComponent.new(
   items: [
     {title: "All Books", path: reading_log_path(@reading_log), is_active: @has_no_status},
