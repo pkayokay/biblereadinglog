@@ -1,12 +1,12 @@
-<div class="space-y-5 sm:space-y-0 py-3.5 border-b flex justify-between items-center flex-col sm:flex-row">
-  <div class="pr-3 sm:max-w-[390px] text-center sm:text-left">
+<div class="space-y-5 sm:space-y-0 py-4 border-b flex justify-between items-center flex-col sm:flex-row">
+  <div class="pr-3 sm:max-w-[410px] text-center sm:text-left">
     <p class="truncate text-wrap sm:text-nowrap font-semibold text-xl leading-snug"><%= reading_log.name %></p>
     <p class="text-sm">Started on <%= format_on_date(reading_log.created_at) %></p>
     <% if @has_completed_status %>
       <div class="text-sm">Completed on <%= format_on_date(reading_log.created_at) %></div>
     <% end %>
     <% if reading_log.is_group_reading_log? %>
-      <p class="mx-auto sm:mx-[initial] w-fit bg-red-500 rounded-full text-white p-0.5 px-2.5 text-xs font-medium">Group Reading</p>
+      <p class="mt-1 mx-auto sm:mx-[initial] w-fit bg-red-500 rounded-full text-white p-0.5 px-2.5 text-xs font-medium">Group Reading</p>
     <% end %>
   </div>
   <div class="flex sm:space-x-2 items-center flex-col sm:flex-row space-y-3 sm:space-y-0">
@@ -15,7 +15,7 @@
         <span><%= pluralize(reading_log.completed_books_count, "book") %></span>
       <% else %>
         <div><%= "Book".pluralize(reading_log.books_count) %> <%= reading_log.completed_books_count %>/<%= reading_log.books_count %></div>
-        <div class="ms-3"><%= reading_log.completed_book_percentage %>%</div>
+        <div class=""><%= reading_log.completed_book_percentage %>%</div>
       <% end %>
     </div>
     <%= link_to reading_log_path(reading_log), data: { turbo_frame: "_top" }, class: "btn btn--blue btn--slim w-fit" do %>
