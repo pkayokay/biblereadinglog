@@ -19,6 +19,9 @@ application.register("flash", FlashController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import FlashMessageController from "./flash_message_controller"
+application.register("flash-message", FlashMessageController)
+
 import ReadingLogIndexController from "./reading_log_index_controller"
 application.register("reading-log-index", ReadingLogIndexController)
 

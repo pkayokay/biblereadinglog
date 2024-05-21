@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post "sign_up", to: "registrations#create"
   delete 'sign_out', to: "sessions#destroy"
 
+  post "flash_message", to: "base#flash_message"
   get "account", to: "users#account"
   patch "update_password", to: "users#update_password"
   patch "update_time_zone", to: "users#update_time_zone"

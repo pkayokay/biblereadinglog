@@ -6,6 +6,11 @@ class BaseController < ApplicationController
   def feedback
   end
 
+  def flash_message
+    flash.now[:notice] = params[:message]
+    render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")
+  end
+
   def setup_user
     result = SetupUserService.new(email: params[:email], password: params[:password]).call
 
