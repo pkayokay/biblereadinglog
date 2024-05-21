@@ -1,20 +1,105 @@
 <% render_title "Settings | #{@reading_log.name}" %>
 <%= render(BackButtonComponent.new(title: "Books", path: reading_log_path(@reading_log), include_margin: true)) %>
 
-<% @form_content = capture do %>
+<% if turbo_frame_request? %>
+  <%= turbo_frame_tag "settings_form-name" do %>
+    <%= render(ModalComponent.new(title: "Name")) do %>
+      <%= form_with model: @reading_log, data: { turbo_frame: "_top" } do |form| %>
+        <%= render(FormErrorsComponent.new(errors: @errors)) %>
+        <%= render(FieldContainerComponent.new(custom_classes: "")) do %>
+          <%= render(LabelComponent.new(for_attribute: "What do you want to call your reading log?", form: form)) %>
+          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: @reading_log.template_reading_log_id.present? ? 'bg-neutral-100' : '', disabled: @reading_log.template_reading_log_id.present?)) %>
+        <% end %>
+        <%= form.submit "Save changes", class: "mt-2 btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= turbo_frame_tag "settings_form-reminders" do %>
+    <%= render(ModalComponent.new(title: "Email Reminders")) do %>
+      <div data-controller="reminder-form">
+        <%= form_with model: @reading_log, data: { turbo_frame: "_top" } do |form| %>
+          <%= render(FormErrorsComponent.new(errors: @errors)) %>
+            <div class="">
+              <p class="mb-5">Set up a recurring email notifications for your reading log.</p>
+              <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
+                <%= form.check_box :is_reminder_enabled, { class: "text-neutral-700 focus:ring-neutral-500 cursor-pointer w-5 h-5 rounded", data: { action: "change->reminder-form#toggleIsReminderEnabled"}} %>
+                <%= render(LabelComponent.new(for_attribute: "is_reminder_enabled", title: "Enable Notifications", form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
+              <% end %>
+
+              <div data-reminder-form-target="reminderSection" class="<%= 'hidden' if !@reading_log.is_reminder_enabled %>">
+                <%= render(FieldContainerComponent.new) do %>
+                  <%= render(LabelComponent.new(for_attribute: "reminder_frequency", title: "How often do you want to be reminder?", form: form)) %>
+                  <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } }%>
+                <% end %>
+
+                <% day_options = Date::DAYNAMES.map { |day| [day, day.downcase] }.rotate!(1) %>
+
+                <%= render(FieldContainerComponent.new) do %>
+                  <%= form.label :reminder_days, 'Days', { data: { reminder_form_target: "selectLabel" }, class: "opacity-70 block font-medium text-sm"} %>
+
+                  <div data-reminder-form-target="reminderDaysButtons" class="hidden container--day__select">
+                    <div class="mt-2">
+                      <%= form.fields_for :reminder_days_multiple do |reminder_days_multiple_form| %>
+                        <% day_options.each do |day| %>
+                          <%= render(FieldContainerComponent.new(custom_classes: "flex items-center")) do %>
+                            <%= reminder_days_multiple_form.check_box day.last, { checked: form.object.reminder_days.include?(day.last), class: "text-neutral-700 focus:ring-neutral-500 cursor-pointer w-5 h-5 rounded"} %>
+                            <%= render(LabelComponent.new(for_attribute: "reminder_days_multiple_#{day.last}", title: day.first, form: form, custom_classes: "cursor-pointer ml-3 !text-base" )) %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <%= form.select :reminder_days, day_options, {}, { data: { reminder_form_target: "selectField" }, multiple: true, class: 'hidden form-select' } %>
+                <% end %>
+
+                <%= render(FieldContainerComponent.new) do %>
+                  <%= render(LabelComponent.new(for_attribute: "reminder_time", title: "How often do you want to be reminded?", form: form)) %>
+                  <%= form.select :reminder_time, time_options_for_select, { selected: @reading_log.reminder_time}, { class: 'form-select' } %>
+                <% end %>
+              </div>
+            </div>
+          <%= form.submit "Save changes", class: "mt-2 btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= turbo_frame_tag "settings_form-delete" do %>
+    <%= render(ModalComponent.new(title: "Delete")) do %>
+      <p class="mb-5">
+        <% if @reading_log.template_reading_log_id.present? %>
+          This will remove you from group and delete this reading log.
+        <% else %>
+          This will permanently delete the reading log.
+        <% end %>
+      </p>
+      <%= button_to "Delete", reading_log_path, method: :delete, data: {turbo: false, controller: "book-deletion", action: "book-deletion#delete"},class: "btn btn--danger w-auto btn--slim" %>
+    <% end %>
+  <% end %>
+  <%= turbo_frame_tag "settings_form-invite" do %>
+    <%= render(ModalComponent.new(title: "Invite Others")) do %>
+      <%= render(FieldContainerComponent.new(custom_classes: "mb-8")) do %>
+        <p class="mb-2 block">Share this link with others so they can join your reading log.</p>
+        <%= link_to reading_log_invite_url(@reading_log.parent_reading_log_slug), reading_log_invite_url(@reading_log.parent_reading_log_slug), class: "underline", target: "_blank", class: "bg-neutral-100 rounded-md p-1.5 " %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="mb-4">
+    <%= render(HeadingComponent.new(title: "Settings")) %>
+  </div>
   <div data-controller="reminder-form">
     <%= form_with model: @reading_log, data: { turbo_frame: "_top" } do |form| %>
       <%= render(FormErrorsComponent.new(errors: @errors)) %>
         <div class="">
           <%= render(FieldContainerComponent.new(custom_classes: "mb-8")) do %>
-            <p class="mb-1 block text-sm">Invite</p>
+            <p class="mb-2 block">Share this link with others so they can join your reading log.</p>
             <%= link_to reading_log_invite_url(@reading_log.parent_reading_log_slug), reading_log_invite_url(@reading_log.parent_reading_log_slug), class: "underline", target: "_blank", class: "bg-neutral-100 rounded-md p-1.5 " %>
           <% end %>
-          <%= render(FieldContainerComponent.new(custom_classes: "md:!mb-0 flex-1 w-full md:w-auto")) do %>
-            <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
-            <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: @reading_log.template_reading_log_id.present? ? 'bg-neutral-100' : '', disabled: @reading_log.template_reading_log_id.present?)) %>
-            <% if @reading_log.template_reading_log_id.present? %>
-              <div>Only the owner of this reading log can update the name</p>
+          <% if !@reading_log.template_reading_log_id.present? %>
+            <%= render(FieldContainerComponent.new(custom_classes: "md:!mb-0 flex-1 w-full md:w-auto")) do %>
+              <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
+              <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: @reading_log.template_reading_log_id.present? ? 'bg-neutral-100' : '', disabled: @reading_log.template_reading_log_id.present?)) %>
             <% end %>
           <% end %>
           <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 sm:justify-between flex-col sm:flex-row">
@@ -67,28 +152,4 @@
     <p class="opacity-70  mb-5">This will permanently delete the reading log.</p>
     <%= button_to "Delete", reading_log_path, method: :delete, data: {turbo: false, controller: "book-deletion", action: "book-deletion#delete"},class: "btn btn--danger w-auto btn--slim" %>
   </div>
-<% end %>
-
-<% if turbo_frame_request? %>
-  <%= turbo_frame_tag "settings_form" do %>
-    <div data-controller="modal" data-modal-open-value="true">
-      <dialog data-modal-target="dialog" class="w-[92%] sm:w-full max-w-xl p-8 rounded-lg backdrop:bg-black/60 relative">
-        <button data-action="modal#close" class="p-2 opacity-50 text-sm rounded absolute right-2.5 top-2.5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          <span class="sr-only">Close</span>
-        </button>
-        <div class="mb-4">
-          <h1 class="text-3xl font-semibold">Settings</h1>
-        </div>
-        <%= @form_content %>
-      </dialog>
-    </div>
-  <% end %>
-<% else %>
-  <%= render(CardWrapperComponent.new) do %>
-    <div class="mb-4">
-      <%= render(HeadingComponent.new(title: "Settings")) %>
-    </div>
-    <%= @form_content %>
-  <% end %>
 <% end %>

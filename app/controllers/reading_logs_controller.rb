@@ -107,7 +107,7 @@ class ReadingLogsController < ApplicationController
     if @reading_log
       if user_signed_in?
         unless @is_reading_log_owner = @reading_log.user == current_user
-          @is_reading_log_member = @reading_log.child_reading_logs.where(user: current_user).exists?
+          @child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first
         end
       end
     end

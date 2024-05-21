@@ -6,9 +6,9 @@
       <% if @is_reading_log_owner %>
         <p class="mb-6">You are the owner of this reading log, share this link with others!</p>
         <%= link_to "Go to Reading Log", reading_log_path(@reading_log), class: "w-fit btn btn--primary" %>
-      <% elsif @is_reading_log_member %>
+      <% elsif @child_reading_log.present? %>
         <p class="mb-6">You are already part of this reading log, share this link with others!</p>
-        <%= link_to "Go to Reading Log", reading_log_path(@reading_log), class: "w-fit btn btn--primary" %>
+        <%= link_to "Go to Reading Log", reading_log_path(@child_reading_log), class: "w-fit btn btn--primary" %>
       <% else %>
         <%= link_to "Join Reading Log", join_reading_log_invite_path(@reading_log.slug), class: "w-fit btn btn--primary" %>
       <% end %>

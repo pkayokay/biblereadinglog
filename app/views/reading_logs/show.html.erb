@@ -11,19 +11,21 @@
         <svg aria-label="Settings" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
         <span class="text-nowrap">Settings</span>
       </button>
-      <div data-dropdown-target="menu" class="hidden absolute top-10 right-0 z-10 flex w-screen max-w-max">
+      <div data-dropdown-target="menu" class="hidden absolute top-8 right-0 z-10 flex w-screen max-w-max">
         <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[170px] py-1.5">
-          <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form", dropdown_target: "menuItem"} do %>
-            <span class="">Update Name</span>
+          <% unless @reading_log.template_reading_log_id.present? %>
+            <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-name", dropdown_target: "menuItem"} do %>
+              <span class="">Name</span>
+            <% end %>
           <% end %>
-          <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form", dropdown_target: "menuItem"} do %>
+          <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-reminders", dropdown_target: "menuItem"} do %>
             <span class="">Email Reminders</span>
           <% end %>
-          <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form", dropdown_target: "menuItem"} do %>
+          <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-invite", dropdown_target: "menuItem"} do %>
             <span class="">Invite Others</span>
           <% end %>
           <hr class="border-t mt-1.5" />
-          <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-4 flex space-x-3 items-center", form: {class: "group flex mt-1.5  hover:bg-stone-100" }, data: { dropdown_target: "menuItem" } do %>
+          <%= link_to settings_reading_log_path(@reading_log), class: "group flex mt-1.5 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-delete", dropdown_target: "menuItem"} do %>
             <span class="">Delete</span>
           <% end %>
         </div>
@@ -31,7 +33,10 @@
     </div>
   <% end %>
 <% end %>
-<%= turbo_frame_tag "settings_form" %>
+<%= turbo_frame_tag "settings_form-name" %>
+<%= turbo_frame_tag "settings_form-reminders" %>
+<%= turbo_frame_tag "settings_form-invite" %>
+<%= turbo_frame_tag "settings_form-delete" %>
   <div class="text-center mb-11 sm:mb-6">
     <% if @reading_log.completed? %>
       <div class="mx-auto mb-3 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
