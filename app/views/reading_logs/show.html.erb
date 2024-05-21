@@ -38,11 +38,11 @@
 <%= turbo_frame_tag "settings_form-delete" %>
   <div class="text-center mb-11 sm:mb-6">
     <% if @reading_log.completed? %>
-      <div class="mx-auto mb-3 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
+      <div class="mx-auto mb-4 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
         <span>Completed <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
       </div>
     <% else %>
-      <div class="mx-auto mb-3 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-neutral-700 bg-neutral-100  py-1 px-3 rounded-lg">
+      <div class="mt-0.5 mb-4 flex items-center space-x-2 text-base font-medium text-neutral-900 bg-neutral-200  w-fit mx-auto py-1.5 px-3 rounded-lg">
         <span><%= "Book".pluralize(@reading_log.books_count) %> <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
       </div>
     <% end %>

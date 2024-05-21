@@ -1,10 +1,6 @@
 <% render_title "#{@book.name} | #{@reading_log.name}" %>
 
-<%= render(BackButtonComponent.new(title: "Back", path: reading_log_path(@reading_log))) do |c| %>
-  <%= c.with_middle_content do %>
-    <%= render "books/book_card_chapters", book: @book %>
-  <% end %>
-<% end %>
+<%= render(BackButtonComponent.new(title: "Back", path: reading_log_path(@reading_log))) %>
 <div class="mx-auto max-w-2xl">
   <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
     <% if @book.completed? %>
@@ -12,12 +8,11 @@
     <% end %>
   <% end %>
 </div>
-  <div class="mx-auto">
+  <div class="mx-auto text-center">
+      <%= render "books/book_card_chapters", book: @book %>
+      <%= render(HeadingComponent.new(title: @book.name)) %>
     <div class="flex flex-col">
-      <div class="mb-3 space-x-3 flex justify-between items-center">
-        <%= render(HeadingComponent.new(title: @book.name)) %>
         <%= render "books/book_card_percentage", book: @book %>
-      </div>
       <%= render "books/book_progress_line", book: @book %>
       <div class="mt-8 max-w-2xl mx-auto w-full flex-1">
         <div class="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 lg:grid-cols-7 gap-3">
