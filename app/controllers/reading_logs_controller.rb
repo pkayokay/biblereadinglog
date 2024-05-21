@@ -1,5 +1,5 @@
 class ReadingLogsController < ApplicationController
-  before_action :set_reading_log, only: [:update, :settings, :destroy]
+  before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
   before_action :set_books_data, only: [:new, :create]
 
   skip_before_action :authenticate_user!, only: [:invite]
@@ -74,7 +74,6 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
-    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find_by(id: params[:id], user: current_user)
 
     if @reading_log.present?
       @skip_turbo_cache_control = true
@@ -96,6 +95,11 @@ class ReadingLogsController < ApplicationController
     else
       redirect_to root_path, alert: "That reading log doesn't exist."
     end
+  end
+
+  def show_stats
+    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find_by(id: params[:id], user: current_user)
+    redirect_to reading_log_path(@reading_log) unless turbo_frame_request?
   end
 
   def settings

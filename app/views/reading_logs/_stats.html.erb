@@ -1,16 +1,16 @@
-<div class="text-left mb-7">
+<div class="text-left mb-8">
   <div class="mb-2 flex justify-between items-center">
     <% if reading_log.user == current_user %>
-      <div class="font-semibold"><%= reading_log.user.full_name %></div>
+      <div class="font-semibold text-lg"><%= reading_log.user.full_name %></div>
     <% else %>
-      <div class="font-semibold black"><%= reading_log.user.full_name %></div>
+      <div class="font-semibold text-lg"><%= reading_log.user.full_name %></div>
     <% end %>
     <div class="text-sm space-x-3 text-nowrap pl-2">
       <span><%= reading_log.completed_book_percentage %>%</span>
       <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
     </div>
   </div>
-  <div class="border border-gray-100 bg-white h-[8px] rounded-lg w-full">
+  <div class=" bg-neutral-100 h-[8px] rounded-lg w-full">
     <div class="bg-emerald-500 w-full h-full rounded-full" style="width:<%= reading_log.completed_book_percentage %>%"></div>
   </div>
 </div>

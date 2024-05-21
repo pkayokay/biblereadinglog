@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :reading_logs, except: [:index, :edit] do
     member do
-      get "row"
+      get "show_stats"
     end
     resources :books, only: [:show] do
       member do
