@@ -6,7 +6,7 @@
         <span class="text-neutral-900 font-medium">Bible Reading Log</span>
       <% end %>
     </div>
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center space-x-3.5">
       <%= link_to root_path, class: "hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
         <span>Home</span>
       <% end %>
@@ -16,7 +16,7 @@
       <div
         data-controller="dropdown"
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
-        class="inline-block relative !ml-4">
+        class="inline-block relative !ml-5">
         <button data-action="dropdown#toggle:stop" class="flex items-center py-1 space-x-1 text-neutral-900 opacity-60 hover:opacity-100 focus-within:opacity-100">
           <span class="hidden sm:inline text-nowrap"><%= helpers.current_user.full_name %></span>
           <span class="sm:hidden inline text-nowrap">Menu</span>
