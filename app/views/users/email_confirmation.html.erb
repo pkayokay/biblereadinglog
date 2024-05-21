@@ -9,7 +9,4 @@
     <p class="mt-5 mb-8">We have sent an email to you for verification. Please click on the link provided to confirm your email. If you don't receive an email within a few minutes, please try again.</div>
     <%= button_to "Resend email confirmation", resend_email_confirmation_path, method: :post, class: "btn btn--slim text-sm w-auto" %>
   </div>
-  <%= button_to sign_out_path, method: :delete, class: "", form: {class: "mt-4 text-sm underline justify-end w-full flex"  }, data: { dropdown_target: "menuItem" } do %>
-    <span class="">Log out</span>
-  <% end %>
 </div>
