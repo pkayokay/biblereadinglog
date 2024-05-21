@@ -16,13 +16,12 @@
       <div
         data-controller="dropdown"
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
-        class="inline-block relative !ml-5">
-        <button data-action="dropdown#toggle:stop" class="flex items-center py-1 space-x-1 text-neutral-900 opacity-60 hover:opacity-100 focus-within:opacity-100">
-          <span class="hidden sm:inline text-nowrap"><%= helpers.current_user.full_name %></span>
-          <span class="sm:hidden inline text-nowrap">Menu</span>
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+        class="inline-block relative !ml-5 !mr-4">
+        <button data-action="dropdown#toggle:stop" class="justify-center duration-100 relative flex items-center w-9 h-9 rounded-full bg-neutral-500 text-neutral-900 opacity-60 hover:opacity-100 focus-within:opacity-100">
+          <span class="text-nowrap text-white text-sm font-medium"><%= helpers.current_user.initials %></span>
+          <svg class="absolute top-3.5 -right-5 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div data-dropdown-target="menu" class="hidden absolute top-10 right-0 z-10 flex w-screen max-w-max">
+        <div data-dropdown-target="menu" class="hidden absolute top-12 right-0 z-10 flex w-screen max-w-max">
           <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px] py-1.5">
             <%= link_to root_path, class: "group flex sm:hidden py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
               <span class="">Home</span>
