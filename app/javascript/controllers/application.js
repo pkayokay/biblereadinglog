@@ -13,3 +13,6 @@ application.register('dropdown', Dropdown);
 
 import { Modal } from "tailwindcss-stimulus-components"
 application.register('modal', Modal)
+
+import Clipboard from '@stimulus-components/clipboard'
+application.register('clipboard', Clipboard)
