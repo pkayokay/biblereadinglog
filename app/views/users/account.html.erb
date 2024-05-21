@@ -39,7 +39,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= render(SideFormWrapperComponent.new(title: "Time zone", description: "Email reminders will be sent in your time zone.", custom_class: "border-b-0")) do  %>
+  <%= render(SideFormWrapperComponent.new(title: "Time zone", description: "Notifications will be sent in your time zone.", custom_class: "border-b-0")) do  %>
     <%= form_with(model:  current_user, url: update_time_zone_path, class: "contents") do |form| %>
       <%= render(FormErrorsComponent.new(errors: @time_zone_errors)) %>
 
