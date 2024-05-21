@@ -6,8 +6,8 @@
       <div class="font-semibold text-lg"><%= reading_log.user.full_name %></div>
     <% end %>
     <div class="text-sm space-x-3 text-nowrap pl-2">
-      <span><%= reading_log.completed_book_percentage %>%</span>
-      <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
+      <span><%= "Book".pluralize(reading_log.books_count) %> <%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
+      <span class="text-base"><%= reading_log.completed_book_percentage %>%</span>
     </div>
   </div>
   <div class=" bg-neutral-100 h-[8px] rounded-lg w-full">
