@@ -55,7 +55,7 @@
     <% end %>
   </div>
   <% if @reading_log.is_group_reading_log? %>
-    <div class="mb-10 rounded-lg shadow-sm border p-6 pb-2">
+    <div class="mb-10 rounded-lg border p-6 pb-2 ">
         <%= render "stats", reading_log: @reading_log %>
         <% if @reading_log.template_reading_log_id.present? %>
           <%= render "stats", reading_log: @reading_log.template_reading_log %>
