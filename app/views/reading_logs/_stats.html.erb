@@ -5,7 +5,7 @@
     <% else %>
       <div class="font-semibold black"><%= reading_log.user.full_name %></div>
     <% end %>
-    <div class="text-sm space-x-3">
+    <div class="text-sm space-x-3 text-nowrap pl-2">
       <span><%= reading_log.completed_book_percentage %>%</span>
       <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
     </div>

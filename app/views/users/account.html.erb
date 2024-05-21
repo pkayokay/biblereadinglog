@@ -1,7 +1,6 @@
 <% render_title "Account" %>
-<%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path)) %>
+<%= render(BackButtonComponent.new(title: "Home", path: root_path)) %>
 
-<%= render(CardWrapperComponent.new) do %>
   <%= render(HeadingComponent.new(title: "Account")) %>
   <%= render(SideFormWrapperComponent.new(title: "Email", description: current_user.email, custom_class: "!pb-4"))  %>
   <%= render(SideFormWrapperComponent.new(title: "Name", description: "Edit your first and last name.")) do  %>
@@ -62,4 +61,3 @@
       <%= form.submit "Save changes", class: "btn btn--primary md:w-auto", data: { turbo_submits_with: "Saving..."} %>
     <% end %>
   <% end %>
-<% end %>

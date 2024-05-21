@@ -10,6 +10,9 @@ application.register("book-deletion", BookDeletionController)
 import BookSelectionController from "./book_selection_controller"
 application.register("book-selection", BookSelectionController)
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
 

@@ -1,80 +1,43 @@
 <% render_title 'Reading Logs'%>
 
-<%= render(CardWrapperComponent.new) do %>
-  <div>
-    <div class="mb-5 flex items-center justify-between">
-      <%= render(HeadingComponent.new(title: "Reading Logs")) %>
-      <div
-        data-controller="dropdown"
-        data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
-        class="inline-block relative !ml-4">
-        <button data-action="dropdown#toggle:stop" class="btn !text-base flex items-center space-x-2">
-          <span class="">Menu</span>
-          <svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 5H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </button>
-        <div data-dropdown-target="menu" class="hidden absolute top-6 right-0 z-10 mt-5 flex w-screen max-w-max">
-          <div class=" bg-white shadow-sm rounded-md border overflow-hidden w-[180px]">
-            <%= link_to new_reading_log_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-              <span class="">New Reading Log</span>
-            <% end %>
-            <%= link_to feedback_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-              <span class="">Share Feedback</span>
-            <% end %>
-            <%= link_to account_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-              <span class="">Account</span>
-            <% end %>
-            <% if current_user.is_admin? %>
-              <%= link_to admin_path, class: "group flex rounded-md mx-1 my-1 py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
-                <span class="">Admin</span>
-              <% end %>
-            <% end %>
-            <hr class="border-t" />
-            <%= button_to sign_out_path, method: :delete, class: "w-full text-left py-1.5 px-4 flex space-x-3 items-center", form: {class: "group flex rounded-md mx-1 my-1.5  hover:bg-stone-100" }, data: { dropdown_target: "menuItem" } do %>
-              <span class="">Log out</span>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="flex justify-start mb-6 space-x-5">
-    <%= link_to root_path, class: "#{'!opacity-100 border-red-700 text-red-700
-    ' unless @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700 group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' unless @has_completed_status %>">Started</span>
-    <% end %>
-    <%= link_to root_path(status: 'completed'), class: "#{'!opacity-100 border-red-700 text-red-700
-    ' if @has_completed_status} group block  text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="group-hover:text-red-700  group-focus-visible:text-red-700 group-focus-visible:border-b-red-700 pb-2 border-b-2 border-transparent <%= 'border-b-red-700' if @has_completed_status %>">Completed</span>
-    <% end %>
-  </div>
+<div class="flex justify-between items-center mb-5">
+  <%= render(HeadingComponent.new(title: "Home")) %>
+  <%= link_to "New Reading Log", new_reading_log_path, class: "btn btn--primary btn--slim w-fit" %>
+</div>
 
-  <% if @reading_logs.present? %>
-    <div class="pb-24">
-      <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
-        <%= render @reading_logs %>
-      <% end %>
-      <div class="infinite-scroll">
-        <style>
-          .infinite-scroll turbo-frame[loading="lazy"]:empty {
-            margin-top: -80px; /* lazy load offset */
-            display: block;
-          }
-        </style>
-        <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
-          src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]),
-          loading: :lazy %>
-      </div>
+<%= render(TabsComponent.new(
+  items: [
+    {title: "Started", path: root_path, is_active: !@has_completed_status},
+    {title: "Completed", path: root_path(status: 'completed'), is_active: @has_completed_status}
+  ]
+  )) %>
+
+<% if @reading_logs.present? %>
+  <div class="pb-24">
+    <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
+      <%= render @reading_logs %>
+    <% end %>
+    <div class="infinite-scroll">
+      <style>
+        .infinite-scroll turbo-frame[loading="lazy"]:empty {
+          margin-top: -80px; /* lazy load offset */
+          display: block;
+        }
+      </style>
+      <%= turbo_frame_tag reading_logs_pagination_turbo_frame_id,
+        src: root_path(format: :turbo_stream, page: @pagy.next, status: params[:status]),
+        loading: :lazy %>
     </div>
-  <% else %>
-    <div class="pt-16 pb-24 rounded-lg text-lg text-center">
-      <% if @has_completed_status %>
-      <p class="opacity-50">You don't have any completed reading logs.</p>
-      <% else %>
-      <p class="mb-7 opacity-50">You don't have any reading logs in progress.</p>
-      <%= link_to new_reading_log_path, class: "btn btn--primary" do %>
-        <span class="">Get Started</span>
-      <% end %>
-      <% end %>
-    </div>
-  <% end %>
+  </div>
+<% else %>
+  <div class="pt-16 pb-24 rounded-lg text-lg text-center">
+    <% if @has_completed_status %>
+    <p class="opacity-50">You don't have any completed reading logs.</p>
+    <% else %>
+    <p class="mb-7 opacity-50">You don't have any reading logs in progress.</p>
+    <%= link_to new_reading_log_path, class: "btn btn--primary" do %>
+      <span class="">Get Started</span>
+    <% end %>
+    <% end %>
+  </div>
 <% end %>

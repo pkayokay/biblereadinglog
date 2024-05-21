@@ -5,7 +5,6 @@
     <%= render "books/book_card_chapters", book: @book %>
   <% end %>
 <% end %>
-<%= render(CardWrapperComponent.new(custom_classes: "mb-8")) do %>
 <div class="mx-auto max-w-2xl">
   <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
     <% if @book.completed? %>
@@ -29,4 +28,3 @@
       </div>
     </div>
   </div>
-<% end %>

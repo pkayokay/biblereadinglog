@@ -15,7 +15,7 @@ module.exports = {
         'xs': '440px',
       },
       fontSize: {
-        'heading': ['1.65rem','2.25rem'],
+        'heading': ['2rem','2.25rem'],
         'subheading': ['1.35rem','2.25rem']
       },
       fontFamily: {

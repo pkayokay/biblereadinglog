@@ -1,76 +1,74 @@
 <% render_title "Admin" %>
-<%= render(BackButtonComponent.new(title: "Reading Logs", path: root_path)) %>
+<%= render(BackButtonComponent.new(title: "Home", path: root_path)) %>
 
-<%= render(CardWrapperComponent.new(custom_classes: "mb-8")) do %>
-  <div class="mb-2">
-    <%= render(HeadingComponent.new(title: "Users (#{User.count})")) %>
-  </div>
-  <div class="pb-4 overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-300">
-      <thead>
-        <tr>
-          <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Name</th>
-          <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
-          <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
-          <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
-          <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Activity</th>
-          <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Reading Logs</th>
-      </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
-        <% User.order(created_at: :asc).each do |user| %>
-          <tr class="text-base cursor-pointer duration-100 <%= 'border-emerald-100 bg-emerald-50' if user.is_admin %>">
-            <td class="py-2 whitespace-nowrap px-3">
-              <div class=""><%= user.email %></div>
-            </td>
-            <td class="whitespace-nowrap px-3">
-              <div class=""><%= user.full_name %></div>
-            </td>
-            <td class="whitespace-nowrap px-3">
-              <div class=""><%= user.created_at.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
-              <div class="text-sm opacity-50"><%= time_ago_in_words(user.created_at) %> ago</div>
-            </td>
-            <td class="py-2 whitespace-nowrap px-3">
-              <% if user.last_sign_in_at %>
-                <div class=""><%= user.last_sign_in_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
-                <div class="text-sm opacity-50"><%= time_ago_in_words(user.last_sign_in_at) %> ago</div>
-              <% end %>
-            </td>
-            <td class="py-2 whitespace-nowrap px-3">
-              <% if user.reading_logs.exists? %>
-                <% book_activity = user.books.order(updated_at: :desc).first.updated_at %>
-                <% reading_log_activity = user.reading_logs.order(updated_at: :desc).first.updated_at %>
-                <div class="">Book - <%= book_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
-                  <div class="text-sm opacity-50"><%= time_ago_in_words(book_activity) %> ago</div>
+<div class="mb-2">
+  <%= render(HeadingComponent.new(title: "Users (#{User.count})")) %>
+</div>
+<div class="pb-4 overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead>
+      <tr>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Name</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Activity</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Reading Logs</th>
+    </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200 bg-white">
+      <% User.order(created_at: :asc).each do |user| %>
+        <tr class="text-base cursor-pointer duration-100 <%= 'border-emerald-100 bg-emerald-50' if user.is_admin %>">
+          <td class="py-2 whitespace-nowrap px-3">
+            <div class=""><%= user.email %></div>
+          </td>
+          <td class="whitespace-nowrap px-3">
+            <div class=""><%= user.full_name %></div>
+          </td>
+          <td class="whitespace-nowrap px-3">
+            <div class=""><%= user.created_at.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
+            <div class="text-sm opacity-50"><%= time_ago_in_words(user.created_at) %> ago</div>
+          </td>
+          <td class="py-2 whitespace-nowrap px-3">
+            <% if user.last_sign_in_at %>
+              <div class=""><%= user.last_sign_in_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
+              <div class="text-sm opacity-50"><%= time_ago_in_words(user.last_sign_in_at) %> ago</div>
+            <% end %>
+          </td>
+          <td class="py-2 whitespace-nowrap px-3">
+            <% if user.reading_logs.exists? %>
+              <% book_activity = user.books.order(updated_at: :desc).first.updated_at %>
+              <% reading_log_activity = user.reading_logs.order(updated_at: :desc).first.updated_at %>
+              <div class="">Book - <%= book_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
+                <div class="text-sm opacity-50"><%= time_ago_in_words(book_activity) %> ago</div>
 
 
-  <div class="">Log - <%= reading_log_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
-                <div class="text-sm opacity-50"><%= time_ago_in_words(reading_log_activity) %> ago</div>
+<div class="">Log - <%= reading_log_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
+              <div class="text-sm opacity-50"><%= time_ago_in_words(reading_log_activity) %> ago</div>
 
-  <% end %>
-            </td>
-            <td class="whitespace-nowrap px-3">
-              <div class=""><%= user.reading_logs.count %></div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="hidden ">
-    <h1 class="font-bold text-4xl mb-2">Admin</h1>
-    <%= form_with url: setup_user_path, class: "max-w-md" do |form| %>
-      <div class="mb-3">Set up new user</div>
-      <%= render(FieldContainerComponent.new) do %>
-        <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
-        <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
-      <% end %>
-      <%= render(FieldContainerComponent.new) do %>
-        <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
-        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "password", required: true)) %>
-      <% end %>
-      <%= form.submit "Submit", class: "btn btn--primary" %>
-    <% end %>
-  </div>
 <% end %>
+          </td>
+          <td class="whitespace-nowrap px-3">
+            <div class=""><%= user.reading_logs.count %></div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="hidden ">
+  <h1 class="font-bold text-4xl mb-2">Admin</h1>
+  <%= form_with url: setup_user_path, class: "max-w-md" do |form| %>
+    <div class="mb-3">Set up new user</div>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
+      <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
+    <% end %>
+    <%= render(FieldContainerComponent.new) do %>
+      <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
+      <%= render(InputComponent.new(type: "text", form: form, id_and_name: "password", required: true)) %>
+    <% end %>
+    <%= form.submit "Submit", class: "btn btn--primary" %>
+  <% end %>
+</div>

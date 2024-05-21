@@ -24,12 +24,14 @@
     <% end %>
   </head>
 
-  <body class="<%= 'bg-white sm:bg-neutral-50' if controller_name == "reading_logs" && action_name == "invite" %> <%= "bg-white sm:bg-neutral-50 flex-col pb-16 #{request.path == root_path || request.path == reading_logs_path ? 'sm:mt-12' : 'sm:mt-0'}" if user_signed_in? %>">
+  <body>
     <% if user_signed_in? %>
+      <%= render(NavbarComponent.new) %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false">
+      <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-10 px-5">
+
         <%= yield %>
       </main>
     <% else  %>

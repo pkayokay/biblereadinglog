@@ -8,8 +8,8 @@ window.Stimulus   = application
 
 export { application }
 
-import { Dropdown } from "tailwindcss-stimulus-components";
-application.register('dropdown', Dropdown);
-
 import { Modal } from "tailwindcss-stimulus-components"
 application.register('modal', Modal)
+
+import Clipboard from '@stimulus-components/clipboard'
+application.register('clipboard', Clipboard)
