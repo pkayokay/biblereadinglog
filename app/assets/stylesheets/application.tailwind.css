@@ -35,11 +35,15 @@
   }
 
   .btn--blue {
-    @apply bg-blue-600 text-white border-blue-600 hover:!border-blue-700 hover:bg-blue-700 focus:!ring-blue-700 focus:!border-blue-700 focus:!outline-blue-700;
+    @apply bg-blue-600 text-white !border-blue-600 hover:!border-blue-700 hover:bg-blue-700 focus:!ring-blue-700 focus:!border-blue-700 focus:!outline-blue-700;
   }
 
   .btn--danger {
     @apply bg-red-600 text-white !border-red-600 hover:bg-red-700 focus:!ring-red-700 focus:!border-red-700 focus:!outline-red-700;
+  }
+
+  .btn--success {
+    @apply bg-emerald-600 text-white !border-emerald-600 hover:!border-emerald-600 hover:bg-emerald-700 focus:!ring-emerald-700 focus:!border-emerald-600 focus:!outline-emerald-600;
   }
 
   .field_with_errors .form-input {}

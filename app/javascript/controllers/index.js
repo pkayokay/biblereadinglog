@@ -10,17 +10,20 @@ application.register("book-deletion", BookDeletionController)
 import BookSelectionController from "./book_selection_controller"
 application.register("book-selection", BookSelectionController)
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import FlashMessageController from "./flash_message_controller"
 application.register("flash-message", FlashMessageController)
+
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)
 
 import ReadingLogIndexController from "./reading_log_index_controller"
 application.register("reading-log-index", ReadingLogIndexController)

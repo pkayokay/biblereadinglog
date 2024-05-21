@@ -4,7 +4,7 @@
   <div data-controller="clipboard" data-clipboard-success-content-value="Copied!">
     <%= render(FieldContainerComponent.new(custom_classes: "")) do %>
       <p class="mb-2 block">Share this link with others so they can join your reading log.</p>
-      <p class="overflow-x-scroll bg-neutral-100 rounded-md p-1.5" data-clipboard-target="source"><%= reading_log_invite_url(@reading_log.parent_reading_log_slug) %></p>
+      <p class="text-neutral-800 overflow-x-scroll xs:overflow-x-hidden bg-neutral-100 rounded-md px-2 p-1.5" data-clipboard-target="source"><%= reading_log_invite_url(@reading_log.parent_reading_log_slug) %></p>
     <% end %>
     <button type="button" class="btn btn--primary btn--slim !text-sm w-fit" data-action="clipboard#copy" data-clipboard-target="button">Copy to clipboard</button>
   </div>
