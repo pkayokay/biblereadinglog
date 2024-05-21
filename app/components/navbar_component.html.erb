@@ -7,10 +7,10 @@
       <% end %>
     </div>
     <div class="flex items-center space-x-3.5">
-      <%= link_to root_path, class: "hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+      <%= link_to root_path, class: "font-medium hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
         <span>Home</span>
       <% end %>
-      <%= link_to account_path, class: "hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+      <%= link_to account_path, class: "font-medium hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
         <span>Account</span>
       <% end %>
       <div
