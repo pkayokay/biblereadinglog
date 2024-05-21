@@ -6,7 +6,7 @@
       <div class="text-sm text-emerald-700">Completed on <%= format_on_date(reading_log.created_at) %></div>
     <% end %>
     <% if reading_log.is_group_reading_log? %>
-      <p class="mt-1 mx-auto sm:mx-[initial] w-fit bg-red-500 rounded-full text-white p-0.5 px-2.5 text-xs font-medium">Group Reading</p>
+      <%= render(BadgeComponent.new(title: "Group Reading")) %>
     <% end %>
   </div>
   <div class="flex sm:space-x-2 items-center flex-col sm:flex-row space-y-3 sm:space-y-0">
@@ -18,7 +18,7 @@
         <div class=""><%= reading_log.completed_book_percentage %>%</div>
       <% end %>
     </div>
-    <%= link_to reading_log_path(reading_log), data: { turbo_frame: "_top" }, class: "btn btn--blue btn--slim w-fit" do %>
+    <%= link_to reading_log_path(reading_log), data: { turbo_frame: "_top" }, class: "btn btn--primary btn--slim w-fit" do %>
       View
     <% end %>
   </div>
