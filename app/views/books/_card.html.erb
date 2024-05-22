@@ -32,13 +32,12 @@ else
           Pin
         <% end %>
       </div>
-      <%# color_for_star = if book.completed_at
+      <% color_for_star = if book.completed_at
         'fill-emerald-700 stroke-emerald-700'
       elsif book.completed_chapters_count > 0
       'fill-yellow-700 stroke-yellow-700'
       else
       'fill-neutral-700 stroke-neutral-700' end %>
-      <% color_for_star = 'fill-neutral-700 stroke-neutral-700' %>
       <svg focusable="false" class="<%= book.pin_order.present? ? "group-hover:rotate-0 !stroke-yellow-500 !fill-yellow-500" : 'group-hover:stroke-yellow-500 group-hover:fill-yellow-500 opacity-20' %> <%= color_for_star %> duration-100 group-hover:opacity-100 group-focus-within:rotate-45  group-hover:rotate-45 cursor-pointer w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
     <% end %>
   <% end %>
