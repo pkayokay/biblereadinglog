@@ -2,20 +2,19 @@
   <div class="max-w-2xl md:px-0 px-5 py-4 flex mx-auto justify-between items-center">
     <div class="flex items-center space-x-4">
       <%= link_to root_path, class: "group flex mr-2 space-x-2 items-center text-lg text-nowrap text-neutral" do %>
-        <div class="rounded-xl *:w-9 *:h-9 hover:scale-[102%] justify-center items-center flex">
+        <div class="rounded-xl *:w-8 *:h-8 hover:scale-[102%] justify-center items-center flex">
           <%= render "shared/logo" %>
-          <span class="sr-only text-neutral-900 font-medium">Bible Reading Log</span>
         </div>
-      <% end %>
-      <%= link_to root_path, class: "font-medium py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
-        <span>Home</span>
-      <% end %>
-      <%= link_to account_path, class: "font-medium py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
-        <span>Account</span>
+        <span class="text-neutral-900 font-medium">Bible Reading Log</span>
       <% end %>
     </div>
-    <div class="flex items-center space-x-3.5">
-
+    <div class="flex items-center space-x-3">
+      <%= link_to root_path, class: "xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+        <span>Home</span>
+      <% end %>
+      <%= link_to account_path, class: "xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+        <span>Account</span>
+      <% end %>
       <div
         data-controller="dropdown"
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
@@ -28,6 +27,14 @@
         </button>
         <div data-dropdown-target="menu" class="hidden absolute top-12 -right-3 z-10 flex w-screen max-w-max">
           <div class=" bg-white shadow-sm rounded-lg border overflow-hidden w-[200px] py-1.5">
+            <%= link_to root_path, class: "group flex xs:hidden py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span class="">Home</span>
+            <% end %>
+            <%= link_to account_path, class: "group flex xs:hidden py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span class="">Account</span>
+            <% end %>
             <%= link_to feedback_path, class: "group flex py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-more"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>
               <span class="">Share Feedback</span>
