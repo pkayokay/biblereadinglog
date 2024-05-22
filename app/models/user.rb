@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_many :reading_logs, dependent: :destroy
   has_many :books, through: :reading_logs
-  
+
   enum color_theme: {
     green: 0,
     red: 1,
@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def initials
-    first_name.first + last_name.first
+    (first_name.first + last_name.first).upcase
   end
 
   def full_name
