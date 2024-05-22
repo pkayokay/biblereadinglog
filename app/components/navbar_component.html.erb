@@ -1,18 +1,21 @@
 <nav class="w-full border-b md:border-b-0">
   <div class="max-w-2xl md:px-0 px-5 py-4 flex mx-auto justify-between items-center">
     <div class="flex items-center space-x-4">
-      <%= link_to root_path, class: "flex space-x-2 items-center text-lg text-nowrap text-neutral" do %>
-        <%= render "shared/logo" %>
-        <span class="text-neutral-900 font-medium">Bible Reading Log</span>
+      <%= link_to root_path, class: "group flex mr-2 space-x-2 items-center text-lg text-nowrap text-neutral" do %>
+        <div class="rounded-xl h-11 p-1.5 w-11 group-hover:bg-neutral-700 duration-100 bg-neutral-800 justify-center items-center flex">
+          <%= render "shared/logo", stroke: "white" %>
+        </div>
+        <span class="sr-only text-neutral-900 font-medium">Bible Reading Log</span>
+      <% end %>
+      <%= link_to root_path, class: "font-medium py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+        <span>Home</span>
+      <% end %>
+      <%= link_to account_path, class: "font-medium py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
+        <span>Account</span>
       <% end %>
     </div>
     <div class="flex items-center space-x-3.5">
-      <%= link_to root_path, class: "font-medium hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
-        <span>Home</span>
-      <% end %>
-      <%= link_to account_path, class: "font-medium hidden sm:inline py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-60 hover:opacity-80'}" do %>
-        <span>Account</span>
-      <% end %>
+
       <div
         data-controller="dropdown"
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
