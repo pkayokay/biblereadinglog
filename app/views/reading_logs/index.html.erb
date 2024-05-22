@@ -15,7 +15,7 @@
   ])) %>
 
 <% if @reading_logs.present? %>
-  <div class="pb-24">
+  <div class="pb-20">
     <%= turbo_frame_tag reading_logs_turbo_frame_id do %>
       <%= render @reading_logs %>
     <% end %>
