@@ -31,7 +31,7 @@
 
 
   .btn--primary {
-    @apply bg-neutral-900 text-white !border-black hover:bg-neutral-800 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
+    @apply bg-neutral-900 text-white !border-black hover:!border-neutral-800 hover:bg-neutral-800 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
   }
 
   .btn--blue {
