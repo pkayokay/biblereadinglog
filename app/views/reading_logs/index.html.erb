@@ -33,14 +33,13 @@
     </div>
   </div>
 <% else %>
-  <div class="pt-16 pb-24 rounded-lg text-lg text-center">
-    <% if @has_completed_status %>
-    <p class="opacity-50">You don't have any completed reading logs.</p>
-    <% else %>
-    <p class="mb-7 opacity-50">You don't have any reading logs in progress.</p>
-    <%= link_to new_reading_log_path, class: "btn btn--primary" do %>
-      <span class="">Get Started</span>
+  <% if @has_completed_status %>
+    <%= render(EmptyStateComponent.new(message: "You don't have any completed reading logs.")) %>
+  <% else %>
+    <%= render(EmptyStateComponent.new(message: "You don't have any reading logs in progress.")) do %>
+      <%= link_to new_reading_log_path, class: "mt-5 inline-block w-fit btn btn--primary" do %>
+        <span class="">Get Started</span>
+      <% end %>
     <% end %>
-    <% end %>
-  </div>
+  <% end %>
 <% end %>

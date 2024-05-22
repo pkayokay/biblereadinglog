@@ -95,15 +95,11 @@
           <% end %>
         </div>
       <% else %>
-        <div class="pt-16 pb-24 rounded-lg text-lg text-center">
-          <p class="opacity-40 text-lg">
-            <% if @has_pending_status %>
-            You don't have any books in progress.
-            <% elsif @has_completed_status %>
-            You don't have any completed books.
-            <% end %>
-          </p>
-        </div>
+       <% if @has_pending_status %>
+        <%= render(EmptyStateComponent.new(message: "You don't have any books in progress.")) %>
+       <% else %>
+        <%= render(EmptyStateComponent.new(message: "You don't have any completed books.")) %>
+       <% end %>
       <% end %>
   </div>
   </div>
