@@ -41,7 +41,7 @@
 <%= turbo_frame_tag "settings_form-reminders" %>
 <%= turbo_frame_tag "settings_form-invite" %>
 <%= turbo_frame_tag "settings_form-delete" %>
-  <div class="-mt-3 text-center mb-11 sm:mb-6">
+  <div class="-mt-4 text-center mb-11 sm:mb-6">
     <% if @reading_log.completed? %>
       <div class="mx-auto mb-4 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
         <span>Completed <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
