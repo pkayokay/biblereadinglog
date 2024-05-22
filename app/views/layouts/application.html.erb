@@ -24,13 +24,13 @@
     <% end %>
   </head>
 
-  <body class="bg-stone-50">
+  <body class="md:bg-stone-50">
     <% if user_signed_in? %>
       <%= render(NavbarComponent.new) %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false" class="shadow-custom mx-auto w-full max-w-2xl p-5 sm:p-8 sm:rounded-lg bg-white mb-20">
+      <main data-turbo-prefetch="false" class="md:shadow-custom mx-auto w-full max-w-2xl pt-7 p-5 md:p-8 md:rounded-lg bg-white mb-20">
         <%= yield %>
       </main>
     <% else  %>
