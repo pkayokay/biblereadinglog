@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "stats" do %>
   <%= render(ModalComponent.new(title: "Group Progress")) do %>
-      <div class="mt-5">
+      <div class="mt-8">
         <%= render "stats", reading_log: @reading_log %>
         <% if @reading_log.template_reading_log_id.present? %>
           <%= render "stats", reading_log: @reading_log.template_reading_log %>
