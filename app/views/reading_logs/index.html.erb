@@ -2,7 +2,7 @@
 
 <%= render(PageHeaderComponent.new(title: "Home", description_margin: true, description: "A list of all your reading logs, with the books and their start or completion dates.")) do |c| %>
   <%= c.with_right_content do %>
-    <%= link_to new_reading_log_path, class: "btn flex space-x-1.5 items-center btn--slim w-fit" do %>
+    <%= link_to new_reading_log_path, class: "pl-2.5 btn flex space-x-1.5 items-center btn--slim w-fit" do %>
       <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
       <span>New Reading Log</span>
     <% end %>
