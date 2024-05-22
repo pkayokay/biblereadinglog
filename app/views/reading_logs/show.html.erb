@@ -56,7 +56,7 @@
     <% if @reading_log.is_group_reading_log? %>
       <div class="mt-2">
         <%= link_to show_stats_reading_log_path(@reading_log), class: "hover:scale-[102%] duration-100 inline-block", data: {turbo_frame: "stats"} do %>
-          <%= render(BadgeComponent.new(title: "Show Group Progress", custom_classes: "!mx-auto")) %>
+          <%= render(BadgeComponent.new(title: "Show Group Progress", custom_classes: "!px-3 !text-base !mx-auto")) %>
         <% end %>
         <%= turbo_frame_tag "stats" %>
       </div>
