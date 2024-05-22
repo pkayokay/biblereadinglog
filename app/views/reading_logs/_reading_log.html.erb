@@ -14,7 +14,7 @@
       <% if @has_completed_status %>
         <span><%= pluralize(reading_log.completed_books_count, "book") %></span>
       <% else %>
-        <div><%= "Book".pluralize(reading_log.books_count) %> <%= reading_log.completed_books_count %>/<%= reading_log.books_count %></div>
+        <div><%= reading_log.completed_books_count %>/<%= reading_log.books_count %> <%= "book".pluralize(reading_log.books_count) %></div>
         <div class=""><%= reading_log.completed_book_percentage %>%</div>
       <% end %>
     </div>
