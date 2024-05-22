@@ -1,10 +1,6 @@
 <% render_title "Share Feedback" %>
 <%= render(PageActionsHeaderComponent.new(title: "Home", path: root_path)) %>
-
-<div class="mb-6 space-y-2">
-  <%= render(HeadingComponent.new(title: "Share Feedback")) %>
-  <p class="">Please take a moment to share your thoughts, suggestions, or feature ideas.</p>
-</div>
+<%= render(PageHeaderComponent.new(title: "Share Feedback", description: "Please take a moment to share your thoughts, suggestions, or feature ideas.")) %>
 
 <% if params[:success] == "true" %>
   <p>Thanks for sharing your thoughts!</p>

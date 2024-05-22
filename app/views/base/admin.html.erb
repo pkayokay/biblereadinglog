@@ -1,9 +1,7 @@
 <% render_title "Admin" %>
 <%= render(PageActionsHeaderComponent.new(title: "Home", path: root_path)) %>
+<%= render(PageHeaderComponent.new(title: "Admin")) %>
 
-<div class="mb-2">
-  <%= render(HeadingComponent.new(title: "Users (#{User.count})")) %>
-</div>
 <div class="pb-4 overflow-x-auto">
   <table class="min-w-full divide-y divide-gray-300">
     <thead>

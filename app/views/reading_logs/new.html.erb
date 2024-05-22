@@ -1,61 +1,55 @@
 <% render_title "New Reading Log" %>
 
 <%= render(PageActionsHeaderComponent.new(title: "Home", path: root_path)) %>
-  <div class="mb-2">
-    <%= render(HeadingComponent.new(title: "New Reading Log")) %>
-  </div>
-  <div class="">
-    <%= form_with model: @reading_log do |form| %>
-      <div class="mb-5">
-        <p class="">Add a name for your new reading log and include all or some books of the Bible.</p>
-      </div>
-      <%= render(FormErrorsComponent.new(errors: @errors)) %>
-      <%= render(FieldContainerComponent.new(custom_classes: "!mb-1 flex-1 w-full md:w-auto")) do %>
-        <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
-        <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
-      <% end %>
-      <small class="block opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles.</small>
-      <div data-controller="book-selection" class="mt-7">
-        <p class="mb-1 text-sm">Select Reading Option</p>
+<%= render(PageHeaderComponent.new(title: "New Reading Log", description: "Add a name for your new reading log and include all or some books of the Bible.")) %>
 
-        <%= render(FieldContainerComponent.new(custom_classes: "space-y-3")) do %>
-          <div data-book-selection-target="trueOption" class="w-full flex items-center ps-4 border rounded-lg">
-            <%= form.radio_button :is_entire_bible, true, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 focus:ring-2" %>
-            <%= form.label :is_entire_bible_true, "Entire Bible", class: "cursor-pointer w-full py-4 ms-4 text-gray-900" %>
-          </div>
-          <div
-            data-book-selection-target="falseOption"
-            class="w-full flex flex-col ps-4 border rounded-lg">
-            <div class="flex items-center">
-              <%= form.radio_button :is_entire_bible, false, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 focus:ring-2" %>
-              <%= form.label :is_entire_bible_false, "Specific Books", class: "cursor-pointer w-full py-4 ms-4 text-gray-900" %>
-            </div>
-            <div data-book-selection-target="bookList" class="<%= 'hidden' if form.object.is_entire_bible? %> mt-2">
-              <%= form.fields_for :selected_books do |selected_book_form| %>
-                <div class="flex space-x-1 sm:space-x-16">
-                  <div>
-                    <% @old_testament_books_data.map do |book_data| %>
-                      <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
-                        <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded text-neutral-700 focus:ring-neutral-500" %>
-                        <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-base text-nowrap font-normal" )) %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                  <div>
-                    <% @new_testament_books_data.map do |book_data| %>
-                      <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
-                        <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded text-neutral-700 focus:ring-neutral-500" %>
-                        <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-base text-nowrap font-normal" )) %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+<%= form_with model: @reading_log do |form| %>
+  <%= render(FormErrorsComponent.new(errors: @errors)) %>
+  <%= render(FieldContainerComponent.new(custom_classes: "!mb-1 flex-1 w-full md:w-auto")) do %>
+    <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
+    <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true)) %>
+  <% end %>
+  <small class="block opacity-60">Ex. Yearly Plan <%= Time.current.year %>, Small Group Study, The Epistles.</small>
+  <div data-controller="book-selection" class="mt-7">
+    <p class="mb-1 text-sm">Select Reading Option</p>
 
+    <%= render(FieldContainerComponent.new(custom_classes: "space-y-3")) do %>
+      <div data-book-selection-target="trueOption" class="w-full flex items-center ps-4 border rounded-lg">
+        <%= form.radio_button :is_entire_bible, true, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 focus:ring-2" %>
+        <%= form.label :is_entire_bible_true, "Entire Bible", class: "cursor-pointer w-full py-4 ms-4 text-gray-900" %>
       </div>
-      <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary xs:max-w-[200px] w-full mt-3" %>
+      <div
+        data-book-selection-target="falseOption"
+        class="w-full flex flex-col ps-4 border rounded-lg">
+        <div class="flex items-center">
+          <%= form.radio_button :is_entire_bible, false, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 focus:ring-2" %>
+          <%= form.label :is_entire_bible_false, "Specific Books", class: "cursor-pointer w-full py-4 ms-4 text-gray-900" %>
+        </div>
+        <div data-book-selection-target="bookList" class="<%= 'hidden' if form.object.is_entire_bible? %> mt-2">
+          <%= form.fields_for :selected_books do |selected_book_form| %>
+            <div class="flex space-x-1 sm:space-x-16">
+              <div>
+                <% @old_testament_books_data.map do |book_data| %>
+                  <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
+                    <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded text-neutral-700 focus:ring-neutral-500" %>
+                    <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-base text-nowrap font-normal" )) %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div>
+                <% @new_testament_books_data.map do |book_data| %>
+                  <%= render(FieldContainerComponent.new(custom_classes: "flex items-center mb-5")) do %>
+                    <%= selected_book_form.check_box book_data["slug"], class: "cursor-pointer w-5 h-5 rounded text-neutral-700 focus:ring-neutral-500" %>
+                    <%= render(LabelComponent.new(for_attribute: "selected_books_#{book_data["slug"]}", title: book_data["name"], form: form, custom_classes: "cursor-pointer ml-3 w-full !text-base text-nowrap font-normal" )) %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% end %>
+
   </div>
+  <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary xs:max-w-[200px] w-full mt-3" %>
+<% end %>

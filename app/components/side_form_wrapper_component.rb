@@ -12,10 +12,10 @@ class SideFormWrapperComponent < ViewComponent::Base
       </div>
     </div>
   ERB
+
   def initialize(title:, description:, custom_class: "")
     @title = title
     @description = description
     @custom_class = custom_class
   end
-
 end
