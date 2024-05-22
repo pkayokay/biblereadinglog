@@ -24,21 +24,19 @@
     <% end %>
   </head>
 
-  <body class="md:bg-stone-50">
+  <body class="">
     <% if user_signed_in? %>
       <%= render(NavbarComponent.new) %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false" class="md:shadow-custom mx-auto w-full max-w-2xl pt-7 p-5 md:p-10 md:p-8 md:rounded-lg bg-white md:mt-4 mb-20">
+      <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-7 sm:pt-8 px-5 md:px-0 mb-20">
         <%= yield %>
       </main>
     <% else  %>
       <%= render "shared/flash", custom_classes: "!top-8" %>
-      <main class="mt-10 mb-10 flex justify-center">
-        <div class="shadow-custom mx-4 rounded-lg inline-block py-8 p-5 xs:p-8 bg-white max-w-[440px] w-full">
-          <%= yield %>
-        </div>
+      <main class="p-5 mb-10">
+        <%= yield %>
       </main>
     <% end %>
   </body>
