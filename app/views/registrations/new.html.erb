@@ -2,11 +2,9 @@
 
 <% if !Rails.env.production? || params[:code]&.downcase == "jesus" %>
   <%= render(AuthHeaderComponent.new(title: "Welcome!", description: "Sign up to Bible Reading Log")) %>
-
-  <%= render(FormWrapperComponent.new) do |form_card| %>
+  <%= render(AuthFormContainerComponent.new) do |form_card| %>
     <%= form_with model: @user, url: sign_up_path, data: { turbo: false, controller: "time-zone" } do |form| %>
-      <input type="hidden" name="_replyto" />
-			<%= render(FormErrorsComponent.new(errors: @errors)) %>
+      <%= render(FormErrorsComponent.new(errors: @errors)) %>
       <%= form.hidden_field :time_zone, data: {time_zone_target: "timeZoneField"} %>
       <div class="flex justify-between space-x-3">
         <%= render(FieldContainerComponent.new) do %>
@@ -30,40 +28,38 @@
         <%= render(LabelComponent.new(for_attribute: "password_confirmation", form: form)) %>
         <%= render(InputComponent.new(type: "password", form: form, id_and_name: "password_confirmation", required: true)) %>
       <% end %>
-      <%= form.submit "Sign up", class: "btn btn--primary" %>
+      <%= render(SubmitButtonComponent.new(title: "Sign up", form: form)) %>
     <% end %>
-
     <% form_card.with_footer do  %>
-      <%= link_to "Have an account? Sign in", sign_in_path, class: "" %>
+      <%= link_to "Have an account? Sign in", sign_in_path %>
     <% end %>
   <% end %>
 <% else %>
   <%= render(AuthHeaderComponent.new(title: "Bible Reading Log", subtitle: "Invite-only while in beta.")) %>
-  <div class="">
-    <% if params[:success] == "true" %>
-      <div class="text-center mb-8">
-        <p class="mb-5">Thank you for signing up! Expect to receive an email soon.</p>
-        <%= link_to "biblereadinglog.com", "https://biblereadinglog.com", class: "underline" %>
+  <% if params[:success] == "true" %>
+    <div class="text-center mb-8">
+      <p class="mb-5">Thank you for signing up! Expect to receive an email soon.</p>
+      <%= link_to "biblereadinglog.com", "https://biblereadinglog.com", class: "underline" %>
+    </div>
+  <% else %>
+    <p class="text-center mb-8">If you would like to request an invitation, please provide your email address.</p>
+    <form class="max-w-sm mx-auto" action="https://submit-form.com/U2vDzdNUk">
+      <input
+        type="hidden"
+        name="_redirect"
+        value="<%= sign_up_url(success: true) %>"
+      />
+      <input type="hidden" name="_replyto" />
+      <input type="hidden" name="_append" value="false" />
+      <div class="mb-5">
+        <label for="name" class="opacity-70 block font-medium text-sm">Name</label>
+        <input type="text" name="name" required class="form-input">
       </div>
-    <% else %>
-      <p class="text-center mb-8">If you would like to request an invitation, please provide your email address.</p>
-      <form class="max-w-sm mx-auto" action="https://submit-form.com/U2vDzdNUk">
-        <input
-          type="hidden"
-          name="_redirect"
-          value="<%= sign_up_url(success: true) %>"
-        />
-        <input type="hidden" name="_append" value="false" />
-        <div class="mb-5">
-          <label for="name" class="opacity-70 block font-medium text-sm">Name</label>
-          <input type="text" name="name" required class="form-input">
-        </div>
-        <div class="mb-4">
-          <label for="email" class="opacity-70 block font-medium text-sm">Email</label>
-          <input type="email" name="email" required class="form-input">
-        </div>
-        <input type="submit" value="Submit" class="btn btn--primary"/>
-      </form>
-    <% end %>
-  </div>
+      <div class="mb-4">
+        <label for="email" class="opacity-70 block font-medium text-sm">Email</label>
+        <input type="email" name="email" required class="form-input">
+      </div>
+      <input type="submit" value="Submit" class="btn btn--primary"/>
+    </form>
+  <% end %>
 <% end %>

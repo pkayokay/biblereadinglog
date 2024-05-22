@@ -3,7 +3,7 @@
     <div
       data-controller="flash"
       data-action="click->flash#close"
-      class="container--flash <%= (flash_type == "notice") ? "flash-green" : "flash-red" %> <%= local_assigns[:custom_top_class] %>"
+      class="container--flash <%= (flash_type == "notice") ? "flash-green" : "flash-red" %> <%= local_assigns[:custom_classes] %>"
     >
       <% if flash_type == "notice" %>
         <svg class="min-w-5 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>

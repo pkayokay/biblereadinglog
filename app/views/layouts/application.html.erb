@@ -31,11 +31,10 @@
         <%= render "shared/flash" %>
       </div>
       <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-7 sm:pt-10 px-5 md:px-0 mb-20">
-
         <%= yield %>
       </main>
     <% else  %>
-      <%= render "shared/flash", custom_top_class: "!top-8" %>
+      <%= render "shared/flash", custom_classes: "!top-8" %>
       <main class="p-5 mb-10">
         <%= yield %>
       </main>
