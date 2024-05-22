@@ -35,8 +35,10 @@
       </main>
     <% else  %>
       <%= render "shared/flash", custom_classes: "!top-8" %>
-      <main class="p-5 mb-10">
-        <%= yield %>
+      <main class="mt-10 mb-10 flex justify-center">
+        <div class="shadow-custom mx-4 rounded-lg inline-block py-8 p-5 xs:p-8 bg-white max-w-[440px] w-full">
+          <%= yield %>
+        </div>
       </main>
     <% end %>
   </body>
