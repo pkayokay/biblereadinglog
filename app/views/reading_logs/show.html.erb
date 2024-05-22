@@ -65,7 +65,6 @@
   </div>
   <div class="mt-14">
 <%= render(TabsComponent.new(
-  is_full_width: true,
   items: [
     {title: "All Books", path: reading_log_path(@reading_log), is_active: @has_no_status},
     {title: "In Progress", path: reading_log_path(@reading_log, status: "pending"), is_active: @has_pending_status},
