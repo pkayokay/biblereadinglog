@@ -1,5 +1,5 @@
 <% render_title "Settings | #{@reading_log.name}" %>
-<%= render(BackButtonComponent.new(title: "Books", path: reading_log_path(@reading_log), include_margin: true)) %>
+<%= render(PageHeaderComponent.new(title: "Books", path: reading_log_path(@reading_log))) %>
 <% @invite_section = capture do %>
   <div data-controller="clipboard" data-clipboard-success-content-value="Copied!">
     <%= render(FieldContainerComponent.new(custom_classes: "")) do %>
@@ -13,7 +13,7 @@
 <% end %>
 <% if turbo_frame_request? %>
   <%= turbo_frame_tag "settings_form-name" do %>
-    <%= render(ModalComponent.new(title: "Name")) do %>
+    <%= render(ModalComponent.new(title: "Edit Name")) do %>
       <%= form_with model: @reading_log, data: { turbo_frame: "_top" } do |form| %>
         <%= render(FormErrorsComponent.new(errors: @errors)) %>
         <%= render(FieldContainerComponent.new(custom_classes: "")) do %>

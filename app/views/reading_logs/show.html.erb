@@ -1,7 +1,5 @@
 <% render_title "Books | #{@reading_log.name}" %>
-<%= render(BackButtonComponent.new(title: "Back", path: root_path)) do |c|%>
-  <%= c.with_middle_content do %>
-  <% end %>
+<%= render(PageHeaderComponent.new(path: root_path)) do |c|%>
   <%= c.with_right_content do %>
     <div
       data-controller="dropdown"
@@ -16,7 +14,7 @@
           <% unless @reading_log.template_reading_log_id.present? %>
             <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-name", dropdown_target: "menuItem"} do %>
               <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-              <span class="">Update Name</span>
+              <span class="">Edit Name</span>
             <% end %>
           <% end %>
           <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-1.5 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-reminders", dropdown_target: "menuItem"} do %>
@@ -41,7 +39,7 @@
 <%= turbo_frame_tag "settings_form-reminders" %>
 <%= turbo_frame_tag "settings_form-invite" %>
 <%= turbo_frame_tag "settings_form-delete" %>
-  <div class="-mt-4 text-center mb-11 sm:mb-6">
+  <div class="-mt-3 text-center mb-11 sm:mb-6">
     <% if @reading_log.completed? %>
       <div class="mx-auto mb-4 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
         <span>Completed <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>

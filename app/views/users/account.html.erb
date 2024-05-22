@@ -1,5 +1,5 @@
 <% render_title "Account" %>
-<%= render(BackButtonComponent.new(title: "Home", path: root_path)) %>
+<%= render(PageHeaderComponent.new(title: "Home", path: root_path)) %>
 
   <%= render(HeadingComponent.new(title: "Account")) %>
   <%= render(SideFormWrapperComponent.new(title: "Email", description: current_user.email, custom_class: "!pb-4"))  %>
