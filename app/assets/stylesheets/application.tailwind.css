@@ -43,7 +43,7 @@
   }
 
   .btn--success {
-    @apply bg-emerald-600 text-white !border-emerald-500 hover:!border-emerald-500 hover:bg-emerald-600 focus:!ring-emerald-600 focus:!border-emerald-500 focus:!outline-emerald-500;
+    @apply bg-emerald-500 text-white !border-emerald-500 hover:!border-emerald-200 hover:bg-emerald-600 focus:!ring-emerald-500 focus:!border-emerald-500 focus:!outline-emerald-500;
   }
 
   .field_with_errors .form-input {}
