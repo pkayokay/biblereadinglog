@@ -24,13 +24,13 @@
     <% end %>
   </head>
 
-  <body class="">
+  <body class="antialiased">
     <% if user_signed_in? %>
       <%= render(NavbarComponent.new) %>
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-7 sm:pt-8 px-5 md:px-0 mb-20">
+      <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-6 sm:pt-8 px-5 md:px-0 mb-20">
         <%= yield %>
       </main>
     <% else  %>
