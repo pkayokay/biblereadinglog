@@ -55,7 +55,7 @@
         <span><%= "Book".pluralize(@reading_log.books_count) %> <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
       </div>
     <% end %>
-    <h1 class="text-4xl font-semibold"><%= @reading_log.name %></h1>
+    <h1 class="text-4xl font-bold"><%= @reading_log.name %></h1>
     <% unless @reading_log.completed? %>
       <%= render "upcoming_reminder" %>
     <% end %>

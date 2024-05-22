@@ -4,7 +4,7 @@ class AuthHeaderComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="text-center flex justify-center flex-col items-center mb-5 space-y-2">
       <%= render "shared/logo", width: '60px' %>
-      <h1 class="text-3xl font-semibold"><%= @title %></h1>
+      <h1 class="text-4xl font-bold"><%= @title %></h1>
       <% if @subtitle %>
         <h2 class="text-xl font-medium"><%= @subtitle %></h1>
       <% end %>
