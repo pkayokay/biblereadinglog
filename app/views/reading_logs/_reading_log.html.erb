@@ -1,6 +1,6 @@
 <div class="space-y-5 sm:space-y-0 py-4 border-b flex justify-between items-center flex-col sm:flex-row">
   <div class="sm:pr-3 sm:max-w-[410px] text-center sm:text-left">
-    <p class="truncate text-wrap sm:text-nowrap font-semibold text-2xl sm:text-xl leading-snug"><%= reading_log.name %></p>
+    <p class="truncate text-wrap sm:text-nowrap font-semibold text-3xl sm:text-xl leading-snug"><%= reading_log.name %></p>
     <p class="text-sm">Started on <%= format_on_date(reading_log.created_at) %></p>
     <% if @has_completed_status %>
       <div class="text-sm text-emerald-700 font-semibold">Completed on <%= format_on_date(reading_log.created_at) %></div>
