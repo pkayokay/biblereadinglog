@@ -9,14 +9,15 @@ class PageHeaderComponent < ViewComponent::Base
         <%= right_content %>
       </div>
       <% if @description.present? %>
-        <p><%= @description %></p>
+        <p class="<%= 'mt-4' if @description_margin %>"><%= @description %></p>
       <% end %>
     </div>
   ERB
 
-  def initialize(title:, description: nil)
+  def initialize(title:, description: nil, description_margin: false)
     @title = title
     @description = description
+    @description_margin = description_margin
   end
 
 end

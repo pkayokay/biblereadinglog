@@ -22,7 +22,7 @@
   }
 
   .btn {
-    @apply rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2.5 px-4 focus-visible:!ring-offset-2 focus-visible:!ring-2;
+    @apply font-medium rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2.5 px-4 focus-visible:!ring-offset-2 focus-visible:!ring-2;
   }
 
   .btn--slim {
@@ -43,7 +43,7 @@
   }
 
   .btn--success {
-    @apply bg-emerald-600 text-white !border-emerald-600 hover:!border-emerald-600 hover:bg-emerald-700 focus:!ring-emerald-700 focus:!border-emerald-600 focus:!outline-emerald-600;
+    @apply bg-emerald-600 text-white !border-emerald-500 hover:!border-emerald-500 hover:bg-emerald-600 focus:!ring-emerald-600 focus:!border-emerald-500 focus:!outline-emerald-500;
   }
 
   .field_with_errors .form-input {}

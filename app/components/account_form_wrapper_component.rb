@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SideFormWrapperComponent < ViewComponent::Base
+class AccountFormWrapperComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="mt-6 border-b pb-8 mb-8 flex flex-col <%= @custom_class %>">
       <div class="mb-2">
