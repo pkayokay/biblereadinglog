@@ -1,5 +1,5 @@
 <% render_title "Admin" %>
-<%= render(PageHeaderComponent.new(title: "Home", path: root_path)) %>
+<%= render(PageActionsHeaderComponent.new(title: "Home", path: root_path)) %>
 
 <div class="mb-2">
   <%= render(HeadingComponent.new(title: "Users (#{User.count})")) %>

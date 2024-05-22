@@ -1,6 +1,6 @@
 <% render_title "#{@book.name} | #{@reading_log.name}" %>
 
-<%= render(PageHeaderComponent.new(path: reading_log_path(@reading_log))) %>
+<%= render(PageActionsHeaderComponent.new(path: reading_log_path(@reading_log))) %>
 <div class="-mt-3 mx-auto max-w-2xl">
   <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
     <% if @book.completed? %>

@@ -1,5 +1,5 @@
 <% render_title "Settings | #{@reading_log.name}" %>
-<%= render(PageHeaderComponent.new(title: "Books", path: reading_log_path(@reading_log))) %>
+<%= render(PageActionsHeaderComponent.new(title: "Books", path: reading_log_path(@reading_log))) %>
 <% @invite_section = capture do %>
   <div data-controller="clipboard" data-clipboard-success-content-value="Copied!">
     <%= render(FieldContainerComponent.new(custom_classes: "")) do %>

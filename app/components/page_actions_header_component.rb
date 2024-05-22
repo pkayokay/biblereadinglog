@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PageHeaderComponent < ViewComponent::Base
+class PageActionsHeaderComponent < ViewComponent::Base
   renders_one :right_content
 
   erb_template <<-ERB

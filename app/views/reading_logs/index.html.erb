@@ -7,13 +7,10 @@
     <span>New Reading Log</span>
   <% end %>
 </div>
-
-<%= render(TabsComponent.new(
-  items: [
+<%= render(TabsComponent.new(items: [
     {title: "Started", path: root_path, is_active: !@has_completed_status},
     {title: "Completed", path: root_path(status: 'completed'), is_active: @has_completed_status}
-  ]
-  )) %>
+  ])) %>
 
 <% if @reading_logs.present? %>
   <div class="pb-24">
