@@ -51,5 +51,5 @@
     <% end %>
 
   </div>
-  <%= form.submit "Create", data: { turbo_submits_with: "Creating..." }, class: "btn btn--primary xs:max-w-[200px] w-full mt-3" %>
+  <%= render(SubmitButtonComponent.new(title: "Create", form: form, data: { turbo_submits_with: "Creating..." }, custom_classes: "btn btn--primary xs:max-w-[200px] w-full mt-3")) %>
 <% end %>
