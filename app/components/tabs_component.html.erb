@@ -1,4 +1,4 @@
-<div class="flex <%= @is_center ? "justify-center" : "justify-start" %> mb-6 space-x-5 mt-7">
+<div class="flex <%= @is_center ? "justify-center" : "justify-start" %> mb-7 space-x-5 mt-7">
   <% @items.each do |item| %>
     <%= link_to item[:path],
       class: "#{'w-full' if @is_full_width} #{'!opacity-100 border-neutral-800 text-neutral-800' if item[:is_active]} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
