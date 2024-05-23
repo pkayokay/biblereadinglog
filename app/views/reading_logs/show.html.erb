@@ -64,6 +64,7 @@
       </div>
     <% end %>
   </div>
+<div class="max-w-md w-full mx-auto">
   <div class="mt-9">
 <%= render(TabsComponent.new(
   items: [
@@ -77,12 +78,12 @@
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
       <% if @has_no_status %>
-        <div id="<%= pinned_books_turbo_frame_id %>" class="max-w-sm mx-auto">
+        <div id="<%= pinned_books_turbo_frame_id %>" class="">
           <% @pinned_books.each do |book| %>
             <%= render "books/card", book: book %>
           <% end %>
         </div>
-        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="max-w-sm mx-auto">
+        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
           <% if @pinned_books.present? && @has_unpinned_books.present? %>
             <%= render "reading_logs/all_books_header" %>
           <% end %>
@@ -90,7 +91,7 @@
       <% end %>
 
       <% if @books.present? || @pinned_books.present? %>
-        <div id="<%= unpinned_books_turbo_frame_id %>" class="max-w-sm mx-auto">
+        <div id="<%= unpinned_books_turbo_frame_id %>" class="">
           <% @books.each do |book| %>
             <%= render "books/card", book: book %>
           <% end %>
@@ -106,3 +107,4 @@
       <% end %>
   </div>
   </div>
+</div>
