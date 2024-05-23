@@ -13,17 +13,11 @@ The core features are:
 
 This is built on Ruby on Rails (Hotwire), TailwindCSS, ViewComponent and PostgresQL.
 
-### Installation
+## Working Locally
 
 A prerequisite for this project is that you have Ruby and Ruby on Rails installed.
-```
-bundle
-yarn
-```
 
-### Getting started
-```
-bin/dev
-```
-
-Visit the your https://localhost:3000.
+1. `bundle install`
+2. `yarn install`
+3. `bin/dev`
+4. Visit https://localhost:3000.
