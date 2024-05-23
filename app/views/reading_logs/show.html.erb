@@ -60,7 +60,9 @@
         <%= link_to show_stats_reading_log_path(@reading_log), class: "hover:scale-[102%] !text-sm duration-100 inline-flex w-auto items-center btn btn--slim space-x-2", data: {turbo_frame: "stats"} do %>
           <span>Show Group Progress</span>
         <% end %>
-        <%= turbo_frame_tag "stats" %>
+        <div class="text-left">
+          <%= turbo_frame_tag "stats" %>
+        </div>
       </div>
     <% end %>
   </div>
