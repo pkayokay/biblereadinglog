@@ -12,7 +12,7 @@
 <%= render(TabsComponent.new(items: [
     {title: "Started", path: root_path, is_active: !@has_completed_status},
     {title: "Completed", path: root_path(status: 'completed'), is_active: @has_completed_status}
-  ])) %>
+  ], custom_classes: "!mb-6")) %>
 
 <% if @reading_logs.present? %>
   <div class="pb-20">
