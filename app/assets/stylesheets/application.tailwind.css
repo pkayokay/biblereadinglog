@@ -46,7 +46,7 @@
   }
 
   .round-link {
-    @apply hover:bg-neutral-100 duration-100 rounded-full p-2 justify-center inline-flex items-center space-x-1 text-base font-medium h-12 w-12;
+    @apply hover:bg-stone-100 duration-100 rounded-full p-2 justify-center inline-flex items-center space-x-1 text-base font-medium h-12 w-12;
   }
 
   .field_with_errors .form-input {}

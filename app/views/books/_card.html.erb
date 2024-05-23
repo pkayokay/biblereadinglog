@@ -3,7 +3,7 @@
 elsif book.completed_chapters_count > 0
 'border-yellow-400 bg-yellow-50'
 else
-'focus-within:bg-neutral-50 hover:bg-neutral-50' end %>
+'focus-within:bg-stone-50 hover:bg-stone-50' end %>
 <div class="rounded-lg border shadow-sm mb-4 sm:mx-0 overflow-x-hidden  <%= card_status_class %> hover:scale-[102%] focus-within:scale-[102%]  duration-100 flex items-center <%= 'pr-4' if @has_no_status %>" id="<%= book_card_container_turbo_frame_id(book) %>">
   <%= link_to reading_log_book_path(book.reading_log, book), class: "#{@has_no_status ? 'pr-2' : 'pr-5'} pl-5 w-full flex py-3.5 space-x-4" do %>
     <div class="flex items-center">
