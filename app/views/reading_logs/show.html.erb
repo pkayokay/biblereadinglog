@@ -48,7 +48,7 @@
 <%= turbo_frame_tag "settings_form-reminders" %>
 <%= turbo_frame_tag "settings_form-invite" %>
 <%= turbo_frame_tag "settings_form-delete" %>
-  <div class="-mt-3 text-center mb-11 sm:mb-6">
+  <div class="-mt-3 text-center ">
     <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
     <% unless @reading_log.completed? %>
       <%= render "upcoming_reminder" %>
@@ -64,7 +64,6 @@
       </div>
     <% end %>
   </div>
-  <div class="mt-9">
 <%= render(TabsComponent.new(
   items: [
     {title: "All Books", path: reading_log_path(@reading_log), is_active: @has_no_status},
@@ -73,7 +72,6 @@
   ],
   is_center: true
   )) %>
-  </div>
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
       <% if @has_no_status %>
