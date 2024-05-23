@@ -1,7 +1,16 @@
 <% render_title "Books | #{@reading_log.name}" %>
 <%= render(PageActionsHeaderComponent.new(path: root_path)) do |c|%>
   <%= c.with_right_content do %>
-    <div class="flex space-x-2.5 -mr-2.5">
+    <div class="flex space-x-2.5 -mr-2.5 items-center">
+      <% if @reading_log.completed? %>
+        <div class="mx-auto w-fit flex items-center font-medium text-base text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
+          <span><%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
+        </div>
+      <% else %>
+        <div class="mx-auto w-fit flex items-center font-medium text-base text-neutral-900 bg-stone-100  py-1 px-3 rounded-lg">
+          <span><%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
+        </div>
+      <% end %>
       <%= link_to settings_reading_log_path(@reading_log), class: "round-link", data: { turbo_frame: "settings_form-invite", dropdown_target: "menuItem"} do %>
         <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
         <span class="sr-only">Invite</span>
@@ -46,15 +55,6 @@
 <%= turbo_frame_tag "settings_form-invite" %>
 <%= turbo_frame_tag "settings_form-delete" %>
   <div class="-mt-3 text-center mb-11 sm:mb-6">
-    <% if @reading_log.completed? %>
-      <div class="mx-auto mb-4 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
-        <span>Completed <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
-      </div>
-    <% else %>
-      <div class="mt-0.5 mb-4 flex items-center space-x-2 text-base font-medium text-neutral-900 bg-neutral-200  w-fit mx-auto py-1.5 px-3 rounded-lg">
-        <span><%= "Book".pluralize(@reading_log.books_count) %> <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
-      </div>
-    <% end %>
     <h1 class="text-4xl font-semibold"><%= @reading_log.name %></h1>
     <% unless @reading_log.completed? %>
       <%= render "upcoming_reminder" %>
