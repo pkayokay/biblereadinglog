@@ -21,11 +21,9 @@
         </button>
         <div data-dropdown-target="menu" class="hidden absolute top-12 right-0 z-10 flex w-screen max-w-max">
           <div class=" bg-white shadow-sm rounded-lg border overflow-hidden w-[180px] py-1.5">
-            <% unless @reading_log.template_reading_log_id.present? %>
-              <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-name", dropdown_target: "menuItem"} do %>
-                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-                <span class="">Edit Name</span>
-              <% end %>
+            <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-name", dropdown_target: "menuItem"} do %>
+              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+              <span class="">Edit Name</span>
             <% end %>
             <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-reminders", dropdown_target: "menuItem"} do %>
               <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
