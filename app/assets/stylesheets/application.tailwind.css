@@ -22,7 +22,7 @@
   }
 
   .btn {
-    @apply text-neutral-800 hover:text-black font-medium rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-5 focus-visible:!ring-offset-2 focus-visible:!ring-2;
+    @apply text-neutral-800 hover:text-black rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-5 focus-visible:!ring-offset-2 focus-visible:!ring-2;
   }
 
   .btn--slim {
