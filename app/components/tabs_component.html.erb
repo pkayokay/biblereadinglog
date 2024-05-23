@@ -2,7 +2,7 @@
   <% @items.each do |item| %>
     <%= link_to item[:path],
       class: "#{'w-full' if @is_full_width} #{'!opacity-100 border-neutral-800 text-neutral-800' if item[:is_active]} group block text-center font-medium text-nowrap opacity-50 hover:opacity-100 focus-visible:opacity-100" do %>
-      <span class="<%= 'block' if @is_full_width %> group-hover:text-neutral-800 group-focus-visible:text-neutral-800 group-focus-visible:border-b-neutral-800 pb-2 border-b-2 border-transparent <%= 'border-b-neutral-800' if item[:is_active] %>">
+      <span class="<%= 'block' if @is_full_width %> group-hover:text-neutral-800 group-focus-visible:text-neutral-800 group-focus-visible:border-b-neutral-800 pb-2 border-b-[3px] border-transparent <%= 'border-b-neutral-800' if item[:is_active] %>">
         <%= item[:title] %>
       </span>
     <% end %>
