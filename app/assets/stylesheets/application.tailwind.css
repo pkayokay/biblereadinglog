@@ -4,15 +4,6 @@
 
 
 @layer base {
-  .text-color {
-    @apply opacity-60
-  }
-
-  input[type='password'] {
-    font-family: Verdana;
-    letter-spacing: 0.125em;
-  }
-
   .form-input {
     @apply w-full bg-white !placeholder-neutral-400 !mt-0.5 border-0 !px-3 !text-base !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
