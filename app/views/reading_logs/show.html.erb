@@ -77,12 +77,12 @@
 
     <div class="mt-5 flex-1 <%= '' if @pinned_books.present? %>">
       <% if @has_no_status %>
-        <div id="<%= pinned_books_turbo_frame_id %>" class="">
+        <div id="<%= pinned_books_turbo_frame_id %>" class="max-w-sm mx-auto">
           <% @pinned_books.each do |book| %>
             <%= render "books/card", book: book %>
           <% end %>
         </div>
-        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="">
+        <div id="<%= unpinned_books_empty_turbo_frame_id %>" class="max-w-sm mx-auto">
           <% if @pinned_books.present? && @has_unpinned_books.present? %>
             <%= render "reading_logs/all_books_header" %>
           <% end %>
@@ -90,17 +90,19 @@
       <% end %>
 
       <% if @books.present? || @pinned_books.present? %>
-        <div id="<%= unpinned_books_turbo_frame_id %>" class="">
+        <div id="<%= unpinned_books_turbo_frame_id %>" class="max-w-sm mx-auto">
           <% @books.each do |book| %>
             <%= render "books/card", book: book %>
           <% end %>
         </div>
       <% else %>
-       <% if @has_pending_status %>
-        <%= render(EmptyStateComponent.new(message: "You don't have any books in progress.")) %>
-       <% else %>
-        <%= render(EmptyStateComponent.new(message: "You don't have any completed books.")) %>
-       <% end %>
+        <div class="">
+          <% if @has_pending_status %>
+            <%= render(EmptyStateComponent.new(message: "You don't have any books in progress.")) %>
+          <% else %>
+            <%= render(EmptyStateComponent.new(message: "You don't have any completed books.")) %>
+          <% end %>
+        </div>
       <% end %>
   </div>
   </div>
