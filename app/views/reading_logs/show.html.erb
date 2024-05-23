@@ -1,18 +1,23 @@
 <% render_title "Books | #{@reading_log.name}" %>
 <%= render(PageActionsHeaderComponent.new(path: root_path)) do |c|%>
   <%= c.with_right_content do %>
-    <div class="flex space-x-2.5">
-      <%= link_to settings_reading_log_path(@reading_log), class: "sm:py-2 py-2.5 space-x-2 btn btn--slim flex items-center", data: { turbo_frame: "settings_form-invite", dropdown_target: "menuItem"} do %>
-        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
-        <span class="sr-only sm:not-sr-only">Invite</span>
+    <div class="flex space-x-2 -mr-2.5 items-center">
+      <%= render(BadgeCountsComponent.new(
+          custom_classes: "absolute left-1/2 -translate-x-1/2 #{'!text-emerald-700 !bg-emerald-100' if @reading_log.completed?}",
+          numerator: @reading_log.completed_books_count,
+          denominator: @reading_log.books_count,
+        ))%>
+      <%= link_to settings_reading_log_path(@reading_log), class: "round-link", data: { turbo_frame: "settings_form-invite", dropdown_target: "menuItem"} do %>
+        <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+        <span class="sr-only">Invite</span>
       <% end %>
       <div
         data-controller="dropdown"
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
         class="inline-block relative">
-        <button data-action="dropdown#toggle:stop" class="sm:py-2 py-2.5 flex items-center space-x-2 btn btn--slim text-base">
-          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span class="sr-only sm:not-sr-only">Settings</span>
+        <button data-action="dropdown#toggle:stop" class="round-link">
+          <svg class="" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span class="sr-only">Settings</span>
         </button>
         <div data-dropdown-target="menu" class="hidden absolute top-12 right-0 z-10 flex w-screen max-w-max">
           <div class=" bg-white shadow-sm rounded-lg border overflow-hidden w-[180px] py-1.5">
@@ -46,16 +51,7 @@
 <%= turbo_frame_tag "settings_form-invite" %>
 <%= turbo_frame_tag "settings_form-delete" %>
   <div class="-mt-3 text-center mb-11 sm:mb-6">
-    <% if @reading_log.completed? %>
-      <div class="mx-auto mb-4 w-fit mt-0.5 flex items-center space-x-1.5 text-base font-medium text-emerald-700 bg-emerald-100  py-1 px-3 rounded-lg">
-        <span>Completed <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
-      </div>
-    <% else %>
-      <div class="mt-0.5 mb-4 flex items-center space-x-2 text-base font-medium text-neutral-900 bg-neutral-200  w-fit mx-auto py-1.5 px-3 rounded-lg">
-        <span><%= "Book".pluralize(@reading_log.books_count) %> <%= @reading_log.completed_books_count %>/<%= @reading_log.books_count %></span>
-      </div>
-    <% end %>
-    <h1 class="text-4xl font-semibold"><%= @reading_log.name %></h1>
+    <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
     <% unless @reading_log.completed? %>
       <%= render "upcoming_reminder" %>
     <% end %>
@@ -64,11 +60,13 @@
         <%= link_to show_stats_reading_log_path(@reading_log), class: "hover:scale-[102%] !text-sm duration-100 inline-flex w-auto items-center btn btn--slim space-x-2", data: {turbo_frame: "stats"} do %>
           <span>Show Group Progress</span>
         <% end %>
-        <%= turbo_frame_tag "stats" %>
+        <div class="text-left">
+          <%= turbo_frame_tag "stats" %>
+        </div>
       </div>
     <% end %>
   </div>
-  <div class="mt-14">
+  <div class="mt-9">
 <%= render(TabsComponent.new(
   items: [
     {title: "All Books", path: reading_log_path(@reading_log), is_active: @has_no_status},

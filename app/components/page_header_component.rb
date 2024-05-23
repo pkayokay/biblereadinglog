@@ -9,7 +9,7 @@ class PageHeaderComponent < ViewComponent::Base
         <%= right_content %>
       </div>
       <% if @description.present? %>
-        <p class="<%= 'mt-4' if @description_margin %>"><%= @description %></p>
+        <p class="<%= 'mt-4' if @description_margin %> text-lg"><%= @description %></p>
       <% end %>
     </div>
   ERB

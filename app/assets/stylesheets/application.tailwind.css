@@ -22,13 +22,12 @@
   }
 
   .btn {
-    @apply text-neutral-700 hover:text-black font-medium rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-4 focus-visible:!ring-offset-2 focus-visible:!ring-2;
+    @apply text-neutral-800 hover:text-black rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-5 focus-visible:!ring-offset-2 focus-visible:!ring-2;
   }
 
   .btn--slim {
     @apply py-2 px-3 !text-base;
   }
-
 
   .btn--primary {
     @apply bg-neutral-900 !text-white !border-black hover:!border-neutral-800 hover:bg-neutral-800 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
@@ -46,10 +45,14 @@
     @apply bg-emerald-500 text-white !border-emerald-500 hover:!border-emerald-200 hover:bg-emerald-600 focus:!ring-emerald-500 focus:!border-emerald-500 focus:!outline-emerald-500;
   }
 
+  .round-link {
+    @apply hover:bg-stone-100 duration-100 rounded-full p-2 justify-center inline-flex items-center space-x-1 text-base font-medium h-12 w-12;
+  }
+
   .field_with_errors .form-input {}
 
   .container--flash {
-    @apply w-full max-w-[90%] font-medium xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-[999] text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 h-fit bottom-10 xs:bottom-[initial] top-[initial] xs:top-11 fixed;
+    @apply w-full max-w-[90%] xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-[999] text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 h-fit bottom-10 xs:bottom-[initial] top-[initial] xs:top-11 fixed;
   }
 
   .container--flash.active {
