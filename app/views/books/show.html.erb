@@ -1,6 +1,10 @@
 <% render_title "#{@book.name} | #{@reading_log.name}" %>
 
-<%= render(PageActionsHeaderComponent.new(path: reading_log_path(@reading_log))) %>
+<%= render(PageActionsHeaderComponent.new(path: reading_log_path(@reading_log))) do |c| %>
+  <%= c.with_right_content do %>
+    <%= render "books/book_card_chapters", book: @book %>
+  <% end %>
+<% end %>
 <div class="-mt-3 mx-auto max-w-2xl">
   <%= turbo_frame_tag completed_banner_turbo_frame_id do %>
     <% if @book.completed? %>
@@ -9,7 +13,6 @@
   <% end %>
 </div>
   <div class="mx-auto text-center">
-      <%= render "books/book_card_chapters", book: @book %>
       <%= render(HeadingComponent.new(title: @book.name)) %>
     <div class="flex flex-col">
         <%= render "books/book_card_percentage", book: @book %>

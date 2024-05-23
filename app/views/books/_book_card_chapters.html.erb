@@ -1,5 +1,7 @@
 <%= turbo_frame_tag book_card_chapters_turbo_frame_id(book) do %>
-  <div class="mb-4 flex items-center space-x-2 text-base font-medium text-neutral-900 bg-neutral-200  w-fit mx-auto py-1.5 px-3 rounded-lg">
-    <span><%= "Chapter".pluralize(book.chapters_count) %> <%= book.completed_chapters_count %>/<%= book.chapters_count %></span>
-  </div>
+  <%= render(BadgeCountsComponent.new(
+    custom_classes: "mr-1.5 #{'!text-emerald-700 !bg-emerald-100' if book.completed?}",
+    numerator: book.completed_chapters_count,
+    denominator: book.chapters_count,
+  ))%>
 <% end %>
