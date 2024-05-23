@@ -1,15 +1,15 @@
 # README
 
 ### Installation
+A prerequisite for this project is that you have Ruby and Ruby on Rails installed.
 ```
 bundle
 yarn
 ```
 
-### Setup
-In the Rails console, add your self as a user:
+### Get started
 ```
-SetupUserService.new(email: "youremail@example.com", password: "password")
+bin/dev
 ```
 
-Visit the root path and log-in as that user.
+Visit the your https://localhost:3000

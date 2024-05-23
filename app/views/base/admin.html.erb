@@ -54,19 +54,3 @@
     </tbody>
   </table>
 </div>
-
-<div class="hidden ">
-  <h1 class="font-semibold text-4xl mb-2">Admin</h1>
-  <%= form_with url: setup_user_path, class: "max-w-md" do |form| %>
-    <div class="mb-3">Set up new user</div>
-    <%= render(FieldContainerComponent.new) do %>
-      <%= render(LabelComponent.new(for_attribute: "email", form: form)) %>
-      <%= render(InputComponent.new(type: "email", form: form, id_and_name: "email", required: true)) %>
-    <% end %>
-    <%= render(FieldContainerComponent.new) do %>
-      <%= render(LabelComponent.new(for_attribute: "password", form: form)) %>
-      <%= render(InputComponent.new(type: "text", form: form, id_and_name: "password", required: true)) %>
-    <% end %>
-    <%= form.submit "Submit", class: "btn btn--primary" %>
-  <% end %>
-</div>

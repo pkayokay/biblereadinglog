@@ -38,7 +38,6 @@ Rails.application.routes.draw do
 
   get "admin", to: "base#admin"
   get "feedback", to: "base#feedback"
-  post "setup_user", to: "base#setup_user"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
