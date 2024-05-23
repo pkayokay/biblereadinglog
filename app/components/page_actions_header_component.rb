@@ -5,9 +5,9 @@ class PageActionsHeaderComponent < ViewComponent::Base
 
   erb_template <<-ERB
     <div class="-mt-3 sm:mt-0 mb-8 mx-auto flex items-center justify-between">
-      <%= link_to @path, class: "-ml-1 inline-flex items-center space-x-1 text-base opacity-40 font-medium hover:opacity-100"  do %>
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
-        <span><%= @title %></span>
+      <%= link_to @path, class: "-ml-2 hover:bg-neutral-100 duration-100 rounded-full p-2 inline-flex items-center space-x-1 text-base font-medium"  do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        <span class="sr-only"><%= @title %></span>
       <% end %>
       <%= right_content %>
     </div>
