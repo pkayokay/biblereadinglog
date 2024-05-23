@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
-const BORDER_COLOR = "border-blue-500"
-const BG_COLOR = "bg-blue-100"
+const BORDER_COLOR = "border-sky-500"
+const BG_COLOR = "bg-sky-100"
 // Connects to data-controller="book-selection"
 export default class extends Controller {
   static targets = ["bookList","trueOption", "falseOption"];

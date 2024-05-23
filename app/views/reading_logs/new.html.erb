@@ -15,14 +15,14 @@
 
     <%= render(FieldContainerComponent.new(custom_classes: "space-y-3")) do %>
       <div data-book-selection-target="trueOption" class="w-full flex items-center ps-4 border rounded-lg">
-        <%= form.radio_button :is_entire_bible, true, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 focus:ring-2" %>
+        <%= form.radio_button :is_entire_bible, true, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-600 focus:ring-2" %>
         <%= form.label :is_entire_bible_true, "Entire Bible", class: "cursor-pointer w-full py-3 ms-4 text-gray-900" %>
       </div>
       <div
         data-book-selection-target="falseOption"
         class="w-full flex flex-col ps-4 border rounded-lg">
         <div class="flex items-center">
-          <%= form.radio_button :is_entire_bible, false, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 focus:ring-2" %>
+          <%= form.radio_button :is_entire_bible, false, data: { action: "book-selection#toggleRadio"}, required: true, class: "w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-600 focus:ring-2" %>
           <%= form.label :is_entire_bible_false, "Specific Books", class: "cursor-pointer w-full py-3 ms-4 text-gray-900" %>
         </div>
         <div data-book-selection-target="bookList" class="<%= 'hidden' if form.object.is_entire_bible? %> mt-2">
