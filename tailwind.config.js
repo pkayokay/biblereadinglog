@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'xs': '450px',
+        'xs': '460px',
       },
       fontSize: {
         'modal-heading': ['1.75rem','2.25rem'],
