@@ -8,7 +8,7 @@
           <!--Render owner reading log-->
           <%= render "stats", reading_log: @reading_log.template_reading_log %>
           <!--Render other user reading logs-->
-          <% @reading_log.template_reading_log.child_reading_logs.where.not(user: current_user).each do |child_reading_log| %>
+          <% @reading_log.child_reading_logs_from_template.each do |child_reading_log| %>
             <%= render "stats", reading_log: child_reading_log %>
           <% end %>
         <% else %>

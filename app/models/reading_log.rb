@@ -74,6 +74,10 @@ class ReadingLog < ApplicationRecord
     template_reading_log_id.present?
   end
 
+  def child_reading_logs_from_template
+    template_reading_log.child_reading_logs.where.not(id: id)
+  end
+
   private
 
   def reminder_fields_when_enabled
