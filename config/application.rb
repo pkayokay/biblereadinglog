@@ -25,5 +25,6 @@ module Biblereadinglog
     config.eager_load_paths << Rails.root.join("services")
 
     config.session_store :cookie_store, expire_after: 1.month
+    config.active_job.queue_adapter = :good_job
   end
 end
