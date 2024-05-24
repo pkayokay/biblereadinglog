@@ -21,10 +21,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authenticate_user_from_session
-    if session[:user_id]
-      user = User.find_by(id: session[:user_id])
-      user if user.present?
-    end
+    CurrentUserService.set_session_user(session:)
   end
 
   def user_signed_in?

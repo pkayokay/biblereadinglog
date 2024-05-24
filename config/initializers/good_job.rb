@@ -1,9 +1,7 @@
 ActiveSupport.on_load(:good_job_application_controller) do
   def is_admin_user?
-    if session[:user_id]
-      user = User.find_by(id: session[:user_id])
-      user&.is_admin?
-    end
+    user = CurrentUserService.set_session_user(session:)
+    user&.is_admin?
   end
 
   before_action do
