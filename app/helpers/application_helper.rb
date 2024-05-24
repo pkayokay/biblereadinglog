@@ -14,7 +14,7 @@ module ApplicationHelper
     next_occurrence = value.in_time_zone(current_user.time_zone)
 
     if current_time.to_date == next_occurrence.to_date
-      period = (0..17).include?(next_occurrence.hour) ? "Today" : "Tonight"
+      period = (0..17).cover?(next_occurrence.hour) ? "Today" : "Tonight"
       return "#{period} at #{next_occurrence.strftime("%l:%M %p")}"
     end
 
