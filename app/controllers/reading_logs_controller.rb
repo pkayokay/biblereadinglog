@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ReadingLogsController < ApplicationController
-  before_action :set_reading_log, only: [:update, :show, :settings, :destroy]
-  before_action :set_books_data, only: [:new, :create]
+  before_action :set_reading_log, only: %i[update show settings destroy]
+  before_action :set_books_data, only: %i[new create]
 
   skip_before_action :authenticate_user!, only: [:invite]
 
@@ -15,15 +17,13 @@ class ReadingLogsController < ApplicationController
       pagy(current_user.reading_logs.pending.order(created_at: :desc), items: @item_count)
     end
 
-    if current_user.confirmed_at.nil?
-      redirect_to email_confirmation_path
-    end
+    return unless current_user.confirmed_at.nil?
+
+    redirect_to email_confirmation_path
   end
 
   def new
-    if current_user.confirmed_at.nil?
-      redirect_to email_confirmation_path
-    end
+    redirect_to email_confirmation_path if current_user.confirmed_at.nil?
 
     @reading_log = ReadingLog.new
   end
@@ -43,7 +43,6 @@ class ReadingLogsController < ApplicationController
         end
       end
 
-
       @reading_log.save
     end
 
@@ -61,8 +60,10 @@ class ReadingLogsController < ApplicationController
     if @reading_log.is_entire_bible?
       BuildBooksService.new(reading_log: @reading_log).call
     else
-      selected_books = params[:reading_log][:selected_books].as_json.filter_map {|a| {a.first => a.last } if a.last == "1"}
-      BuildBooksService.new(reading_log: @reading_log, selected_books: selected_books).call
+      selected_books = params[:reading_log][:selected_books].as_json.filter_map do |a|
+        {a.first => a.last} if a.last == "1"
+      end
+      BuildBooksService.new(reading_log: @reading_log, selected_books:).call
     end
 
     if @reading_log.save
@@ -74,7 +75,6 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
-
     if @reading_log.present?
       @skip_turbo_cache_control = true
 
@@ -98,7 +98,8 @@ class ReadingLogsController < ApplicationController
   end
 
   def show_stats
-    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find_by(id: params[:id], user: current_user)
+    @reading_log = ReadingLog.includes(:template_reading_log, child_reading_logs: :user).find_by(id: params[:id],
+      user: current_user)
     redirect_to reading_log_path(@reading_log) unless turbo_frame_request?
   end
 
@@ -108,13 +109,11 @@ class ReadingLogsController < ApplicationController
   def invite
     @reading_log = ReadingLog.find_by(slug: params[:slug])
 
-    if @reading_log
-      if user_signed_in?
-        unless @is_reading_log_owner = @reading_log.user == current_user
-          @child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first
-        end
-      end
-    end
+    return unless @reading_log
+    return unless user_signed_in?
+    return if (@is_reading_log_owner = (@reading_log.user == current_user))
+
+    @child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first
   end
 
   def join_invite
@@ -129,7 +128,7 @@ class ReadingLogsController < ApplicationController
         if @reading_log.user == current_user
           flash[:notice] = "You are the owner of this reading log"
           redirect_to reading_log_path(@reading_log)
-        elsif @child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first
+        elsif (@child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first)
           flash[:notice] = "You are already part of this reading log"
           redirect_to reading_log_path(@child_reading_log)
         else
@@ -137,7 +136,7 @@ class ReadingLogsController < ApplicationController
             name: @reading_log.name,
             is_entire_bible: @reading_log.is_entire_bible,
             books_count: @reading_log.books_count,
-            template_reading_log: @reading_log,
+            template_reading_log: @reading_log
           )
           @reading_log.books.each do |book|
             @child_reading_log.books.new(
@@ -148,8 +147,8 @@ class ReadingLogsController < ApplicationController
               chapters_count: book["chapters_count"],
               chapters_data: book["chapters_count"].times.map do |index|
                 chapter = index + 1
-                { chapter_number: chapter, completed_at: nil }
-              end,
+                {chapter_number: chapter, completed_at: nil}
+              end
             )
           end
           @reading_log.update(is_group_reading_log: true) unless @reading_log.is_group_reading_log
@@ -170,10 +169,8 @@ class ReadingLogsController < ApplicationController
   end
 
   def destroy
-    if @reading_log.template_reading_log.present?
-      if @reading_log.template_reading_log.child_reading_logs.where.not(id: @reading_log.id).empty?
-        @reading_log.template_reading_log.update(is_group_reading_log: false)
-      end
+    if @reading_log.template_reading_log.present? && @reading_log.template_reading_log.child_reading_logs.where.not(id: @reading_log.id).empty?
+      @reading_log.template_reading_log.update(is_group_reading_log: false)
     end
 
     if @reading_log.destroy
@@ -197,7 +194,7 @@ class ReadingLogsController < ApplicationController
       :reminder_frequency,
       :reminder_time,
       reminder_days: [],
-      reminder_days_multiple: {},
+      reminder_days_multiple: {}
     )
     if allowed_params[:is_reminder_enabled] == "1"
       allowed_params[:reminder_days] = handle_reminder_days_value(allowed_params)
@@ -211,17 +208,17 @@ class ReadingLogsController < ApplicationController
   end
 
   def set_books_data
-    @books_data = JSON.parse(File.read('./public/books.json'))
-    @old_testament_books_data = @books_data.slice(0,39)
-    @new_testament_books_data = @books_data.slice(39,66)
+    @books_data = JSON.parse(File.read("./public/books.json"))
+    @old_testament_books_data = @books_data.slice(0, 39)
+    @new_testament_books_data = @books_data.slice(39, 66)
   end
 
   def handle_reminder_days_value(allowed_params)
     daily_reminder_frequency = allowed_params[:reminder_frequency] == "daily"
 
     if daily_reminder_frequency
-      selected_days = allowed_params[:reminder_days_multiple].select { |day, value| value == "1" }.keys
-      selected_days
+      allowed_params[:reminder_days_multiple].select { |_day, value| value == "1" }.keys
+
     else
       allowed_params[:reminder_days].compact_blank
     end

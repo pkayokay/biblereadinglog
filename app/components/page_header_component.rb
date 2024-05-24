@@ -19,5 +19,4 @@ class PageHeaderComponent < ViewComponent::Base
     @description = description
     @description_margin = description_margin
   end
-
 end

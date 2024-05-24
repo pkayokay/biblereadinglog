@@ -13,7 +13,7 @@ class PageActionsHeaderComponent < ViewComponent::Base
     </div>
   ERB
 
-  def initialize(title: "Back", path:)
+  def initialize(path:, title: "Back")
     @title = title
     @path = path
   end

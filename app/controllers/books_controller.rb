@@ -42,7 +42,7 @@ class BooksController < ApplicationController
           current_book_index = unpinned_ordered_books.index(@book)
 
           if current_book_index.present? && current_book_index != 0
-            @prev_book = unpinned_ordered_books[current_book_index-1]
+            @prev_book = unpinned_ordered_books[current_book_index - 1]
           end
         end
       end
@@ -61,16 +61,15 @@ class BooksController < ApplicationController
     @chapter_number = params[:chapter_number].to_i
 
     chapters_data = @book.chapters_data
-    @chapter_to_update = chapters_data.find { |chapter| chapter["chapter_number"] == @chapter_number}
+    @chapter_to_update = chapters_data.find { |chapter| chapter["chapter_number"] == @chapter_number }
 
     if @chapter_to_update
-      if @chapter_to_update["completed_at"].present?
-        @chapter_to_update["completed_at"] = nil
+      @chapter_to_update["completed_at"] = if @chapter_to_update["completed_at"].present?
+        nil
       else
-        @chapter_to_update["completed_at"] = Time.zone.now
+        Time.zone.now
       end
     end
-
 
     if @book.update(chapters_data: chapters_data)
       if @book.completed_at_previously_changed?

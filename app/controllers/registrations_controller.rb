@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(registration_params)
-    @user.confirmed_at = Time.current if ENV['EMAILS_DISABLED'] == "true"
+    @user.confirmed_at = Time.current if ENV["EMAILS_DISABLED"] == "true"
 
     if @user.save
       sign_in(@user)

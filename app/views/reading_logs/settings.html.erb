@@ -43,7 +43,7 @@
               <div data-reminder-form-target="reminderSection" class="<%= 'hidden' if !@reading_log.is_reminder_enabled %>">
                 <%= render(FieldContainerComponent.new) do %>
                   <%= render(LabelComponent.new(for_attribute: "reminder_frequency", title: "How often do you want to be reminder?", form: form)) %>
-                  <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } }%>
+                  <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } } %>
                 <% end %>
 
                 <% day_options = Date::DAYNAMES.map { |day| [day, day.downcase] }.rotate!(1) %>
@@ -124,7 +124,7 @@
         <div data-reminder-form-target="reminderSection" class="<%= 'hidden' if !@reading_log.is_reminder_enabled %>">
           <%= render(FieldContainerComponent.new) do %>
             <%= render(LabelComponent.new(for_attribute: "reminder_frequency", title: "How often do you want to be reminder?", form: form)) %>
-            <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } }%>
+            <%= form.select :reminder_frequency,ReadingLog.reminder_frequencies.keys.filter_map {|a| [a.capitalize, a]}, {}, { class: "form-select", data: { action: "change->reminder-form#updateDaysSelectField",  reminder_form_target: "frequency" } } %>
           <% end %>
 
           <% day_options = Date::DAYNAMES.map { |day| [day, day.downcase] }.rotate!(1) %>

@@ -12,26 +12,24 @@ class UsersController < ApplicationController
     if user_signed_in?
       if current_user.confirmed?
         redirect_to root_path
-      else
-        if params[:token]
-          token_user = User.find_by_token_for(:email_confirmation, params[:token])
-          if token_user.present?
-            if token_user == current_user
-              flash[:notice] = "Your email has been confirmed!"
-              current_user.update!(confirmed_at: Time.current)
+      elsif params[:token]
+        token_user = User.find_by_token_for(:email_confirmation, params[:token])
+        if token_user.present?
+          if token_user == current_user
+            flash[:notice] = "Your email has been confirmed!"
+            current_user.update!(confirmed_at: Time.current)
 
-              redirect_to root_path
-            else
-              flash[:alert] = "Email confirmation invalid, please try again."
-              redirect_to email_confirmation_path
-            end
+            redirect_to root_path
           else
             flash[:alert] = "Email confirmation invalid, please try again."
             redirect_to email_confirmation_path
           end
         else
+          flash[:alert] = "Email confirmation invalid, please try again."
           redirect_to email_confirmation_path
         end
+      else
+        redirect_to email_confirmation_path
       end
     else
       flash[:alert] = "You must be signed in to confirm your email."
@@ -69,7 +67,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def update_color_theme
     if current_user.update(color_theme_params)
       redirect_to account_path, notice: "Color theme updated!"
@@ -78,7 +75,6 @@ class UsersController < ApplicationController
       render :account, status: :unprocessable_entity
     end
   end
-
 
   def update_name
     if current_user.update(name_params)

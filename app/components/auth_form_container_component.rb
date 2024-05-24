@@ -14,5 +14,3 @@ class AuthFormContainerComponent < ViewComponent::Base
     </div>
   ERB
 end
-
-

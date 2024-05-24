@@ -5,7 +5,6 @@ class FormErrorsComponent < ViewComponent::Base
     @errors = errors
   end
 
-
   erb_template <<-ERB
     <% if @errors.present? %>
       <div class="flex items-center text-sm bg-red-100 mb-4 pl-4 pr-5 py-4 rounded-lg">

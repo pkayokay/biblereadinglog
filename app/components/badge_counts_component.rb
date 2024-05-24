@@ -7,7 +7,6 @@ class BadgeCountsComponent < ViewComponent::Base
     </div>
   ERB
 
-
   def initialize(numerator:, denominator:, title: "", custom_classes: "")
     @numerator = numerator
     @denominator = denominator

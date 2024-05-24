@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -33,7 +33,7 @@
       <main data-turbo-prefetch="false" class="mx-auto w-full max-w-2xl pt-9 sm:pt-10 px-5 md:px-0 mb-20">
         <%= yield %>
       </main>
-    <% else  %>
+    <% else %>
       <%= render "shared/flash", custom_classes: "!top-8" %>
       <main class="p-5 mt-6 xs:mt-16 mb-10">
         <%= yield %>
