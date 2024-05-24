@@ -9,7 +9,7 @@ ActiveSupport.on_load(:good_job_application_controller) do
   end
 end
 
-EVERY_15_MINUTES = "*/15 * * * *"
+EVERY_15TH_MINUTE = "*/15 * * * *"
 EVERY_1_MINUTE = "* * * * *"
 SEVEN_DAYS = 604800
 
@@ -18,7 +18,7 @@ Rails.application.configure do
   config.good_job.cleanup_preserved_jobs_before_seconds_ago = SEVEN_DAYS
   config.good_job.cron = {
     send_reminders: {
-      cron: EVERY_15_MINUTES,
+      cron: EVERY_15TH_MINUTE,
       class: "SendRemindersJob",
       description: "Every 15 minutes to send reminders with past reminder_scheduled_at datetimes"
     }
