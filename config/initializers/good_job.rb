@@ -11,9 +11,11 @@ end
 
 EVERY_15_MINUTES = "*/15 * * * *"
 EVERY_1_MINUTE = "* * * * *"
+SEVEN_DAYS = 604800
 
 Rails.application.configure do
   config.good_job.enable_cron = true
+  config.good_job.cleanup_preserved_jobs_before_seconds_ago = SEVEN_DAYS
   config.good_job.cron = {
     send_questions: {
       cron: EVERY_15_MINUTES,
