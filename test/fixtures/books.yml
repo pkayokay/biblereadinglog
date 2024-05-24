@@ -1,0 +1,32 @@
+
+
+# == Schema Information
+#
+# Table name: books
+#
+#  id                       :bigint           not null, primary key
+#  chapters_count           :integer          not null
+#  chapters_data            :jsonb            not null
+#  completed_at             :datetime
+#  completed_chapters_count :integer          default(0), not null
+#  name                     :string           not null
+#  pin_order                :integer
+#  position                 :integer          not null
+#  slug                     :string           not null
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  reading_log_id           :bigint           not null
+#
+# Indexes
+#
+#  index_books_on_chapters_data                 (chapters_data)
+#  index_books_on_completed_at                  (completed_at)
+#  index_books_on_pin_order_and_reading_log_id  (pin_order,reading_log_id) UNIQUE
+#  index_books_on_position_and_reading_log_id   (position,reading_log_id) UNIQUE
+#  index_books_on_reading_log_id_and_name       (reading_log_id,name) UNIQUE
+#  index_books_on_slug_and_reading_log_id       (slug,reading_log_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (reading_log_id => reading_logs.id)
+#
