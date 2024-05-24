@@ -21,7 +21,7 @@ Rails.application.configure do
     send_reminders: {
       cron: Rails.env.production? ? EVERY_30TH_MINUTE : EVERY_1_MINUTE,
       class: "SendRemindersJob",
-      description: "Every 15 minutes to send reminders with past reminder_scheduled_at datetimes"
+      description: "Every 30 minutes to send reminders with past reminder_scheduled_at datetimes"
     }
   }
 end
