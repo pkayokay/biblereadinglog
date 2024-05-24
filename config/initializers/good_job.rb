@@ -17,7 +17,7 @@ Rails.application.configure do
   config.good_job.enable_cron = true
   config.good_job.cleanup_preserved_jobs_before_seconds_ago = SEVEN_DAYS
   config.good_job.cron = {
-    send_questions: {
+    send_reminders: {
       cron: EVERY_15_MINUTES,
       class: "SendRemindersJob",
       description: "Every 15 minutes to send reminders with past reminder_scheduled_at datetimes"
