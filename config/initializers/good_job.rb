@@ -9,7 +9,7 @@ ActiveSupport.on_load(:good_job_application_controller) do
   end
 end
 
-EVERY_15TH_MINUTE = "*/15 * * * *"
+EVERY_30TH_MINUTE = "*/30 * * * *"
 EVERY_1_MINUTE = "* * * * *"
 SEVEN_DAYS = 604800
 
@@ -19,7 +19,7 @@ Rails.application.configure do
   config.good_job.execution_mode = :async
   config.good_job.cron = {
     send_reminders: {
-      cron: Rails.env.production? ? EVERY_15TH_MINUTE : EVERY_1_MINUTE,
+      cron: Rails.env.production? ? EVERY_30TH_MINUTE : EVERY_1_MINUTE,
       class: "SendRemindersJob",
       description: "Every 15 minutes to send reminders with past reminder_scheduled_at datetimes"
     }
