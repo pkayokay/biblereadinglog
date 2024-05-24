@@ -5,5 +5,4 @@ class BadgeComponent < ViewComponent::Base
     @title = title
     @custom_classes = custom_classes
   end
-
 end

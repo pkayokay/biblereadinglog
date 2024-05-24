@@ -20,10 +20,10 @@ Rails.application.routes.draw do
   get "/r/:slug", to: "reading_logs#invite", as: :reading_log_invite
   get "/r/:slug/join", to: "reading_logs#join_invite", as: :join_reading_log_invite
   get "sign_in", to: "sessions#new"
-  post 'sign_in', to: "sessions#create"
+  post "sign_in", to: "sessions#create"
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
-  delete 'sign_out', to: "sessions#destroy"
+  delete "sign_out", to: "sessions#destroy"
 
   post "flash_message", to: "base#flash_message"
   get "account", to: "users#account"
@@ -39,5 +39,5 @@ Rails.application.routes.draw do
   get "admin", to: "base#admin"
   get "feedback", to: "base#feedback"
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  get "up" => "rails/health#show", :as => :rails_health_check
 end

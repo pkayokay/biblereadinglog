@@ -43,7 +43,6 @@ class ReadingLogsController < ApplicationController
         end
       end
 
-
       @reading_log.save
     end
 
@@ -61,7 +60,7 @@ class ReadingLogsController < ApplicationController
     if @reading_log.is_entire_bible?
       BuildBooksService.new(reading_log: @reading_log).call
     else
-      selected_books = params[:reading_log][:selected_books].as_json.filter_map {|a| {a.first => a.last } if a.last == "1"}
+      selected_books = params[:reading_log][:selected_books].as_json.filter_map { |a| {a.first => a.last} if a.last == "1" }
       BuildBooksService.new(reading_log: @reading_log, selected_books: selected_books).call
     end
 
@@ -74,7 +73,6 @@ class ReadingLogsController < ApplicationController
   end
 
   def show
-
     if @reading_log.present?
       @skip_turbo_cache_control = true
 
@@ -137,7 +135,7 @@ class ReadingLogsController < ApplicationController
             name: @reading_log.name,
             is_entire_bible: @reading_log.is_entire_bible,
             books_count: @reading_log.books_count,
-            template_reading_log: @reading_log,
+            template_reading_log: @reading_log
           )
           @reading_log.books.each do |book|
             @child_reading_log.books.new(
@@ -148,8 +146,8 @@ class ReadingLogsController < ApplicationController
               chapters_count: book["chapters_count"],
               chapters_data: book["chapters_count"].times.map do |index|
                 chapter = index + 1
-                { chapter_number: chapter, completed_at: nil }
-              end,
+                {chapter_number: chapter, completed_at: nil}
+              end
             )
           end
           @reading_log.update(is_group_reading_log: true) unless @reading_log.is_group_reading_log
@@ -197,7 +195,7 @@ class ReadingLogsController < ApplicationController
       :reminder_frequency,
       :reminder_time,
       reminder_days: [],
-      reminder_days_multiple: {},
+      reminder_days_multiple: {}
     )
     if allowed_params[:is_reminder_enabled] == "1"
       allowed_params[:reminder_days] = handle_reminder_days_value(allowed_params)
@@ -211,17 +209,17 @@ class ReadingLogsController < ApplicationController
   end
 
   def set_books_data
-    @books_data = JSON.parse(File.read('./public/books.json'))
-    @old_testament_books_data = @books_data.slice(0,39)
-    @new_testament_books_data = @books_data.slice(39,66)
+    @books_data = JSON.parse(File.read("./public/books.json"))
+    @old_testament_books_data = @books_data.slice(0, 39)
+    @new_testament_books_data = @books_data.slice(39, 66)
   end
 
   def handle_reminder_days_value(allowed_params)
     daily_reminder_frequency = allowed_params[:reminder_frequency] == "daily"
 
     if daily_reminder_frequency
-      selected_days = allowed_params[:reminder_days_multiple].select { |day, value| value == "1" }.keys
-      selected_days
+      allowed_params[:reminder_days_multiple].select { |day, value| value == "1" }.keys
+
     else
       allowed_params[:reminder_days].compact_blank
     end

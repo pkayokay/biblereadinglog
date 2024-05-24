@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   def skip_email?
-    ENV['EMAILS_DISABLED'] == "true"
+    ENV["EMAILS_DISABLED"] == "true"
   end
 
   def password_reset

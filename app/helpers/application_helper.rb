@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def render_reminder_time(value)
-    Time.parse(value).strftime('%l:%M %p')
+    Time.parse(value).strftime("%l:%M %p")
   end
 
   def render_next_occurrence(value)
@@ -14,28 +14,28 @@ module ApplicationHelper
     next_occurrence = value.in_time_zone(current_user.time_zone)
 
     if current_time.to_date == next_occurrence.to_date
-      period = (0..17).include?(next_occurrence.hour) ? 'Today' : 'Tonight'
-      return "#{period} at #{next_occurrence.strftime('%l:%M %p')}"
+      period = (0..17).include?(next_occurrence.hour) ? "Today" : "Tonight"
+      return "#{period} at #{next_occurrence.strftime("%l:%M %p")}"
     end
 
     tomorrow = current_time.advance(days: 1)
     if tomorrow.to_date == next_occurrence.to_date
-      return "Tomorrow at #{next_occurrence.strftime('%l:%M %p')}"
+      return "Tomorrow at #{next_occurrence.strftime("%l:%M %p")}"
     end
 
-    "on #{next_occurrence.strftime('%A %_m/%-e %l:%M %p')}"
+    "on #{next_occurrence.strftime("%A %_m/%-e %l:%M %p")}"
   end
 
   def time_options_for_select
     hours = (0..23).to_a
-    minutes = ['00', '30']
+    minutes = ["00", "30"]
 
     time_options = []
 
     hours.each do |hour|
       minutes.each do |minute|
         time = Time.new(2000, 1, 1, hour, minute)
-        time_options << [time.strftime('%l:%M %p').strip, time.strftime('%H:%M:%S')]
+        time_options << [time.strftime("%l:%M %p").strip, time.strftime("%H:%M:%S")]
       end
     end
 
@@ -46,22 +46,22 @@ module ApplicationHelper
     if current_user.green?
       {
         line: "bg-emerald-500",
-        square: "shadow-emerald-100 border-emerald-300 bg-emerald-50 hover:!bg-emerald-100 text-emerald-900",
+        square: "shadow-emerald-100 border-emerald-300 bg-emerald-50 hover:!bg-emerald-100 text-emerald-900"
       }
     elsif current_user.blue?
       {
         line: "bg-blue-500",
-        square: "shadow-blue-100 border-blue-300 bg-blue-50 hover:!bg-blue-100",
+        square: "shadow-blue-100 border-blue-300 bg-blue-50 hover:!bg-blue-100"
       }
     elsif current_user.red?
       {
         line: "bg-red-600",
-        square: "shadow-red-100 border-red-300 bg-red-50 hover:!bg-red-100",
+        square: "shadow-red-100 border-red-300 bg-red-50 hover:!bg-red-100"
       }
     elsif current_user.gray?
       {
         line: "bg-neutral-700",
-        square: "shadow-stone-100 border-neutral-300 bg-neutral-200 hover:!bg-neutral-300",
+        square: "shadow-stone-100 border-neutral-300 bg-neutral-200 hover:!bg-neutral-300"
       }
     end
   end
@@ -79,7 +79,7 @@ module ApplicationHelper
     return "" if datetime_value.nil?
 
     if full
-      datetime_value.in_time_zone(current_user.time_zone).strftime('%A %_m/%-e at %l:%M %p')
+      datetime_value.in_time_zone(current_user.time_zone).strftime("%A %_m/%-e at %l:%M %p")
     else
       datetime_value = datetime_value.in_time_zone(current_user.time_zone)
       if Time.current.in_time_zone(current_user.time_zone).year == datetime_value.year
@@ -138,4 +138,3 @@ module ApplicationHelper
     "reading_logs_pagination"
   end
 end
-

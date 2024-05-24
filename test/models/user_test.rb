@@ -36,15 +36,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user_one.authenticate("wrongpassword"), "User should not be authenticated with the wrong password"
   end
 
- test "email must follow valid format" do
+  test "email must follow valid format" do
     invalid_emails = [
-      'userexample.com',    # Missing '@'
-      'user@',              # Nothing after '@'
-      'user@.com',          # Nothing between '@' and '.'
-      '@example.com',       # Missing local part
-      'user@exam_ple.com',  # Invalid character '_'
-      'user example.com',   # Spaces are not allowed
-      'user@example..com'   # Double dot in domain part
+      "userexample.com",    # Missing '@'
+      "user@",              # Nothing after '@'
+      "user@.com",          # Nothing between '@' and '.'
+      "@example.com",       # Missing local part
+      "user@exam_ple.com",  # Invalid character '_'
+      "user example.com",   # Spaces are not allowed
+      "user@example..com"   # Double dot in domain part
     ]
 
     invalid_emails.each do |email|

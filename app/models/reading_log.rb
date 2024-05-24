@@ -1,11 +1,11 @@
 class ReadingLog < ApplicationRecord
   validates :name, presence: true
-  validates :template_reading_log_id, uniqueness: { scope: :user_id }, allow_nil: true
+  validates :template_reading_log_id, uniqueness: {scope: :user_id}, allow_nil: true
   normalizes :name, with: ->(name) { name.strip }
   has_many :books, dependent: :destroy
-  has_many :ordered_books, -> { order(position: :asc)}, dependent: :destroy, class_name: "Book"
+  has_many :ordered_books, -> { order(position: :asc) }, dependent: :destroy, class_name: "Book"
   has_many :child_reading_logs, class_name: "ReadingLog", foreign_key: "template_reading_log_id", dependent: :destroy
-  belongs_to :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id",optional: true
+  belongs_to :template_reading_log, class_name: "ReadingLog", foreign_key: "template_reading_log_id", optional: true
 
   belongs_to :user
 
@@ -39,8 +39,8 @@ class ReadingLog < ApplicationRecord
   end
 
   before_update :update_completed_at, if: :completed_books_count_changed?
-  scope :complete, -> { where.not(completed_at: nil)}
-  scope :pending, -> { where(completed_at: nil)}
+  scope :complete, -> { where.not(completed_at: nil) }
+  scope :pending, -> { where(completed_at: nil) }
 
   enum reminder_frequency:  {
     daily: 0,
@@ -52,9 +52,8 @@ class ReadingLog < ApplicationRecord
   validate :validate_reminder_days
   validate :validate_at_least_one_book
 
-
   def completed_book_percentage
-    (completed_books_count.to_f/books_count * 100).ceil
+    (completed_books_count.to_f / books_count * 100).ceil
   end
 
   def completed?
@@ -88,11 +87,8 @@ class ReadingLog < ApplicationRecord
   def update_completed_at
     self.completed_at = if completed_books_count == books.count
       Time.zone.now
-    else
-      nil
     end
   end
-
 
   def validate_reminder_days
     # TODO: Validate only one day (array of one string) for weekly or monthly frequencies
@@ -100,7 +96,7 @@ class ReadingLog < ApplicationRecord
 
     reminder_days.compact_blank.each do |day|
       unless valid_days.include?(day)
-        errors.add(:reminder_days, 'contains invalid days')
+        errors.add(:reminder_days, "contains invalid days")
         break
       end
     end

@@ -5,7 +5,7 @@ class BuildBooksService
   end
 
   def call
-    books_source = JSON.parse(File.read('./public/books.json'))
+    books_source = JSON.parse(File.read("./public/books.json"))
 
     if @selected_books.nil?
       @books_count = 66
@@ -15,7 +15,7 @@ class BuildBooksService
     else
       @books_count = @selected_books.count
       @selected_books.each do |selected_book|
-        book = books_source.find {|b| b["slug"] == selected_book.keys.first}
+        book = books_source.find { |b| b["slug"] == selected_book.keys.first }
         next if book.nil?
 
         build_book(book)
@@ -33,8 +33,8 @@ class BuildBooksService
       chapters_count: book["chapters_count"],
       chapters_data: book["chapters_count"].times.map do |index|
         chapter = index + 1
-        { chapter_number: chapter, completed_at: nil }
-      end,
+        {chapter_number: chapter, completed_at: nil}
+      end
     )
   end
 end
