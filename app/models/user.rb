@@ -45,3 +45,25 @@ class User < ApplicationRecord
     confirmed_at.present?
   end
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  color_theme     :integer          default("green"), not null
+#  confirmed_at    :datetime
+#  email           :string           not null
+#  first_name      :string           not null
+#  is_admin        :boolean          default(FALSE), not null
+#  last_name       :string           not null
+#  last_sign_in_at :datetime
+#  password_digest :string           not null
+#  time_zone       :string           default("UTC"), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
+#
