@@ -19,7 +19,7 @@ Rails.application.configure do
   config.good_job.execution_mode = :async
   config.good_job.cron = {
     send_reminders: {
-      cron: EVERY_15TH_MINUTE,
+      cron: Rails.env.production? ? EVERY_15TH_MINUTE : EVERY_1_MINUTE,
       class: "SendRemindersJob",
       description: "Every 15 minutes to send reminders with past reminder_scheduled_at datetimes"
     }
