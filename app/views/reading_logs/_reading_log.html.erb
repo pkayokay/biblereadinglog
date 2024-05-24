@@ -8,7 +8,7 @@
         <span class="text-sm"><%= pluralize(reading_log.books_count, "book") %> </span>
       <% else %>
         <p class="text-sm space-x-2">
-          <span><%= reading_log.completed_books_count %>/<%= pluralize(reading_log.books_count, "book")%> </span>
+          <span><%= reading_log.completed_books_count %>/<%= pluralize(reading_log.books_count, "book") %> </span>
         </p>
       <% end %>
       <% if reading_log.is_group_reading_log? %>

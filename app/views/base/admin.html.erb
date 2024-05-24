@@ -40,7 +40,6 @@
               <div class="">Book - <%= book_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
                 <div class="text-sm opacity-50"><%= time_ago_in_words(book_activity) %> ago</div>
 
-
 <div class="">Log - <%= reading_log_activity.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
               <div class="text-sm opacity-50"><%= time_ago_in_words(reading_log_activity) %> ago</div>
 

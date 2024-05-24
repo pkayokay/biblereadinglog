@@ -1,4 +1,4 @@
-<% render_title 'Reset your password for Bible Reading Log'%>
+<% render_title 'Reset your password for Bible Reading Log' %>
 
 <%= render(AuthHeaderComponent.new(title: "Reset your password", description: "Enter your email and we'll send you reset instructions.")) %>
 <%= render(AuthFormContainerComponent.new) do |form_card| %>
@@ -9,7 +9,7 @@
     <% end %>
     <%= render(SubmitButtonComponent.new(title: "Reset your password", form: form)) %>
   <% end %>
-  <% form_card.with_footer do  %>
+  <% form_card.with_footer do %>
     <%= link_to "Back to sign in page", sign_in_path, class: "" %>
   <% end %>
 <% end %>
