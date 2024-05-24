@@ -30,7 +30,9 @@ class ReadingLog < ApplicationRecord
         errors.add(:template_reading_log_id, "A reading log cannot be a template of itself")
       end
 
-      if template_reading_log = ReadingLog.find_by(id: template_reading_log_id)
+      template_reading_log = ReadingLog.find_by(id: template_reading_log_id)
+
+      if template_reading_log.present?
         if template_reading_log.template_reading_log_id.present?
           errors.add(:template_reading_log_id, "A child reading log cannot be template reading log")
         end
