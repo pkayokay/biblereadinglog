@@ -63,11 +63,13 @@ class BooksController < ApplicationController
     chapters_data = @book.chapters_data
     @chapter_to_update = chapters_data.find { |chapter| chapter["chapter_number"] == @chapter_number }
 
+    current_time = Time.zone.now
     if @chapter_to_update
-      @chapter_to_update["completed_at"] = if @chapter_to_update["completed_at"].present?
-        nil
+      if @chapter_to_update["completed_at"].present?
+        @chapter_to_update["completed_at"] = nil
       else
-        Time.zone.now
+        @chapter_to_update["completed_at"] = current_time
+        @reading_log.update(last_book_completed_at: current_time)
       end
     end
 

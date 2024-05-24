@@ -1,6 +1,6 @@
 <div class="text-left mb-8 border-b last:border-0 pb-9 last:pb-0">
   <div class="mb-2 flex justify-between items-center">
-    <div class="font-medium text-lg"><%= reading_log.user.full_name %></div>
+    <div class="font-semibold text-lg"><%= reading_log.user.full_name %></div>
     <div class="text-sm space-x-3 text-nowrap pl-2">
       <span><%= reading_log.completed_books_count %>/<%= reading_log.books_count %></span>
       <span class="text-base"><%= reading_log.completed_book_percentage %>%</span>
@@ -9,4 +9,11 @@
   <div class=" bg-neutral-100 h-[8px] rounded-lg w-full">
     <div class="bg-emerald-500 w-full h-full rounded-full" style="width:<%= reading_log.completed_book_percentage %>%"></div>
   </div>
+  <p class="text-sm mt-3">
+    <% if reading_log.last_book_completed_at.present? %>
+      Last read on <%= format_on_date(reading_log.last_book_completed_at) %>
+    <% else %>
+      No activity
+    <% end %>
+  </p>
 </div>
