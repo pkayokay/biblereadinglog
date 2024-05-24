@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_24_020033) do
     t.string "slug"
     t.bigint "template_reading_log_id"
     t.boolean "is_group_reading_log", default: false, null: false
-    t.datetime "last_read_at"
+    t.datetime "last_book_completed_at"
     t.index ["completed_at"], name: "index_reading_logs_on_completed_at"
     t.index ["is_reminder_enabled"], name: "index_reading_logs_on_is_reminder_enabled"
     t.index ["last_sent_at"], name: "index_reading_logs_on_last_sent_at"

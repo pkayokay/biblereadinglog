@@ -10,8 +10,8 @@
     <div class="bg-emerald-500 w-full h-full rounded-full" style="width:<%= reading_log.completed_book_percentage %>%"></div>
   </div>
   <p class="text-sm mt-3">
-    <% if reading_log.last_read_at.present? %>
-      Last read on <%= format_on_date(reading_log.last_read_at) %>
+    <% if reading_log.last_book_completed_at.present? %>
+      Last read on <%= format_on_date(reading_log.last_book_completed_at) %>
     <% else %>
       No activity
     <% end %>

@@ -20,8 +20,8 @@
         <span class="w-fit text-emerald-700 font-medium bg-emerald-100 p-1 px-2 text-sm rounded-lg">Completed on <%= format_on_date(reading_log.created_at) %></span>
       <% else %>
         <span class="w-fit text-neutral-900 font-medium bg-stone-100 p-1 px-2  rounded-lg"><%= reading_log.completed_book_percentage %>%</span>
-        <% if reading_log.last_read_at.present? %>
-          <span class="mt-2 text-sm">Last read on <%= format_on_date(reading_log.last_read_at) %></span>
+        <% if reading_log.last_book_completed_at.present? %>
+          <span class="mt-2 text-sm">Last read on <%= format_on_date(reading_log.last_book_completed_at) %></span>
         <% end %>
       <% end %>
     </div>
