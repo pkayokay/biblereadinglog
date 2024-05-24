@@ -1,16 +1,10 @@
-echo "------------------"
-echo "----[prettier]----"
-echo "----linting...----"
+echo "----[prettier linter]----"
 yarn format
 
 echo " "
-echo "-------------------"
-echo "----[standard-rb]--"
-echo "----linting...-----"
+echo "----[standard-rb]----"
 bundle exec standardrb --fix
 
 echo " "
-echo "------------------"
 echo "----[erblint]-----"
-echo "----linting...----"
 bundle exec erblint --lint-all -a
