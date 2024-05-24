@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   .form-input {
     @apply w-full bg-white !placeholder-neutral-400 !mt-0.5 border-0 !px-3 !text-base !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
@@ -40,7 +39,8 @@
     @apply hover:bg-stone-100 duration-100 rounded-full p-2 justify-center inline-flex items-center space-x-1 text-base font-medium h-12 w-12;
   }
 
-  .field_with_errors .form-input {}
+  .field_with_errors .form-input {
+  }
 
   .container--flash {
     @apply w-full max-w-[90%] xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-[999] text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 h-fit bottom-10 xs:bottom-[initial] top-[initial] xs:top-11 fixed;
@@ -59,7 +59,7 @@
   }
 
   .flash-red {
-    @apply  bg-red-500;
+    @apply bg-red-500;
   }
 
   /* .field_with_errors input,
