@@ -1,1 +1,8 @@
+echo "[standard-rb] linting...."
 standardrb --fix
+
+echo "  "
+echo "  "
+echo "  "
+echo "[erblint] linting...."
+bundle exec erblint --lint-all -a
