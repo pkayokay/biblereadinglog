@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!, except: :destroy
   before_action :require_no_user!, except: :destroy
@@ -6,7 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.authenticate_by(email: params[:email].presence, password: params[:password])
+    if (user = User.authenticate_by(email: params[:email].presence, password: params[:password]))
       user.update(time_zone: params[:time_zone]) if user.has_default_time_zone?
       sign_in(user)
       flash[:notice] = "Welcome back!"
