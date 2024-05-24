@@ -5,6 +5,11 @@
   This is a reminder to read and track your reading progress.
   <br>
   <br>
+  <% if @reading_log.last_book_completed_at.present? %>
+    <span class="mt-2 text-sm">Last read on <%= @reading_log.last_book_completed_at.strftime("%a, %b %d") %>.</span>
+    <br>
+    <br>
+  <% end %>
   <%= link_to "Open Reading Log", reading_log_url(@reading_log) %>
   <br>
   <br>
