@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus"
-import { post } from '@rails/request.js'
+import { Controller } from "@hotwired/stimulus";
+import { post } from "@rails/request.js";
 
 // Connects to data-controller="toggle-chapter"
 export default class extends Controller {

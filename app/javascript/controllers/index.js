@@ -2,37 +2,37 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "./application";
 
-import BookDeletionController from "./book_deletion_controller"
-application.register("book-deletion", BookDeletionController)
+import BookDeletionController from "./book_deletion_controller";
+application.register("book-deletion", BookDeletionController);
 
-import BookSelectionController from "./book_selection_controller"
-application.register("book-selection", BookSelectionController)
+import BookSelectionController from "./book_selection_controller";
+application.register("book-selection", BookSelectionController);
 
-import ClipboardController from "./clipboard_controller"
-application.register("clipboard", ClipboardController)
+import ClipboardController from "./clipboard_controller";
+application.register("clipboard", ClipboardController);
 
-import DropdownController from "./dropdown_controller"
-application.register("dropdown", DropdownController)
+import DropdownController from "./dropdown_controller";
+application.register("dropdown", DropdownController);
 
-import FlashController from "./flash_controller"
-application.register("flash", FlashController)
+import FlashController from "./flash_controller";
+application.register("flash", FlashController);
 
-import FlashMessageController from "./flash_message_controller"
-application.register("flash-message", FlashMessageController)
+import FlashMessageController from "./flash_message_controller";
+application.register("flash-message", FlashMessageController);
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import HelloController from "./hello_controller";
+application.register("hello", HelloController);
 
-import ReadingLogIndexController from "./reading_log_index_controller"
-application.register("reading-log-index", ReadingLogIndexController)
+import ReadingLogIndexController from "./reading_log_index_controller";
+application.register("reading-log-index", ReadingLogIndexController);
 
-import ReminderFormController from "./reminder_form_controller"
-application.register("reminder-form", ReminderFormController)
+import ReminderFormController from "./reminder_form_controller";
+application.register("reminder-form", ReminderFormController);
 
-import TimeZoneController from "./time_zone_controller"
-application.register("time-zone", TimeZoneController)
+import TimeZoneController from "./time_zone_controller";
+application.register("time-zone", TimeZoneController);
 
-import ToggleChapterController from "./toggle_chapter_controller"
-application.register("toggle-chapter", ToggleChapterController)
+import ToggleChapterController from "./toggle_chapter_controller";
+application.register("toggle-chapter", ToggleChapterController);
