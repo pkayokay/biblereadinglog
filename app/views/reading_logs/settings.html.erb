@@ -17,12 +17,12 @@
         <%= render(FormErrorsComponent.new(errors: @errors)) %>
         <%= render(FieldContainerComponent.new(custom_classes: "")) do %>
           <%= render(LabelComponent.new(for_attribute: "What do you want to call your reading log?", form: form)) %>
-          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", disabled: @reading_log.template_reading_log_id.present?, required: true, custom_classes: @reading_log.template_reading_log_id.present? ? 'bg-neutral-100' : '', disabled: @reading_log.template_reading_log_id.present?)) %>
+          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", disabled: @reading_log.is_child_reading_log?, required: true, custom_classes: @reading_log.is_child_reading_log? ? 'bg-neutral-100' : '', disabled: @reading_log.is_child_reading_log?)) %>
         <% end %>
-        <% if @reading_log.template_reading_log_id.present? %>
+        <% if @reading_log.is_child_reading_log? %>
           <p class="text-sm -mt-3 opacity-60">Only the owner of this reading log can update this.</p>
         <% end %>
-        <% unless @reading_log.template_reading_log_id.present? %>
+        <% unless @reading_log.is_child_reading_log? %>
           <%= render(SubmitButtonComponent.new(title: "Save changes", form: form, custom_classes: "mt-2 md:w-auto")) %>
         <% end %>
       <% end %>
@@ -81,7 +81,7 @@
   <%= turbo_frame_tag "settings_form-delete" do %>
     <%= render(ModalComponent.new(title: "Delete")) do %>
       <p class="mb-5">
-        <% if @reading_log.template_reading_log_id.present? %>
+        <% if @reading_log.is_child_reading_log? %>
           This will remove you from group and delete this reading log.
         <% else %>
           This will permanently delete the reading log.
@@ -107,9 +107,9 @@
         </div>
         <%= render(FieldContainerComponent.new(custom_classes: "md:!mb-0 flex-1 w-full md:w-auto")) do %>
           <%= render(LabelComponent.new(for_attribute: "name", form: form)) %>
-          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: @reading_log.template_reading_log_id.present? ? 'bg-neutral-100' : '', disabled: @reading_log.template_reading_log_id.present?)) %>
+          <%= render(InputComponent.new(type: "text", form: form, id_and_name: "name", required: true, custom_classes: @reading_log.is_child_reading_log? ? 'bg-neutral-100' : '', disabled: @reading_log.is_child_reading_log?)) %>
         <% end %>
-        <% if @reading_log.template_reading_log_id.present? %>
+        <% if @reading_log.is_child_reading_log? %>
           <p class="text-sm mt-1 opacity-60">Only the owner of this reading log can update this.</p>
         <% end %>
         <div class="flex sm:items-center sm:space-y-0 space-y-2 items-start mt-8 sm:justify-between flex-col sm:flex-row">

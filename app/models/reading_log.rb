@@ -70,6 +70,10 @@ class ReadingLog < ApplicationRecord
     SecureRandom.alphanumeric(10)
   end
 
+  def is_child_reading_log?
+    template_reading_log_id.present?
+  end
+
   private
 
   def reminder_fields_when_enabled

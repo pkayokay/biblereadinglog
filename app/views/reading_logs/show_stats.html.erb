@@ -4,7 +4,7 @@
         <!--Current user reading log-->
         <%= render "stats", reading_log: @reading_log %>
         <!--if a child reading log-->
-        <% if @reading_log.template_reading_log_id.present? %>
+        <% if @reading_log.is_child_reading_log? %>
           <!--Render owner reading log-->
           <%= render "stats", reading_log: @reading_log.template_reading_log %>
           <!--Render other user reading logs-->

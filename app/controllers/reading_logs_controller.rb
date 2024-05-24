@@ -36,7 +36,7 @@ class ReadingLogsController < ApplicationController
         @reading_log.reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log: @reading_log).call
       end
 
-      unless @reading_log.template_reading_log_id.present?
+      unless @reading_log.is_child_reading_log?
         @reading_log.child_reading_logs.each do |child_reading_log|
           child_reading_log.name = @reading_log.name
           child_reading_log.save

@@ -12,7 +12,7 @@
     <br>
   <% end %>
   <!--if a child reading log-->
-  <% if @reading_log.template_reading_log_id.present? %>
+  <% if @reading_log.is_child_reading_log? %>
     <!--Render owner reading log-->
     <% if @reading_log.template_reading_log.last_book_completed_at %>
       <%= @reading_log.template_reading_log.user.first_name %> last read on <%= @reading_log.template_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
