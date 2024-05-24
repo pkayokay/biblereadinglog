@@ -1,0 +1,45 @@
+<div>
+  Hey <%= @user.first_name %>,
+  <br>
+  <br>
+  This is a reminder to read and track your progress.
+  <br>
+  <br>
+  <!--Current user reading log-->
+  <% if @reading_log.last_book_completed_at.present? %>
+    You last read on <%= @reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+    <br>
+    <br>
+  <% end %>
+  <!--if a child reading log-->
+  <% if @reading_log.template_reading_log_id.present? %>
+    <!--Render owner reading log-->
+    <% if @reading_log.template_reading_log.last_book_completed_at %>
+      <%= @reading_log.template_reading_log.user.first_name %> last read on <%= @reading_log.template_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+      <br>
+      <br>
+    <% end %>
+    <!--Render other user reading logs-->
+    <% @reading_log.template_reading_log.child_reading_logs.where.not(user: @user).each do |child_reading_log| %>
+      <% if child_reading_log.last_book_completed_at %>
+        <%= child_reading_log.user.first_name %> last read on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+        <br>
+        <br>
+      <% end %>
+    <% end %>
+  <% else %>
+    <!--if owner reading log, render child reading logs-->
+    <% @reading_log.child_reading_logs.each do |child_reading_log| %>
+      <% if child_reading_log.last_book_completed_at %>
+        <%= child_reading_log.user.first_name %> last read on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+      <br>
+      <br>
+
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= link_to "Open Reading Log", reading_log_url(@reading_log) %>
+  <br>
+  <br>
+<br>

@@ -49,6 +49,7 @@ gem "bootsnap", require: false
 gem "view_component", "~> 3.12"
 gem "pagy", "~> 8.4"
 gem "annotate", "~> 3.2"
+gem "good_job", "~> 3.29"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
