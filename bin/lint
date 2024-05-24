@@ -7,7 +7,7 @@ echo " "
 echo "-------------------"
 echo "----[standard-rb]--"
 echo "----linting...-----"
-standardrb --fix
+bundle exec standardrb --fix
 
 echo " "
 echo "------------------"

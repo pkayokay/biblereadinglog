@@ -23,3 +23,8 @@ A prerequisite for this project is that you have Ruby and Ruby on Rails installe
 2. `yarn install`
 3. `bin/dev`
 4. Visit https://localhost:3000.
+
+## Linters
+1. Prettier for `.js` files, run `yarn format`
+2. Standardrb for `.rb` files, run `bundle exec standard --fix`
+3. Erblint for `.erb` files, run `bundle exec erblint --lint-all -a`
