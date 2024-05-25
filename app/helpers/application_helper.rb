@@ -137,4 +137,9 @@ module ApplicationHelper
   def reading_logs_pagination_turbo_frame_id
     "reading_logs_pagination"
   end
+
+  def custom_time_ago_in_words(from_time, options = {})
+    distance_in_words = distance_of_time_in_words(from_time, Time.now, options)
+    distance_in_words.gsub(/\babout\b/, "").strip + " ago"
+  end
 end
