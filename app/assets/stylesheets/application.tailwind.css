@@ -4,15 +4,15 @@
 
 @layer base {
   .form-input {
-    @apply w-full bg-white !placeholder-neutral-400 !mt-0.5 border-0 !px-3 !text-base !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full bg-white !placeholder-neutral-400 !mt-0.5 border-0 !px-3 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .form-select {
-    @apply w-full bg-white !mt-0.5 border-0 !px-3 !text-base !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full bg-white !mt-0.5 border-0 !px-3 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
   }
 
   .btn {
-    @apply text-neutral-900 hover:text-black rounded-lg transition-colors w-full cursor-pointer text-base bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-5 focus-visible:!ring-offset-2 focus-visible:!ring-2;
+    @apply font-medium text-neutral-900 hover:text-black rounded-lg transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-5 focus-visible:!ring-offset-2 focus-visible:!ring-2;
   }
 
   .btn--slim {
@@ -28,11 +28,11 @@
   }
 
   .btn--danger {
-    @apply bg-red-600 !text-white !border-red-600 hover:bg-red-700 focus:!ring-red-700 focus:!border-red-700 focus:!outline-red-700;
+    @apply bg-red-600 !text-white !border-red-600 hover:!border-red-700 hover:bg-red-700 focus:!ring-red-700 focus:!border-red-700 focus:!outline-red-700;
   }
 
   .btn--success {
-    @apply bg-emerald-500 text-white !border-emerald-500 hover:!border-emerald-200 hover:bg-emerald-600 focus:!ring-emerald-500 focus:!border-emerald-500 focus:!outline-emerald-500;
+    @apply bg-emerald-500 text-white !border-emerald-500 hover:!border-emerald-600 hover:bg-emerald-600 focus:!ring-emerald-600 focus:!border-emerald-600 focus:!outline-emerald-600;
   }
 
   .round-link {
