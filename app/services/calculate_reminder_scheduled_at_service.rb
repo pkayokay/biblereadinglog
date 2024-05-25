@@ -80,7 +80,7 @@ class CalculateReminderScheduledAtService
   end
 
   def current_time
-    Time.current.in_time_zone(user.time_zone)
+    Time.now.in_time_zone(user.time_zone)
   end
 
   def remimder_time
