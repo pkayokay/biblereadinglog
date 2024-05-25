@@ -9,7 +9,7 @@ class ModalComponent < ViewComponent::Base
           <span class="sr-only">Close</span>
         </button>
         <div class="mb-5">
-          <h1 class="text-2xl font-bold">
+          <h1 class="text-2xl font-extrabold">
             <%= @title %>
           </h1>
         </div>
