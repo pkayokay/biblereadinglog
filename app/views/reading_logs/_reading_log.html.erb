@@ -1,6 +1,6 @@
 <%= link_to reading_log_path(reading_log), data: { turbo_frame: "_top" }, class: "hover:bg-stone-50 duration-100 -mx-2 sm:-mx-4 px-4 space-y-3 sm:space-y-0 py-4 border-b last:border-0 flex justify-between items-center flex-col sm:flex-row" do %>
     <div class="sm:pr-3 sm:max-w-[410px] text-center sm:text-left">
-      <p class="truncate text-wrap sm:text-nowrap font-bold text-2xl sm:text-xl leading-snug"><%= reading_log.name %></p>
+      <p class="truncate text-wrap sm:text-nowrap font-semibold text-2xl sm:text-xl leading-snug"><%= reading_log.name %></p>
       <p class="text-sm space-x-2">
         Started on <%= format_on_date(reading_log.created_at) %>
       </p>
