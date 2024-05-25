@@ -17,13 +17,13 @@ class ReadingLogsController < ApplicationController
       pagy(current_user.reading_logs.pending.order(created_at: :desc), items: @item_count)
     end
 
-    return unless current_user.confirmed_at.nil?
+    # return unless current_user.confirmed_at.nil?
 
     redirect_to email_confirmation_path
   end
 
   def new
-    redirect_to email_confirmation_path if current_user.confirmed_at.nil?
+    # redirect_to email_confirmation_path if current_user.confirmed_at.nil?
 
     @reading_log = ReadingLog.new
   end
@@ -119,10 +119,10 @@ class ReadingLogsController < ApplicationController
   def join_invite
     flash.clear
 
-    if current_user.confirmed_at.nil?
-      flash[:alert] = "Confirm your email before joining"
-      redirect_to email_confirmation_path
-    else
+    # if current_user.confirmed_at.nil?
+    #   flash[:alert] = "Confirm your email before joining"
+    #   redirect_to email_confirmation_path
+    # else
       @reading_log = ReadingLog.find_by(slug: params[:slug])
       if @reading_log.present?
         if @reading_log.user == current_user
@@ -165,7 +165,7 @@ class ReadingLogsController < ApplicationController
         flash[:alert] = "That reading log doesn't exist"
         redirect_to root_path
       end
-    end
+    # end
   end
 
   def destroy
