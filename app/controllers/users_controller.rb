@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def email_confirmation
-    redirect_to root_path if current_user.confirmed?
+    redirect_to root_path
+    # if current_user.confirmed?
   end
 
   def verify_email_confirmation_token
