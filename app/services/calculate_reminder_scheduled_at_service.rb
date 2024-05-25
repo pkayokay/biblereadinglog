@@ -17,7 +17,7 @@ class CalculateReminderScheduledAtService
     when "monthly" then set_first_monthly_target_date
     end
 
-    reminder_scheduled_at = build_remimder_time(target_date) if target_date.present?
+    reminder_scheduled_at = build_reminder_time(target_date) if target_date.present?
     reminder_scheduled_at
   end
 
@@ -67,7 +67,7 @@ class CalculateReminderScheduledAtService
   end
 
   # Build the scheduled time using the target date and scheduled time from the question
-  def build_remimder_time(target_date)
+  def build_reminder_time(target_date)
     hour, minutes, seconds = reading_log.reminder_time.split(":")
     ActiveSupport::TimeZone[user.time_zone].local(
       target_date.year,
@@ -83,12 +83,16 @@ class CalculateReminderScheduledAtService
     Time.now.in_time_zone(user.time_zone)
   end
 
-  def remimder_time
-    Time.parse(reading_log.reminder_time).in_time_zone(user.time_zone)
+  def reminder_time
+    Time.use_zone(user.time_zone) do
+      today = Time.zone.now.to_date
+      parsed_time = Time.parse(reading_log.reminder_time)
+      Time.zone.local(today.year, today.month, today.day, parsed_time.hour, parsed_time.min, parsed_time.sec)
+    end
   end
 
   def already_past_today?
-    remimder_time <= current_time
+    reminder_time <= current_time
   end
 
   def reminder_day
