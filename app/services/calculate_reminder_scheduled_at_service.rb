@@ -88,7 +88,7 @@ class CalculateReminderScheduledAtService
   end
 
   def already_past_today?
-    remimder_time.to_time <= current_time.to_time
+    remimder_time <= current_time
   end
 
   def reminder_day
