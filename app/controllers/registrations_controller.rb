@@ -13,10 +13,10 @@ class RegistrationsController < ApplicationController
     if @user.save
       sign_in(@user)
 
-      UserMailer.with(
-        user: @user,
-        token: @user.generate_token_for(:email_confirmation)
-      ).email_confirmation.deliver_later
+      # UserMailer.with(
+      #   user: @user,
+      #   token: @user.generate_token_for(:email_confirmation)
+      # ).email_confirmation.deliver_later
       flash[:notice] = "Welcome!"
       redirect_to root_path
     else
