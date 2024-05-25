@@ -49,7 +49,7 @@
 <%= turbo_frame_tag "settings_form-invite" %>
 <%= turbo_frame_tag "settings_form-delete" %>
   <div class="text-center mb-10">
-    <h1 class="text-4xl font-bold"><%= @reading_log.name %></h1>
+    <h1 class="text-3xl font-bold"><%= @reading_log.name %></h1>
     <% unless @reading_log.completed? %>
       <%= render "upcoming_reminder" %>
     <% end %>
