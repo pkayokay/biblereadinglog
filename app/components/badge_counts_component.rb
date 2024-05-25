@@ -2,7 +2,7 @@
 
 class BadgeCountsComponent < ViewComponent::Base
   erb_template <<-ERB
-    <div class="mx-auto w-fit flex items-center font-semibold text-lg text-neutral-900 bg-stone-100  py-1 px-3 rounded-lg <%= @custom_classes %>">
+    <div class="mx-auto w-fit flex items-center font-medium text-lg text-neutral-900 bg-stone-100  py-1 px-3 rounded-lg <%= @custom_classes %>">
       <span><%= @title %><%= @numerator %>/<%= @denominator %></span>
     </div>
   ERB

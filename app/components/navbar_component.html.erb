@@ -5,14 +5,14 @@
         <div class="-ml-0.5 rounded-xl *:w-8 *:h-8 hover:scale-[102%] justify-center items-center flex">
           <%= render "shared/logo" %>
         </div>
-        <span class="text-black font-semibold">Bible Reading Log</span>
+        <span class="text-black font-medium">Bible Reading Log</span>
       <% end %>
     </div>
     <div class="flex items-center space-x-3">
-      <%= link_to root_path, class: "xs:inline hidden font-semibold py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>
+      <%= link_to root_path, class: "xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>
         <span>Home</span>
       <% end %>
-      <%= link_to account_path, class: "xs:inline hidden font-semibold py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>
+      <%= link_to account_path, class: "xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>
         <span>Account</span>
       <% end %>
       <div
@@ -20,12 +20,12 @@
         data-action="click@window->dropdown#hide touchstart@window->dropdown#hide keydown.up->dropdown#previousItem keydown.down->dropdown#nextItem keydown.esc->dropdown#hide"
         class="inline-block relative !ml-5 !mr-4">
         <button data-action="dropdown#toggle:stop" class="justify-center duration-100 relative flex items-center w-9 h-9 rounded-full bg-neutral-500 text-neutral-900 opacity-70 hover:opacity-100 focus-within:opacity-100">
-          <span class="text-nowrap text-white text-base font-bold"><%= helpers.current_user.initials %></span>
+          <span class="text-nowrap text-white text-base font-semibold"><%= helpers.current_user.initials %></span>
           <div class="absolute -top-1 -right-5 py-4 pl-2">
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6" /></svg>
           </div>
         </button>
-        <div data-dropdown-target="menu" class="font-medium hidden absolute top-12 -right-3 z-10 flex w-screen max-w-max">
+        <div data-dropdown-target="menu" class="hidden absolute top-12 -right-3 z-10 flex w-screen max-w-max">
           <div class=" bg-white shadow-sm rounded-lg border overflow-hidden w-[200px] py-1.5">
             <%= link_to root_path, class: "group flex xs:hidden py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { dropdown_target: "menuItem"} do %>
               <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
