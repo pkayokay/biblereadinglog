@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./app/views/**/*.html.erb",
@@ -21,4 +23,5 @@ module.exports = {
       },
     },
   },
-}
+  plugins: [require("@tailwindcss/forms")],
+};
