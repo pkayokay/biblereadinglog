@@ -4,7 +4,7 @@ class SendRemindersJob < ApplicationJob
   def perform(*args)
     ReadingLog.includes(:user)
       .where(completed_at: nil, is_reminder_enabled: true)
-      .where("reminder_scheduled_at <= ?", Time.zone.now)
+      .where("reminder_scheduled_at <= ?", Time.current)
       .find_each(batch_size: 100) do |reading_log|
       ReadingLogMailer.with(
         user: reading_log.user,
@@ -18,7 +18,7 @@ class SendRemindersJob < ApplicationJob
   def set_next_reminder_scheduled_at(reading_log:)
     reminder_scheduled_at = CalculateReminderScheduledAtService.new(reading_log:).call
     reading_log.update!(
-      last_sent_at: Time.zone.now,
+      last_sent_at: Time.current,
       reminder_scheduled_at: reminder_scheduled_at
     )
   end
