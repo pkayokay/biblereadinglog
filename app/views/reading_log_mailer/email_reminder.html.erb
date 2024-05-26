@@ -6,22 +6,22 @@
   <br>
   <br>
   <!--Current user reading log-->
-  <% if @reading_log.last_book_completed_at.present? %>
-    You last read on <%= @reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+  <% if @reading_log.last_book_completed_details.present? %>
+    You last read on <%= @reading_log.last_book_completed_at.strftime("%a, %b %d")%>.
     <br>
     <br>
   <% end %>
   <!--if a child reading log-->
   <% if @reading_log.is_child_reading_log? %>
     <!--Render owner reading log-->
-    <% if @reading_log.template_reading_log.last_book_completed_at %>
+    <% if @reading_log.template_reading_log.last_book_completed_details.present? %>
       <%= @reading_log.template_reading_log.user.first_name %> last read on <%= @reading_log.template_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
       <br>
       <br>
     <% end %>
     <!--Render other user reading logs-->
     <% @reading_log.child_reading_logs_from_template.each do |child_reading_log| %>
-      <% if child_reading_log.last_book_completed_at %>
+      <% if child_reading_log.last_book_completed_details %>
         <%= child_reading_log.user.first_name %> last read on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
         <br>
         <br>
@@ -30,7 +30,7 @@
   <% else %>
     <!--if owner reading log, render child reading logs-->
     <% @reading_log.child_reading_logs.each do |child_reading_log| %>
-      <% if child_reading_log.last_book_completed_at %>
+      <% if child_reading_log.last_book_completed_details %>
         <%= child_reading_log.user.first_name %> last read on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
         <br>
         <br>
