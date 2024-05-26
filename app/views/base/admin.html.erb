@@ -10,6 +10,7 @@
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Confirmed</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Activity</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Reading Logs</th>
     </tr>
@@ -31,6 +32,12 @@
             <% if user.last_sign_in_at %>
               <div class=""><%= user.last_sign_in_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
               <div class="text-sm opacity-50"><%= time_ago_in_words(user.last_sign_in_at) %> ago</div>
+            <% end %>
+          </td>
+          <td class="py-2 whitespace-nowrap px-3">
+            <% if user.confirmed_at %>
+              <div class=""><%= user.confirmed_at.in_time_zone(current_user.time_zone)&.strftime("%a %_m/%-e at %l:%M %p") %></div>
+              <div class="text-sm opacity-50"><%= time_ago_in_words(user.confirmed_at) %> ago</div>
             <% end %>
           </td>
           <td class="py-2 whitespace-nowrap px-3">
