@@ -6,23 +6,23 @@
   <br>
   <br>
   <!--Current user reading log-->
-  <% if @reading_log.last_book_completed_at.present? %>
-    You last read on <%= @reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+  <% if @reading_log.last_book_completed_details.present? %>
+    <%= render "reading_logs/last_read", reading_log: @reading_log, subject: "You" %>
     <br>
     <br>
   <% end %>
   <!--if a child reading log-->
   <% if @reading_log.is_child_reading_log? %>
     <!--Render owner reading log-->
-    <% if @reading_log.template_reading_log.last_book_completed_at %>
-      <%= @reading_log.template_reading_log.user.first_name %> last read on <%= @reading_log.template_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+    <% if @reading_log.template_reading_log.last_book_completed_details.present? %>
+      <%= render "reading_logs/last_read", reading_log: @reading_log.template_reading_log %>
       <br>
       <br>
     <% end %>
     <!--Render other user reading logs-->
     <% @reading_log.child_reading_logs_from_template.each do |child_reading_log| %>
-      <% if child_reading_log.last_book_completed_at %>
-        <%= child_reading_log.user.first_name %> last read on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+      <% if child_reading_log.last_book_completed_details %>
+        <%= render "reading_logs/last_read", reading_log: child_reading_log, subject: child_reading_log.user.first_name %>
         <br>
         <br>
       <% end %>
@@ -30,8 +30,8 @@
   <% else %>
     <!--if owner reading log, render child reading logs-->
     <% @reading_log.child_reading_logs.each do |child_reading_log| %>
-      <% if child_reading_log.last_book_completed_at %>
-        <%= child_reading_log.user.first_name %> last read on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+      <% if child_reading_log.last_book_completed_details %>
+        <%= render "reading_logs/last_read", reading_log: child_reading_log, subject: child_reading_log.user.first_name %>
         <br>
         <br>
       <% end %>

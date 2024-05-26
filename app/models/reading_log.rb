@@ -62,6 +62,14 @@ class ReadingLog < ApplicationRecord
     completed_at.present?
   end
 
+  def last_book_completed_at
+    Time.parse(last_book_completed_details["completed_at"]).in_time_zone(user.time_zone)
+  end
+
+  def last_book_chapter_and_name
+    "#{last_book_completed_details["name"]} #{last_book_completed_details["chapter_number"]}"
+  end
+
   def autoset_slug
     self.slug = ReadingLog.generate_slug!
   end
@@ -117,25 +125,25 @@ end
 #
 # Table name: reading_logs
 #
-#  id                      :bigint           not null, primary key
-#  books_count             :integer          not null
-#  completed_at            :datetime
-#  completed_books_count   :integer          default(0), not null
-#  is_entire_bible         :boolean          default(TRUE), not null
-#  is_group_reading_log    :boolean          default(FALSE), not null
-#  is_reminder_enabled     :boolean          default(FALSE), not null
-#  last_book_completed_at  :datetime
-#  last_sent_at            :datetime
-#  name                    :string           not null
-#  reminder_days           :string           default(["\"monday\""]), not null, is an Array
-#  reminder_frequency      :integer          default("weekly"), not null
-#  reminder_scheduled_at   :datetime
-#  reminder_time           :string           default("09:00:00"), not null
-#  slug                    :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  template_reading_log_id :bigint
-#  user_id                 :bigint           not null
+#  id                          :bigint           not null, primary key
+#  books_count                 :integer          not null
+#  completed_at                :datetime
+#  completed_books_count       :integer          default(0), not null
+#  is_entire_bible             :boolean          default(TRUE), not null
+#  is_group_reading_log        :boolean          default(FALSE), not null
+#  is_reminder_enabled         :boolean          default(FALSE), not null
+#  last_book_completed_details :jsonb
+#  last_sent_at                :datetime
+#  name                        :string           not null
+#  reminder_days               :string           default(["\"monday\""]), not null, is an Array
+#  reminder_frequency          :integer          default("weekly"), not null
+#  reminder_scheduled_at       :datetime
+#  reminder_time               :string           default("09:00:00"), not null
+#  slug                        :string
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  template_reading_log_id     :bigint
+#  user_id                     :bigint           not null
 #
 # Indexes
 #

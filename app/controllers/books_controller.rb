@@ -69,7 +69,13 @@ class BooksController < ApplicationController
         @chapter_to_update["completed_at"] = nil
       else
         @chapter_to_update["completed_at"] = current_time
-        @reading_log.update(last_book_completed_at: current_time)
+        @reading_log.update(
+          last_book_completed_details: {
+            name: @book.name,
+            chapter_number: @chapter_number,
+            completed_at: current_time
+          }
+        )
       end
     end
 
