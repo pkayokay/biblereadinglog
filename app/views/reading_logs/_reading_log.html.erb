@@ -21,7 +21,9 @@
       <% else %>
         <span class="w-fit text-neutral-900 font-medium bg-stone-100 p-1 px-2  rounded-lg"><%= reading_log.completed_book_percentage %>%</span>
         <% if reading_log.last_book_completed_details.present? %>
-          <span class="mt-2 text-sm">Last read <%= reading_log.last_book_chapter_and_name %> <%= custom_time_ago_in_words(reading_log.last_book_completed_at) %></span>
+          <span class="mt-2 text-sm">
+            <%= render "last_read", reading_log: reading_log %>
+          </span>
         <% end %>
       <% end %>
     </div>

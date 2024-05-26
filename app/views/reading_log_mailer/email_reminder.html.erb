@@ -15,14 +15,14 @@
   <% if @reading_log.is_child_reading_log? %>
     <!--Render owner reading log-->
     <% if @reading_log.template_reading_log.last_book_completed_details.present? %>
-      <%= @reading_log.template_reading_log.user.first_name %> last read <%= @reading_log.last_book_chapter_and_name %> on <%= @reading_log.template_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+      <%= render "last_read", reading_log: @reading_log %>
       <br>
       <br>
     <% end %>
     <!--Render other user reading logs-->
     <% @reading_log.child_reading_logs_from_template.each do |child_reading_log| %>
       <% if child_reading_log.last_book_completed_details %>
-        <%= child_reading_log.user.first_name %> last read <%= child_reading_log.last_book_chapter_and_name %> on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+        <%= render "reading_logs/last_read", reading_log: child_reading_log, subject: child_reading_log.user.first_name %>
         <br>
         <br>
       <% end %>
@@ -31,7 +31,7 @@
     <!--if owner reading log, render child reading logs-->
     <% @reading_log.child_reading_logs.each do |child_reading_log| %>
       <% if child_reading_log.last_book_completed_details %>
-        <%= child_reading_log.user.first_name %> last read <%= child_reading_log.last_book_chapter_and_name %> on <%= child_reading_log.last_book_completed_at.strftime("%a, %b %d") %>.
+        <%= render "reading_logs/last_read", reading_log: child_reading_log, subject: child_reading_log.user.first_name %>
         <br>
         <br>
       <% end %>
