@@ -9,7 +9,7 @@
       <% end %>
     </div>
     <div class="flex items-center space-x-3">
-      <%= link_to root_path, class: "xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>
+      <%= link_to root_path, class: "#{'!hidden' unless helpers.current_user.confirmed?} xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == root_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>
         <span>Home</span>
       <% end %>
       <%= link_to account_path, class: "xs:inline hidden font-medium py-1 px-1 text-neutral-900 #{request.path == account_path ? 'opacity-100' : 'opacity-50 hover:opacity-80'}" do %>

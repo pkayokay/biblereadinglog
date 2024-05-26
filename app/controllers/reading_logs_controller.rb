@@ -17,13 +17,13 @@ class ReadingLogsController < ApplicationController
       pagy(current_user.reading_logs.pending.order(created_at: :desc), items: @item_count)
     end
 
-    # return unless current_user.confirmed_at.nil?
+    return if current_user.confirmed?
 
-    # redirect_to email_confirmation_path
+    redirect_to email_confirmation_path
   end
 
   def new
-    # redirect_to email_confirmation_path if current_user.confirmed_at.nil?
+    redirect_to email_confirmation_path unless current_user.confirmed?
 
     @reading_log = ReadingLog.new
   end
@@ -119,53 +119,53 @@ class ReadingLogsController < ApplicationController
   def join_invite
     flash.clear
 
-    # if current_user.confirmed_at.nil?
-    #   flash[:alert] = "Confirm your email before joining"
-    #   redirect_to email_confirmation_path
-    # else
-    @reading_log = ReadingLog.find_by(slug: params[:slug])
-    if @reading_log.present?
-      if @reading_log.user == current_user
-        flash[:notice] = "You are the owner of this reading log"
-        redirect_to reading_log_path(@reading_log)
-      elsif (@child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first)
-        flash[:notice] = "You are already part of this reading log"
-        redirect_to reading_log_path(@child_reading_log)
-      else
-        @child_reading_log = current_user.reading_logs.new(
-          name: @reading_log.name,
-          is_entire_bible: @reading_log.is_entire_bible,
-          books_count: @reading_log.books_count,
-          template_reading_log: @reading_log
-        )
-        @reading_log.books.each do |book|
-          @child_reading_log.books.new(
-            name: book["name"],
-            slug: book["slug"],
-            reading_log: @reading_log,
-            position: book["position"],
-            chapters_count: book["chapters_count"],
-            chapters_data: book["chapters_count"].times.map do |index|
-              chapter = index + 1
-              {chapter_number: chapter, completed_at: nil}
-            end
-          )
-        end
-        @reading_log.update(is_group_reading_log: true) unless @reading_log.is_group_reading_log
-
-        if @child_reading_log.save
-          flash[:notice] = "You've been added to the reading log!"
+    if current_user.confirmed?
+      @reading_log = ReadingLog.find_by(slug: params[:slug])
+      if @reading_log.present?
+        if @reading_log.user == current_user
+          flash[:notice] = "You are the owner of this reading log"
+          redirect_to reading_log_path(@reading_log)
+        elsif (@child_reading_log = @reading_log.child_reading_logs.where(user: current_user).first)
+          flash[:notice] = "You are already part of this reading log"
           redirect_to reading_log_path(@child_reading_log)
         else
-          flash[:alert] = "Something went wrong, try again."
-          redirect_to root_path
+          @child_reading_log = current_user.reading_logs.new(
+            name: @reading_log.name,
+            is_entire_bible: @reading_log.is_entire_bible,
+            books_count: @reading_log.books_count,
+            template_reading_log: @reading_log
+          )
+          @reading_log.books.each do |book|
+            @child_reading_log.books.new(
+              name: book["name"],
+              slug: book["slug"],
+              reading_log: @reading_log,
+              position: book["position"],
+              chapters_count: book["chapters_count"],
+              chapters_data: book["chapters_count"].times.map do |index|
+                chapter = index + 1
+                {chapter_number: chapter, completed_at: nil}
+              end
+            )
+          end
+          @reading_log.update(is_group_reading_log: true) unless @reading_log.is_group_reading_log
+
+          if @child_reading_log.save
+            flash[:notice] = "You've been added to the reading log!"
+            redirect_to reading_log_path(@child_reading_log)
+          else
+            flash[:alert] = "Something went wrong, try again."
+            redirect_to root_path
+          end
         end
+      else
+        flash[:alert] = "That reading log doesn't exist"
+        redirect_to root_path
       end
     else
-      flash[:alert] = "That reading log doesn't exist"
-      redirect_to root_path
+      flash[:alert] = "Confirm your email before joining"
+      redirect_to email_confirmation_path
     end
-    # end
   end
 
   def destroy
