@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   end
 
   def email_confirmation
-    redirect_to root_path
-    # if current_user.confirmed?
+    redirect_to root_path if current_user.confirmed?
   end
 
   def verify_email_confirmation_token
@@ -39,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def resend_email_confirmation
-    flash.now[:notice] = "Email confirmation sent!"
+    flash[:notice] = "Email confirmation sent!"
     current_user.touch # Invalidate previous token
 
     UserMailer.with(
