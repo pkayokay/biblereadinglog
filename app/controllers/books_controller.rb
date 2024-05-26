@@ -72,7 +72,7 @@ class BooksController < ApplicationController
         @reading_log.update(
           last_book_completed_details: {
             name: @book.name,
-            chapter: @chapter_number,
+            chapter_number: @chapter_number,
             completed_at: current_time
           }
         )

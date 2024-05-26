@@ -11,7 +11,7 @@
   </div>
   <p class="text-sm mt-3">
     <% if reading_log.last_book_completed_details.present? %>
-      Last read on <%= format_on_date(reading_log.last_book_completed_at) %>
+      Last read <%= reading_log.last_book_chapter_and_name %> on <%= reading_log.last_book_completed_at.strftime("%a, %b %d") %>
     <% else %>
       No activity
     <% end %>

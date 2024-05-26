@@ -66,6 +66,10 @@ class ReadingLog < ApplicationRecord
     Time.parse(last_book_completed_details["completed_at"]).in_time_zone(user.time_zone)
   end
 
+  def last_book_chapter_and_name
+    "#{last_book_completed_details["name"]} #{last_book_completed_details["chapter_number"]}"
+  end
+
   def autoset_slug
     self.slug = ReadingLog.generate_slug!
   end
