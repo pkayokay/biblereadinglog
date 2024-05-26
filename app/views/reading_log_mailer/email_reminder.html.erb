@@ -15,7 +15,7 @@
   <% if @reading_log.is_child_reading_log? %>
     <!--Render owner reading log-->
     <% if @reading_log.template_reading_log.last_book_completed_details.present? %>
-      <%= render "reading_logs/last_read", reading_log: @reading_log %>
+      <%= render "reading_logs/last_read", reading_log: @reading_log.template_reading_log %>
       <br>
       <br>
     <% end %>
