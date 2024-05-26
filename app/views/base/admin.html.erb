@@ -6,8 +6,7 @@
   <table class="min-w-full divide-y divide-gray-300">
     <thead>
       <tr>
-        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Name</th>
-        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Email</th>
+        <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">User</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Created</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Last Sign In</th>
         <th scope="col" class="px-3 py-3.5 text-left font-medium text-nowrap">Confirmed</th>
@@ -17,12 +16,10 @@
     </thead>
     <tbody class="divide-y divide-gray-200 bg-white">
       <% User.order(created_at: :asc).each do |user| %>
-        <tr class="text-base cursor-pointer duration-100 <%= 'border-emerald-100 bg-emerald-50' if user.is_admin %>">
+        <tr class="text-base">
           <td class="py-2 whitespace-nowrap px-3">
-            <div class=""><%= user.email %></div>
-          </td>
-          <td class="whitespace-nowrap px-3">
-            <div class=""><%= user.full_name %></div>
+            <div class="font-semibold"><%= user.full_name %><% if user.is_admin? %> (admin)<% end %></div>
+            <div class="opacity-60"><%= user.email %></div>
           </td>
           <td class="whitespace-nowrap px-3">
             <div class=""><%= user.created_at.in_time_zone(current_user.time_zone).strftime("%a %_m/%-e at %l:%M %p") %></div>
