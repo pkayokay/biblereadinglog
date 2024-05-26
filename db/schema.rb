@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_26_175122) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_26_181850) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -139,7 +139,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_175122) do
     t.string "slug"
     t.bigint "template_reading_log_id"
     t.boolean "is_group_reading_log", default: false, null: false
-    t.datetime "last_book_completed_at"
     t.jsonb "last_book_completed_details"
     t.index ["completed_at"], name: "index_reading_logs_on_completed_at"
     t.index ["is_reminder_enabled"], name: "index_reading_logs_on_is_reminder_enabled"

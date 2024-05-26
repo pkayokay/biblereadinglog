@@ -132,7 +132,6 @@ end
 #  is_entire_bible             :boolean          default(TRUE), not null
 #  is_group_reading_log        :boolean          default(FALSE), not null
 #  is_reminder_enabled         :boolean          default(FALSE), not null
-#  last_book_completed_at      :datetime
 #  last_book_completed_details :jsonb
 #  last_sent_at                :datetime
 #  name                        :string           not null
