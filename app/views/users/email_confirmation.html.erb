@@ -4,9 +4,9 @@
   <div class="-mt-2 mb-8  px-5 py-4 rounded bg-sky-100  text-sky-900">
     <p>Confirmation email sent to <span class="font-medium underline"><%= current_user.email %></span></p>
   </div>
-  <%= render(HeadingComponent.new(title: "Verify Your Email Address")) %>
+  <%= render(HeadingComponent.new(title: "Please Verify Your Email")) %>
   <div>
     <p class="mt-5 mb-8">We have sent an email to you for verification. Please click on the link provided to confirm your email. If you don't receive an email within a few minutes, please try again.</div>
-    <%= button_to "Resend email confirmation", resend_email_confirmation_path, method: :post, class: "btn btn--slim text-sm w-auto" %>
+    <%= button_to "Resend Email", resend_email_confirmation_path, method: :post, class: "btn btn--slim text-sm w-auto" %>
   </div>
 </div>
