@@ -57,7 +57,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "erb_lint", "~> 0.5.0", require: false
+  gem "erb_lint", "~> 0.9.0", require: false
   gem "standardrb", "~> 1.0"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
