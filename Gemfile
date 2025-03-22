@@ -43,7 +43,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 gem "view_component", "~> 3.12"
-gem "pagy", "~> 8.4"
+gem "pagy", "~> 9.3"
 gem "annotate", "~> 3.2"
 gem "good_job", "~> 4.9"
 
