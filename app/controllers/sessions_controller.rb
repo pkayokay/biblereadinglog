@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!, except: :destroy
   before_action :require_no_user!, except: :destroy

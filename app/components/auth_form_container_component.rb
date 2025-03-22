@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AuthFormContainerComponent < ViewComponent::Base
   renders_one :footer
 

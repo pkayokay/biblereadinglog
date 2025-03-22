@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ModalComponent < ViewComponent::Base
   erb_template <<-ERB
     <div data-controller="modal" data-modal-open-value="true">

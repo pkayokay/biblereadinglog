@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class EmptyStateComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="bg-stone-50/50 pt-14 pb-14 px-4 rounded-lg text-lg text-center border rounded-lg border-dashed">

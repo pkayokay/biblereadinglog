@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class LabelComponent < ViewComponent::Base
   erb_template <<-ERB
     <%= @form.label @for_attribute, @title, class: "mb-0.5 block text-sm " + @custom_classes %>

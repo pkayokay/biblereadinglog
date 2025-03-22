@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ReadingLogsController < ApplicationController
   before_action :set_reading_log, only: %i[update show settings destroy]
   before_action :set_books_data, only: %i[new create]

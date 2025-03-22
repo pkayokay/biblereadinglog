@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class InputComponent < ViewComponent::Base
   erb_template <<-ERB
     <%= @form.send(field_type, @id_and_name, class: "form-input " + @custom_classes, required: @required, placeholder: @placeholder, autofocus: @autofocus, disabled: @disabled) %>

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PageActionsHeaderComponent < ViewComponent::Base
   renders_one :right_content
 
