@@ -24,10 +24,6 @@ A prerequisite for this project is that you have Ruby and Ruby on Rails installe
 3. `bin/dev`
 4. Visit https://localhost:3000.
 
-## Testing
-
-- TODO: need to add end-to-end testing
-
 ## Linters
 
 1. Prettier for `.js` files, run `yarn format`
