@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class LoadingSpinnerComponent < ViewComponent::Base
   erb_template <<-ERB
     <div

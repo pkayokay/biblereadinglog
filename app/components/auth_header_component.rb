@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AuthHeaderComponent < ViewComponent::Base
   erb_template <<-ERB
     <div class="text-center flex justify-center flex-col items-center mb-5 space-y-2">

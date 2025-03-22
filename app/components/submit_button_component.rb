@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SubmitButtonComponent < ViewComponent::Base
   erb_template <<-ERB
     <%= @form.submit @title, data: @data, disabled: @disabled, class: "btn btn--primary " + @custom_classes %>

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FormErrorsComponent < ViewComponent::Base
   def initialize(errors: [])
     @errors = errors
