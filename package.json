@@ -6,6 +6,7 @@
     "@hotwired/turbo-rails": "^8.0.13",
     "@rails/request.js": "^0.0.11",
     "@stimulus-components/clipboard": "^5.0.0",
+    "@tailwindcss/cli": "^4.0.15",
     "autoprefixer": "^10.4.19",
     "esbuild": "^0.20.2",
     "jstimezonedetect": "^1.0.7",
@@ -15,7 +16,7 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "format": "yarn prettier --write '**/*.{js,ts,jsx,tsx,css,md}'"
   },
   "devDependencies": {
