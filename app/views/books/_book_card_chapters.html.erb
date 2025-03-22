@@ -1,6 +1,6 @@
 <%= turbo_frame_tag book_card_chapters_turbo_frame_id(book) do %>
   <%= render(BadgeCountsComponent.new(
-    custom_classes: "top-2 absolute left-1/2 -translate-x-1/2 #{'!text-emerald-700 !bg-emerald-100' if book.completed?}",
+    custom_classes: "top-2 absolute left-1/2 -translate-x-1/2 #{'text-emerald-700! bg-emerald-100!' if book.completed?}",
     numerator: book.completed_chapters_count,
     denominator: book.chapters_count,
   )) %>

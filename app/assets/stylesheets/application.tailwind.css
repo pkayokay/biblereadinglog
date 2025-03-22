@@ -1,38 +1,67 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@source './**/*.css';
+
+@theme {
+  --breakpoint-xs: 460px;
+
+  --text-modal-heading: 1.75rem, 2.25rem;
+  --text-subheading: 1.35rem, 2.25rem;
+
+  --shadow-custom: 0px 0px 20px 0px rgba(226, 221, 215, 0.5);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   .form-input {
-    @apply w-full bg-white !placeholder-neutral-400 !mt-0.5 border-0 !px-3 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full bg-white placeholder-neutral-400! mt-0.5! border-0 px-3! text-lg! py-2! rounded-lg! focus:ring-neutral-600! focus:border-neutral-600! border-neutral-300!;
   }
 
   .form-select {
-    @apply w-full bg-white !mt-0.5 border-0 !px-3 !text-lg !py-2 !rounded-lg focus:!ring-neutral-600 focus:!border-neutral-600 !border-neutral-300;
+    @apply w-full bg-white mt-0.5! border-0 px-3! text-lg! py-2! rounded-lg! focus:ring-neutral-600! focus:border-neutral-600! border-neutral-300!;
   }
 
   .btn {
-    @apply font-medium text-neutral-900 hover:text-black rounded-lg transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-stone-100 border-neutral-300 shadow-sm py-2 px-5 focus-visible:!ring-offset-2 focus-visible:!ring-2;
+    @apply font-medium text-neutral-900 hover:text-black rounded-lg transition-colors w-full cursor-pointer text-lg bg-white border hover:bg-stone-100 border-neutral-300 shadow-xs py-2 px-5 focus-visible:ring-offset-2! focus-visible:ring-2!;
   }
 
   .btn--slim {
-    @apply py-2 px-3 !text-base;
+    @apply py-2 px-3 text-base!;
   }
 
   .btn--primary {
-    @apply bg-neutral-900 !text-white !border-black hover:!border-neutral-800 hover:bg-neutral-800 focus:!ring-neutral-500 focus:!border-neutral-500 focus:!outline-neutral-500;
+    @apply bg-neutral-900 text-white! border-black! hover:border-neutral-800! hover:bg-neutral-800 focus:ring-neutral-500! focus:border-neutral-500! focus:outline-neutral-500!;
   }
 
   .btn--blue {
-    @apply bg-blue-600 !text-white !border-blue-600 hover:!border-blue-700 hover:bg-blue-700 focus:!ring-blue-700 focus:!border-blue-700 focus:!outline-blue-700;
+    @apply bg-blue-600 text-white! border-blue-600! hover:border-blue-700! hover:bg-blue-700 focus:ring-blue-700! focus:border-blue-700! focus:outline-blue-700!;
   }
 
   .btn--danger {
-    @apply bg-red-600 !text-white !border-red-600 hover:!border-red-700 hover:bg-red-700 focus:!ring-red-700 focus:!border-red-700 focus:!outline-red-700;
+    @apply bg-red-600 text-white! border-red-600! hover:border-red-700! hover:bg-red-700 focus:ring-red-700! focus:border-red-700! focus:outline-red-700!;
   }
 
   .btn--success {
-    @apply bg-emerald-500 text-white !border-emerald-500 hover:!border-emerald-600 hover:bg-emerald-600 focus:!ring-emerald-600 focus:!border-emerald-600 focus:!outline-emerald-600;
+    @apply bg-emerald-500 text-white border-emerald-500! hover:border-emerald-600! hover:bg-emerald-600 focus:ring-emerald-600! focus:border-emerald-600! focus:outline-emerald-600!;
   }
 
   .round-link {
@@ -43,7 +72,7 @@
   }
 
   .container--flash {
-    @apply w-full max-w-[90%] xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-[999] text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 h-fit bottom-10 xs:bottom-[initial] top-[initial] xs:top-11 fixed;
+    @apply w-full max-w-[90%] xs:w-fit flex text-wrap xs:text-nowrap space-x-2.5 items-center  z-999 text-center transition-opacity duration-200 ease-out rounded-lg text-white py-3.5 pl-4 px-5 -translate-x-1/2 opacity-0 left-1/2 h-fit bottom-10 xs:bottom-[initial] top-[initial] xs:top-11 fixed;
   }
 
   .container--flash.active {

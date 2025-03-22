@@ -3,7 +3,7 @@
   <%= c.with_right_content do %>
     <div class="flex space-x-2 -mr-2.5 items-center">
       <%= render(BadgeCountsComponent.new(
-          custom_classes: "absolute left-1/2 -translate-x-1/2 #{'!text-emerald-700 !bg-emerald-100' if @reading_log.completed?}",
+          custom_classes: "absolute left-1/2 -translate-x-1/2 #{'text-emerald-700! bg-emerald-100!' if @reading_log.completed?}",
           numerator: @reading_log.completed_books_count,
           denominator: @reading_log.books_count,
         )) %>
@@ -20,7 +20,7 @@
           <span class="sr-only">Settings</span>
         </button>
         <div data-dropdown-target="menu" class="hidden absolute top-12 right-0 z-10 flex w-screen max-w-max">
-          <div class=" bg-white shadow-sm rounded-lg border overflow-hidden w-[180px] py-1.5">
+          <div class=" bg-white shadow-xs rounded-lg border overflow-hidden w-[180px] py-1.5">
             <%= link_to settings_reading_log_path(@reading_log), class: "group flex py-2 px-4 space-x-3 hover:bg-stone-100 items-center", data: { turbo_frame: "settings_form-name", dropdown_target: "menuItem"} do %>
               <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
               <span class="">Edit Name</span>
@@ -55,7 +55,7 @@
     <% end %>
     <% if @reading_log.is_group_reading_log? %>
       <div class="mt-4">
-        <%= link_to show_stats_reading_log_path(@reading_log), class: "hover:scale-[102%] !text-sm duration-100 inline-flex w-auto items-center btn btn--slim space-x-2", data: {turbo_frame: "stats"} do %>
+        <%= link_to show_stats_reading_log_path(@reading_log), class: "hover:scale-[102%] text-sm! duration-100 inline-flex w-auto items-center btn btn--slim space-x-2", data: {turbo_frame: "stats"} do %>
           <span>Show Group Progress</span>
         <% end %>
         <div class="text-left">

@@ -3,7 +3,7 @@
   data-action="toggle-chapter#handleClick"
   data-toggle-chapter-url-value="<%= toggle_chapter_reading_log_book_path(book.reading_log, book, chapter_number: chapter_data["chapter_number"], is_completed: chapter_data["completed_at"].present?) %>"
   id="<%= book_checklist_square_turbo_frame_id(book, chapter_data["chapter_number"]) %>"
-  class="<%= chapter_data["completed_at"] ? theme_values[:square] : 'bg-white' %> space-y-1 w-full h-full text-center py-3 px-4 flex flex-col  aspect-square group hover:bg-stone-50 border shadow-sm rounded-lg items-center justify-center  cursor-pointer duration-100 hover:scale-[110%] focus-within:scale-[110%]">
+  class="<%= chapter_data["completed_at"] ? theme_values[:square] : 'bg-white' %> space-y-1 w-full h-full text-center py-3 px-4 flex flex-col  aspect-square group hover:bg-stone-50 border shadow-xs rounded-lg items-center justify-center  cursor-pointer duration-100 hover:scale-[110%] focus-within:scale-[110%]">
   <% if chapter_data["completed_at"].present? %>
     <div class="flex items-center">
       <svg class="w-[20px] h-[20px] stroke-emerald-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="m9 11 3 3L22 4" /></svg>
