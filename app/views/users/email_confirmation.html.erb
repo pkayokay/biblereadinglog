@@ -1,7 +1,7 @@
 <% render_title "Email Confirmation" %>
 
 <div>
-  <div class="-mt-2 mb-8  px-5 py-4 rounded bg-sky-100  text-sky-900">
+  <div class="-mt-2 mb-8  px-5 py-4 rounded-sm bg-sky-100  text-sky-900">
     <p>Confirmation email sent to <span class="font-medium underline"><%= current_user.email %></span></p>
   </div>
   <%= render(HeadingComponent.new(title: "Please Verify Your Email")) %>

@@ -29,11 +29,11 @@
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <main data-turbo-prefetch="false" class="mx-auto w-full <%= request.path == admin_path ? '!px-5 max-w-7xl' : 'max-w-2xl' %> pt-9 sm:pt-10 px-5 md:px-0 mb-20">
+      <main data-turbo-prefetch="false" class="mx-auto w-full <%= request.path == admin_path ? 'px-5! max-w-7xl' : 'max-w-2xl' %> pt-9 sm:pt-10 px-5 md:px-0 mb-20">
         <%= yield %>
       </main>
     <% else %>
-      <%= render "shared/flash", custom_classes: "!top-8" %>
+      <%= render "shared/flash", custom_classes: "top-8!" %>
       <main class="p-5 mt-6 xs:mt-16 mb-10">
         <%= yield %>
       </main>
