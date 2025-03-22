@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.4",
+    "@hotwired/turbo-rails": "^8.0.13",
     "@rails/request.js": "^0.0.9",
     "@stimulus-components/clipboard": "^5.0.0",
     "autoprefixer": "^10.4.19",
