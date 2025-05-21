@@ -78,7 +78,13 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: biblereadinglog_production
-  username: biblereadinglog
-  password: <%= ENV["BIBLEREADINGLOG_DATABASE_PASSWORD"] %>
+  primary: &primary_production
+    <<: *default
+    database: biblereadinglog_production
+    username: biblereadinglog
+    password: <%= ENV["BIBLEREADINGLOG_DATABASE_PASSWORD"] %>
+  queue:
+    <<: *primary_production
+    database: biblereadinglog_production_queue
+    migrations_paths: db/queue_migrate
+    url: <%= ENV["DATABASE_URL"] %>
