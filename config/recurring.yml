@@ -1,4 +1,7 @@
-# production:
+production:
+  reminder_notifications:
+    class: ReminderNotificationJob
+    schedule: every 15 minutes
 #   periodic_cleanup:
 #     class: CleanSoftDeletedRecordsJob
 #     queue: background
