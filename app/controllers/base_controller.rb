@@ -1,5 +1,5 @@
 class BaseController < ApplicationController
-  before_action :authenticate_admin1, only: [:admin]
+  before_action :authenticate_admin!, only: [:admin]
 
   def admin
   end
