@@ -40,5 +40,5 @@ Rails.application.routes.draw do
   get "feedback", to: "base#feedback"
 
   get "up" => "rails/health#show", :as => :rails_health_check
-  mount GoodJob::Engine => "good_job"
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 end

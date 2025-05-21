@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
+  include Rails.application.routes.url_helpers
 
   before_action :authenticate_user!
 
   private
+
+  def authenticate_admin!
+    redirect_to "/" unless current_user&.is_admin?
+  end
 
   def authenticate_user!
     dest = (request.path == root_path) ? nil : request.path

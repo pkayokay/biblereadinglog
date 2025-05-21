@@ -24,7 +24,10 @@ module Biblereadinglog
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join("services")
 
-    config.session_store :cookie_store, expire_after: 1.month
-    config.active_job.queue_adapter = :good_job
+    config.session_store :cookie_store, expire_after: 2.months
+
+    # Mission Control configuration
+    MissionControl::Jobs.base_controller_class = "MissionControlJobsController"
+    config.mission_control.jobs.http_basic_auth_enabled = false
   end
 end

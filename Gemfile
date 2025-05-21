@@ -75,3 +75,5 @@ group :test do
 end
 
 gem "solid_queue", "~> 1.1"
+
+gem "mission_control-jobs", "~> 1.0"
