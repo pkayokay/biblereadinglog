@@ -2,6 +2,9 @@ production:
   reminder_notifications:
     class: ReminderNotificationJob
     schedule: every 15 minutes
+  cleanup_finished_jobs:
+    command: SolidQueue::Job.clear_finished_in_batches
+    schedule: every day at 2am
 #   periodic_cleanup:
 #     class: CleanSoftDeletedRecordsJob
 #     queue: background
