@@ -190,7 +190,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.7-x86_64-linux-gnu)
       racc (~> 1.4)
-    pagy (8.6.3)
+    pagy (9.4.0)
     parallel (1.26.3)
     parser (3.3.7.4)
       ast (~> 2.4.1)
@@ -356,7 +356,7 @@ DEPENDENCIES
   good_job (~> 3.29)
   jbuilder
   jsbundling-rails
-  pagy (~> 8.4)
+  pagy (~> 9.4)
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
