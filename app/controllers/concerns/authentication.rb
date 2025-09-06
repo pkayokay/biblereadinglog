@@ -35,7 +35,7 @@ module Authentication
 
     def request_authentication
       session[:return_to_after_authenticating] = request.url
-      redirect_to new_session_path
+      redirect_to Rails.application.routes.url_helpers.new_session_path # Call from routes helpers to avoid mission controller jobs error
     end
 
     def after_authentication_url
