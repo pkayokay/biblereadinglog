@@ -125,6 +125,10 @@ GEM
       zeitwerk
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.2.2)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -151,6 +155,16 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.25.5)
+    mission_control-jobs (1.1.0)
+      actioncable (>= 7.1)
+      actionpack (>= 7.1)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      importmap-rails (>= 1.2.1)
+      irb (~> 1.13)
+      railties (>= 7.1)
+      stimulus-rails
+      turbo-rails
     msgpack (1.8.0)
     net-imap (0.5.10)
       date
@@ -324,6 +338,7 @@ DEPENDENCIES
   hotwire-spark (~> 0.1.13)
   jbuilder
   jsbundling-rails
+  mission_control-jobs (~> 1.1)
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

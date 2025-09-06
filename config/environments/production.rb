@@ -87,4 +87,8 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Set up basic authentication for Mission Control Jobs dashboard
+  MissionControl::Jobs.http_basic_auth_user = ENV["MISSION_CONTROL_JOBS_HTTP_BASIC_AUTH_USER"]
+  MissionControl::Jobs.http_basic_auth_password = ENV["MISSION_CONTROL_JOBS_HTTP_BASIC_AUTH_PASSWORD"]
 end

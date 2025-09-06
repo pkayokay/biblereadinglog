@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "application#home"
+
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 end

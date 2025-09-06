@@ -62,3 +62,6 @@ group :development do
   # Live-reloading for Hotwire apps
   gem "hotwire-spark", "~> 0.1.13"
 end
+
+# Dashboard for Solid queue jobs
+gem "mission_control-jobs", "~> 1.1"
