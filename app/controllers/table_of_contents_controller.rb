@@ -1,0 +1,407 @@
+class TableOfContentsController < ApplicationController
+
+  def index
+    render json: books_of_the_bible
+  end
+
+  def books_of_the_bible
+    [
+      {
+        "name": "Genesis",
+        "slug": "genesis",
+        "chapters_count": 50,
+        "position": 1
+      },
+      {
+        "name": "Exodus",
+        "slug": "exodus",
+        "chapters_count": 40,
+        "position": 2
+      },
+      {
+        "name": "Leviticus",
+        "slug": "leviticus",
+        "chapters_count": 27,
+        "position": 3
+      },
+      {
+        "name": "Numbers",
+        "slug": "numbers",
+        "chapters_count": 36,
+        "position": 4
+      },
+      {
+        "name": "Deuteronomy",
+        "slug": "deuteronomy",
+        "chapters_count": 34,
+        "position": 5
+      },
+      {
+        "name": "Joshua",
+        "slug": "joshua",
+        "chapters_count": 24,
+        "position": 6
+      },
+      {
+        "name": "Judges",
+        "slug": "judges",
+        "chapters_count": 21,
+        "position": 7
+      },
+      {
+        "name": "Ruth",
+        "slug": "ruth",
+        "chapters_count": 4,
+        "position": 8
+      },
+      {
+        "name": "1 Samuel",
+        "slug": "1-samuel",
+        "chapters_count": 31,
+        "position": 9
+      },
+      {
+        "name": "2 Samuel",
+        "slug": "2-samuel",
+        "chapters_count": 24,
+        "position": 10
+      },
+      {
+        "name": "1 Kings",
+        "slug": "1-kings",
+        "chapters_count": 22,
+        "position": 11
+      },
+      {
+        "name": "2 Kings",
+        "slug": "2-kings",
+        "chapters_count": 25,
+        "position": 12
+      },
+      {
+        "name": "1 Chronicles",
+        "slug": "1-chronicles",
+        "chapters_count": 29,
+        "position": 13
+      },
+      {
+        "name": "2 Chronicles",
+        "slug": "2-chronicles",
+        "chapters_count": 36,
+        "position": 14
+      },
+      {
+        "name": "Ezra",
+        "slug": "ezra",
+        "chapters_count": 10,
+        "position": 15
+      },
+      {
+        "name": "Nehemiah",
+        "slug": "nehemiah",
+        "chapters_count": 13,
+        "position": 16
+      },
+      {
+        "name": "Esther",
+        "slug": "esther",
+        "chapters_count": 10,
+        "position": 17
+      },
+      {
+        "name": "Job",
+        "slug": "job",
+        "chapters_count": 42,
+        "position": 18
+      },
+      {
+        "name": "Psalms",
+        "slug": "psalms",
+        "chapters_count": 150,
+        "position": 19
+      },
+      {
+        "name": "Proverbs",
+        "slug": "proverbs",
+        "chapters_count": 31,
+        "position": 20
+      },
+      {
+        "name": "Ecclesiastes",
+        "slug": "ecclesiastes",
+        "chapters_count": 12,
+        "position": 21
+      },
+      {
+        "name": "Song of Solomon",
+        "slug": "song-of-solomon",
+        "chapters_count": 8,
+        "position": 22
+      },
+      {
+        "name": "Isaiah",
+        "slug": "isaiah",
+        "chapters_count": 66,
+        "position": 23
+      },
+      {
+        "name": "Jeremiah",
+        "slug": "jeremiah",
+        "chapters_count": 52,
+        "position": 24
+      },
+      {
+        "name": "Lamentations",
+        "slug": "lamentations",
+        "chapters_count": 5,
+        "position": 25
+      },
+      {
+        "name": "Ezekiel",
+        "slug": "ezekiel",
+        "chapters_count": 48,
+        "position": 26
+      },
+      {
+        "name": "Daniel",
+        "slug": "daniel",
+        "chapters_count": 12,
+        "position": 27
+      },
+      {
+        "name": "Hosea",
+        "slug": "hosea",
+        "chapters_count": 14,
+        "position": 28
+      },
+      {
+        "name": "Joel",
+        "slug": "joel",
+        "chapters_count": 3,
+        "position": 29
+      },
+      {
+        "name": "Amos",
+        "slug": "amos",
+        "chapters_count": 9,
+        "position": 30
+      },
+      {
+        "name": "Obadiah",
+        "slug": "obadiah",
+        "chapters_count": 1,
+        "position": 31
+      },
+      {
+        "name": "Jonah",
+        "slug": "jonah",
+        "chapters_count": 4,
+        "position": 32
+      },
+      {
+        "name": "Micah",
+        "slug": "micah",
+        "chapters_count": 7,
+        "position": 33
+      },
+      {
+        "name": "Nahum",
+        "slug": "nahum",
+        "chapters_count": 3,
+        "position": 34
+      },
+      {
+        "name": "Habakkuk",
+        "slug": "habakkuk",
+        "chapters_count": 3,
+        "position": 35
+      },
+      {
+        "name": "Zephaniah",
+        "slug": "zephaniah",
+        "chapters_count": 3,
+        "position": 36
+      },
+      {
+        "name": "Haggai",
+        "slug": "haggai",
+        "chapters_count": 2,
+        "position": 37
+      },
+      {
+        "name": "Zechariah",
+        "slug": "zechariah",
+        "chapters_count": 14,
+        "position": 38
+      },
+      {
+        "name": "Malachi",
+        "slug": "malachi",
+        "chapters_count": 4,
+        "position": 39
+      },
+      {
+        "name": "Matthew",
+        "slug": "matthew",
+        "chapters_count": 28,
+        "position": 40
+      },
+      {
+        "name": "Mark",
+        "slug": "mark",
+        "chapters_count": 16,
+        "position": 41
+      },
+      {
+        "name": "Luke",
+        "slug": "luke",
+        "chapters_count": 24,
+        "position": 42
+      },
+      {
+        "name": "John",
+        "slug": "john",
+        "chapters_count": 21,
+        "position": 43
+      },
+      {
+        "name": "Acts",
+        "slug": "acts",
+        "chapters_count": 28,
+        "position": 44
+      },
+      {
+        "name": "Romans",
+        "slug": "romans",
+        "chapters_count": 16,
+        "position": 45
+      },
+      {
+        "name": "1 Corinthians",
+        "slug": "1-corinthians",
+        "chapters_count": 16,
+        "position": 46
+      },
+      {
+        "name": "2 Corinthians",
+        "slug": "2-corinthians",
+        "chapters_count": 13,
+        "position": 47
+      },
+      {
+        "name": "Galatians",
+        "slug": "galatians",
+        "chapters_count": 6,
+        "position": 48
+      },
+      {
+        "name": "Ephesians",
+        "slug": "ephesians",
+        "chapters_count": 6,
+        "position": 49
+      },
+      {
+        "name": "Philippians",
+        "slug": "philippians",
+        "chapters_count": 4,
+        "position": 50
+      },
+      {
+        "name": "Colossians",
+        "slug": "colossians",
+        "chapters_count": 4,
+        "position": 51
+      },
+      {
+        "name": "1 Thessalonians",
+        "slug": "1-thessalonians",
+        "chapters_count": 5,
+        "position": 52
+      },
+      {
+        "name": "2 Thessalonians",
+        "slug": "2-thessalonians",
+        "chapters_count": 3,
+        "position": 53
+      },
+      {
+        "name": "1 Timothy",
+        "slug": "1-timothy",
+        "chapters_count": 6,
+        "position": 54
+      },
+      {
+        "name": "2 Timothy",
+        "slug": "2-timothy",
+        "chapters_count": 4,
+        "position": 55
+      },
+      {
+        "name": "Titus",
+        "slug": "titus",
+        "chapters_count": 3,
+        "position": 56
+      },
+      {
+        "name": "Philemon",
+        "slug": "philemon",
+        "chapters_count": 1,
+        "position": 57
+      },
+      {
+        "name": "Hebrews",
+        "slug": "hebrews",
+        "chapters_count": 13,
+        "position": 58
+      },
+      {
+        "name": "James",
+        "slug": "james",
+        "chapters_count": 5,
+        "position": 59
+      },
+      {
+        "name": "1 Peter",
+        "slug": "1-peter",
+        "chapters_count": 5,
+        "position": 60
+      },
+      {
+        "name": "2 Peter",
+        "slug": "2-peter",
+        "chapters_count": 3,
+        "position": 61
+      },
+      {
+        "name": "1 John",
+        "slug": "1-john",
+        "chapters_count": 5,
+        "position": 62
+      },
+      {
+        "name": "2 John",
+        "slug": "2-john",
+        "chapters_count": 1,
+        "position": 63
+      },
+      {
+        "name": "3 John",
+        "slug": "3-john",
+        "chapters_count": 1,
+        "position": 64
+      },
+      {
+        "name": "Jude",
+        "slug": "jude",
+        "chapters_count": 1,
+        "position": 65
+      },
+      {
+        "name": "Revelation",
+        "slug": "revelation",
+        "chapters_count": 22,
+        "position": 66
+      }
+    ]
+  end
+end

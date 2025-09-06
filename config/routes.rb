@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "table_of_contents", to: "table_of_contents#index"
+
   resource :session
   resources :passwords, param: :token
   resources :registrations, only: %i[new create]
