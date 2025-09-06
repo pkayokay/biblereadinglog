@@ -57,3 +57,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+group :development do
+  # Live-reloading for Hotwire apps
+  gem "hotwire-spark", "~> 0.1.13"
+end
