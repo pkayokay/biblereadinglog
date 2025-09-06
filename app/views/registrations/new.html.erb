@@ -1,7 +1,3 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
-
 <%= form_with url: registrations_path, model: @user do |form| %>
 
   <% if @user.errors.any? %>

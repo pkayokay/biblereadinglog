@@ -1,2 +1,8 @@
 <%= button_to "log out", session_path, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-<h1>Home</h1>
+
+<% if Current.user.confirmed? %>
+  <h1>Home</h1>
+<% else %>
+  <h1>Confirm your email</h1>
+<% end %>
+

@@ -1,0 +1,6 @@
+Confirm your email
+
+<%= form_with(url: confirmations_path(token: params[:token]), method: :patch) do |form| %>
+  <%= form.email_field :email_address, disabled: true, value: @user.email_address %>
+  <%= form.submit "Confirm my email" %>
+<% end %>

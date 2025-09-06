@@ -1,0 +1,7 @@
+<p>
+  Please confirm your email address to complete your registration.
+</p>
+
+<p>
+  <%= link_to "Confirm Email", edit_confirmations_url(token: @user.generate_token_for(:confirmation)) %>
+</p>

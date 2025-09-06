@@ -1,0 +1,10 @@
+new confirmation
+<%= form_with(url: confirmations_path, method: :post) do |form| %>
+<%= form.email_field :email_address, placeholder: "Email address", autofocus: true, required: true %>
+<%= form.submit "Send confirmation email" %>
+
+<% end %>
+
+<br >
+<br >
+<%= link_to "Back to sign in", new_session_path %>

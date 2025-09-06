@@ -12,6 +12,7 @@ class RegistrationsController < ApplicationController
     
     if @user.save
       start_new_session_for @user
+      ConfirmationMailer.confirm(@user).deliver_later
 
       redirect_to root_path
     else
