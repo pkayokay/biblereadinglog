@@ -1,0 +1,30 @@
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+<%= form_with url: registrations_path, model: @user do |form| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address" %>
+  <br>
+
+  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+  <%= form.password_field :password_confirmation, required: true, autocomplete: "current-password", placeholder: "Confirm your password", maxlength: 72 %>
+  <br>
+
+  <%= form.submit "Sign up" %>
+<% end %>
+
+<br>
+
+<%= link_to "Back to sign in", new_session_path %>
