@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
       start_new_session_for @user
       ConfirmationMailer.confirm(@user).deliver_later
 
-      redirect_to root_path
+      redirect_to reading_logs_path
     else
       render :new, status: :unprocessable_content
     end

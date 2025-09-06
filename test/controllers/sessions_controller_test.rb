@@ -12,7 +12,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create session with valid credentials" do
     post session_url, params: { email_address: @user.email_address, password: 'password' }
-    assert_redirected_to root_url
+    assert_redirected_to reading_logs_path
   end
 
 

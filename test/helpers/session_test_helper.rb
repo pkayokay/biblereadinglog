@@ -6,7 +6,7 @@ module SessionTestHelper
       cookie_jar.signed[:session_id] = Current.session.id
 
       if defined?(page)
-        visit root_url
+        visit reading_logs_url
         page.driver.browser.manage.add_cookie(name: :session_id, value: cookie_jar[:session_id])
       else
         cookies[:session_id] = cookie_jar[:session_id]

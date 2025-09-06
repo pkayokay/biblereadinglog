@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  root "pages#index"
+
+  mount MissionControl::Jobs::Engine, at: "/jobs"
   get "table_of_contents", to: "table_of_contents#index"
 
-  resource :session
-  resources :passwords, param: :token
-  resources :registrations, only: %i[new create]
-  resource :confirmations, only: %i[new create edit update]
+  resources :reading_logs, only: %i[index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  root "pages#index"
-
-  mount MissionControl::Jobs::Engine, at: "/jobs"
+  resource :session
+  resources :passwords, param: :token
+  resources :registrations, only: %i[new create]
+  resource :confirmations, only: %i[new create edit update]
 end

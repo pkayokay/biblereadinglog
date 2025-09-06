@@ -16,7 +16,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to root_path
+    assert_redirected_to reading_logs_path
   end
 
   test "should not create user with invalid email" do

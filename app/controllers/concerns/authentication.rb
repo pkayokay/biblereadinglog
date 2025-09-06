@@ -39,7 +39,7 @@ module Authentication
     end
 
     def after_authentication_url
-      session.delete(:return_to_after_authenticating) || root_url
+      session.delete(:return_to_after_authenticating) || reading_logs_url
     end
 
     def start_new_session_for(user)
@@ -55,6 +55,6 @@ module Authentication
     end
 
     def redirect_if_authenticated
-      redirect_to root_path if authenticated?
+      redirect_to reading_logs_path if authenticated?
     end
 end

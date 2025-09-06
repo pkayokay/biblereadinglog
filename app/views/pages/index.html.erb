@@ -1,8 +1,7 @@
-<%= button_to "log out", session_path, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-
-<% if Current.user.confirmed? %>
-  <h1>Home</h1>
+<% if authenticated? %>
+  <%= link_to "Go to Reading Logs", reading_logs_path %>
 <% else %>
-  <h1>Confirm your email</h1>
+  <%= link_to "Sign in", new_session_path %>
 <% end %>
 
+marketing page
