@@ -1,14 +1,1 @@
 @import "tailwindcss";
-
-body {
-  @apply p-5;
-}
-
-button,
-input {
-  @apply border w-full p-2 mb-4 focus:border-black focus:outline-black;
-}
-
-a {
-  @apply underline;
-}

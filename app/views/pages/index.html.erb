@@ -1,7 +1,58 @@
-<% if authenticated? %>
-  <%= link_to "Go to Reading Logs", reading_logs_path %>
-<% else %>
-  <%= link_to "Sign in", new_session_path %>
-<% end %>
+<div class="max-w-7xl mx-auto p-7 h-full flex flex-col min-h-screen">
+  <header class="border-b border-neutral-200 pb-8 md:pb-6 flex justify-between items-center gap-8 md:flex-row flex-col">
+    <%= link_to root_path, class: "flex items-center space-x-3" do %>
+      <%= image_tag '/logo.png', alt: 'Bible Reading Log', class: 'max-w-[40px]' %>
+      <span class="text-lg font-semibold">Bible Reading Log</span>
+    <% end %>
+    <div class="space-x-4">
+      <%= link_to 'About', "#", class: 'hover:underline text-neutral-700 hover:text-black' %>
+      <%= link_to 'Support', "#", class: 'hover:underline text-neutral-700 hover:text-black' %>  
+      <% if authenticated? %>
+        <%= link_to 'Reading Logs', new_session_path, class: 'bg-black py-3 px-4 text-white rounded-md ' %>
+      <% else %>
+        <%= link_to 'Sign in', new_session_path, class: 'hover:bg-neutral-800 bg-black py-3 px-4 text-white rounded-md ' %>
+      <% end %>
+    </div>
+  </header>
+  <div class="text-center mt-12 mb-8">
+    <div>
+      <%= image_tag '/logo.png', alt: 'Bible Reading Log', class: 'max-w-[130px] lg:max-w-[180px] w-full mx-auto mb-6' %>
+      <h1 class="text-3xl lg:text-[2.7rem] font-bold">Bible Reading Log</h1>
+    </div>
+  </div>
 
-marketing page
+  <div class="text-xl max-w-md mx-auto text-center text-neutral-700 mb-16">
+    <p>The simplest way to track your Bible reading, create unlimited logs, and get email reminders to stay consistent.</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 mb-12 gap-8">
+    <% [{
+      title: "Multiple Logs",
+      description: "Create separate reading logs for your yearly plan, Bible study, or small group reading, all in one place.",
+      icon: "<svg xmlns='http://www.w3.org/2000/svg' class='w-7 h-7 text-black' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'><path d='m16 6 4 14'/><path d='M12 6v14'/><path d='M8 8v12'/><path d='M4 4v16'/></svg>"
+    },
+    {
+      title: "Timeless Tracking",
+      description: "No need for start or end dates.",
+      icon: "<svg xmlns='http://www.w3.org/2000/svg' class='w-7 h-7 text-black' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'><path d='M10 2h4'/><path d='M4.6 11a8 8 0 0 0 1.7 8.7 8 8 0 0 0 8.7 1.7'/><path d='M7.4 7.4a8 8 0 0 1 10.3 1 8 8 0 0 1 .9 10.2'/><path d='m2 2 20 20'/><path d='M12 12v-2'/></svg>"
+    }, {
+      title: "Email Reminders",
+      description: "Stay engaged and consistent with friendly email nudges.",
+      icon: "<svg xmlns='http://www.w3.org/2000/svg' class='w-7 h-7 text-black' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'><rect width='20' height='16' x='2' y='4' rx='2'/><path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/></svg>"
+    }
+
+    ].each do |item| %>
+      <%= render "card", title: item[:title], description: item[:description], icon: item[:icon].html_safe %>
+    <% end %>
+  </div>
+
+
+  <footer class="text-center mt-auto text-neutral-500 space-y-2">
+    <p>
+      This project is 
+      <a href="https://github.com/pkayokay/biblereadinglog" target="_blank" class="underline hover:text-neutral-800 transition">open source</a> 
+      and powered by 
+      <a href="https://www.desiringgod.org/articles/what-is-the-christian-gospel" target="_blank" class="underline hover:text-neutral-800 transition">Jesus</a>.
+    </p>
+  </footer>
+</div>
