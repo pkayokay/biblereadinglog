@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "pages#index"
 
+  get "about", to: "pages#about"
+  get "download", to: "pages#download"
+
   mount MissionControl::Jobs::Engine, at: "/jobs"
   get "table_of_contents", to: "table_of_contents#index"
 

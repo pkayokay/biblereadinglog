@@ -1,0 +1,43 @@
+<div class="max-w-7xl mx-auto p-7 h-full flex flex-col min-h-screen">
+  <header class="border-b border-neutral-200 pb-8 md:pb-6 flex justify-between items-center gap-8 md:flex-row flex-col mb-12">
+    <%= link_to root_path, class: "flex items-center space-x-3" do %>
+      <%= image_tag '/logo.png', alt: 'Bible Reading Log', class: 'max-w-[40px]' %>
+      <span class="text-xl font-semibold">Bible Reading Log</span>
+    <% end %>
+    <div class="space-x-4">
+      <%= link_to 'About', about_path, class: 'hover:underline text-neutral-700 hover:text-black' %>
+      <%= link_to 'Download', download_path, class: 'hover:underline text-neutral-700 hover:text-black' %>
+      <% if authenticated? %>
+        <%= link_to 'Reading Logs', new_session_path, class: 'bg-black py-3 px-4 text-white rounded-md ' %>
+      <% else %>
+        <%= link_to 'Sign in', new_session_path, class: 'hover:bg-neutral-800 bg-black py-3 px-4 text-white rounded-md ' %>
+      <% end %>
+    </div>
+  </header>
+
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer class="text-center mt-auto text-neutral-500 space-y-2">
+    <p>
+      This project is
+      <a
+        href="https://github.com/pkayokay/biblereadinglog"
+        target="_blank"
+        class="underline hover:text-neutral-800 transition"
+      >
+        open source
+      </a>
+      and powered by
+      <a
+        href="https://www.desiringgod.org/articles/what-is-the-christian-gospel"
+        target="_blank"
+        class="underline hover:text-neutral-800 transition"
+      >
+        Jesus
+      </a>
+      .
+    </p>
+  </footer>
+</div>
