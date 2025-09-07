@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  is_entire_bible: false
+  completed_at: 2025-09-07 14:10:40
+
+two:
+  user: two
+  name: MyString
+  is_entire_bible: false
+  completed_at: 2025-09-07 14:10:40
