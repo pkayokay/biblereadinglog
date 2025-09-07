@@ -23,7 +23,11 @@
   }
 
   .link {
-    @apply text-neutral-700 hover:text-black hover:underline cursor-pointer;
+    @apply text-black hover:text-neutral-800 hover:underline cursor-pointer;
+  }
+
+  .back-link {
+    @apply text-neutral-600 hover:underline hover:text-black;
   }
 
   .button {

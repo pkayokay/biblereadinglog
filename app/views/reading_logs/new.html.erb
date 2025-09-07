@@ -1,0 +1,22 @@
+<% content_for :title, "New Reading Log" %>
+
+<div class="flex items-center justify-between mb-4">
+  <%= link_to "Go Back", reading_logs_path, class: "back-link" %>
+</div>
+
+<h1 class="heading mb-0">New Reading Log</h1>
+
+<%= form_with model: @reading_log do |form| %>
+  <%= render "ui/form_errors", errors: @reading_log.errors.full_messages %>
+  <div class="field">
+    <%= form.label :name, "Name", class: "label" %>
+    <%= form.text_field :name, class: "input", required: true, placeholder: "Bible in a Year, Small Group Reading, etc..." %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_entire_bible, "Is Entire Bible?", class: "label" %>
+    <%= form.select :is_entire_bible, options_for_select([['Yes', true], ['No', false]], @reading_log.is_entire_bible), { prompt: "Select Yes or No", required: true }, class: "input" %>
+  </div>
+
+  <%= submit_tag "Create Reading Log", class: "button" %>
+<% end %>

@@ -1,14 +1,37 @@
 <%= content_for :title, "Reading Logs" %>
 
-<h1 class="heading">Home</h1>
-  <% if Current.user.confirmed? %>
+
+<div class="flex items-center justify-between mb-8">
+  <h1 class="heading mb-0">Home</h1>
+  <%= link_to new_reading_log_path, class: "button" do %>
+    New Reading Log
+  <% end %>
+</div>
+<% if Current.user.confirmed? %>
+  <p class="mb-8">A list of all your reading logs, with the books and their start or completion dates.</p>
+  <div class="space-x-2 mb-8">
+    <%= link_to "Started", reading_logs_path, class: class_names("font-medium rounded-md text-sm hover:bg-neutral-200 bg-neutral-100/60 py-2.5 px-3", params[:status] != "finished" && "bg-neutral-200! text-black!") %>
+    <%= link_to "Completed", reading_logs_path(status: "finished"), class: class_names("font-medium rounded-md text-sm hover:bg-neutral-200 bg-neutral-100/60 py-2.5 px-3", params[:status] == "finished" && "bg-neutral-200! text-black!") %>
+  </div>
+  <% if @reading_logs.any? %>
+    <div class="divide-y divide-neutral-200">
+      <% @reading_logs.each do |reading_log| %>
+        <%= link_to reading_log, data: { turbo_prefetch: false }, class: "block py-4 first:pt-0" do %>
+          <p class="font-semibold text-lg"><%= reading_log.name %></p>
+          <p class="text-sm"><%= reading_log.created_at.in_time_zone(Current.user.time_zone).strftime("%b %-d, %Y") %></p>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center mt-16">No reading logs found.</p>
+  <% end %>
 <% else %>
   <div>
-    <p class="text-neutral-800 mb-8">
+    <p class=" mb-8">
       Please check your email for a confirmation link to activate your account.
       If it hasn't arrived, please check your spam folder or wait a few minutes.
     </p>
-    <p class="text-neutral-800">
+    <p class="">
       Still need help? <a href="mailto:paul@biblereadinglog.com?subject=Help with account confirmation" class="underline">Reach out</a> or <%= link_to "request another email", new_confirmations_path, class: "underline", target: "_blank" %>.
     </p>
   </div>

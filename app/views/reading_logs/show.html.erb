@@ -1,0 +1,7 @@
+<%= content_for :title, @reading_log.name %>
+
+<div class="flex items-center justify-between mb-4">
+  <%= link_to "Go Back", reading_logs_path, class: "back-link" %>
+  <%= link_to "Settings", edit_reading_log_path(@reading_log), class: "back-link" %>
+</div>
+<h1 class="heading mb-0"><%= @reading_log.name %></h1>

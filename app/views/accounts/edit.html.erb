@@ -3,13 +3,13 @@
 
 <div class="divide-y divide-neutral-200">
   <div class="pb-6">
-    <p class="font-semibold text-lg mb-4 text-neutral-800">
+    <p class="font-semibold text-lg mb-4 ">
       <%= @user.email_address %>
     </p>
-    <p class="text-neutral-800">If you need to change your email, please email <a href="mailto:paul@biblereadinglog.com?subject=Change Email Request" class="underline">paul@biblereadinglog.com</a>.</p>
+    <p class="">If you need to change your email, please email <a href="mailto:paul@biblereadinglog.com?subject=Change Email Request" class="underline">paul@biblereadinglog.com</a>.</p>
   </div>
   <div class="py-6">
-    <p class="font-semibold text-lg mb-4 text-neutral-800">Notifications will be sent in your time zone.</p>
+    <p class="font-semibold text-lg mb-4 ">Notifications will be sent in your time zone.</p>
     <%= form_with model: @user, url: account_path, method: :patch do |form| %>
       <%= hidden_field_tag :update_type, "time_zone" %>
       <div class="field">
@@ -20,11 +20,11 @@
           class: "input",
           required: true %>
       </div>
-      <%= form.submit "Update Password", class: "button" %>
+      <%= form.submit "Update Time Zone", class: "button" %>
     <% end %>
   </div>
   <div class="py-6">
-    <p class="font-semibold text-lg mb-4 text-neutral-800">
+    <p class="font-semibold text-lg mb-4 ">
       Change your password
     </p>
     <%= form_with model: @user, url: account_path, method: :patch do |form| %>
@@ -40,11 +40,11 @@
         <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "input", placeholder: "Repeat new password", maxlength: 72 %>
       </div>
 
-      <%= form.submit "Update Timezone", class: "button" %>
+      <%= form.submit "Update Password", class: "button" %>
     <% end %>
   </div>
   <div class="py-6">
-    <p class="font-semibold text-lg mb-4 text-neutral-800">
+    <p class="font-semibold text-lg mb-4 ">
       Delete your account and all associated data
     </p>
     <%= button_to "Delete Account", account_path, method: :delete, data: { turbo_confirm: "Are you sure you want to delete your account? This action cannot be undone." }, class: "button--danger" %>

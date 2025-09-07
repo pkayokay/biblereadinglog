@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "table_of_contents", to: "table_of_contents#index"
 
   resource :account, only: %i[edit update destroy] 
-  resources :reading_logs, only: %i[index]
+  resources :reading_logs
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
