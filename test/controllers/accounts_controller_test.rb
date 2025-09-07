@@ -26,4 +26,11 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     @user.reload
     assert @user.authenticate("newpassword")
   end
+
+  test "should destroy account" do
+    assert_difference("User.count", -1) do
+      delete account_url
+    end
+    assert_redirected_to new_session_url
+  end
 end

@@ -46,7 +46,7 @@
     <p class="font-semibold text-lg mb-4 text-neutral-800">
       Delete your account and all associated data
     </p>
-
+    <%= button_to "Delete Account", account_path, method: :delete, data: { turbo_confirm: "Are you sure you want to delete your account? This action cannot be undone." }, class: "button--danger" %>
   </div>
 </div>
 

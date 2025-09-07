@@ -20,6 +20,11 @@ class AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    Current.user.destroy!
+    redirect_to new_session_path, notice: "Account deleted successfully."
+  end
+
   private
 
   def user_params

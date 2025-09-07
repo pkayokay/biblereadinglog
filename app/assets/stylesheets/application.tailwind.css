@@ -24,6 +24,10 @@
   .button--gray {
     @apply cursor-pointer bg-neutral-100 text-neutral-800 rounded-sm px-4 py-2 hover:bg-neutral-200;
   }
+
+  .button--danger {
+    @apply cursor-pointer bg-red-700 text-white rounded-sm px-4 py-2 hover:bg-red-800;
+  }
 }
 
 @layer components {
