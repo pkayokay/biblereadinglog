@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html> 
+  <%= render "layouts/head" %>
+
+  <body class="p-7">
+    <div class="max-w-md mx-auto w-full sm:mt-4">
+      <%= render 'ui/flash' %>
+      <%= render 'pages/header_logo', path: root_path %>
+      <div class="mt-16">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

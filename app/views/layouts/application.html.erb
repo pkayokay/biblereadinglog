@@ -1,76 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+<html> 
+  <%= render "layouts/head" %>
 
-    <!-- Title and description -->
-    <% title = content_for(:title) || raise("No title tag set") %>
-    <title><%= title %></title>
-    <meta name="title" content="<%= title %>">
-    <meta name="description" content="<%= marketing_site_description %>">
-    <meta name="keywords" content="bible, reading, log, study, plan, prayer, quiet time">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://biblereadinglog.com">
-    <meta property="og:title" content="<%= title %>">
-    <meta property="og:description" content="<%= marketing_site_description %>">
-    <meta property="og:image" content="<%= image_url('/og_image.png') %>">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://biblereadinglog.com">
-    <meta property="twitter:title" content="<%= title %>">
-    <meta property="twitter:description" content="<%= marketing_site_description %>">
-    <meta property="twitter:image" content="<%= image_url('/og_image.png') %>">
-
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-  </head>
-
-  <body class="<%= class_names("p-7") %>">
-    <div class="bg-amber-400 -mx-7 -mt-7 mb-7 text-center p-4 font-bold">
-      <p>This project is under construction. Please check back soon for updates!</p>
-    </div>
-    <% if is_auth_path? %>
-      <div class="max-w-md mx-auto w-full sm:mt-6">
-        <%= render 'ui/flash' %>
-        <%= render 'pages/header_logo', path: root_path %>
-        <div class="mt-16">
-          <%= yield %>
+  <body class="p-7">
+    <%= render 'ui/flash' %>
+    <div class="max-w-xl mx-auto w-full">
+      <div class="flex items-center justify-between mb-10 sm:flex-row flex-col space-y-5 sm:space-y-0">
+        <%= render 'pages/header_logo', path: reading_logs_path %>
+        <div class="flex items-center space-x-5">
+          <%= link_to "Home", reading_logs_path, class: "link" %>
+          <%= link_to "Account", edit_account_path, class: "link" %>
+          <%= button_to "Log out", session_path, method: :delete, class: "link" %>
         </div>
       </div>
-    <% else %>
-      <%= render 'ui/flash' %>
-      <% if is_page_path? %>
+      <div class="">
         <%= yield %>
-      <% else %>
-        <div class="max-w-xl mx-auto w-full">
-          <div class="flex items-center justify-between mb-10 sm:flex-row flex-col space-y-5 sm:space-y-0">
-            <%= render 'pages/header_logo', path: reading_logs_path %>
-            <div class="flex items-center space-x-5">
-              <%= link_to "Home", reading_logs_path, class: "link" %>
-              <%= link_to "Account", edit_account_path, class: "link" %>
-              <%= button_to "Log out", session_path, method: :delete, class: "link" %>
-            </div>
-          </div>
-          <div class="">
-            <%= yield %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+      </div>
+    </div>
   </body>
 </html>

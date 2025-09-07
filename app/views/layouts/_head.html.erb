@@ -1,0 +1,39 @@
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Title and description -->
+  <% title = content_for(:title) || raise("No title tag set") %>
+  <title><%= title %></title>
+  <meta name="title" content="<%= title %>">
+  <meta name="description" content="<%= marketing_site_description %>">
+  <meta name="keywords" content="bible, reading, log, study, plan, prayer, quiet time">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://biblereadinglog.com">
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:description" content="<%= marketing_site_description %>">
+  <meta property="og:image" content="<%= image_url('/og_image.png') %>">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://biblereadinglog.com">
+  <meta property="twitter:title" content="<%= title %>">
+  <meta property="twitter:description" content="<%= marketing_site_description %>">
+  <meta property="twitter:image" content="<%= image_url('/og_image.png') %>">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= yield :head %>
+
+  <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <%# Includes all stylesheet files in app/assets/stylesheets %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+</head>

@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout "page"
   allow_unauthenticated_access
 
   def index

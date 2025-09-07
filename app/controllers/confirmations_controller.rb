@@ -1,4 +1,5 @@
 class ConfirmationsController < ApplicationController
+  layout "auth"
   allow_unauthenticated_access
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_url, alert: "Try again later." }
   before_action :set_user_by_confirmation_token, only: %i[edit update]
