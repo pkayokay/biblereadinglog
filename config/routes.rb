@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   mount MissionControl::Jobs::Engine, at: "/jobs"
   get "table_of_contents", to: "table_of_contents#index"
 
+  resource :account, only: %i[edit update] 
   resources :reading_logs, only: %i[index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

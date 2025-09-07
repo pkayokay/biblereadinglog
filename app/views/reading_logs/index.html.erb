@@ -1,5 +1,4 @@
 <%= content_for :title, "Reading Logs" %>
-<%= button_to "log out", session_path, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
 
 <% if Current.user.confirmed? %>
   <h1>Home</h1>

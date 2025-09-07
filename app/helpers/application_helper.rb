@@ -7,6 +7,10 @@ module ApplicationHelper
     "A simple Bible reading tracker"
   end
 
+  def is_page_path?
+    controller_name == "pages"
+  end
+  
   def is_auth_path?
     %w[sessions registrations passwords confirmations].include?(controller_name)
   end

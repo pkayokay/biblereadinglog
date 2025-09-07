@@ -45,14 +45,30 @@
     <% if is_auth_path? %>
       <div class="max-w-md mx-auto w-full sm:mt-6">
         <%= render 'ui/flash' %>
-        <%= render 'pages/header_logo' %>
+        <%= render 'pages/header_logo', path: root_path %>
         <div class="mt-16">
           <%= yield %>
         </div>
       </div>
     <% else %>
       <%= render 'ui/flash' %>
-      <%= yield %>
+      <% if is_page_path? %>
+        <%= yield %>
+      <% else %>
+        <div class="max-w-3xl mx-auto w-full">
+          <div class="flex items-center justify-between mb-7 sm:flex-row flex-col space-y-5 sm:space-y-0">
+            <%= render 'pages/header_logo', path: reading_logs_path %>
+            <div class="flex items-center space-x-5">
+              <%= link_to "Home", reading_logs_path, class: "link" %>
+              <%= link_to "Profile", edit_account_path, class: "link" %>
+              <%= button_to "Log out", session_path, method: :delete, class: "link" %>
+            </div>
+          </div>
+          <div class="">
+            <%= yield %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </body>
 </html>

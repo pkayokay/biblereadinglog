@@ -14,10 +14,14 @@
   }
 
   .link {
-    @apply text-neutral-700 hover:text-black hover:underline;
+    @apply text-neutral-700 hover:text-black hover:underline cursor-pointer;
   }
 
   .button {
     @apply cursor-pointer bg-black text-white rounded-sm px-4 py-2 hover:bg-neutral-800;
+  }
+
+  .button--gray {
+    @apply cursor-pointer bg-neutral-100 text-neutral-800 rounded-sm px-4 py-2 hover:bg-neutral-200;
   }
 }
