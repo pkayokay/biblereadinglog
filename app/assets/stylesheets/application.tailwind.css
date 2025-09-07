@@ -10,7 +10,7 @@
   }
 
   .input {
-    @apply focus:outline-2 disabled:opacity-60 disabled:bg-neutral-100 rounded-sm focus:outline-black w-full block border border-neutral-300 px-3 py-2;
+    @apply focus:outline-2 disabled:opacity-60 disabled:bg-neutral-100 rounded-sm focus:outline-black w-full focus:border-transparent block border border-neutral-300 px-3 py-2;
   }
 
   .link {
