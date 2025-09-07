@@ -1,6 +1,38 @@
 <%= content_for :title, "Account" %>
 <h1 class="heading">Account</h1>
 
-<p>Password form</p>
-<p>Timezone form</p>
-<p>Delete account form</p>
+<div class="divide-y divide-neutral-200">
+  <div class="py-6">
+    <p class="mb-4 text-neutral-800">
+      Change your email
+    </p>
+  </div>
+  <div class="py-6">
+    <p class="mb-4 text-neutral-800">
+      Change your password
+    </p>
+  </div>
+  <div class="py-6">
+    <p class="mb-4 text-neutral-800">Notifications will be sent in your time zone.</p>
+    <%= form_with model: Current.user, url: account_path, method: :patch do |form| %>
+      <div class="field">
+        <%= form.label :time_zone, "Timezone", class: "label" %>
+        <%= form.select :time_zone,
+              ActiveSupport::TimeZone.all.map { |tz| [tz.to_s, tz.name] },
+              { prompt: "Select Timezone", selected: Current.user.time_zone },
+              class: "input",
+              required: true %>
+      </div>
+
+      <%= form.submit "Update Timezone", class: "button" %>
+    <% end %>
+  </div>
+  <div class="py-6">
+    <p class="mb-4 text-neutral-800">
+      Permanently delete your account and all associated data
+    </p>
+
+  </div>
+</div>
+
+

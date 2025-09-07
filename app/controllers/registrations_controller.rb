@@ -9,6 +9,8 @@ class RegistrationsController < ApplicationController
   end
 
   def create
+    # Convert IANA time zone to ActiveSupport::TimeZone
+    user_params[:time_zone] = ActiveSupport::TimeZone::MAPPING.key(user_params[:time_zone])
     @user = User.new(user_params)
     
     if @user.save
@@ -22,6 +24,6 @@ class RegistrationsController < ApplicationController
   end
 
   def user_params
-    params.expect(user: [:email_address, :password, :password_confirmation])
+    params.expect(user: [:email_address, :password, :password_confirmation, :time_zone])
   end
 end

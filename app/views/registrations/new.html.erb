@@ -27,6 +27,7 @@
     <%= form.password_field :password_confirmation, required: true, class: "input", autocomplete: "current-password", placeholder: "Confirm your password", maxlength: 72 %>
   </div>
 
+  <%= form.hidden_field :time_zone, data: { controller: "time-zone", time_zone_target: "field" } %>
   <%= form.submit "Sign up", class: "button w-full" %>
 <% end %>
 
