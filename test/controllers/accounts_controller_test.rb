@@ -19,4 +19,11 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal "Asia/Seoul", @user.time_zone
   end
+
+  test "should update password" do
+    patch account_url, params: { user: { password: "newpassword", password_confirmation: "newpassword" }, update_type: "password" }
+    assert_redirected_to edit_account_url
+    @user.reload
+    assert @user.authenticate("newpassword")
+  end
 end
