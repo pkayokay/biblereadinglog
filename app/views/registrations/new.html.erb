@@ -1,17 +1,8 @@
 <%= render 'ui/heading', title: "Sign up" %>
 
 <%= form_with url: registrations_path, model: @user do |form| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render 'ui/form_errors', errors: @user.errors.full_messages %>
+  
   <div class="field">
     <%= form.label :email_address, class: "label" %>
     <%= form.email_field :email_address, required: true, autofocus: true, class: "input", autocomplete: "username", placeholder: "Enter your email address" %>

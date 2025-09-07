@@ -3,33 +3,48 @@
 
 <div class="divide-y divide-neutral-200">
   <div class="py-6">
-    <p class="mb-4 text-neutral-800">
+    <p class="font-semibold text-lg mb-4 text-neutral-800">
       Change your email
     </p>
   </div>
   <div class="py-6">
-    <p class="mb-4 text-neutral-800">
-      Change your password
-    </p>
-  </div>
-  <div class="py-6">
-    <p class="mb-4 text-neutral-800">Notifications will be sent in your time zone.</p>
-    <%= form_with model: Current.user, url: account_path, method: :patch do |form| %>
+    <p class="font-semibold text-lg mb-4 text-neutral-800">Notifications will be sent in your time zone.</p>
+    <%= form_with model: @user, url: account_path, method: :patch do |form| %>
+      <%= hidden_field_tag :update_type, "time_zone" %>
       <div class="field">
         <%= form.label :time_zone, "Timezone", class: "label" %>
         <%= form.select :time_zone,
-              ActiveSupport::TimeZone.all.map { |tz| [tz.to_s, tz.name] },
-              { prompt: "Select Timezone", selected: Current.user.time_zone },
-              class: "input",
-              required: true %>
+          ActiveSupport::TimeZone.all.map { |tz| [tz.to_s, tz.name] },
+          { prompt: "Select Timezone", selected: @user.time_zone },
+          class: "input",
+          required: true %>
+      </div>
+      <%= form.submit "Update Password", class: "button" %>
+    <% end %>
+  </div>
+  <div class="py-6">
+    <p class="font-semibold text-lg mb-4 text-neutral-800">
+      Change your password
+    </p>
+    <%= form_with model: @user, url: account_path, method: :patch do |form| %>
+      <%= hidden_field_tag :update_type, "password" %>
+      <%= render "ui/form_errors", errors: @user.errors.full_messages %>
+      <div class="field">
+        <%= form.label :password, class: "label" %>
+        <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input", placeholder: "Enter new password", maxlength: 72 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :password_confirmation, class: "label" %>
+        <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "input", placeholder: "Repeat new password", maxlength: 72 %>
       </div>
 
       <%= form.submit "Update Timezone", class: "button" %>
     <% end %>
   </div>
   <div class="py-6">
-    <p class="mb-4 text-neutral-800">
-      Permanently delete your account and all associated data
+    <p class="font-semibold text-lg mb-4 text-neutral-800">
+      Delete your account and all associated data
     </p>
 
   </div>

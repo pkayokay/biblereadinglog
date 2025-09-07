@@ -1,0 +1,12 @@
+<% if errors.present? %>
+  <div class="mb- bg-red-100 rounded-md p-5 mb-6 text-red-900">
+    <h2 class="font-semibold">
+      <%= pluralize(errors.length, "error") %> prohibited this user from being saved:
+    </h2>
+    <ul class="list-disc pl-2 list-inside mt-2">
+      <% errors.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

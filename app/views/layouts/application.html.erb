@@ -4,7 +4,6 @@
 
   <body class="p-7">
     <div class="max-w-xl mx-auto w-full">
-      <%= render 'ui/flash' %>
       <div class="flex items-center justify-between mb-10 sm:flex-row flex-col space-y-5 sm:space-y-0">
         <%= render 'pages/header_logo', path: reading_logs_path %>
         <div class="flex items-center space-x-5">
@@ -13,6 +12,7 @@
           <%= button_to "Log out", session_path, method: :delete, class: "link" %>
         </div>
       </div>
+      <%= render 'ui/flash' %>
       <div class="">
         <%= yield %>
       </div>

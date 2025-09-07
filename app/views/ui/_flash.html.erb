@@ -1,6 +1,6 @@
 <% if flash[:alert] || flash[:notice] %>
   <%= tag.div class: class_names(
-    "w-full rounded-md mb-10 font-medium py-4 px-6",
+    "w-full rounded-md mb-6 font-medium py-4 px-6",
     flash[:alert] && "bg-red-100  text-red-800",
     flash[:notice] && "bg-green-100 text-green-800"
   ) do %>
