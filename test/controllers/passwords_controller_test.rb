@@ -43,7 +43,21 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     token = @user.password_reset_token
     patch password_url(token: token), params: { password: 'newpass', password_confirmation: 'wrong' }
     assert_redirected_to edit_password_path(token)
-    assert_equal "Passwords did not match.", flash[:alert]
+    assert_equal "Password confirmation doesn't match Password", flash[:alert]
+  end
+
+  test "should not update password with blank password" do
+    token = @user.password_reset_token
+    patch password_url(token: token), params: { password: ' ', password_confirmation: 'wrong' }
+    assert_redirected_to edit_password_path(token)
+    assert_equal "Password can't be blank and Password confirmation doesn't match Password", flash[:alert]
+  end
+
+  test "should not update password with blank password and blank password confirmation" do
+    token = @user.password_reset_token
+    patch password_url(token: token), params: { password: ' ', password_confirmation: ' ' }
+    assert_redirected_to edit_password_path(token)
+    assert_equal "Password can't be blank", flash[:alert]
   end
 
   test "should redirect if token is invalid" do
