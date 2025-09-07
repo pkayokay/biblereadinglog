@@ -1,7 +1,15 @@
 <%= content_for :title, "Reading Logs" %>
 
-<% if Current.user.confirmed? %>
-  <h1>Home</h1>
-<% else %>
-  <h1>Confirm your email</h1>
-<% end %>
+<h1 class="heading">Home</h1>
+<!--% if Current.user.confirmed? %>
+<%# else %>-->
+<!--  <h1>Confirm your email</h1>-->
+<%# end %>
+<div>
+  <p class="text-neutral-800 mb-4">
+    Check your email for a confirmation link to activate your account.
+  </p>
+  <p class="text-neutral-800">
+    If it's not in your inbox, be sure to check your spam folder or wait a few minutes.
+  </p>
+</div>

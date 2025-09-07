@@ -25,3 +25,9 @@
     @apply cursor-pointer bg-neutral-100 text-neutral-800 rounded-sm px-4 py-2 hover:bg-neutral-200;
   }
 }
+
+@layer components {
+  .heading {
+    @apply text-3xl font-bold mb-6;
+  }
+}
