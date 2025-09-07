@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@layer base {
+  .field {
+    @apply mb-6;
+  }
+
+  .label {
+    @apply text-neutral-800 font-semibold block mb-0.5 text-sm;
+  }
+
+  .input {
+    @apply disabled:opacity-60 disabled:bg-neutral-100 rounded-sm focus:outline-black w-full block border border-neutral-300 px-3 py-2;
+  }
+
+  .link {
+    @apply text-neutral-700 hover:text-black hover:underline;
+  }
+
+  .button {
+    @apply cursor-pointer bg-black text-white rounded-sm px-4 py-2 hover:bg-neutral-800;
+  }
+}

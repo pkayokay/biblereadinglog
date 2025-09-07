@@ -1,10 +1,13 @@
-new confirmation
-<%= form_with(url: confirmations_path, method: :post) do |form| %>
-<%= form.email_field :email_address, placeholder: "Email address", autofocus: true, required: true %>
-<%= form.submit "Send confirmation email" %>
+<%= render 'ui/heading', title: "Need confirmation instructions?" %>
 
+<%= form_with(url: confirmations_path, method: :post) do |form| %>
+  <div class="field">
+    <%= form.label :email_address, class: "label" %>
+    <%= form.email_field :email_address, placeholder: "Email address", autofocus: true, required: true, class: "input" %>
+  </div>
+  <%= form.submit "Send confirmation email", class: "button w-full" %>
 <% end %>
 
-<br >
-<br >
-<%= link_to "Back to sign in", new_session_path %>
+<div class="mt-6">
+  <%= link_to "Back to sign in", new_session_path %>
+</div>

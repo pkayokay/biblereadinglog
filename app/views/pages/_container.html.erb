@@ -1,9 +1,6 @@
-<div class="max-w-7xl mx-auto p-7 h-full flex flex-col min-h-screen">
+<div class="max-w-7xl mx-auto h-full flex flex-col min-h-screen">
   <header class="border-b border-neutral-200 pb-8 md:pb-6 flex justify-between items-center gap-8 md:flex-row flex-col mb-12">
-    <%= link_to root_path, class: "flex items-center space-x-3" do %>
-      <%= image_tag '/logo.png', alt: 'Bible Reading Log', class: 'max-w-[40px]' %>
-      <span class="text-xl font-semibold">Bible Reading Log</span>
-    <% end %>
+    <%= render 'pages/header_logo' %>
     <div class="space-x-4">
       <%= link_to 'Download', download_path, class: 'hover:underline text-neutral-700 hover:text-black' %>
       <% if authenticated? %>

@@ -1,9 +1,14 @@
-<h1>Forgot your password?</h1>
-
+<%= render 'ui/heading', title: "Forgot your password?" %>
 
 <%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.submit "Email reset instructions" %>
+  <div class="field">
+    <%= form.label :email_address, class: "label" %>
+    <%= form.email_field :email_address, required: true, autofocus: true, class: "input", autocomplete: "username", placeholder: "Enter your email address" %>
+  </div>
+  <%= form.submit "Email reset instructions", class: "button w-full" %>
 <% end %>
 
-<%= link_to "Back to sign in", new_session_path %>
+<div class="mt-6">
+  <%= link_to "Back to sign in", new_session_path, class: "link" %>
+</div>
+

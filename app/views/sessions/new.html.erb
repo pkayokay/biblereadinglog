@@ -1,11 +1,22 @@
+<%= render 'ui/heading', title: "Sign in" %>
 
 <%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+  <div class="field">
+    <%= form.label :email_address, class: "label" %>
+    <%= form.email_field :email_address, class: "input", required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
+  </div>
 
-<%= link_to "Forgot password?", new_password_path %>
-<%= link_to "Register", new_registration_path %>
-<%= link_to "Confirm your email", new_confirmations_path %>
+  <div class="field">
+    <%= form.label :password, class: "label" %>
+    <%= form.password_field :password, class: "input", required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+    <div class="text-right mt-2">
+      <%= link_to "Forgot password?", new_password_path, class: "link" %>
+    </div>
+  </div>
+  <%= form.submit "Sign in", class: "button w-full" %>
+<% end %>
+
+<div class="mt-6 flex flex-col items-start space-y-2">
+  <%= link_to "Sign up for an account", new_registration_path, class: "link" %>
+  <%= link_to "Need confirmation instructions?", new_confirmations_path, class: "link" %>
+</div>

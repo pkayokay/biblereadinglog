@@ -6,21 +6,22 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Title and description -->
-    <title><%= content_for(:title) || "Bible Reading Log | A simple Bible reading tracker" %></title>
-    <meta name="title" content="Bible Reading Log | A simple Bible reading tracker">
-    <meta name="description" content="A simple Bible reading tracker">
+    <% title = content_for(:title) || raise("No title tag set") %>
+    <title><%= title %></title>
+    <meta name="title" content="<%= title %>">
+    <meta name="description" content="<%= marketing_site_description %>">
     <meta name="keywords" content="bible, reading, log, study, plan, prayer, quiet time">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://biblereadinglog.com">
-    <meta property="og:title" content="Bible Reading Log | A simple Bible reading tracker">
-    <meta property="og:description" content="A simple Bible reading tracker">
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= marketing_site_description %>">
     <meta property="og:image" content="<%= image_url('/og_image.png') %>">
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://biblereadinglog.com">
-    <meta property="twitter:title" content="Bible Reading Log | A simple Bible reading tracker">
-    <meta property="twitter:description" content="A simple Bible reading tracker">
+    <meta property="twitter:title" content="<%= title %>">
+    <meta property="twitter:description" content="<%= marketing_site_description %>">
     <meta property="twitter:image" content="<%= image_url('/og_image.png') %>">
 
     <%= csrf_meta_tags %>
@@ -39,10 +40,19 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-    <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+  <body class="<%= class_names("p-7") %>">
 
-    <%= yield %>
+    <% if is_auth_path? %>
+      <div class="max-w-md mx-auto w-full sm:mt-6">
+        <%= render 'ui/flash' %>
+        <%= render 'pages/header_logo' %>
+        <div class="mt-16">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= render 'ui/flash' %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

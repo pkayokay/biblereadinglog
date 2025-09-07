@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   validates :email_address, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, presence: true
 
   generates_token_for :confirmation, expires_in: 15.minutes do
     updated_at

@@ -1,6 +1,9 @@
-Confirm your email
+<%= render 'ui/heading', title: "Confirm your email" %>
 
 <%= form_with(url: confirmations_path(token: params[:token]), method: :patch) do |form| %>
-  <%= form.email_field :email_address, disabled: true, value: @user.email_address %>
-  <%= form.submit "Confirm my email" %>
+  <div class="field">
+    <%= form.label :email_address, class: "label" %>
+    <%= form.email_field :email_address, disabled: true, class: "input", value: @user.email_address %>
+  </div>
+  <%= form.submit "Confirm my email", class: "button w-full" %>
 <% end %>

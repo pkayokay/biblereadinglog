@@ -1,5 +1,6 @@
-<%= form_with url: registrations_path, model: @user do |form| %>
+<%= render 'ui/heading', title: "Sign up" %>
 
+<%= form_with url: registrations_path, model: @user do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,16 +12,24 @@
     </div>
   <% end %>
 
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address" %>
-  <br>
+  <div class="field">
+    <%= form.label :email_address, class: "label" %>
+    <%= form.email_field :email_address, required: true, autofocus: true, class: "input", autocomplete: "username", placeholder: "Enter your email address" %>
+  </div>
 
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
-  <%= form.password_field :password_confirmation, required: true, autocomplete: "current-password", placeholder: "Confirm your password", maxlength: 72 %>
-  <br>
+  <div class="field">
+    <%= form.label :password, class: "label" %>
+    <%= form.password_field :password, required: true, class: "input", autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+  </div>
 
-  <%= form.submit "Sign up" %>
+  <div class="field">
+    <%= form.label :password_confirmation, class: "label" %>
+    <%= form.password_field :password_confirmation, required: true, class: "input", autocomplete: "current-password", placeholder: "Confirm your password", maxlength: 72 %>
+  </div>
+
+  <%= form.submit "Sign up", class: "button w-full" %>
 <% end %>
 
-<br>
-
-<%= link_to "Back to sign in", new_session_path %>
+<div class="mt-6">
+  <%= link_to "Back to sign in", new_session_path, class: "link" %>
+</div>
